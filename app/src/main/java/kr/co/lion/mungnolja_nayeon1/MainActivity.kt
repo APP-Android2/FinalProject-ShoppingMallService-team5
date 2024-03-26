@@ -8,8 +8,9 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolja_nayeon1.databinding.ActivityMainBinding
 import kr.co.lion.mungnolja_nayeon1.fragment.MatchingFragment
+import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterInfoFragment
 
-class MainActivity<FragmentName> : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding: ActivityMainBinding
 
@@ -23,7 +24,7 @@ class MainActivity<FragmentName> : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(MainFragmentName.MATCHING_FRAGMENT,false,false,null)
+        replaceFragment(MainFragmentName.MATCHING_FRAGMENT,true,false,null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -50,8 +51,8 @@ class MainActivity<FragmentName> : AppCompatActivity() {
             MainFragmentName.MATCHING_FRAGMENT -> {
                 newFragment = MatchingFragment()
             }
-            MainFragmentName.B_FRAGMENT  -> {
-
+            MainFragmentName.PETSITTER_INFO_FRAGMENT  -> {
+                newFragment = PetSitterInfoFragment()
             }
         }
 

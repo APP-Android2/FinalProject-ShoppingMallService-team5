@@ -40,13 +40,13 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageDog"
+                        android:id="@+id/imagePetSitter"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:id="@+id/textReservationType"
+                        android:id="@+id/textMatchingPetSitterName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="돌봄30분"
@@ -73,7 +73,7 @@
                     android:textColor="?android:attr/textColorSecondary" />
 
                 <TextView
-                    android:id="@+id/textReservationTime"
+                    android:id="@+id/textCareer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -83,7 +83,7 @@
                     android:textColor="?android:attr/textColorSecondary" />
 
                 <TextView
-                    android:id="@+id/textReservationAddress"
+                    android:id="@+id/textCareerDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -104,7 +104,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,11 +120,17 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="10dp" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/buttonMatching"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="선택완료" />
 
 
 </LinearLayout>
