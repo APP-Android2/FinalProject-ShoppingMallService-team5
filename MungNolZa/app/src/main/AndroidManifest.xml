@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ui.freeboard.BoardActivity"
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
