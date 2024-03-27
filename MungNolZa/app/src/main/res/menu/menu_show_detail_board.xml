@@ -6,10 +6,10 @@
         android:id="@+id/menuItemModifyShowDetailBoard"
         android:icon="@drawable/edit_24px"
         android:title="수정"
-        app:showAsAction="always" />
+        app:showAsAction="withText" />
     <item
         android:id="@+id/menuItemDeleteShowDetailBoard"
         android:icon="@drawable/delete_24px"
         android:title="삭제"
-        app:showAsAction="always" />
+        app:showAsAction="withText" />
 </menu>

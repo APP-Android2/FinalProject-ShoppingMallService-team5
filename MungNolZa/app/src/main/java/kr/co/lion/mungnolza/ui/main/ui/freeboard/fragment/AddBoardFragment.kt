@@ -14,8 +14,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.carousel.CarouselLayoutManager
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAddBoardBinding
+import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.AddBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
@@ -47,11 +50,27 @@ class AddBoardFragment : Fragment() {
         boardActivity = activity as BoardActivity
 
         setToolbar()
+        setCarousel()
         setAlbumLauncher()
 
         setImageViewEvent()
 
         return binding.root
+    }
+
+    fun setCarousel(){
+        binding.apply{
+            // RecyclerView 셋팅
+            recyclerViewPhotosAddBoard.apply{
+                // 어댑터
+                adapter = RecyclerViewAdapterAddBoard()
+                // 레이아웃 매니저
+                layoutManager = CarouselLayoutManager()
+                // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(HeroCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            }
+        }
     }
 
     fun setToolbar(){
@@ -147,5 +166,29 @@ class AddBoardFragment : Fragment() {
         albumIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
         // 액티비티를 실행한다.
         albumLauncher.launch(albumIntent)
+    }
+
+    inner class RecyclerViewAdapterAddBoard: RecyclerView.Adapter<RecyclerViewAdapterAddBoard.ViewHolderAddBoard>() {
+        inner class ViewHolderAddBoard(rowAddBoardBinding: RowAddBoardBinding): RecyclerView.ViewHolder(rowAddBoardBinding.root){
+            val rowAddBoardBinding: RowAddBoardBinding
+
+            init{
+                this.rowAddBoardBinding = rowAddBoardBinding
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAddBoard {
+            val rowAddBoardBinding = RowAddBoardBinding.inflate(layoutInflater)
+            val viewHolderAddBoard = ViewHolderAddBoard(rowAddBoardBinding)
+            return viewHolderAddBoard
+        }
+
+        override fun getItemCount(): Int = 5
+
+        override fun onBindViewHolder(holder: ViewHolderAddBoard, position: Int) {
+            holder.rowAddBoardBinding.imageViewCarouselAddBoard.setImageResource(R.drawable.img_dog)
+
+        }
+
     }
 }
