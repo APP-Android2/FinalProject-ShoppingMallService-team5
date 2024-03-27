@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolja_nayeon1.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,7 +28,7 @@ class MatchingFragment : Fragment() {
 
         setToolbar()
         setButtonMatching()
-        //setRecyclerView()
+        setRecyclerView()
 
         return fragmentMatchingBinding.root
     }
@@ -53,9 +54,7 @@ class MatchingFragment : Fragment() {
             buttonMatchingDone.apply {
                 // 버튼을 눌렀을떄
                 setOnClickListener {
-                    // PetSitterInfoFragment가 보여지게 한다
-                    mainActivity.replaceFragment(MainFragmentName.PETSITTER_INFO_FRAGMENT,true, true, null)
-                    // 결제 프래그먼토가 보여져야한다 수정해야함.
+                    // 결제 프래그먼토가 보여져야한다
                 }
             }
         }
@@ -79,6 +78,8 @@ class MatchingFragment : Fragment() {
 
     // RecyclerView의 어뎁터
     inner class RecyclerMainAdapter : RecyclerView.Adapter<RecyclerMainAdapter.RecyclerMainViewHolder>(){
+        // 사용자로부터 선택된 항목의 인덱스
+        var selectedPosition = -1
         inner class RecyclerMainViewHolder(rowMatchingBinding: RowMatchingBinding) : RecyclerView.ViewHolder(rowMatchingBinding.root){
             val rowMatchingBinding:RowMatchingBinding
 
@@ -108,6 +109,24 @@ class MatchingFragment : Fragment() {
             holder.rowMatchingBinding.textViewRowMatchingReservationDateTime.text = "날짜${position} 2024.03.27 오후5:00-6:00"
 
             // 항목을 누르면 동작하는 리스너
+            holder.rowMatchingBinding.imageViewRowMatchingReviewButton.setOnClickListener {
+                // PetSitterInfoFragment가 보여지게 한다
+                mainActivity.replaceFragment(MainFragmentName.PETSITTER_INFO_FRAGMENT,true, true, null)
+            }
+
+            // 항목을 누르면 해당 항목의 색상을 변경한다
+            holder.itemView.setOnClickListener {
+                selectedPosition = position
+                notifyDataSetChanged()
+            }
+
+            if (selectedPosition == position){
+                // 선택된 항목의 색상
+                holder.rowMatchingBinding.root.setBackgroundColor(Color.parseColor("#FFEB3B"))
+            } else{
+                // 기본 색상
+                holder.rowMatchingBinding.root.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            }
         }
     }
 }

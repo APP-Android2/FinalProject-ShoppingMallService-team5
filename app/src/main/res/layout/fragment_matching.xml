@@ -27,71 +27,71 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Title, secondary and supporting text -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <!-- Title, secondary and supporting text -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageViewRowMatchingPetSitter"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/textViewMatchingPetSitterName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="돌봄30분"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-                </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageViewRowMatchingPetSitter"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_launcher" />
 
                 <TextView
-                    android:id="@+id/textViewRowMatchingPetSitterName"
+                    android:id="@+id/textViewMatchingPetSitterName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="뽀삐"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/textViewMatchingReservationDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:inputType="datetime|date"
-                    android:text="3월29일"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/textViewRowMatchingCareer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:inputType="datetime|time"
-                    android:text="오후 5:00-6:00"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/textViewRowMatchingReservationDateTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="서울특별시 송파구 oo동"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary" />
-
+                    android:text="돌봄30분"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewRowMatchingPetSitterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="뽀삐"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/textViewMatchingReservationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="datetime|date"
+                android:text="3월29일"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/textViewRowMatchingCareer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="datetime|time"
+                android:text="오후 5:00-6:00"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/textViewRowMatchingReservationDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="서울특별시 송파구 oo동"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?android:attr/textColorSecondary" />
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -104,7 +104,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
