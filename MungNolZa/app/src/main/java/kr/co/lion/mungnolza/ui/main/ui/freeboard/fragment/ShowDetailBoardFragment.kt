@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentShowDetailBoardBinding
+import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
+import kr.co.lion.mungnolza.databinding.RowShowDetailBoardBinding
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.ShowDetailBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
@@ -35,6 +39,7 @@ class ShowDetailBoardFragment : Fragment() {
         boardActivity = activity as BoardActivity
 
         setToolbar()
+        setCarousel()
 
         binding.buttonTest.setOnClickListener {
             showBottomCommentSheet()
@@ -45,6 +50,20 @@ class ShowDetailBoardFragment : Fragment() {
         return binding.root
     }
 
+    fun setCarousel(){
+        binding.apply{
+            // RecyclerView 셋팅
+            recyclerViewPhotosShowDetailBoard.apply{
+                // 어댑터
+                adapter = RecyclerViewAdapterShowDetailBoard()
+                // 레이아웃 매니저
+                layoutManager = CarouselLayoutManager()
+                // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(HeroCarouselStrategy())
+                // layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            }
+        }
+    }
 
     // 툴바 설정
     fun setToolbar(){
@@ -96,7 +115,29 @@ class ShowDetailBoardFragment : Fragment() {
 
         val bottomCommentFragment = BottomCommentFragment()
         bottomCommentFragment.show(boardActivity.supportFragmentManager, "BottomCommentSheet")
+    }
 
+    inner class RecyclerViewAdapterShowDetailBoard: RecyclerView.Adapter<RecyclerViewAdapterShowDetailBoard.ViewHolderShowDetailBoard>() {
+        inner class ViewHolderShowDetailBoard(rowShowDetailBoardBinding: RowShowDetailBoardBinding): RecyclerView.ViewHolder(rowShowDetailBoardBinding.root){
+            val rowShowDetailBoardBinding: RowShowDetailBoardBinding
+
+            init{
+                this.rowShowDetailBoardBinding = rowShowDetailBoardBinding
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderShowDetailBoard {
+            val rowShowDetailBoardBinding = RowShowDetailBoardBinding.inflate(layoutInflater)
+            val viewHolderAddBoard = ViewHolderShowDetailBoard(rowShowDetailBoardBinding)
+            return viewHolderAddBoard
+        }
+
+        override fun getItemCount(): Int = 5
+
+        override fun onBindViewHolder(holder: ViewHolderShowDetailBoard, position: Int) {
+            holder.rowShowDetailBoardBinding.imageViewCarouselShowDetailBoard.setImageResource(R.drawable.img_dog)
+
+        }
 
     }
 }

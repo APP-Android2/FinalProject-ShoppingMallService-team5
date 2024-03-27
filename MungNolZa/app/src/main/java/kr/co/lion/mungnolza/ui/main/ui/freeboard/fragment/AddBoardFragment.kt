@@ -187,8 +187,6 @@ class AddBoardFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderAddBoard, position: Int) {
             holder.rowAddBoardBinding.imageViewCarouselAddBoard.setImageResource(R.drawable.img_dog)
-
         }
-
     }
 }
