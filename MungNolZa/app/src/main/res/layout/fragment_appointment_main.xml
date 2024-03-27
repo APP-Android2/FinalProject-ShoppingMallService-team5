@@ -10,7 +10,6 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        style="@style/Theme.AndroidProject4BoardApp.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
@@ -213,7 +212,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonAppointmentDateCalendarNext"
+                android:id="@+id/buttonAppointmentMainNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
