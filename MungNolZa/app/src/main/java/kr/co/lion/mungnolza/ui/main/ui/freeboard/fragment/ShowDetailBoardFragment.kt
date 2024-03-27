@@ -41,9 +41,12 @@ class ShowDetailBoardFragment : Fragment() {
         setToolbar()
         setCarousel()
 
-        binding.buttonTest.setOnClickListener {
+
+        binding.includeBottomCommentShowDetailBoard.root.setOnClickListener {
             showBottomCommentSheet()
         }
+
+
 
 
 
@@ -136,8 +139,6 @@ class ShowDetailBoardFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderShowDetailBoard, position: Int) {
             holder.rowShowDetailBoardBinding.imageViewCarouselShowDetailBoard.setImageResource(R.drawable.img_dog)
-
         }
-
     }
 }

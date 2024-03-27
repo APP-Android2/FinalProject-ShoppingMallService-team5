@@ -29,9 +29,7 @@ class BoardActivity : AppCompatActivity() {
 
         replaceFragment(BoardFragmentName.FREE_BOARD_FRAGMENT,false,false,null)
 
-
         setContentView(binding.root)
-
     }
 
 
