@@ -10,4 +10,5 @@ class Tools {
 enum class MainFragmentName(var str:String){
     MATCHING_FRAGMENT("MatchingFragment"),
     PETSITTER_INFO_FRAGMENT("PetSitterInfoFragment"),
+    PETSITTER_REVIEW_FRAGMENT("PetSitterReviewFragment"),
 }

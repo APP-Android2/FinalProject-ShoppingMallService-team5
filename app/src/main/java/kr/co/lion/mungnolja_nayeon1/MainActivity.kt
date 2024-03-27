@@ -9,6 +9,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolja_nayeon1.databinding.ActivityMainBinding
 import kr.co.lion.mungnolja_nayeon1.fragment.MatchingFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterInfoFragment
+import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterReviewFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +54,9 @@ class MainActivity : AppCompatActivity() {
             }
             MainFragmentName.PETSITTER_INFO_FRAGMENT  -> {
                 newFragment = PetSitterInfoFragment()
+            }
+            MainFragmentName.PETSITTER_REVIEW_FRAGMENT -> {
+                newFragment = PetSitterReviewFragment()
             }
         }
 

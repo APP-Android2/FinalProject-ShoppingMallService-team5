@@ -22,6 +22,7 @@ class PetSitterInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         setToolbar()
+        setReviewButton()
 
         return fragmentPetSitterInfoBinding.root
     }
@@ -39,6 +40,22 @@ class PetSitterInfoFragment : Fragment() {
                     mainActivity.removeFragment(MainFragmentName.PETSITTER_INFO_FRAGMENT)
                 }
             }
+        }
+    }
+
+    // 리뷰 보기 버튼
+    fun setReviewButton(){
+        fragmentPetSitterInfoBinding.apply {
+            // imageViewPetSitterInfoReviewButton 이미지 버튼 클릭시
+            imageViewPetSitterInfoReviewButton.setOnClickListener {
+                // PetSitterReviewFragment 가 보여지게 한다
+                mainActivity.replaceFragment(MainFragmentName.PETSITTER_REVIEW_FRAGMENT,true,true,null)
+            }
+            // cardPetSitterInfo 세부사항 카드 클릭시
+            /*cardPetSitterInfo.setOnClickListener {
+                // PetSitterReviewFragment 가 보여지게 한다
+                mainActivity.replaceFragment(MainFragmentName.PETSITTER_REVIEW_FRAGMENT,true,true,null)
+            }*/
         }
     }
 }
