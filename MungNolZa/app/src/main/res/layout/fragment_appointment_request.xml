@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
-            android:gravity="center"
+            android:gravity="left"
             android:orientation="horizontal">
 
             <!-- CardView for the first pet -->
@@ -47,7 +47,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#E1DFDF"
+                    android:background="#FFFFFFFF"
                     android:orientation="vertical"
                     android:padding="8dp">
 
@@ -56,10 +56,10 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_pet_one"
-                        app:srcCompat="@drawable/sound_detection_dog_barking24px" />
+                        app:srcCompat="@drawable/spitz" />
 
                     <TextView
-                        android:id="@+id/tvPetOneInfo"
+                        android:id="@+id/petOneInfo"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -89,10 +89,10 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_pet_two"
-                        app:srcCompat="@drawable/sound_detection_dog_barking24px" />
+                        app:srcCompat="@drawable/doog" />
 
                     <TextView
-                        android:id="@+id/tvPetTwoInfo"
+                        android:id="@+id/petTwoInfo"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
