@@ -22,7 +22,7 @@
         android:text="신청내역" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardRowMatchingReservationDetail"
+        android:id="@+id/cardMatchingReservationDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
@@ -40,25 +40,25 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageViewRowMatchingPetSitter"
+                    android:id="@+id/imageViewMatchingPet"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
-                    android:id="@+id/textViewMatchingPetSitterName"
+                    android:id="@+id/textViewMatchingPetCareType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돌봄30분"
+                    android:text="돌봄서비스 유형 및 시간"
                     android:textAppearance="?attr/textAppearanceTitleMedium" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textViewRowMatchingPetSitterName"
+                android:id="@+id/textViewMatchingPetName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="뽀삐"
+                android:text="펫이름"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -68,26 +68,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:inputType="datetime|date"
-                android:text="3월29일"
+                android:text="예약 날짜"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
-                android:id="@+id/textViewRowMatchingCareer"
+                android:id="@+id/textViewMatchingReservationTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:inputType="datetime|time"
-                android:text="오후 5:00-6:00"
+                android:text="예약 시간"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
-                android:id="@+id/textViewRowMatchingReservationDateTime"
+                android:id="@+id/textViewMatchingReservationAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="서울특별시 송파구 oo동"
+                android:text="예약 주소"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -118,6 +118,14 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="매칭된 팻시터" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="원하는 펫시터를 선택해주세요 !"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMatching"

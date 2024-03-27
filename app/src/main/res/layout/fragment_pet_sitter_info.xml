@@ -8,7 +8,7 @@
     tools:context=".fragment.PetSitterInfoFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarPetsitterInfo"
+        android:id="@+id/toolbarPetSitterInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -61,6 +61,12 @@
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/textViewPetSitterQualification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="멍놀자 펫시터 자격 수료" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -71,7 +77,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.1"
-                            android:text="5점 " />
+                            android:text="별점수" />
 
                         <RatingBar
                             android:id="@+id/ratingBarPetSitterInfo"
@@ -86,25 +92,17 @@
                             android:id="@+id/textViewPetSitterInfoCountReview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:text="oo개의 후기" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textViewPetSitterInfoCareer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="경력"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?android:attr/textColorSecondary" />
-
-                    <TextView
                         android:id="@+id/textViewPetSitterInfoCareerDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="V 반려동물 관리 학과 졸업"
+                        android:layout_marginTop="20dp"
+                        android:text="경력"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?android:attr/textColorSecondary" />
 

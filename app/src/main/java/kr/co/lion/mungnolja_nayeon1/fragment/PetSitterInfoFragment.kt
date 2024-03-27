@@ -23,6 +23,7 @@ class PetSitterInfoFragment : Fragment() {
 
         setToolbar()
         setReviewButton()
+        setCardPetSitterInfo()
 
         return fragmentPetSitterInfoBinding.root
     }
@@ -30,7 +31,7 @@ class PetSitterInfoFragment : Fragment() {
     // 툴바 설정
     fun setToolbar(){
         fragmentPetSitterInfoBinding.apply {
-            toolbarPetsitterInfo.apply {
+            toolbarPetSitterInfo.apply {
                 // 타이틀 설정
                 title = "펫시터 정보"
                 // 뒤로가기
@@ -43,6 +44,22 @@ class PetSitterInfoFragment : Fragment() {
         }
     }
 
+    // cardPetSitterInfo의 내용을 설정해준다
+    fun setCardPetSitterInfo(){
+        // 펫시터 이름
+        fragmentPetSitterInfoBinding.textViewPetSitterInfoName.setText("이영주 시터")
+        // 펫시터 멍놀자 자격수료
+        fragmentPetSitterInfoBinding.textViewPetSitterQualification.setText("멍놀자 펫시터 자격 수료")
+        // 별 점수
+        fragmentPetSitterInfoBinding.textViewPetSitterInfoScore.setText("5점")
+        // 별 개수
+        fragmentPetSitterInfoBinding.ratingBarPetSitterInfo.rating = 5f
+        // 리뷰 개수 (ex, 00개의 후기)
+        fragmentPetSitterInfoBinding.textViewPetSitterInfoCountReview.setText("89개의 후기")
+        // 경력
+        fragmentPetSitterInfoBinding.textViewPetSitterInfoCareerDetail.setText("반려동물관리학과 졸업 \n반려동물관리사 자격증 보유")
+    }
+
     // 리뷰 보기 버튼
     fun setReviewButton(){
         fragmentPetSitterInfoBinding.apply {
@@ -51,11 +68,6 @@ class PetSitterInfoFragment : Fragment() {
                 // PetSitterReviewFragment 가 보여지게 한다
                 mainActivity.replaceFragment(MainFragmentName.PETSITTER_REVIEW_FRAGMENT,true,true,null)
             }
-            // cardPetSitterInfo 세부사항 카드 클릭시
-            /*cardPetSitterInfo.setOnClickListener {
-                // PetSitterReviewFragment 가 보여지게 한다
-                mainActivity.replaceFragment(MainFragmentName.PETSITTER_REVIEW_FRAGMENT,true,true,null)
-            }*/
         }
     }
 }

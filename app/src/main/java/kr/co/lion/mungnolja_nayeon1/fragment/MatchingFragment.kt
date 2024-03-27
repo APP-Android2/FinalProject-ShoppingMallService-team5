@@ -28,6 +28,7 @@ class MatchingFragment : Fragment() {
 
         setToolbar()
         setButtonMatching()
+        setCardMatching()
         setRecyclerView()
 
         return fragmentMatchingBinding.root
@@ -58,6 +59,22 @@ class MatchingFragment : Fragment() {
                 }
             }
         }
+    }
+
+    // cardMatchingReservationDetail의 내용을 설정해준다
+    fun setCardMatching(){
+        // 펫 사진
+        fragmentMatchingBinding.imageViewMatchingPet.setImageResource(R.drawable.nayeon)
+        // 돌봄 서비스 유형 및 시간
+        fragmentMatchingBinding.textViewMatchingPetCareType.setText("돌봄 30분")
+        // 펫 이름
+        fragmentMatchingBinding.textViewMatchingPetName.setText("뽀삐나연")
+        // 예약 날짜
+        fragmentMatchingBinding.textViewMatchingReservationDate.setText("3월27일")
+        // 예약 시간
+        fragmentMatchingBinding.textViewMatchingReservationTime.setText("오후 5:00-5:30")
+        // 예약 주소
+        fragmentMatchingBinding.textViewMatchingReservationAddress.setText("서울특별시 사랑구 행복동")
     }
 
     // RecyclerView설정
@@ -104,9 +121,9 @@ class MatchingFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
-            holder.rowMatchingBinding.textViewRowMatchingPetSitterName.text = "펫시터 최나연$position"
+            holder.rowMatchingBinding.textViewRowMatchingPetSitterName.text = "이영주 시터$position"
             holder.rowMatchingBinding.textViewRowMatchingCareer.text = "수의학과 전공$position"
-            holder.rowMatchingBinding.textViewRowMatchingReservationDateTime.text = "날짜${position} 2024.03.27 오후5:00-6:00"
+            holder.rowMatchingBinding.textViewRowMatchingReservationDateTime.text = "날짜${position} 2024.03.27 오후5:00-5:30"
 
             // 항목을 누르면 동작하는 리스너
             holder.rowMatchingBinding.imageViewRowMatchingReviewButton.setOnClickListener {

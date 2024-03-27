@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="후기 입니다 어쩌구저쩌구" />
+                android:text="후기작성" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
