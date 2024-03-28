@@ -64,18 +64,20 @@ class MatchingFragment : Fragment() {
 
     // cardMatchingReservationDetail의 내용을 설정해준다
     fun setCardMatching(){
-        // 펫 사진
-        fragmentMatchingBinding.imageViewMatchingPet.setImageResource(R.drawable.nayeon)
-        // 돌봄 서비스 유형 및 시간
-        fragmentMatchingBinding.textViewMatchingPetCareType.setText("돌봄 30분")
-        // 펫 이름
-        fragmentMatchingBinding.textViewMatchingPetName.setText("뽀삐나연")
-        // 예약 날짜
-        fragmentMatchingBinding.textViewMatchingReservationDate.setText("3월27일")
-        // 예약 시간
-        fragmentMatchingBinding.textViewMatchingReservationTime.setText("오후 5:00-5:30")
-        // 예약 주소
-        fragmentMatchingBinding.textViewMatchingReservationAddress.setText("서울특별시 사랑구 행복동")
+        fragmentMatchingBinding.apply {
+            // 펫 사진
+            imageViewMatchingPet.setImageResource(R.drawable.nayeon)
+            // 돌봄 서비스 유형 및 시간
+            textViewMatchingPetCareType.setText("돌봄 30분")
+            // 펫 이름
+            textViewMatchingPetName.setText("뽀삐나연")
+            // 예약 날짜
+            textViewMatchingReservationDate.setText("3월27일")
+            // 예약 시간
+            textViewMatchingReservationTime.setText("오후 5:00-5:30")
+            // 예약 주소
+            textViewMatchingReservationAddress.setText("서울특별시 사랑구 행복동")
+        }
     }
 
     // RecyclerView설정

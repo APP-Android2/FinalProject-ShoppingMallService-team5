@@ -84,9 +84,10 @@
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:isIndicator="false"
+                            android:isIndicator="true"
                             android:numStars="5"
-                            android:rating="5" />
+                            android:rating="5"
+                            tools:isIndicator="true" />
 
                         <TextView
                             android:id="@+id/textViewPetSitterInfoCountReview"

@@ -11,6 +11,7 @@ import kr.co.lion.mungnolja_nayeon1.fragment.MatchingFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PaymentFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterInfoFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterReviewFragment
+import kr.co.lion.mungnolja_nayeon1.fragment.ReservationConfirmedFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,14 +54,21 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.MATCHING_FRAGMENT -> {
                 newFragment = MatchingFragment()
             }
+            // 펫시터 프로필 화면
             MainFragmentName.PETSITTER_INFO_FRAGMENT  -> {
                 newFragment = PetSitterInfoFragment()
             }
+            // 펫시터 리뷰 목록 화면
             MainFragmentName.PETSITTER_REVIEW_FRAGMENT -> {
                 newFragment = PetSitterReviewFragment()
             }
+            // 결제 화면
             MainFragmentName.PAYMENT_FRAGMENT -> {
                 newFragment = PaymentFragment()
+            }
+            // 예약 확정 화면
+            MainFragmentName.RESERVATION_CONFIRMED_FRAGMENT -> {
+                newFragment = ReservationConfirmedFragment()
             }
         }
 

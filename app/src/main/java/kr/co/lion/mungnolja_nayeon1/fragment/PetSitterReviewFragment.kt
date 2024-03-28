@@ -50,12 +50,14 @@ class PetSitterReviewFragment : Fragment() {
 
     // 상단의 ReviewInfo 내용을 설정해준다
     fun setReviewInfo(){
-        // 점수
-        fragmentPetSitterReViewBinding.textViewPetSitterReviewScore.setText("5.0점")
-        // 별 개수
-        fragmentPetSitterReViewBinding.ratingBarPetSitterReview.rating = 5f
-        // 리뷰 개수 (ex, 00개의 후기)
-        fragmentPetSitterReViewBinding.textViewPetSitterReviewCount.setText("89개의 후기")
+        fragmentPetSitterReViewBinding.apply {
+            // 점수
+            textViewPetSitterReviewScore.setText("5.0점")
+            // 별 개수
+            ratingBarPetSitterReview.rating = 5f
+            // 리뷰 개수 (ex, 00개의 후기)
+            textViewPetSitterReviewCount.setText("89개의 후기")
+        }
     }
 
     // RecyclerView 설정

@@ -46,18 +46,20 @@ class PetSitterInfoFragment : Fragment() {
 
     // cardPetSitterInfo의 내용을 설정해준다
     fun setCardPetSitterInfo(){
-        // 펫시터 이름
-        fragmentPetSitterInfoBinding.textViewPetSitterInfoName.setText("이영주 시터")
-        // 펫시터 멍놀자 자격수료
-        fragmentPetSitterInfoBinding.textViewPetSitterQualification.setText("멍놀자 펫시터 자격 수료")
-        // 별 점수
-        fragmentPetSitterInfoBinding.textViewPetSitterInfoScore.setText("5점")
-        // 별 개수
-        fragmentPetSitterInfoBinding.ratingBarPetSitterInfo.rating = 5f
-        // 리뷰 개수 (ex, 00개의 후기)
-        fragmentPetSitterInfoBinding.textViewPetSitterInfoCountReview.setText("89개의 후기")
-        // 경력
-        fragmentPetSitterInfoBinding.textViewPetSitterInfoCareerDetail.setText("반려동물관리학과 졸업 \n반려동물관리사 자격증 보유")
+        fragmentPetSitterInfoBinding.apply {
+            // 펫시터 이름
+            textViewPetSitterInfoName.setText("이영주 시터")
+            // 펫시터 멍놀자 자격수료
+            textViewPetSitterQualification.setText("멍놀자 펫시터 자격 수료")
+            // 별 점수
+            textViewPetSitterInfoScore.setText("5점")
+            // 별 개수
+            ratingBarPetSitterInfo.rating = 5f
+            // 리뷰 개수 (ex, 00개의 후기)
+            textViewPetSitterInfoCountReview.setText("89개의 후기")
+            // 경력
+            textViewPetSitterInfoCareerDetail.setText("반려동물관리학과 졸업 \n반려동물관리사 자격증 보유")
+        }
     }
 
     // 리뷰 보기 버튼
