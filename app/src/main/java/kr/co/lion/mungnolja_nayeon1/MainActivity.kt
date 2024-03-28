@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolja_nayeon1.databinding.ActivityMainBinding
 import kr.co.lion.mungnolja_nayeon1.fragment.MatchingFragment
+import kr.co.lion.mungnolja_nayeon1.fragment.PaymentFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterInfoFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterReviewFragment
 
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity() {
             }
             MainFragmentName.PETSITTER_REVIEW_FRAGMENT -> {
                 newFragment = PetSitterReviewFragment()
+            }
+            MainFragmentName.PAYMENT_FRAGMENT -> {
+                newFragment = PaymentFragment()
             }
         }
 

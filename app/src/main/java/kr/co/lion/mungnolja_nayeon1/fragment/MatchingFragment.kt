@@ -56,6 +56,7 @@ class MatchingFragment : Fragment() {
                 // 버튼을 눌렀을떄
                 setOnClickListener {
                     // 결제 프래그먼토가 보여져야한다
+                    mainActivity.replaceFragment(MainFragmentName.PAYMENT_FRAGMENT,true, true, null)
                 }
             }
         }

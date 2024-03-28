@@ -25,7 +25,8 @@
         android:id="@+id/cardMatchingReservationDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,52 +96,59 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.divider.MaterialDivider
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/black"
-        android:padding="10dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/black" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/textView2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="매칭된 팻시터" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="원하는 펫시터를 선택해주세요 !"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="매칭된 팻시터" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerMatching"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="10dp" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="원하는 펫시터를 선택해주세요 !"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-    <Button
-        android:id="@+id/buttonMatchingDone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="선택완료" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerMatching"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buttonMatchingDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="선택완료" />
+    </LinearLayout>
 
 
 </LinearLayout>
