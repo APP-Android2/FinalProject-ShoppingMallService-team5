@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.databinding.FragmentOnBoardingBinding
+import kr.co.lion.mungnolza.databinding.FragmentOnBoarding1Binding
 
-
-class OnBoardingFragment : Fragment() {
-    private var _binding: FragmentOnBoardingBinding? = null
+class OnBoardingFragment1 : Fragment() {
+    private var _binding: FragmentOnBoarding1Binding? = null
     private val binding get() = _binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentOnBoardingBinding.inflate(layoutInflater)
-        return binding.root
+        _binding = FragmentOnBoarding1Binding.inflate(layoutInflater)
+        return inflater.inflate(R.layout.fragment_on_boarding1, container, false)
     }
 
     override fun onDestroyView() {

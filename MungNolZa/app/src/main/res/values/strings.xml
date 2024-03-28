@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">MungNolZa</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_button_kakao">카카오 로그인</string>
     <string name="login_button_google">구글 로그인</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="let_start_with_mungnolza">이제 멍놀자와 함께 행복한\n 반려 생활을 시작해요</string>
+    <string name="next">Next</string>
+    <string name="provide_safe_walk_service">아이들과 안전하고 즐거운\n산책 서비스를 제공해요</string>
+    <string name="provide_kind_service">아이들에게 가족같은\n서비스를 제공해요</string>
 </resources>

@@ -8,14 +8,26 @@
     android:orientation="vertical"
     tools:context=".ui.intro.fragment.LoginFragment">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="135dp"
+        android:src="@drawable/img_good_doggy_bro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:adjustViewBounds="false"
         android:src="@drawable/app_main_logo"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,36 +40,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gifImageView">
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+        app:layout_constraintVertical_bias="0.629">
 
         <Button
             android:id="@+id/button_login_naver"
             style="@style/Widget.Material3.Button.Icon"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FEE500"
+            android:layout_marginTop="@dimen/fragment_login_common_margin"
+            android:backgroundTint="@color/kakao_login_button_color"
             android:drawableLeft="@drawable/ic_login_kakao"
             android:text="@string/login_button_kakao"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button_login_google"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FFFFFF"
+            android:layout_marginTop="@dimen/fragment_login_common_margin"
+            android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/ic_login_google"
             android:text="@string/login_button_google"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_login_naver" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.intro.fragment.RequestPermissionFragment">
+
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_access_permission_info"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_request_permission_common_margin"
+            android:gravity="center"
+            android:text="@string/app_access_permission_info_text"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+            android:layout_marginEnd="@dimen/fragment_request_permission_common_margin"
+            android:layout_marginBottom="140dp"
+            android:orientation="vertical"
+            app:layout_constraintBaseline_toBottomOf="@id/title_container">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_request_permission_common_margin"
+                android:text="@string/optional_access_permission"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_request_permission_common_margin"
+                android:paddingStart="@dimen/fragment_request_permission_common_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_img_background"
+                    android:padding="@dimen/fragment_request_permission_common_padding"
+                    android:src="@drawable/ic_photo_camera_30px" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/permission_photo_camera"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/request_permission_reason_gallery"
+                        android:textColor="@color/semi_grey" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_request_permission_common_margin"
+                android:paddingStart="@dimen/fragment_request_permission_common_margin"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_img_background"
+                    android:padding="@dimen/fragment_request_permission_common_padding"
+                    android:src="@drawable/ic_notifications_30px" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/permission_notification"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/request_permission_reason_notification"
+                        android:textColor="@color/semi_grey" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_request_permission_common_margin"
+                android:paddingStart="@dimen/fragment_request_permission_common_margin"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_img_background"
+                    android:padding="@dimen/fragment_request_permission_common_padding"
+                    android:src="@drawable/ic_location_on_30px" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/permission_location"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_request_permission_common_margin"
+                        android:text="@string/permission_request_reason_location"
+                        android:textColor="@color/semi_grey" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_request_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/semi_white"
+        android:orientation="vertical"
+        android:padding="@dimen/fragment_request_permission_bottom_request_info_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_request_explain1"
+            android:textSize="@dimen/fragment_request_permission_bottom_request_info_text_size"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_request_explain2"
+            android:textSize="@dimen/fragment_request_permission_bottom_request_info_text_size"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_request_explain3"
+            android:textSize="@dimen/fragment_request_permission_bottom_request_info_text_size"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

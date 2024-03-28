@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fragment_onboarding_circle_size">10sp</dimen>
+    <dimen name="fragment_onboarding_circle_margin">3dp</dimen>
+    <dimen name="fragment_onboarding_text_size">20sp</dimen>
+    <dimen name="fragment_onboarding_common_margin">20sp</dimen>
+    <dimen name="fragment_onboarding_top_margin">100sp</dimen>
+    <dimen name="lottie_animation_size">300dp</dimen>
+
+</resources>
