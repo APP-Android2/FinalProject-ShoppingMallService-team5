@@ -6,6 +6,7 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +38,11 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
         binding.bottomCommentViewModel = bottomCommentViewModel
         binding.lifecycleOwner = this
 
+        boardActivity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
         setRecyclerViewBottomComment()
+
+
 
         return binding.root
     }

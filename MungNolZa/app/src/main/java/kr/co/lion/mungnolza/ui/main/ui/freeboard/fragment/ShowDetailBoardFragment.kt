@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
@@ -38,19 +39,24 @@ class ShowDetailBoardFragment : Fragment() {
 
         boardActivity = activity as BoardActivity
 
+        boardActivity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
         setToolbar()
         setCarousel()
-
-
-        binding.includeBottomCommentShowDetailBoard.root.setOnClickListener {
-            showBottomCommentSheet()
-        }
-
+        setCommentButton()
 
 
 
 
         return binding.root
+    }
+
+    fun setCommentButton(){
+        binding.apply{
+            imageViewCommentShowDetailBoard.setOnClickListener {
+                showBottomCommentSheet()
+            }
+        }
     }
 
     fun setCarousel(){

@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityBoardBinding
@@ -80,9 +81,9 @@ class BoardActivity : AppCompatActivity() {
         }
 
         if(newFragment != null){
-
             // 애니메이션 설정
             if(isAnimate == true){
+
                 // oldFragment -> newFragment
                 // oldFragment : exitTransition
                 // newFragment : enterTransition
@@ -117,6 +118,8 @@ class BoardActivity : AppCompatActivity() {
 
                 newFragment?.exitTransition = null
                 newFragment?.reenterTransition = null
+
+
             }
 
             // Fragment를 교체한다.(이전 Fragment가 없으면 새롭게 추가하는 역할을 수행한다)
