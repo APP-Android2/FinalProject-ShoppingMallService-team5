@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="fragment_login_common_margin">10dp</dimen>
+    <dimen name="fragment_login_gif_margin">64dp</dimen>
+    <dimen name="fragment_login_img_marginEnd">135dp</dimen>
+
+    <dimen name="fragment_request_permission_title_size">25sp</dimen>
+    <dimen name="fragment_request_permission_common_margin">20dp</dimen>
+    <dimen name="fragment_request_permission_common_padding">10dp</dimen>
+    <dimen name="fragment_request_permission_bottom_request_info_padding">20dp</dimen>
+    <dimen name="fragment_request_permission_bottom_request_info_text_size">12sp</dimen>
 
     <dimen name="fragment_onboarding_circle_size">10sp</dimen>
     <dimen name="fragment_onboarding_circle_margin">3dp</dimen>
@@ -7,5 +16,14 @@
     <dimen name="fragment_onboarding_common_margin">20sp</dimen>
     <dimen name="fragment_onboarding_top_margin">100sp</dimen>
     <dimen name="lottie_animation_size">300dp</dimen>
+
+    <dimen name="fragment_join_title_size">23sp</dimen>
+    <dimen name="fragment_join_image_size">140dp</dimen>
+    <dimen name="fragment_join_image_elevation">10dp</dimen>
+    <dimen name="fragment_join_image_padding">30dp</dimen>
+    <dimen name="fragment_join_common_margin">30dp</dimen>
+    <dimen name="fragment_join_edit_text_margin">40dp</dimen>
+    <dimen name="fragment_join_edit_button_width">300dp</dimen>
+    <dimen name="fragment_join_edit_button_height">60dp</dimen>
 
 </resources>

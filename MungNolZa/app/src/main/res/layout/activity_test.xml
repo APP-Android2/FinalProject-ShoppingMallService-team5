@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:text="@string/input_profile"
             android:textColor="@android:color/black"
-            android:textSize="23sp"
+            android:textSize="@dimen/fragment_join_title_size"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>
@@ -34,8 +34,8 @@
             android:layout_width="@dimen/fragment_join_image_size"
             android:layout_height="@dimen/fragment_join_image_size"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:background="@drawable/blank_image_container"
+            android:layout_marginTop="@dimen/fragment_join_common_margin"
             android:elevation="@dimen/fragment_join_image_elevation"
             android:padding="@dimen/fragment_join_image_padding"
             android:src="@drawable/blank_img_input" />
@@ -50,16 +50,80 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="이름"
                 android:layout_marginTop="@dimen/fragment_join_edit_text_margin"
                 android:layout_marginStart="@dimen/fragment_join_common_margin"
                 android:layout_marginEnd="@dimen/fragment_join_common_margin">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/input_profile_name" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_join_common_margin"
+                android:layout_marginTop="@dimen/fragment_join_common_margin"
+                android:layout_marginEnd="@dimen/fragment_join_common_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_profile_phone"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <android.widget.Button
+                android:id="@+id/btn_addr"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fragment_join_edit_button_height"
+                android:layout_marginTop="@dimen/fragment_join_common_margin"
+                android:text="@string/addr_search_button_text"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_join_common_margin"
+                android:layout_marginTop="@dimen/fragment_join_common_margin"
+                android:layout_marginEnd="@dimen/fragment_join_common_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_addr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_profile_addr"
                     />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_join_common_margin"
+                android:layout_marginTop="@dimen/fragment_join_common_margin"
+                android:layout_marginEnd="@dimen/fragment_join_common_margin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_detail_addr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_profile_detail_addr"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_submit"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="@dimen/fragment_join_edit_button_width"
+                android:layout_height="@dimen/fragment_join_edit_button_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/fragment_join_common_margin"
+                android:text="@string/next"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
