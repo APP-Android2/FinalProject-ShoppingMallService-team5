@@ -46,8 +46,8 @@
         <Button
             android:id="@+id/button_login_naver"
             style="@style/Widget.Material3.Button.Icon"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/fragment_login_button_width"
+            android:layout_height="@dimen/fragment_login_button_height"
             android:layout_marginTop="@dimen/fragment_login_common_margin"
             android:backgroundTint="@color/kakao_login_button_color"
             android:drawableLeft="@drawable/ic_login_kakao"
@@ -59,8 +59,8 @@
         <Button
             android:id="@+id/button_login_google"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/fragment_login_button_width"
+            android:layout_height="@dimen/fragment_login_button_height"
             android:layout_marginTop="@dimen/fragment_login_common_margin"
             android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/ic_login_google"
