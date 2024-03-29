@@ -38,8 +38,6 @@ class MatchingFragment : Fragment() {
     fun setToolbar(){
         fragmentMatchingBinding.apply {
             toolbarMatching.apply {
-                // 타이틀
-                title = "펫시터 매칭"
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {

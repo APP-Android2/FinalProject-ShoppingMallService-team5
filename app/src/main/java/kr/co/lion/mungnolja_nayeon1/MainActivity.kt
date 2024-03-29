@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolja_nayeon1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
@@ -25,9 +26,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(activityMainBinding.root)
 
-        replaceFragment(MainFragmentName.MATCHING_FRAGMENT,true,false,null)
+        //replaceFragment(MainFragmentName.MATCHING_FRAGMENT,true,false,null)
+
+        // ReservationListActivity 실행한다.
+        val contentIntent = Intent(this, ReservationListActivity::class.java)
+        startActivity(contentIntent)
+        // MainActivity를 종료한다.
+        this.finish()
     }
 
     // 지정한 Fragment를 보여주는 메서드

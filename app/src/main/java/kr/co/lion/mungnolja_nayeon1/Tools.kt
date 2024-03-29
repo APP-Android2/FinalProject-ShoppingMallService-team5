@@ -19,3 +19,11 @@ enum class MainFragmentName(var str:String){
     // 예약 확정 화면
     RESERVATION_CONFIRMED_FRAGMENT("ReservationConfirmedFragment"),
 }
+
+enum class ReservationListFragmentName(var str:String){
+    // 상위-예약 목록 화면
+    RESERVATION_LIST_FRAGMENT("ReservationListFragment"),
+    // 펫시터 후기 작성 화면
+    PETSITTER_REVIEW_WRITE_FRAGMENT("PetSitterReviewWriteFragment"),
+}
+
