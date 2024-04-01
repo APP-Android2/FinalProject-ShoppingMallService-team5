@@ -38,6 +38,13 @@ class ReservationListOngoingFragment : Fragment() {
         }
     }
 
+    // 예약내역이 0일때 vs 하나라도 있을 때 설정
+    fun setView(){
+        // 예약내역이 0개 일때
+
+        // 예약내역이 1개 이상 있을 때
+    }
+
     // RecyclerView 설정
     fun setRecyclerView(){
         fragmentReservationListOngoingBinding.apply {

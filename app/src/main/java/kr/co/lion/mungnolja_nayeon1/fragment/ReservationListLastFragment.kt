@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolja_nayeon1.R
 import kr.co.lion.mungnolja_nayeon1.ReservationListActivity
+import kr.co.lion.mungnolja_nayeon1.ReservationListFragmentName
 import kr.co.lion.mungnolja_nayeon1.databinding.FragmentReservationListLastBinding
 import kr.co.lion.mungnolja_nayeon1.databinding.RowReservationListLastBinding
 
@@ -86,6 +87,12 @@ class ReservationListLastFragment : Fragment() {
             holder.rowReservationListLastBinding.textViewRowReservationListLastPetName.text = "뽀삐나연 ${position}"
             holder.rowReservationListLastBinding.textViewRowReservationListLastDate.text = "2024년 4월 1일"
             holder.rowReservationListLastBinding.textViewRowReservationListLastTime.text = "오후 5:00 ~ 5:30"
+
+            // '후기작성' 항목을 누르면 동작하는 리스너
+            holder.rowReservationListLastBinding.textViewRowReservationiListLastWriteReview.setOnClickListener {
+                // PetSitterReviewWriteFragment가 보여진다
+                reservationListActivity.replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+            }
         }
     }
 }

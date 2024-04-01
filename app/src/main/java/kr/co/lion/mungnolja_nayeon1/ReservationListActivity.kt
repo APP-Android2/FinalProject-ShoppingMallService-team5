@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolja_nayeon1.databinding.ActivityReservationListBinding
+import kr.co.lion.mungnolja_nayeon1.fragment.PetSitterReviewWriteFragment
 import kr.co.lion.mungnolja_nayeon1.fragment.ReservationListFragment
 
 class ReservationListActivity : AppCompatActivity() {
@@ -46,11 +47,13 @@ class ReservationListActivity : AppCompatActivity() {
         // 이름으로 분기한다.
         // Fragment의 객체를 생성하여 변수에 담아준다.
         when(name){
+            // 예약 내역 화면 프래그먼트
             ReservationListFragmentName.RESERVATION_LIST_FRAGMENT -> {
                 newFragment = ReservationListFragment()
             }
+            // 펫시터 후기 작성 화면 프래그먼트
             ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT -> {
-
+                newFragment = PetSitterReviewWriteFragment()
             }
 
         }
