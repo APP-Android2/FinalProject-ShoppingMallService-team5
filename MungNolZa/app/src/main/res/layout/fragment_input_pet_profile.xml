@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/shrine_pink_50"
-    tools:context=".ui.intro.fragment.JoinFragment">
+    android:background="@color/shrine_pink_50">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -30,6 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/fragment_input_pet_profile_title"
+                    android:fontFamily="@font/binggrae_bold"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/shared_toolbar_title_size"
                     android:textStyle="bold" />
@@ -208,7 +208,7 @@
 
                             <Button
                                 android:id="@+id/button_neutering"
-                                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -219,7 +219,7 @@
 
                             <Button
                                 android:id="@+id/button_no_neutering"
-                                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/fragment_pet_profile_input_button_margin_start"
@@ -252,18 +252,22 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="start|end"
                                 android:lines="5" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-                    <Button
-                        android:id="@+id/button_submit"
-                        style="@style/Widget.Material3.Button.Icon"
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_next"
+                        android:background="@drawable/shared_button_design"
                         android:layout_width="@dimen/shared_button_width"
                         android:layout_height="@dimen/shared_button_height"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/shared_common_margin"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:textColor="@color/black"
                         android:text="@string/next"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
