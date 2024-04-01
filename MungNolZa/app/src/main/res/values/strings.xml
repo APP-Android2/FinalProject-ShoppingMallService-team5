@@ -36,4 +36,5 @@
     <string name="neutering_no">안했어요</string>
     <string name="pet_significant">강아지 특이사항</string>
     <string name="plz_know_unique_behavior">우리 아이만의 특별한 점을 알려주세요!</string>
+    <string name="lets_start">시작하기</string>
 </resources>
