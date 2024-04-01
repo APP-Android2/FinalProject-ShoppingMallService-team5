@@ -6,55 +6,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
+import kr.co.lion.mungnolza.databinding.FragmentAppointmentRequestBinding
+import kr.co.lion.mungnolza.ui.main.MainActivity
+import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AppointmentRequestFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AppointmentRequestFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var fragmentAppointmentRequestBinding: FragmentAppointmentRequestBinding
+    lateinit var mainActivity: MainActivity
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        fragmentAppointmentRequestBinding = FragmentAppointmentRequestBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
+
+        return fragmentAppointmentRequestBinding.root
+    }
+
+    // 툴바 설정
+    fun settingRequestToolbar(){
+        fragmentAppointmentRequestBinding.apply {
+            materialToolbar2.apply {
+                // 타이틀
+//                title = "예약"
+                // Back
+                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainFragmentName.APPOINTMENT_REQUEST)
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointment_request, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentRequestFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AppointmentRequestFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

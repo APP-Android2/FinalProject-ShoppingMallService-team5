@@ -3,21 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- Container for pet profiles -->
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/title_text_reservation"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/shared_layout_padding">
 
         <TextView
             android:id="@+id/textView10"
@@ -31,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="15dp"
             android:gravity="left"
             android:orientation="horizontal">
 
@@ -55,7 +66,6 @@
                         android:id="@+id/imgPetOne"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_pet_one"
                         app:srcCompat="@drawable/spitz" />
 
                     <TextView
@@ -88,7 +98,6 @@
                         android:id="@+id/imgPetTwo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_pet_two"
                         app:srcCompat="@drawable/doog" />
 
                     <TextView
@@ -111,7 +120,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="벨 누르지 말아주세요">
+            android:hint="요청사항을 적어주세요">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/appointmentRequestTextview"
@@ -121,13 +130,18 @@
                 android:textAlignment="textStart" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/buttonAppointmentRequestNext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="다음으로" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAppointmentRequestNext"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="@dimen/shared_button_width"
+        android:layout_height="@dimen/shared_button_height"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/binggrae_regular"
+        android:gravity="center"
+        android:text="@string/next"
+        android:layout_gravity="center"/>
 
     <!-- Text input area -->
 

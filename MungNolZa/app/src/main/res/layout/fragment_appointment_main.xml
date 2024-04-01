@@ -4,16 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
     <!-- 프로필 섹션 -->
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/materialToolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/title_text_reservation"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/shared_layout_padding">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -35,25 +47,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="@dimen/shared_layout_padding">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:padding="16dp">
+                        android:padding="@dimen/shared_layout_padding">
 
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src=""
                             app:srcCompat="@drawable/spitz" />
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
+                            android:layout_marginStart="10dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -73,7 +84,7 @@
                                 android:id="@+id/textView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="5살 / 12키로" />
+                                android:hint="0살 / 00키로" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -88,7 +99,6 @@
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src=""
                             app:srcCompat="@drawable/doog" />
 
                         <LinearLayout
@@ -114,7 +124,7 @@
                                 android:id="@+id/profileagekg"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="5살 / 12키로" />
+                                android:hint="0살 / 00키로" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -127,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/shared_layout_padding">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,15 +221,20 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonAppointmentMainNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="다음으로" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAppointmentMainNext"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="@dimen/shared_button_width"
+        android:layout_height="@dimen/shared_button_height"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/binggrae_regular"
+        android:gravity="center"
+        android:text="@string/next"
+        android:layout_gravity="center"/>
 
 
 </LinearLayout>

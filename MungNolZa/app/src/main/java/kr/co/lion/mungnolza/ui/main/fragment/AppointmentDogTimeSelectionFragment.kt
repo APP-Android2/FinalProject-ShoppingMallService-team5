@@ -1,60 +1,101 @@
 package kr.co.lion.mungnolza.ui.main.fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
+import kr.co.lion.mungnolza.ui.main.MainActivity
+import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AppointmentDogTimeSelectionFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AppointmentDogTimeSelectionFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var fragmentAppointmentDogTimeSelectionBinding: FragmentAppointmentDogTimeSelectionBinding
+    lateinit var mainActivity: MainActivity
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
+        // Inflate the layout for this fragment
+
+        fragmentAppointmentDogTimeSelectionBinding = FragmentAppointmentDogTimeSelectionBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
+
+        settingDogtimeToolbar()
+        settingDogTimeNextButton()
+        settingupDogTimeButtons()
+
+        return fragmentAppointmentDogTimeSelectionBinding.root
+    }
+
+    // 툴바 설정
+    fun settingDogtimeToolbar(){
+        fragmentAppointmentDogTimeSelectionBinding.apply {
+            toolbarDogTime.apply {
+                // 타이틀
+                title = "예약"
+                // Back
+                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+                setNavigationOnClickListener {
+                    // 이전 화면으로 간다.
+                    mainActivity.removeFragment(MainFragmentName.APPOINTMENT_DOG_TIME_SELECTION)
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointment_dog_time_selection, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentDogTimeSelectionFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AppointmentDogTimeSelectionFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    fun settingDogTimeNextButton(){
+        fragmentAppointmentDogTimeSelectionBinding.apply {
+            buttonappointmentselecttimenext.apply {
+                // 버튼을 눌렀을 때
+                setOnClickListener {
+                    mainActivity.replaceFragment(MainFragmentName.APPOINTMENT_USER_ADDRESS, true, true, null)
                 }
             }
+        }
+    }
+
+    fun settingupDogTimeButtons() {
+        val selectedButtonColor = ContextCompat.getColor(requireContext(), R.color.selectedButtonColor) // 선택된 버튼 색상
+        val defaultButtonColor = ContextCompat.getColor(requireContext(), R.color.defaultButtonColor) // 기본 버튼 색상
+
+        fragmentAppointmentDogTimeSelectionBinding.apply {
+            selecttimefordoguntil.setOnClickListener {
+                // 일반 방문 버튼이 선택되었을 때
+                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+            }
+
+            selecttimefordogthirtymin.setOnClickListener {
+                // 정기 방문 버튼이 선택되었을 때
+                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+            }
+
+            selecttimefordogsixtymin.setOnClickListener {
+                // 정기 방문 버튼이 선택되었을 때
+                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+            }
+
+            selecttimefordogonetwentymin.setOnClickListener {
+                // 정기 방문 버튼이 선택되었을 때
+                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+            }
+        }
     }
 }
+
+

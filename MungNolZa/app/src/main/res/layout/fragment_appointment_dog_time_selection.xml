@@ -4,15 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
     <!-- Fake status bar for illustration purposes -->
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarDogTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/title_text_reservation"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/shared_layout_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,12 +45,11 @@
             android:layout_marginTop="16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="@dimen/shared_layout_padding">
 
             <ImageView
                 android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="" />
+                android:layout_height="80dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -72,9 +83,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/shared_layout_padding">
 
         <TextView
             android:id="@+id/textView3"
@@ -172,23 +183,20 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/buttonappointmentselecttimenext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="다음으로"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            tools:layout_marginTop="36dp" />
     </LinearLayout>
 
-    <!-- Pet image -->
-
-    <!-- Pet information container -->
-
-    <!-- Service duration buttons -->
-
-    <!-- Confirm button -->
+    <Button
+        android:id="@+id/buttonappointmentselecttimenext"
+        style="@style/Widget.Material3.Button.Icon"
+        android:layout_width="@dimen/shared_button_width"
+        android:layout_height="@dimen/shared_button_height"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/binggrae_regular"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:layout_marginTop="36dp"
+        android:layout_gravity="center"/>
 
 
 </LinearLayout>

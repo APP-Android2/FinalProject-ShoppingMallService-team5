@@ -6,55 +6,61 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
+import kr.co.lion.mungnolza.ui.main.MainActivity
+import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AppointmentUserAddressFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AppointmentUserAddressFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var fragmentAppointmentUserAddressBinding: FragmentAppointmentUserAddressBinding
+    lateinit var mainActivity: MainActivity
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        fragmentAppointmentUserAddressBinding = FragmentAppointmentUserAddressBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
+
+
+        settingUserAdToolbar()
+        setAddressInfo()
+        settingUserNextButton()
+
+        return fragmentAppointmentUserAddressBinding.root
+    }
+
+    // 툴바 설정
+    fun settingUserAdToolbar(){
+        fragmentAppointmentUserAddressBinding.apply {
+            toolbarUserAddress.apply {
+                // 타이틀
+//                title = "예약"
+                // Back
+                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainFragmentName.APPOINTMENT_USER_ADDRESS)
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointment_user_address, container, false)
+
+    fun setAddressInfo(){
+        fragmentAppointmentUserAddressBinding.textviewaddress.setText("서울시 00구 00동")
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentUserAddressFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AppointmentUserAddressFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    //다음화면으로
+    fun settingUserNextButton(){
+        fragmentAppointmentUserAddressBinding.apply {
+            buttonAddressNext.apply {
+                // 버튼을 눌렀을 때
+                setOnClickListener {
+                    mainActivity.replaceFragment(MainFragmentName.APPOINTMENT_DATE_TIME_SELECTION, true, true, null)
                 }
             }
+        }
     }
 }
+

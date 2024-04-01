@@ -34,8 +34,12 @@ android {
         jvmTarget = "1.8"
     }
 
-    viewBinding {
-        enable = true
+    buildFeatures{
+        viewBinding =true
+    }
+
+    buildFeatures{
+        dataBinding = true
     }
 }
 
@@ -60,6 +64,8 @@ dependencies {
 
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    implementation ("com.google.android.material:material:<version>")
 
     implementation ("com.aminography:primedatepicker:3.6.0")
     implementation ("com.aminography:primecalendar:1.7.0")
