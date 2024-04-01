@@ -93,6 +93,14 @@
     <dimen name="board_text_like_margin_start">3dp</dimen>
     <dimen name="board_text_margin_start">10dp</dimen>
 
+    <!-- close -->
+    <dimen name="item_close_radius">30dp</dimen>
+    <dimen name="item_close_margin_top">10dp</dimen>
+    <dimen name="item_close_margin_right">10dp</dimen>
+
+    <dimen name="close_width">20dp</dimen>
+    <dimen name="close_height">20dp</dimen>
+
 
 
 

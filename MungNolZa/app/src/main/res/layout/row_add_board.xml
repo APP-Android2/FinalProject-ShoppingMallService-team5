@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerCarouselAddBoard"
     android:layout_width="@dimen/carousel_container_width_small"
-    android:layout_height="match_parent"
+    android:layout_height="150dp"
     android:layout_marginStart="@dimen/carousel_container_margin_start"
     android:layout_marginEnd="@dimen/carousel_container_margin_end"
     android:foreground="?attr/selectableItemBackground"
@@ -15,5 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
+
+    <ImageButton
+        android:id="@+id/buttonCloseRowAddBoard"
+        android:layout_width="@dimen/close_width"
+        android:layout_height="@dimen/close_height"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/item_close_margin_top"
+        android:layout_marginRight="@dimen/item_close_margin_right"
+        android:background="@drawable/item_close_round"
+        android:src="@drawable/ic_close_24px" />
 
 </com.google.android.material.carousel.MaskableFrameLayout>
