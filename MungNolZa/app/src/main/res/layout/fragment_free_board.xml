@@ -26,9 +26,11 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/searchBarFreeBoard"
@@ -39,7 +41,7 @@
                 android:id="@+id/recyclerViewFreeBoard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="90dp" />
+                android:layout_marginTop="@dimen/recyclerview_margin_top_free_board" />
 
             <com.google.android.material.search.SearchView
                 android:id="@+id/searchViewFreeBoard"

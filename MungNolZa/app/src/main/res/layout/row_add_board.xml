@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.carousel.MaskableFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.carousel.MaskableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerCarouselAddBoard"
-    android:layout_width="150dp"
+    android:layout_width="@dimen/carousel_container_width_small"
     android:layout_height="match_parent"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp"
+    android:layout_marginStart="@dimen/carousel_container_margin_start"
+    android:layout_marginEnd="@dimen/carousel_container_margin_end"
     android:foreground="?attr/selectableItemBackground"
     app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
 
@@ -15,6 +14,6 @@
         android:id="@+id/imageViewCarouselAddBoard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
 </com.google.android.material.carousel.MaskableFrameLayout>

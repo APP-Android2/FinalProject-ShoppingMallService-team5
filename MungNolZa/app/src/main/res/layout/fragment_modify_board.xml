@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/layout_padding">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/layout_margin_top"
                     android:hint="내용을 입력해주세요">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -62,8 +62,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewPhotosModifyBoard"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_height="@dimen/recyclerview_height_modify_board"
+                    android:layout_marginTop="@dimen/layout_margin_top" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

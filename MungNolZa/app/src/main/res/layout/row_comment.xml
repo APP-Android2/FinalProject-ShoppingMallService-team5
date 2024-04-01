@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/imageViewProfileCommentRow"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/profile_imageview_width"
+            android:layout_height="@dimen/profile_imageview_height"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -23,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="15dp"
             android:text="닉네임"
-            android:textSize="10sp"
+            android:textSize="@dimen/text_size_small"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -53,12 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="날짜"
-                android:textSize="10sp" />
+                android:textSize="@dimen/text_size_small" />
 
             <ImageView
                 android:id="@+id/imageViewLikeCommentRow"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="@dimen/icon_thumb_up_width"
+                android:layout_height="@dimen/icon_thumb_up_width"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/ic_thumb_up_24px" />
@@ -67,11 +67,11 @@
                 android:id="@+id/textViewLikeCommentRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="@dimen/board_text_like_margin_start"
                 android:layout_marginTop="10dp"
                 android:text="0"
                 android:textColor="#FF0000"
-                android:textSize="10sp" />
+                android:textSize="@dimen/text_size_small" />
         </LinearLayout>
 
     </LinearLayout>

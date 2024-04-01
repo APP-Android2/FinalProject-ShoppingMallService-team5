@@ -13,57 +13,60 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/layout_padding"
         android:transitionGroup="true">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCommentBottomComment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCommentBottomComment">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:hint="댓글을 입력해주세요"
-                app:endIconMode="clear_text">
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_margin_end"
+                    android:layout_marginBottom="@dimen/layout_margin_bottom"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_input_comment"
+                    app:endIconMode="clear_text">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edittext_height_comment" />
 
-            <ImageView
-                android:id="@+id/imageViewSendBottomComment"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/ic_send_24px" />
-        </LinearLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imageViewSendBottomComment"
+                    android:layout_width="@dimen/icon_width_send_bottom_comment"
+                    android:layout_height="@dimen/icon_height_send_bottom_comment"
+                    android:layout_marginTop="@dimen/resource_margin_top"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:srcCompat="@drawable/ic_send_24px" />
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
