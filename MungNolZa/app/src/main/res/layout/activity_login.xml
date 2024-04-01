@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.intro.fragment.LoginFragment">
 
@@ -21,11 +22,11 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="265dp"
         android:layout_marginTop="@dimen/fragment_login_gif_margin"
         android:adjustViewBounds="false"
-        android:src="@drawable/app_main_logo"
+        android:src="@drawable/app_main_logo_with_app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
