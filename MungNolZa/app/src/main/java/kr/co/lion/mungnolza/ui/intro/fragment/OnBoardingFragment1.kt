@@ -13,7 +13,7 @@ class OnBoardingFragment1 : Fragment() {
     private val binding get() = _binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOnBoarding1Binding.inflate(layoutInflater)
-        return inflater.inflate(R.layout.fragment_on_boarding1, container, false)
+        return binding.root
     }
 
     override fun onDestroyView() {

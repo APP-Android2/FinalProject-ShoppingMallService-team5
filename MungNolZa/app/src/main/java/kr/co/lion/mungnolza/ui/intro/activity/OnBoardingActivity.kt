@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.intro
+package kr.co.lion.mungnolza.ui.intro.activity
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
