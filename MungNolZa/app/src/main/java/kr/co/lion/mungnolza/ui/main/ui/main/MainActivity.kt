@@ -6,6 +6,7 @@ import android.os.Bundle
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityMainBinding
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
+import kr.co.lion.mungnolza.ui.main.ui.chat.ChatActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -17,6 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonTest2.setOnClickListener {
             val intent = Intent(this, BoardActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.buttonTest3.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         }
 

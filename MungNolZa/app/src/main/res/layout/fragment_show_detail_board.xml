@@ -106,7 +106,8 @@
                             android:layout_height="@dimen/edittext_height_board_content"
                             android:clickable="false"
                             android:cursorVisible="false"
-                            android:focusable="false" />
+                            android:focusable="false"
+                            android:gravity="start|end" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
