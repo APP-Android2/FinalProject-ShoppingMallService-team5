@@ -19,6 +19,7 @@
         android:layout_marginTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerReservationListLast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </ScrollView>
