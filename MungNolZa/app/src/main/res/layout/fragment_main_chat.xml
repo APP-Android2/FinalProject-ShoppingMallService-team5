@@ -5,7 +5,7 @@
     <data>
         <variable
             name="mainChatViewModel"
-            type="kr.co.lion.mungnolza.ui.main.ui.chat.viewmodel.MainChatViewModel" />
+            type="kr.co.lion.mungnolza.ui.chat.viewmodel.MainChatViewModel" />
     </data>
 
     <LinearLayout

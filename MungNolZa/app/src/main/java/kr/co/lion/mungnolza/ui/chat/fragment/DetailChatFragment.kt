@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.ui.chat.fragment
+package kr.co.lion.mungnolza.ui.chat.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,9 +14,9 @@ import kr.co.lion.mungnolza.databinding.FragmentDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
-import kr.co.lion.mungnolza.ui.main.ui.chat.ChatActivity
-import kr.co.lion.mungnolza.ui.main.ui.chat.viewmodel.DetailChatViewModel
-import kr.co.lion.mungnolza.ui.main.util.ChatFragmentName
+import kr.co.lion.mungnolza.ui.chat.ChatActivity
+import kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel
+import kr.co.lion.mungnolza.util.ChatFragmentName
 import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
@@ -70,7 +70,7 @@ class DetailChatFragment : Fragment() {
         }
     }
 
-    inner class RecyclerViewAdapterDetailChat : RecyclerView.Adapter<DetailChatFragment.RecyclerViewAdapterDetailChat.ViewHolderDetailChat>(){
+    inner class RecyclerViewAdapterDetailChat : RecyclerView.Adapter<RecyclerViewAdapterDetailChat.ViewHolderDetailChat>(){
         inner class ViewHolderDetailChat(rowDetailChatBinding: RowDetailChatBinding) : RecyclerView.ViewHolder(rowDetailChatBinding.root){
             val rowDetailChatBinding: RowDetailChatBinding
 
