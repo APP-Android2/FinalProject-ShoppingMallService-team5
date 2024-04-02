@@ -31,7 +31,13 @@ class MainActivity : AppCompatActivity() {
         //replaceFragment(MainFragmentName.MATCHING_FRAGMENT,true,false,null)
 
         // ReservationListActivity 실행한다.
-        val contentIntent = Intent(this, ReservationListActivity::class.java)
+        /*val contentIntent = Intent(this, ReservationListActivity::class.java)
+        startActivity(contentIntent)
+        // MainActivity를 종료한다.
+        this.finish()*/
+
+        // RealtimeLocationActivity 실행한다.
+        val contentIntent = Intent(this, RealtimeLocationActivity::class.java)
         startActivity(contentIntent)
         // MainActivity를 종료한다.
         this.finish()

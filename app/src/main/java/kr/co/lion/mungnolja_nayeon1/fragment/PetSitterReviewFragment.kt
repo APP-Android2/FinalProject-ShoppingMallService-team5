@@ -106,7 +106,7 @@ class PetSitterReviewFragment : Fragment() {
             holder.rowPetSitterReviewBinding.textViewRowPetSitterReviewAgoTime.text = "3분 전"
             holder.rowPetSitterReviewBinding.textViewRowPetSitterReviewScore.text = "5점"
             holder.rowPetSitterReviewBinding.ratingBarRowPetSitterReview.rating = 5f
-            holder.rowPetSitterReviewBinding.textViewRowPetSitterReviewDetail.text = "저희 뽀삐가 너무 즐거워했어요. 최고의 펫시터!"
+            holder.rowPetSitterReviewBinding.textViewRowPetSitterReviewDetail.text = "안녕하세요. 멋사 차은우 입니다. 족구미가 귀여워요"
         }
     }
 
