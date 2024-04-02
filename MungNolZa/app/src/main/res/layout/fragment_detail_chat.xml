@@ -8,7 +8,7 @@
 
         <variable
             name="detailChatViewModel"
-            type="kr.co.lion.mungnolza.ui.main.ui.chat.viewmodel.DetailChatViewModel" />
+            type="kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

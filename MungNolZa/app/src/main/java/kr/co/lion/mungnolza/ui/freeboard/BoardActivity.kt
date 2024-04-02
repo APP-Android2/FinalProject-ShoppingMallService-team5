@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityBoardBinding
-import kr.co.lion.mungnolza.ui.main.ui.freeboard.fragment.AddBoardFragment
+import kr.co.lion.mungnolza.ui.freeboard.fragment.AddBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ShowDetailBoardFragment

@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.util
+package kr.co.lion.mungnolza.util
 
 
 enum class ChatFragmentName(var str:String){
