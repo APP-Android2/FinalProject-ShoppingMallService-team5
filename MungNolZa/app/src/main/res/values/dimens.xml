@@ -7,7 +7,8 @@
     <dimen name="shared_button_width">250dp</dimen>
     <dimen name="shared_button_height">60dp</dimen>
     <dimen name="shared_edittext_margin_top">20dp</dimen>
-
+    <dimen name="shared_common_margin">20dp</dimen>
+    <dimen name="shared_common_margin_10">10dp</dimen>
 
     <dimen name="fragment_login_common_margin">10dp</dimen>
     <dimen name="fragment_login_gif_margin">64dp</dimen>
@@ -42,4 +43,6 @@
 
     <dimen name="fragment_appointment_text_large">20sp</dimen>
 
+    <dimen name="appointment_pet_select_item_img_size">30dp</dimen>
+    <dimen name="appointment_pet_select_item_margin_top">3dp</dimen>
 </resources>
