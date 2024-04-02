@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
 import kr.co.lion.mungnolza.model.PetInfo
+import kr.co.lion.mungnolza.ui.main.MainFragmentName
 import kr.co.lion.mungnolza.ui.main.appointment.adapter.SelectPetAdapter
+import kr.co.lion.mungnolza.ui.main.showAlertDialog
 
 
 class AppointmentMainFragment : Fragment() {
@@ -59,6 +61,36 @@ class AppointmentMainFragment : Fragment() {
 
         }
     }
+
+    //다음화면으로
+//    fun settingMainNextButton() {
+//        binding.apply {
+//            buttonAppointmentMainNext.setOnClickListener {
+//                var isAllSelected = true
+//
+//                // 예약 유형 중 하나라도 선택되지 않았는지 확인
+//                if (!buttonmainwalkappointment.isSelected && !buttonmaintakecareappointment.isSelected) {
+//                    showAlertDialog("예약 유형을 선택해 주세요.")
+//                    isAllSelected = false
+//                }
+//                // 방문 유형 중 하나라도 선택되지 않았는지 확인
+//                if (!selecttimefordoguntil.isSelected && !buttonmainvisitdog.isSelected) {
+//                    showAlertDialog("방문 유형을 선택해 주세요.")
+//                    isAllSelected = false
+//                }
+//
+//                // 모든 조건을 충족시키면 다음 화면으로 넘어감
+//                if(isAllSelected) {
+//                    mainActivity.replaceFragment(
+//                        MainFragmentName.APPOINTMENT_DOG_TIME_SELECTION,
+//                        true,
+//                        true,
+//                        null
+//                    )
+//                }
+//            }
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

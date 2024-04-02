@@ -6,7 +6,9 @@ import android.content.DialogInterface
 import android.os.SystemClock
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.concurrent.thread
 
@@ -54,6 +56,16 @@ class Tools {
             }
             materialAlertDialogBuilder.show()
         }
+    }
+}
+
+// Fragment 클래스에 대한 확장 함수
+fun Fragment.showAlertDialog(message: String) {
+    AlertDialog.Builder(requireContext()).apply {
+        setTitle("알림")
+        setMessage(message)
+        setPositiveButton("확인") { dialog, _ -> dialog.dismiss() }
+        create().show()
     }
 }
 
