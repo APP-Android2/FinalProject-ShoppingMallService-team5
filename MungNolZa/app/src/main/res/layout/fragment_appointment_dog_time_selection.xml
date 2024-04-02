@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back_24px"
         android:theme="?attr/actionBarTheme">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/title_text_reservation"
+            android:text="돌봄 예약"
             android:textColor="@android:color/black"
+            android:fontFamily="@font/binggrae_bold"
             android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
