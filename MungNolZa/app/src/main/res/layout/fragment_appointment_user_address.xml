@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="내 주소 사용"
+                android:text="@string/use_my_addr"
                 android:textStyle="bold"
                 />
 
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="새 주소 입력"
+                android:text="@string/enter_new_addr"
                 android:textStyle="bold"
                 />
 
@@ -83,8 +83,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="start|top"
                     android:background="@color/white"
-                    android:lines="3" />
+                    android:lines="2" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/editText_detail_addr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shared_common_margin_10"
+                android:hint="@string/plz_enter_detail_addr"
+                android:textColor="@color/white"
+                android:inputType="text"
+                />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_input_addr_complete"

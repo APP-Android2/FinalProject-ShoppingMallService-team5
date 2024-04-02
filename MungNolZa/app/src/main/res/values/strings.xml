@@ -44,4 +44,7 @@
     <string name="no_pet_msg1">등록된 반려 동물이 없어요\n 반려 동물을 등록해주세요</string>
     <string name="go_pet_registration">우리 아이 등록하기</string>
     <string name="select_reservation_pet">예약할 반려동물 선택</string>
+    <string name="plz_enter_detail_addr">상세주소를 입력해주세요.</string>
+    <string name="enter_new_addr">새 주소 입력</string>
+    <string name="use_my_addr">내 주소 사용</string>
 </resources>
