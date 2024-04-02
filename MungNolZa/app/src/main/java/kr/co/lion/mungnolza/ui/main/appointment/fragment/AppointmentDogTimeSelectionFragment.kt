@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
+import kr.co.lion.mungnolza.ui.main.MainActivity
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
-import kr.co.lion.mungnolza.ui.main.appointment.AppointmentActivity
-import kr.co.lion.mungnolza.ui.main.showAlertDialog
 
 
 class AppointmentDogTimeSelectionFragment : Fragment() {
-
-    lateinit var appointmentActivity: AppointmentActivity
 
     private var _binding: FragmentAppointmentDogTimeSelectionBinding? = null
     private val binding get() = _binding!!
@@ -24,10 +21,8 @@ class AppointmentDogTimeSelectionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
 
         _binding = FragmentAppointmentDogTimeSelectionBinding.inflate(inflater)
-        appointmentActivity = activity as AppointmentActivity
 
         settingupDogTimeButtons()
-        settingDogTimeNextButton()
 
         return binding.root
     }
@@ -67,26 +62,6 @@ class AppointmentDogTimeSelectionFragment : Fragment() {
                 selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
                 selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
                 selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-            }
-        }
-    }
-
-    fun settingDogTimeNextButton() {
-        binding.apply {
-            buttonappointmentselecttimenext.setOnClickListener {
-                var isAllSelected = true
-
-                // 예약 유형 중 하나라도 선택되지 않았는지 확인
-                if (!selecttimefordoguntil.isSelected && !selecttimefordogthirtymin.isSelected && !selecttimefordogsixtymin.isSelected && !selecttimefordogonetwentymin.isSelected) {
-                    showAlertDialog("시간을 선택해 주세요.")
-                    isAllSelected = false
-                }
-
-                // 모든 조건을 충족시키면 다음 화면으로 넘어감
-                if (isAllSelected) {
-                    appointmentActivity.replaceFragment(
-                        MainFragmentName.APPOINTMENT_USER_ADDRESS, true, true, null)
-                }
             }
         }
     }
