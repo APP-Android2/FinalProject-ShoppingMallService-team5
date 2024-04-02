@@ -36,8 +36,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures{
-        viewBinding =true
+    viewBinding {
+        enable = true
     }
 
     buildFeatures{
@@ -67,6 +67,9 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
 
+    // 이미지 원형 적용 라이브리러
+    implementation ("de.hdodenhof:circleimageview:3.1.0") //Circle ImageView
+
     implementation ("com.aminography:primedatepicker:3.6.0")
     implementation ("com.aminography:primecalendar:1.7.0")
 
@@ -76,5 +79,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
+
 
 }

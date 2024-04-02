@@ -48,4 +48,9 @@
     <string name="enter_new_addr">새 주소 입력</string>
     <string name="use_my_addr">내 주소 사용</string>
     <string name="lets_start">시작하기</string>
+    <string name="hint_input_title">제목을 입력해주세요</string>
+    <string name="hint_input_content">내용을 입력해주세요</string>
+    <string name="hint_input_comment">댓글을 입력해주세요</string>
+
+
 </resources>

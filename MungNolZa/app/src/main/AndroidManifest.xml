@@ -13,6 +13,17 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.freeboard.BoardActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".ui.intro.activity.JoinActivity"
             android:exported="true" />
         <activity
@@ -25,14 +36,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.intro.activity.OnBoardingActivity"
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.LoginActivity"
             android:exported="true" />
     </application>
-
 </manifest>

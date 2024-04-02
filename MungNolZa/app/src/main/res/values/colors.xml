@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_color_yellow">#ffea9f</color>
+    <color name="button_close_white">#70FFFFFF</color>
+    <color name="chat_count_red">#E10B0B</color>
     <color name="semi_white">#E4E4E4</color>
     <color name="semi_grey">#939393</color>
     <color name="grey">#979797</color>

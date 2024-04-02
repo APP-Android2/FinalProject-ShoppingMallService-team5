@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="addBoardViewModel"
+            type="kr.co.lion.mungnolza.ui.freeboard.viewmodel.AddBoardViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAddBoard"
+            style="@style/Theme.MungNolZa.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/shared_layout_padding">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittext_height_board_title"
+                    android:hint="@string/hint_input_title"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTitleAddBoard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/edittext_margin_top"
+                    android:hint="@string/hint_input_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextContentAddBoard"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edittext_height_board_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imageViewPhotoAddBoard"
+                    android:layout_width="@dimen/icon_width_add_board"
+                    android:layout_height="@dimen/icon_height_add_board"
+                    android:layout_marginTop="@dimen/resource_margin_top"
+                    app:srcCompat="@drawable/ic_photo_library_24px" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPhotosAddBoard"
+                    android:layout_width="@dimen/carousel_width_add_board"
+                    android:layout_height="@dimen/carousel_height_add_add_board"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/carousel_margin_top_add_board" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
