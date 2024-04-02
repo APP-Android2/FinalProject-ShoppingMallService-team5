@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/shared_common_margin"
-                android:text="@string/userWheretoVisit"
+                android:text="@string/user_where_to_visit"
                 android:textColor="@color/white"
                 android:fontFamily="@font/binggrae_bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -61,8 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="@string/use_my_addr"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btn_new_addr"
