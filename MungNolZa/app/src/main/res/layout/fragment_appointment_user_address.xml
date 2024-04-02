@@ -12,6 +12,7 @@
         android:id="@+id/toolbarUserAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back_24px"
         android:theme="?attr/actionBarTheme">
 
         <TextView
@@ -20,60 +21,83 @@
             android:layout_gravity="center"
             android:text="@string/title_text_reservation"
             android:textColor="@android:color/black"
+            android:fontFamily="@font/binggrae_bold"
             android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/no_pet_cardview"
+        style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/shared_common_margin"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/shared_layout_padding">
+        android:layout_marginStart="@dimen/shared_common_margin"
+        android:layout_marginEnd="@dimen/shared_common_margin">
 
-        <TextView
-            android:id="@+id/userWheretoVisit"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/shared_edittext_margin_top"
-            android:layout_marginBottom="8dp"
-            android:text="@string/userWheretoVisit"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:background="@color/accent_green_blue"
+            android:padding="20dp">
 
-        <EditText
-            android:id="@+id/textviewaddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="도로명 주소"
-            android:inputType="textPostalAddress" />
+            <TextView
+                android:id="@+id/userWheretoVisit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/shared_common_margin"
+                android:text="@string/userWheretoVisit"
+                android:textColor="@color/white"
+                android:fontFamily="@font/binggrae_bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                />
 
-        <TextView
-            android:id="@+id/textviewAddressNumberName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이름, 010-0000-0000"
-            android:textSize="@dimen/fragment_appointment_text_large" />
+            <Button
+                android:id="@+id/btn_save_addr"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="내 주소 사용"
+                android:textStyle="bold"
+                />
 
-        <TextView
-            android:id="@+id/textViewNameNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="프로필 번호로 카카오 알림톡 전송"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <Button
+                android:id="@+id/btn_new_addr"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="새 주소 입력"
+                android:textStyle="bold"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|top"
+                    android:background="@color/white"
+                    android:lines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_input_addr_complete"
+                android:background="@drawable/shared_button_design"
+                android:layout_width="@dimen/shared_button_width"
+                android:layout_height="@dimen/shared_button_height"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/shared_common_margin"
+                android:fontFamily="@font/binggrae_bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/next" />
+        </LinearLayout>
 
 
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonAddressNext"
-        style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="@dimen/shared_button_width"
-        android:layout_height="@dimen/shared_button_height"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/binggrae_regular"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="@string/next" />
-
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
