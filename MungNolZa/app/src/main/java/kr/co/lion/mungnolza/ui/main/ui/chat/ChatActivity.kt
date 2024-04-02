@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.chat
+package kr.co.lion.mungnolza.ui.main.ui.chat
 
 import android.os.Bundle
 import android.os.SystemClock
@@ -15,10 +15,10 @@ import kr.co.lion.mungnolza.databinding.ActivityChatBinding
 import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ShowDetailBoardFragment
-import kr.co.lion.mungnolza.ui.chat.fragment.DetailChatFragment
-import kr.co.lion.mungnolza.ui.chat.fragment.MainChatFragment
-import kr.co.lion.mungnolza.ui.freeboard.fragment.AddBoardFragment
-import kr.co.lion.mungnolza.util.ChatFragmentName
+import kr.co.lion.mungnolza.ui.main.ui.chat.fragment.DetailChatFragment
+import kr.co.lion.mungnolza.ui.main.ui.chat.fragment.MainChatFragment
+import kr.co.lion.mungnolza.ui.main.ui.freeboard.fragment.AddBoardFragment
+import kr.co.lion.mungnolza.ui.main.util.ChatFragmentName
 import kr.co.lion.mungnolza.util.BoardFragmentName
 
 class ChatActivity : AppCompatActivity() {

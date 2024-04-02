@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.chat.viewmodel
+package kr.co.lion.mungnolza.ui.main.ui.chat.viewmodel
 
 import androidx.lifecycle.ViewModel
 

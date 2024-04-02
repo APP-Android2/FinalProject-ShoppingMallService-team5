@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.chat.fragment
+package kr.co.lion.mungnolza.ui.main.ui.chat.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,16 +13,16 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMainChatBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.databinding.RowMainChatBinding
-import kr.co.lion.mungnolza.ui.chat.ChatActivity
-import kr.co.lion.mungnolza.ui.chat.viewmodel.MainChatViewModel
-import kr.co.lion.mungnolza.util.ChatFragmentName
+import kr.co.lion.mungnolza.ui.main.ui.chat.ChatActivity
+import kr.co.lion.mungnolza.ui.main.ui.chat.viewmodel.MainChatViewModel
+import kr.co.lion.mungnolza.ui.main.util.ChatFragmentName
 import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
 class MainChatFragment : Fragment() {
 
     lateinit var binding:FragmentMainChatBinding
-    lateinit var chatActivity: ChatActivity
+    lateinit var chatActivity:ChatActivity
     lateinit var mainChatViewModel: MainChatViewModel
 
     override fun onCreateView(

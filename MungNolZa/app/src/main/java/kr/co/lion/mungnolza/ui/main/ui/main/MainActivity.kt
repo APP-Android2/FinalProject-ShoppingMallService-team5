@@ -6,7 +6,7 @@ import android.os.Bundle
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityMainBinding
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
-import kr.co.lion.mungnolza.ui.chat.ChatActivity
+import kr.co.lion.mungnolza.ui.main.ui.chat.ChatActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

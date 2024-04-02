@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.freeboard.fragment
+package kr.co.lion.mungnolza.ui.main.ui.freeboard.fragment
 
 import android.content.Intent
 import android.graphics.BitmapFactory
