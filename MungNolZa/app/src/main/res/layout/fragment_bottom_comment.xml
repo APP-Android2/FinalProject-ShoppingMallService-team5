@@ -58,7 +58,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:id="@+id/imageViewSendBottomComment"
+                    android:id="@+id/imageViewSendDetailChat"
                     android:layout_width="@dimen/icon_width_send_bottom_comment"
                     android:layout_height="@dimen/icon_height_send_bottom_comment"
                     android:layout_marginTop="@dimen/resource_margin_top"

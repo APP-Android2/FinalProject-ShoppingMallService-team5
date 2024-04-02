@@ -15,6 +15,7 @@ import kr.co.lion.mungnolza.databinding.ActivityChatBinding
 import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ShowDetailBoardFragment
+import kr.co.lion.mungnolza.ui.main.ui.chat.fragment.DetailChatFragment
 import kr.co.lion.mungnolza.ui.main.ui.chat.fragment.MainChatFragment
 import kr.co.lion.mungnolza.ui.main.ui.freeboard.fragment.AddBoardFragment
 import kr.co.lion.mungnolza.ui.main.util.ChatFragmentName
@@ -60,10 +61,11 @@ class ChatActivity : AppCompatActivity() {
             ChatFragmentName.MAIN_CHAT_FRAGMENT-> {
                 newFragment = MainChatFragment()
             }
-
-            else -> {
-
+            ChatFragmentName.DETAIL_CHAT_FRAGMENT -> {
+                newFragment = DetailChatFragment()
             }
+
+
 
         }
 

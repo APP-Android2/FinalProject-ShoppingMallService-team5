@@ -93,13 +93,13 @@ class MainChatFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolderMainChat, position: Int) {
-            holder.rowMainChatBinding.textViewContentRowMainChat.text = "나는 카리나 너는 호박 $position"
-            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "최나연 $position"
+            holder.rowMainChatBinding.textViewContentRowMainChat.text = "박지성... 너 축구 잘해? $position"
+            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "수원 손흥민 정찬호 $position"
             holder.rowMainChatBinding.textViewDateRowMainChat.text = "2024-04-01"
-            holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_cny)
+            holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_jch)
 
             holder.rowMainChatBinding.root.setOnClickListener {
-                //chatActivity.replaceFragment(ChatFragmentName,true,true,null)
+                chatActivity.replaceFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT,true,true,null)
             }
         }
     }
