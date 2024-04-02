@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.appointment.adapter
+package kr.co.lion.mungnolza.ui.appointment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

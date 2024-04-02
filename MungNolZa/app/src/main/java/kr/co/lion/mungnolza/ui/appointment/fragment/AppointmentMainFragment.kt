@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.appointment.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -15,7 +15,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
 import kr.co.lion.mungnolza.model.PetInfo
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
-import kr.co.lion.mungnolza.ui.main.appointment.adapter.SelectPetAdapter
+import kr.co.lion.mungnolza.ui.appointment.adapter.SelectPetAdapter
 import kr.co.lion.mungnolza.ui.main.showAlertDialog
 
 

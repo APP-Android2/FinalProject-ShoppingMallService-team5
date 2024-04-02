@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/appointmentMainFragment"
-        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentMainFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentMainFragment"
         android:label="AppointmentMainFragment" >
         <action
             android:id="@+id/action_appointmentMainFragment_to_appointmentDogTimeSelectionFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelectionFragment"
-        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentDogTimeSelectionFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentDogTimeSelectionFragment"
         android:label="AppointmentDogTimeSelectionFragment" >
         <action
             android:id="@+id/action_appointmentDogTimeSelectionFragment_to_appointmentUserAddressFragment"
@@ -22,6 +22,6 @@
     </fragment>
     <fragment
         android:id="@+id/appointmentUserAddressFragment"
-        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentUserAddressFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentUserAddressFragment"
         android:label="AppointmentUserAddressFragment" />
 </navigation>

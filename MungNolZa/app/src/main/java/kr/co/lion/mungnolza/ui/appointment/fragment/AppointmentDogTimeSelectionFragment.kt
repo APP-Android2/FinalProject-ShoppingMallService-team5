@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.appointment.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
