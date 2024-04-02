@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_appointment_graph"
+    app:startDestination="@id/appointmentMainFragment">
+
+    <fragment
+        android:id="@+id/appointmentMainFragment"
+        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentMainFragment"
+        android:label="AppointmentMainFragment" >
+        <action
+            android:id="@+id/action_appointmentMainFragment_to_appointmentDogTimeSelectionFragment"
+            app:destination="@id/appointmentDogTimeSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentDogTimeSelectionFragment"
+        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentDogTimeSelectionFragment"
+        android:label="AppointmentDogTimeSelectionFragment" >
+        <action
+            android:id="@+id/action_appointmentDogTimeSelectionFragment_to_appointmentUserAddressFragment"
+            app:destination="@id/appointmentUserAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentUserAddressFragment"
+        android:name="kr.co.lion.mungnolza.ui.main.appointment.fragment.AppointmentUserAddressFragment"
+        android:label="AppointmentUserAddressFragment" />
+</navigation>

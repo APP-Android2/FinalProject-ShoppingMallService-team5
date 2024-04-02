@@ -8,6 +8,7 @@
     <dimen name="shared_button_height">60dp</dimen>
     <dimen name="shared_edittext_margin_top">20dp</dimen>
     <dimen name="shared_common_margin">20dp</dimen>
+    <dimen name="shared_common_margin_10">10dp</dimen>
 
     <dimen name="fragment_login_common_margin">10dp</dimen>
     <dimen name="fragment_login_gif_margin">40dp</dimen>
@@ -15,9 +16,11 @@
     <dimen name="fragment_login_button_width">300dp</dimen>
     <dimen name="fragment_login_button_height">50dp</dimen>
 
+    <dimen name="fragment_request_permission_common_margin">20dp</dimen>
+    <dimen name="fragment_request_permission_bottom_request_info_text_size">12sp</dimen>
+
     <dimen name="fragment_request_permission_common_padding">10dp</dimen>
     <dimen name="fragment_request_permission_bottom_request_info_padding">13dp</dimen>
-    <dimen name="fragment_request_permission_bottom_request_info_text_size">12sp</dimen>
     <dimen name="fragment_request_permission_subtitle_size">13sp</dimen>
     <dimen name="fragment_request_permission_cardview_padding">15dp</dimen>
     <dimen name="fragment_request_permission_cardview_height">470dp</dimen>
@@ -25,18 +28,26 @@
     <dimen name="fragment_onboarding_circle_size">10sp</dimen>
     <dimen name="fragment_onboarding_circle_margin">3dp</dimen>
     <dimen name="fragment_onboarding_text_size">20sp</dimen>
-    <dimen name="fragment_onboarding_top_margin">100sp</dimen>
+    <dimen name="fragment_onboarding_common_margin">20sp</dimen>
     <dimen name="lottie_animation_size">300dp</dimen>
+    <dimen name="fragment_onboarding_top_margin">100sp</dimen>
     <dimen name="lottie_animation_margin">35dp</dimen>
 
     <dimen name="fragment_image_elevation">10dp</dimen>
     <dimen name="fragment_image_padding">30dp</dimen>
     <dimen name="fragment_image_size">140dp</dimen>
 
+    <dimen name="fragment_join_common_margin">20dp</dimen>
     <dimen name="fragment_join_edit_text_margin">40dp</dimen>
+    <dimen name="fragment_join_edit_button_width">300dp</dimen>
+    <dimen name="fragment_join_edit_button_height">60dp</dimen>
 
     <dimen name="fragment_pet_profile_input_button_margin_top">10dp</dimen>
     <dimen name="fragment_pet_profile_input_button_margin_start">50dp</dimen>
     <dimen name="fragment_pet_profile_input_edittext_margin_start">25dp</dimen>
 
+    <dimen name="fragment_appointment_text_large">20sp</dimen>
+
+    <dimen name="appointment_pet_select_item_img_size">30dp</dimen>
+    <dimen name="appointment_pet_select_item_margin_top">3dp</dimen>
 </resources>
