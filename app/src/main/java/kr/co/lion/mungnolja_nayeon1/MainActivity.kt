@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        // 여기는 test를 위한 변경 공간입니다.
+
         //replaceFragment(MainFragmentName.MATCHING_FRAGMENT,true,false,null)
 
         // ReservationListActivity 실행한다.
