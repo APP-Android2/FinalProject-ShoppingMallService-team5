@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.intro.fragment.OnBoardingFragment1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/lottie_animation_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fragment_onboarding_top_margin"
+            android:gravity="center"
+            android:text="@string/let_start_with_mungnolza"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fragment_onboarding_text_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shared_common_margin">
+
+            <ImageView
+                android:layout_width="@dimen/fragment_onboarding_circle_size"
+                android:layout_height="@dimen/fragment_onboarding_circle_size"
+                android:layout_marginStart="@dimen/fragment_onboarding_circle_margin"
+                android:background="@drawable/onboarding_circle_background_grey" />
+
+
+            <ImageView
+                android:layout_width="@dimen/fragment_onboarding_circle_size"
+                android:layout_height="@dimen/fragment_onboarding_circle_size"
+                android:layout_marginStart="@dimen/fragment_onboarding_circle_margin"
+                android:background="@drawable/onboarding_circle_background_grey" />
+
+            <ImageView
+                android:layout_width="@dimen/fragment_onboarding_circle_size"
+                android:layout_height="@dimen/fragment_onboarding_circle_size"
+                android:layout_marginStart="@dimen/fragment_onboarding_circle_margin"
+                android:background="@drawable/onboarding_circle_background_black" />
+
+        </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="@dimen/lottie_animation_size"
+            android:layout_height="@dimen/lottie_animation_size"
+            android:layout_marginTop="@dimen/shared_common_margin"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_onboarding3" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:background="@drawable/shared_button_design"
+        android:layout_width="@dimen/shared_button_width"
+        android:layout_height="@dimen/shared_button_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/shared_common_margin"
+        android:fontFamily="@font/binggrae_bold"
+        android:textColor="@color/black"
+        android:text="@string/lets_start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+</LinearLayout>
