@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="semi_white">#E4E4E4</color>
+    <color name="semi_grey">#939393</color>
+    <color name="grey">#979797</color>
+    <color name="red">#FE0000</color>
+    <color name="male">#7692F5</color>
+    <color name="female">#F576AC</color>
+    <color name="shrine_pink_50">#FEEAE6</color>
+    <color name="kakao_login_button_color">#FEE500</color>
+    <color name="app_main_color">#FFEA9F</color>
 </resources>

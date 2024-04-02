@@ -8,7 +8,7 @@
     tools:context=".fragment.MatchingFragment" >
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarMatching"
+        android:id="@+id/toolbarRealtimeLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/binggrae_bold"
-            android:text="팻시터 매칭"
-            android:textSize="20dp"
+            android:text="@string/toolbar_title_reservation"
+            android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/shared_layout_padding"
         android:text="신청내역" />
 
     <com.google.android.material.card.MaterialCardView
@@ -40,64 +40,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/shared_layout_padding">
 
             <!-- Title, secondary and supporting text -->
+            <TextView
+                android:id="@+id/textViewMatchingPetCareType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="돌봄서비스 유형 및 시간"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewMatchingPet"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/n_shared_pet_image_width_height"
+                    android:layout_height="@dimen/n_shared_pet_image_width_height"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
-                    android:id="@+id/textViewMatchingPetCareType"
+                    android:id="@+id/textViewMatchingPetName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돌봄서비스 유형 및 시간"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
-            </LinearLayout>
+                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                    android:text="펫이름"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="?android:attr/textColorSecondary" />
 
-            <TextView
-                android:id="@+id/textViewMatchingPetName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="펫이름"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?android:attr/textColorSecondary" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textViewMatchingReservationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                 android:inputType="datetime|date"
                 android:text="예약 날짜"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/textViewMatchingReservationTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                 android:inputType="datetime|time"
                 android:text="예약 시간"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/textViewMatchingReservationAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                 android:text="예약 주소"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="?android:attr/textColorSecondary" />
 
         </LinearLayout>
@@ -130,7 +134,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="@dimen/shared_layout_padding"
                     android:text="매칭된 팻시터" />
 
                 <TextView
@@ -146,14 +150,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp" />
+                    android:padding="@dimen/shared_layout_padding" />
             </LinearLayout>
         </ScrollView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonMatchingDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shared_button_design"
             android:fontFamily="@font/binggrae_regular"
             android:padding="10dp"
             android:text="선택완료" />

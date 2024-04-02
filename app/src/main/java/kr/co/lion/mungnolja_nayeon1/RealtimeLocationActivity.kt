@@ -12,7 +12,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import kr.co.lion.mungnolja_nayeon1.databinding.ActivityRealtimeLocationBinding
 
@@ -28,6 +31,9 @@ class RealtimeLocationActivity : AppCompatActivity() {
 
     // 구글 지도 객체를 담을 프로퍼티
     lateinit var mainGoogleMap: GoogleMap
+
+    // 현재 사용자 위치를 표시하기 위한 마커
+    var myMarker: Marker? = null
 
     // 확인할 권한 목록
     val permissionList = arrayOf(
@@ -46,7 +52,27 @@ class RealtimeLocationActivity : AppCompatActivity() {
         // 권한을 확인 받는다.
         requestPermissions(permissionList, 0)
 
+        setToolbar()
         settingGoogleMap()
+    }
+
+    // 툴바 설정
+    fun setToolbar(){
+        activityRealtimeLocationBinding.apply {
+            toolbarRealtimeLocation.apply {
+                // 메뉴아이템
+                inflateMenu(R.menu.menu_realtime_location_activivty)
+                setOnMenuItemClickListener {
+                    when(it.itemId){
+                        R.id.menuitem_realtime_location_notification -> {
+                            // 알림화면으로 이동한다.
+                        }
+                    }
+
+                    true
+                }
+            }
+        }
     }
 
     // 구글 지도 셋팅
@@ -60,6 +86,18 @@ class RealtimeLocationActivity : AppCompatActivity() {
 
             // 구글 지도 객체 객체를 담아준다.
             mainGoogleMap = it
+
+            // 확대 축소 버튼
+            mainGoogleMap.uiSettings.isZoomControlsEnabled = true
+
+            // 현재 위치로 이동시키는 버튼을 둔다.
+            // 사용자 현재 위치도 표시된다.
+            mainGoogleMap.isMyLocationEnabled = true
+
+            // isMyLocationEnabled 에 true를 넣어주면 현재 위치를 표시하는 것 뿐만 아니라
+            // 현재 위치로 이동하는 버튼도 표시된다.
+            // 이 버튼을 제거하겠다면...
+            // mainGoogleMap.uiSettings.isMyLocationButtonEnabled = false
 
             // 위치 정보를 관리하는 객체를 가지고 온다.
             locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
@@ -139,13 +177,30 @@ class RealtimeLocationActivity : AppCompatActivity() {
         // 지도를 이동시키기 위한 객체를 생성한다.
         // 첫 번째 : 표시할 지도의 위치(위도 경고)
         // 두 번째 : 줌 배율
-        //val cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation, 15.0f)
+        //val cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation, 20.0f)
 
         val cameraUpdate = CameraUpdateFactory.newLatLng(userLocation)
 
         // 카메라를 이동시킨다.
         // mainGoogleMap.moveCamera(cameraUpdate)
         mainGoogleMap.animateCamera(cameraUpdate)
+
+        // 현재위치를 담은 마커를 생성한다.
+        val markerOptions = MarkerOptions()
+        markerOptions.position(userLocation)
+
+        // 이미 마커가 있다면 제거한다.
+        if(myMarker != null){
+            myMarker?.remove()
+            myMarker = null
+        }
+
+        // 마커의 이미지를 변경한다.
+        val markerBitmap = BitmapDescriptorFactory.fromResource(R.drawable.my_location)
+        markerOptions.icon(markerBitmap)
+
+        // 마커를 지도에 표시해준다.
+        myMarker = mainGoogleMap.addMarker(markerOptions)
 
     }
 

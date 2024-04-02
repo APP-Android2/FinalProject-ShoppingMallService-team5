@@ -10,10 +10,18 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarReservationConfirmed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/toolbar_title_petsitter_review"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,9 +52,26 @@
                 android:padding="16dp">
 
                 <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/textViewReservationConfirmedPetCareType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                    android:text="돌봄서비스 유형 및 시간"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="?android:attr/listDivider" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -56,35 +81,30 @@
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:id="@+id/textViewReservationConfirmedPetCareType"
+                        android:id="@+id/textViewReservationConfirmedPetName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="돌봄서비스 유형 및 시간"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-                </LinearLayout>
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="펫이름"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="?android:attr/textColorSecondary" />
 
-                <TextView
-                    android:id="@+id/textViewReservationConfirmedPetName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="펫이름"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textViewReservationConfirmedAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                     android:text="예약 주소"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="?android:attr/textColorSecondary" />
 
                 <View
-                    android:id="@+id/divider5"
+                    android:id="@+id/divider6"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="10dp"
                     android:background="?android:attr/listDivider" />
 
@@ -116,8 +136,10 @@
                                 android:id="@+id/textViewReservationConfirmedPetSitterName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                                 android:text="이름"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                         </LinearLayout>
 
                         <RatingBar
@@ -125,6 +147,7 @@
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:isIndicator="true"
                             android:numStars="5"
                             android:rating="5"
@@ -134,19 +157,21 @@
                             android:id="@+id/textViewReservationConfirmedPetSitterCareer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:inputType="datetime|time"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:text="경력"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
                             android:id="@+id/textViewReservationConfirmedDateTime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:text="예약날짜시간"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="?android:attr/textColorSecondary" />
 
                     </LinearLayout>
@@ -157,11 +182,12 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonReservationConfirmedDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/shared_button_design"
             android:text="확인" />
 
     </LinearLayout>

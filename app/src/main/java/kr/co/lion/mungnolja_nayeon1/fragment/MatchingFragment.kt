@@ -37,7 +37,7 @@ class MatchingFragment : Fragment() {
     // 툴 바 설정
     fun setToolbar(){
         fragmentMatchingBinding.apply {
-            toolbarMatching.apply {
+            toolbarRealtimeLocation.apply {
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {
@@ -140,7 +140,7 @@ class MatchingFragment : Fragment() {
 
             if (selectedPosition == position){
                 // 선택된 항목의 색상
-                holder.rowMatchingBinding.root.setBackgroundColor(Color.parseColor("#FFEB3B"))
+                holder.rowMatchingBinding.root.setBackgroundColor(Color.parseColor("#FFEA9F"))
             } else{
                 // 기본 색상
                 holder.rowMatchingBinding.root.setBackgroundColor(Color.parseColor("#FFFFFF"))

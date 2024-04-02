@@ -36,8 +36,6 @@ class PetSitterReviewFragment : Fragment() {
     fun setToolbar(){
         fragmentPetSitterReViewBinding.apply {
             toolbarPetSitterReview.apply {
-                // 타이틀
-                title = "후기"
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {

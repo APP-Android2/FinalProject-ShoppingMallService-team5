@@ -9,10 +9,18 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarPayment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/toolbar_title_reservation"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +39,9 @@
             android:id="@+id/radioButtonPaymentEasyCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="@dimen/shared_layout_padding"
             android:text="간편 카드결제" />
 
         <View
@@ -43,6 +54,9 @@
             android:id="@+id/radioButtonPaymentRegular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="@dimen/shared_layout_padding"
             android:text="일반 결제" />
 
         <LinearLayout
@@ -100,13 +114,18 @@
             android:id="@+id/spinnerPaymentCardType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="@dimen/shared_layout_padding"
+            android:layout_marginTop="10dp" />
 
         <Spinner
             android:id="@+id/spinnerPaymentCardPeriod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="@dimen/shared_layout_padding" />
 
         <View
             android:id="@+id/divider3"
@@ -119,7 +138,9 @@
             android:id="@+id/checkBoxPaymentDefaultMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="@dimen/shared_layout_padding"
             android:text="기본 결제수단으로 저장" />
 
         <View
@@ -154,11 +175,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonPaymentDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@drawable/shared_button_design"
             android:text="결제" />
 
     </LinearLayout>

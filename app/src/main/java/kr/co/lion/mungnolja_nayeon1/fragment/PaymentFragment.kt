@@ -42,8 +42,6 @@ class PaymentFragment : Fragment() {
     fun setToolbar(){
         fragmentPaymentBinding.apply {
             toolbarPayment.apply {
-                // 타이틀
-                title = "예약"
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {
@@ -62,7 +60,6 @@ class PaymentFragment : Fragment() {
                     // 결제완료 다이어로그를 띄운다
 
                     val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
-                    materialAlertDialogBuilder.setTitle("결제 완료")
                     materialAlertDialogBuilder.setMessage("결제가 완료되었습니다\n 감사합니다")
                     materialAlertDialogBuilder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
                         // 예약확정fragment로 넘어간다

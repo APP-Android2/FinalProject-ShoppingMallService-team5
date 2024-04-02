@@ -30,8 +30,6 @@ class ReservationConfirmedFragment : Fragment() {
     fun setToolbar(){
         fragmentReservationConfirmedBinding.apply {
             toolbarReservationConfirmed.apply {
-                // 타이틀
-                title = "예약 확인"
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {

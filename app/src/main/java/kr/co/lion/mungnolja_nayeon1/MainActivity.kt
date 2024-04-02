@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         this.finish()*/
 
         // RealtimeLocationActivity 실행한다.
-        val contentIntent = Intent(this, RealtimeLocationActivity::class.java)
+        /*val contentIntent = Intent(this, RealtimeLocationActivity::class.java)
         startActivity(contentIntent)
         // MainActivity를 종료한다.
-        this.finish()
+        this.finish()*/
     }
 
     // 지정한 Fragment를 보여주는 메서드

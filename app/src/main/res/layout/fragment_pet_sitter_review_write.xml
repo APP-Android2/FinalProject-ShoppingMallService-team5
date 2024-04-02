@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/binggrae_bold"
-            android:text="팻시터 후기"
+            android:text="@string/toolbar_title_petsitter_review_write"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -46,8 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
                 <!-- Title, secondary and supporting text -->
 
@@ -55,12 +54,17 @@
                     android:id="@+id/textViewPetSitterReviewWriteName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                     android:text="이름"
                     android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView

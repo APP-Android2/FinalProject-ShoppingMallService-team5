@@ -10,10 +10,18 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarPetSitterInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/toolbar_title_petsitter_info"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <ImageView
         android:id="@+id/imageViewPetSitterInfo"
@@ -58,18 +66,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="이름"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/textViewPetSitterQualification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                         android:text="멍놀자 펫시터 자격 수료" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                         android:orientation="horizontal">
 
                         <TextView
@@ -102,7 +114,8 @@
                         android:id="@+id/textViewPetSitterInfoCareerDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                         android:text="경력"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?android:attr/textColorSecondary" />

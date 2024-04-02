@@ -86,16 +86,16 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/imageViewRowReservationListLastPet"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="@dimen/n_shared_pet_image_width_height"
+                            android:layout_height="@dimen/n_shared_pet_image_width_height"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
                             android:id="@+id/textViewRowReservationListLastPetName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="6dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                             android:layout_weight="1"
                             android:text="펫이름" />
 
@@ -105,14 +105,14 @@
                         android:id="@+id/textViewRowReservationListLastDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                         android:text="예약날짜" />
 
                     <TextView
                         android:id="@+id/textViewRowReservationListLastTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                         android:text="에약시간" />
 
                 </LinearLayout>

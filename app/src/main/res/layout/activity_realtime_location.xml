@@ -8,7 +8,7 @@
     tools:context=".RealtimeLocationActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarMatching"
+        android:id="@+id/toolbarRealtimeLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/binggrae_bold"
-            android:text="실시간 강아지 위치"
-            android:textSize="20dp"
+            android:text="@string/toolbar_title_realtime_location"
+            android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>
@@ -27,6 +27,21 @@
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="450dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="채팅화면 넣을거임"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
 
 </LinearLayout>

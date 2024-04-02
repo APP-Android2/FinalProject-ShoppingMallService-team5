@@ -9,18 +9,15 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarReservationList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/binggrae_bold"
-            android:text="예약 내역"
-            android:textSize="20dp"
+            android:text="@string/toolbar_title_reservation_list"
+            android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
     </com.google.android.material.appbar.MaterialToolbar>

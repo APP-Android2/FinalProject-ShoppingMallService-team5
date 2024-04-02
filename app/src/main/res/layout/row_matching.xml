@@ -31,16 +31,18 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewRowMatchingPetSitter"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/n_shared_pet_image_width_height"
+                        android:layout_height="@dimen/n_shared_pet_image_width_height"
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
                         android:id="@+id/textViewRowMatchingPetSitterName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                         android:text="이름"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                 </LinearLayout>
 
                 <RatingBar
@@ -48,6 +50,7 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="5" />
@@ -58,8 +61,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:inputType="datetime|time"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
                     android:text="경력"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="?android:attr/textColorSecondary" />
 
                 <TextView
@@ -68,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="예약날짜시간"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="?android:attr/textColorSecondary" />
 
             </LinearLayout>

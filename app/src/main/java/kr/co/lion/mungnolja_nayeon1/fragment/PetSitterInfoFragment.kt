@@ -32,8 +32,6 @@ class PetSitterInfoFragment : Fragment() {
     fun setToolbar(){
         fragmentPetSitterInfoBinding.apply {
             toolbarPetSitterInfo.apply {
-                // 타이틀 설정
-                title = "펫시터 정보"
                 // 뒤로가기
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {
