@@ -4,6 +4,22 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color_yellow">#ffea9f</color>
     <color name="button_close_white">#70FFFFFF</color>
-    <color name="app_main_color">#ffea9f</color>
     <color name="chat_count_red">#E10B0B</color>
+    <color name="semi_white">#E4E4E4</color>
+    <color name="semi_grey">#939393</color>
+    <color name="grey">#979797</color>
+    <color name="red">#FE0000</color>
+    <color name="male">#7692F5</color>
+    <color name="female">#F576AC</color>
+    <color name="shrine_pink_50">#FEEAE6</color>
+    <color name="kakao_login_button_color">#FEE500</color>
+    <color name="sky_blue">#D1ECF7</color>
+    <color name="green_blue">#8CDCC9</color>
+    <color name="accent_green_blue">#36BC9B</color>
+    <color name="orange_main">#FFB372</color>
+    <color name="app_main_color">#FFEA9F</color>
+    <!-- 선택된 버튼의 색상 -->
+    <color name="selectedButtonColor">#ffea9f</color>
+
+    <color name="defaultButtonColor">#e0e0e0</color>
 </resources>
