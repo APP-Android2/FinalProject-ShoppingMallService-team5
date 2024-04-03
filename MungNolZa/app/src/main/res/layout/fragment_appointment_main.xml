@@ -66,6 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/binggrae_regular"
+                        android:layout_marginTop="@dimen/shared_common_margin_10"
                         android:text="@string/no_pet_msg1" />
 
                     <Button
@@ -80,7 +81,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Filled"
+                style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/shared_common_margin"
@@ -90,7 +91,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:baselineAligned="false"
+                    android:layout_gravity="bottom"
                     android:orientation="horizontal"
                     android:padding="@dimen/shared_layout_padding">
 
@@ -101,12 +102,12 @@
                         android:orientation="vertical"
                         android:padding="@dimen/shared_layout_padding">
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <Button
+                            style="@style/Widget.Material3.Button.OutlinedButton"
                             android:id="@+id/btn_jogging"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:background="@drawable/shared_button_design_sky_blue"
                             android:fontFamily="@font/binggrae_regular"
                             android:text="@string/jogging_reservation"
                             android:textStyle="bold" />
@@ -116,6 +117,17 @@
                             android:layout_height="150dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/out" />
+
+                        <Button
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:id="@+id/btn_entrust"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/binggrae_regular"
+                            android:text="맡길래요"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -125,12 +137,12 @@
                         android:orientation="vertical"
                         android:padding="@dimen/shared_layout_padding">
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <Button
+                            style="@style/Widget.Material3.Button.OutlinedButton"
                             android:id="@+id/btn_care"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:background="@drawable/shared_button_design_pink"
                             android:fontFamily="@font/binggrae_regular"
                             android:text="@string/care_reservation"
                             android:textStyle="bold" />
@@ -140,9 +152,33 @@
                             android:layout_height="150dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/home" />
+
+                        <Button
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:id="@+id/btn_visit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/binggrae_regular"
+                            android:text="방문할게요"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
+                android:layout_width="@dimen/shared_button_width"
+                android:layout_height="@dimen/shared_button_height"
+                android:layout_marginTop="@dimen/shared_common_margin_10"
+                android:layout_marginBottom="@dimen/shared_common_margin"
+                android:background="@drawable/shared_button_design"
+                android:fontFamily="@font/binggrae_bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_gravity="center"
+                android:text="@string/next"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

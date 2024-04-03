@@ -16,6 +16,9 @@
             android:name=".ui.chat.ChatActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.appointment.AppointmentActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.freeboard.BoardActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan"/>
