@@ -11,9 +11,12 @@
     <string name="permission_request_reason_location">위치 정보 조회 시 사용</string>
     <string name="request_permission_reason_notification">다양한 소식 알람 시 사용</string>
     <string name="request_permission_reason_gallery">게시판, 반려 동물 프로필 등록 시 사용</string>
+
     <string name="permission_request_explain1">선택적 접근 권한은 해당 기능을 사용할 때만 허용이 필요합니다.</string>
     <string name="permission_request_explain2">비허용시에도 해당 기능, 외 서비스 이용이 가능합니다.</string>
     <string name="permission_request_explain3">허용 상태는 휴대폰 설정 메뉴에서 언제든지 변경할 수 있습니다.</string>
+
+
     <string name="let_start_with_mungnolza">이제 멍놀자와 함께 행복한\n 반려 생활을 시작해요</string>
     <string name="next">다음</string>
     <string name="provide_safe_walk_service">아이들과 안전하고 즐거운\n산책 서비스를 제공해요</string>
@@ -36,6 +39,8 @@
     <string name="neutering_no">안했어요</string>
     <string name="pet_significant">강아지 특이사항</string>
     <string name="plz_know_unique_behavior">우리 아이만의 특별한 점을 알려주세요!</string>
+
+    <!-- 안영준 스트링값 -->
     <string name="title_text_reservation">예약</string>
     <string name="user_where_to_visit">어디로 방문할까요?</string>
     <string name="jogging_reservation">산책 예약</string>
@@ -51,6 +56,4 @@
     <string name="hint_input_title">제목을 입력해주세요</string>
     <string name="hint_input_content">내용을 입력해주세요</string>
     <string name="hint_input_comment">댓글을 입력해주세요</string>
-
-
 </resources>
