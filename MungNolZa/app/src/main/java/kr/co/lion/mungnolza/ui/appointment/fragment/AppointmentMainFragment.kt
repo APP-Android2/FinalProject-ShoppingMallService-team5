@@ -1,6 +1,7 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -13,13 +14,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
+import kr.co.lion.mungnolza.extensions.setAppointmentButtonColor
+import kr.co.lion.mungnolza.extensions.setColorPrimary
+import kr.co.lion.mungnolza.extensions.setColorWhite
 import kr.co.lion.mungnolza.model.PetInfo
-import kr.co.lion.mungnolza.ui.main.MainFragmentName
 import kr.co.lion.mungnolza.ui.appointment.adapter.SelectPetAdapter
-import kr.co.lion.mungnolza.ui.main.showAlertDialog
 
-
-class AppointmentMainFragment : Fragment() {
+class AppointmentMainFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentAppointmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -30,9 +31,14 @@ class AppointmentMainFragment : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentAppointmentMainBinding.inflate(inflater)
-
         initView()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val action = AppointmentMainFragmentDirections.actionAppointmentMainFragmentToAppointmentDogTimeSelectionFragment()
+
     }
 
     private fun getBitmapFromDrawable(context: Context, id: Int): Bitmap {
@@ -41,8 +47,8 @@ class AppointmentMainFragment : Fragment() {
 
     private fun initView(){
         // 테스트용 입니다!
-        dataList.add(PetInfo(getBitmapFromDrawable(requireContext(), R.drawable.doog),
-            "바둑이", "진돗개", "남자아이", 6, "20.2", "했어요", ""))
+//        dataList.add(PetInfo(getBitmapFromDrawable(requireContext(), R.drawable.doog),
+//            "바둑이", "진돗개", "남자아이", 6, "20.2", "했어요", ""))
 
         with(binding){
             with(rv){
@@ -58,7 +64,10 @@ class AppointmentMainFragment : Fragment() {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
                 }
             }
-
+            btnJogging.setOnClickListener(this@AppointmentMainFragment)
+            btnCare.setOnClickListener(this@AppointmentMainFragment)
+            btnEntrust.setOnClickListener(this@AppointmentMainFragment)
+            btnVisit.setOnClickListener(this@AppointmentMainFragment)
         }
     }
 
@@ -95,5 +104,47 @@ class AppointmentMainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(v: View?) {
+        with(binding){
+            when(v?.id) {
+                R.id.btn_jogging -> {
+                    btnJogging.backgroundTintList = requireContext().setAppointmentButtonColor()
+                    btnJogging.setTextColor(requireContext().setColorWhite())
+
+                    btnCare.backgroundTintList = requireContext().setColorWhite()
+                    btnCare.setTextColor(requireContext().setColorPrimary())
+                }
+
+                R.id.btn_care -> {
+                    btnCare.backgroundTintList = requireContext().setAppointmentButtonColor()
+                    btnCare.setTextColor(requireContext().setColorWhite())
+
+                    btnJogging.backgroundTintList = requireContext().setColorWhite()
+                    btnJogging.setTextColor(requireContext().setColorPrimary())
+                }
+
+                R.id.btn_entrust -> {
+                    btnEntrust.backgroundTintList = requireContext().setAppointmentButtonColor()
+                    btnEntrust.setTextColor(requireContext().setColorWhite())
+
+                    btnVisit.backgroundTintList = requireContext().setColorWhite()
+                    btnVisit.setTextColor(requireContext().setColorPrimary())
+                }
+
+                R.id.btn_visit -> {
+                    btnVisit.backgroundTintList = requireContext().setAppointmentButtonColor()
+                    btnVisit.setTextColor(requireContext().setColorWhite())
+
+                    btnEntrust.backgroundTintList = requireContext().setColorWhite()
+                    btnEntrust.setTextColor(requireContext().setColorPrimary())
+                }
+
+                R.id.btn_next -> {
+                }
+            }
+        }
+
     }
 }

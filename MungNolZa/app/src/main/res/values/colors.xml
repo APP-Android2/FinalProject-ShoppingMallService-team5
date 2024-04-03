@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#BB86FC</color>
+    <color name="colorPrimary2">#6750A4</color>
     <color name="main_color_yellow">#ffea9f</color>
     <color name="button_close_white">#70FFFFFF</color>
     <color name="chat_count_red">#E10B0B</color>
