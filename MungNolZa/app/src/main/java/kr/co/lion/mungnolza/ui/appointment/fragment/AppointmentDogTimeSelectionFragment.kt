@@ -32,37 +32,37 @@ class AppointmentDogTimeSelectionFragment : Fragment() {
         val defaultButtonColor = ContextCompat.getColor(requireContext(), R.color.defaultButtonColor) // 기본 버튼 색상
 
         binding.apply {
-            selecttimefordoguntil.setOnClickListener {
-                // 일반 방문 버튼이 선택되었을 때
-                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
-                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-            }
-
-            selecttimefordogthirtymin.setOnClickListener {
-                // 정기 방문 버튼이 선택되었을 때
-                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
-                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-            }
-
-            selecttimefordogsixtymin.setOnClickListener {
-                // 정기 방문 버튼이 선택되었을 때
-                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
-                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-            }
-
-            selecttimefordogonetwentymin.setOnClickListener {
-                // 정기 방문 버튼이 선택되었을 때
-                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
-                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
-            }
+//            selecttimefordoguntil.setOnClickListener {
+//                // 일반 방문 버튼이 선택되었을 때
+//                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+//                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//            }
+//
+//            selecttimefordogthirtymin.setOnClickListener {
+//                // 정기 방문 버튼이 선택되었을 때
+//                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+//                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//            }
+//
+//            selecttimefordogsixtymin.setOnClickListener {
+//                // 정기 방문 버튼이 선택되었을 때
+//                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+//                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogonetwentymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//            }
+//
+//            selecttimefordogonetwentymin.setOnClickListener {
+//                // 정기 방문 버튼이 선택되었을 때
+//                it.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+//                selecttimefordoguntil.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogthirtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//                selecttimefordogsixtymin.backgroundTintList = ColorStateList.valueOf(defaultButtonColor)
+//            }
         }
     }
 }
