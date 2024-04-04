@@ -1,20 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.MungNolZa" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
         <!-- 상단 상태바 색상 -->
-        <item name="colorPrimaryDark">@color/material_dynamic_tertiary99</item>
+        <item name="colorPrimaryDark">@color/white</item>
         <!-- 상단 상태바에 나타나는 정보를 보여주도록 설정한다. 상단 상태바의 색상이 밝은 색인지 여부를 설정한다 -->
         <item name="android:windowLightStatusBar">true</item>
+        <!-- 초기로딩시 검은 화면 없애기-->
+        <!--  이 설정은 preview window를 보이게 할지 안할지 설정 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 이 설정은 window를 투명으로 설정할지 말지에 대한 설정 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowActivityTransitions">true</item>
     </style>
 
     <style name="Theme.MungNolZa" parent="Base.Theme.MungNolZa" />
 
     <!-- Toolbar 용 테마. Toolbar 마다 지정해준다. -->
     <style name="Theme.MungNolZa.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
-        <item name="colorPrimary">@color/material_dynamic_tertiary99</item>
+        <item name="colorPrimary">@color/white</item>
     </style>
 
 </resources>

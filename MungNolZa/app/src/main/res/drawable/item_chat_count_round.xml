@@ -3,3 +3,5 @@
     <solid android:color="@color/chat_count_red"/>
     <corners android:radius="40dp"/>
 </shape>
+
+

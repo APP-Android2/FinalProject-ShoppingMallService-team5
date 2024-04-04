@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -37,6 +39,7 @@ android {
     viewBinding {
         enable = true
     }
+
     buildFeatures{
         dataBinding = true
     }
@@ -68,10 +71,14 @@ dependencies {
     // 이미지 원형 적용 라이브리러
     implementation ("de.hdodenhof:circleimageview:3.1.0") //Circle ImageView
 
+    implementation ("com.aminography:primedatepicker:3.6.0")
+    implementation ("com.aminography:primecalendar:1.7.0")
+
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-firestore:24.11.0")
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
+
 }
