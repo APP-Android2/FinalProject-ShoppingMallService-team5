@@ -35,12 +35,23 @@
 
                 <TextView
                     android:id="@+id/textViewRowReservationiListLastWriteReview"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="0.2"
+                    android:gravity="right"
                     android:text="후기 작성"
                     android:textColor="#009688" />
+
+                <ImageView
+                    android:id="@+id/imageViewRowReservationListLastEdit"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="0.1"
+                    android:tint="#009688"
+                    app:srcCompat="@drawable/edit_24px"
+                    tools:ignore="UseAppTint"/>
 
             </LinearLayout>
 
@@ -74,47 +85,64 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.4"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="@color/app_main_color"
+                        app:cardCornerRadius="20dp">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imageViewRowReservationListLastPet"
-                            android:layout_width="@dimen/n_shared_pet_image_width_height"
-                            android:layout_height="@dimen/n_shared_pet_image_width_height"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/textViewRowReservationListLastPetName"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                            android:layout_weight="1"
-                            android:text="펫이름" />
+                            android:layout_margin="20dp"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textViewRowReservationListLastDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                        android:text="예약날짜" />
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imageViewRowReservationListLastPet"
+                                    android:layout_width="@dimen/n_shared_pet_image_width_height"
+                                    android:layout_height="@dimen/n_shared_pet_image_width_height"
+                                    android:src="@mipmap/ic_launcher" />
 
-                    <TextView
-                        android:id="@+id/textViewRowReservationListLastTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                        android:text="에약시간" />
+                                <TextView
+                                    android:id="@+id/textViewRowReservationListLastPetName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                                    android:layout_weight="1"
+                                    android:text="펫이름" />
 
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/textViewRowReservationListLastDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                                android:text="예약날짜" />
+
+                            <TextView
+                                android:id="@+id/textViewRowReservationListLastTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                                android:text="에약시간" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
 

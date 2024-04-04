@@ -35,7 +35,7 @@ class MatchingPetsitterActivity : AppCompatActivity() {
 
         // 여기는 test를 위한 변경 공간입니다.
 
-        //replaceFragment(MatchingPetsitterFragmentName.MATCHING_FRAGMENT,true,false,null)
+        replaceFragment(MatchingPetsitterFragmentName.MATCHING_FRAGMENT,true,false,null)
 
         // ReservationListActivity 실행한다.
         /*val contentIntent = Intent(this, ReservationListActivity::class.java)
@@ -44,10 +44,10 @@ class MatchingPetsitterActivity : AppCompatActivity() {
         this.finish()*/
 
         // RealtimeLocationActivity 실행한다.
-        val contentIntent = Intent(this, RealtimeLocationActivity::class.java)
+        /*val contentIntent = Intent(this, RealtimeLocationActivity::class.java)
         startActivity(contentIntent)
         // MainActivity를 종료한다.
-        this.finish()
+        this.finish()*/
     }
 
     // 지정한 Fragment를 보여주는 메서드

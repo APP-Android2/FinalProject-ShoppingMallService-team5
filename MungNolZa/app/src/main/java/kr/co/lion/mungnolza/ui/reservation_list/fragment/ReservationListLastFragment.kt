@@ -92,6 +92,11 @@ class ReservationListLastFragment : Fragment() {
                 // PetSitterReviewWriteFragment가 보여진다
                 reservationListActivity.replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
             }
+            // '후기작성' 아이콘 항목을 누르면 동작하는 리스너
+            holder.rowReservationListLastBinding.imageViewRowReservationListLastEdit.setOnClickListener {
+                // PetSitterReviewWriteFragment가 보여진다
+                reservationListActivity.replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+            }
         }
     }
 }
