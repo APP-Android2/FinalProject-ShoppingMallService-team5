@@ -9,26 +9,36 @@
         android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentMainFragment"
         android:label="AppointmentMainFragment" >
         <action
-            android:id="@+id/action_appointmentMainFragment_to_appointmentDogTimeSelectionFragment"
+            android:id="@+id/to_appointmentDogTimeSelectionFragment"
             app:destination="@id/appointmentDogTimeSelectionFragment"
-            app:enterAnim="@anim/slide_in_from_right"
-            app:exitAnim="@anim/slide_out_to_left"
-            app:popExitAnim="@anim/slide_out_to_right"
-            app:popEnterAnim="@anim/slide_in_from_left" />
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelectionFragment"
         android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentDogTimeSelectionFragment"
         android:label="AppointmentDogTimeSelectionFragment" >
         <action
-            android:id="@+id/action_appointmentDogTimeSelectionFragment_to_appointmentUserAddressFragment"
-            app:destination="@id/appointmentUserAddressFragment" />
+            android:id="@+id/to_appointmentUserAddressFragment"
+            app:destination="@id/appointmentUserAddressFragment"
+             />
         <action
-            android:id="@+id/action_appointmentDogTimeSelectionFragment_to_appointmentMainFragment"
-            app:destination="@id/appointmentMainFragment" />
+            android:id="@+id/to_appointmentMainFragment"
+            app:destination="@id/appointmentMainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/appointmentUserAddressFragment"
         android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentUserAddressFragment"
-        android:label="AppointmentUserAddressFragment" />
+        android:label="AppointmentUserAddressFragment" >
+        <action
+            android:id="@+id/to_appointmentDogTimeSelectionFragment"
+            app:destination="@id/appointmentDogTimeSelectionFragment" />
+    </fragment>
+
 </navigation>
