@@ -38,11 +38,8 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
         binding.bottomCommentViewModel = bottomCommentViewModel
         binding.lifecycleOwner = this
 
-        boardActivity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         setRecyclerViewBottomComment()
-
-
 
         return binding.root
     }
@@ -137,6 +134,4 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
         // 세로길이를 반환해준다.
         return displayMetrics.heightPixels
     }
-
-
 }

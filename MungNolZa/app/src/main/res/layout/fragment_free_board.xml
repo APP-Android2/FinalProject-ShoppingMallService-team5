@@ -24,7 +24,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:theme="?attr/actionBarTheme">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/binggrae_bold"
+                android:gravity="center"
+                android:text="자유게시판"
+                android:textSize="@dimen/shared_toolbar_title_size"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
 
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

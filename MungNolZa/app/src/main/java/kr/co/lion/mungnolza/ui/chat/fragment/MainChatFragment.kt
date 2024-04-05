@@ -50,7 +50,7 @@ class MainChatFragment : Fragment() {
     fun setToolbar(){
         binding.apply{
             toolbarMainChat.apply{
-                title = "채팅"
+
                 setNavigationIcon(R.drawable.ic_arrow_back_24px)
 
                 inflateMenu(R.menu.menu_main_chat)

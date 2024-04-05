@@ -62,7 +62,7 @@ class AddBoardFragment : Fragment() {
         setToolbar()
         setAlbumLauncher()
         setImageViewEvent()
-        // setCarousel()
+        setCarousel()
 
         return binding.root
     }
@@ -77,7 +77,7 @@ class AddBoardFragment : Fragment() {
             // RecyclerView 셋팅
             recyclerViewPhotosAddBoard.apply {
                 // 어댑터
-                adapter = RecyclerViewAdapterAddBoard()
+                adapter = adapterAddBoard
                 // 레이아웃 매니저
                 layoutManager = CarouselLayoutManager()
                 // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
@@ -90,7 +90,7 @@ class AddBoardFragment : Fragment() {
     fun setToolbar() {
         binding.apply {
             toolbarAddBoard.apply {
-                title = "자유게시판"
+
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 // 백버튼 이벤트
                 setNavigationOnClickListener {
@@ -166,21 +166,17 @@ class AddBoardFragment : Fragment() {
                         val bitmap3 = BoardUtil.resizeBitmap(bitmap2, 1024)
 
                         boardImageList.add(bitmap3)
+                        Log.d("리스트 이미지", "${boardImageList.size}")
 
                     }
 
                     isAddPicture = true
 
-                    Log.d("리스트 이미지", "${boardImageList.size}")
-                    //adapterAddBoard.notifyDataSetChanged()
-
-                    SystemClock.sleep(100)
-
-                    setCarousel()
                 }
+                Log.d("리스트 이미지", "${boardImageList.size}")
+                adapterAddBoard.notifyDataSetChanged()
             }
         }
-
 
     }
 

@@ -64,8 +64,7 @@ class FreeBoardFragment : Fragment() {
     fun setToolbar(){
         binding.apply{
             toolbarFreeBoard.apply{
-                // 타이틀
-                title = "자유 게시판"
+
                 // 네비게이션
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 setNavigationOnClickListener {
@@ -156,13 +155,17 @@ class FreeBoardFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderFreeBoard, position: Int) {
             holder.rowFreeBoardBinding.textViewTitleFreeBoardRow.text = boardList[position].boardTitle
-            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "카리나"
-            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "강아지 너무 귀엽죠!!\n참고로 암컷입니다!!! 남자 아닙니다!!"
+            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "최나연"
+            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "거울에 왜 카리나가 있지?\nㅇㅅㅇ"
             holder.rowFreeBoardBinding.textViewDateFreeBoardRow.text = "2024-03-26"
             holder.rowFreeBoardBinding.imageViewPhotoFreeBoardRow.setImageResource(R.drawable.img_dog)
 
+            // 게시판 하나의 글을 클릭 시 이벤트
             holder.rowFreeBoardBinding.root.setOnClickListener {
-                boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,null)
+                val bundle = Bundle()
+                bundle.putInt("boardIdx",boardList[position].boardIdx)
+
+                boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,bundle)
             }
         }
     }

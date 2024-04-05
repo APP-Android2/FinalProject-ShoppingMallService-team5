@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
@@ -27,6 +29,8 @@ class ShowDetailBoardFragment : Fragment() {
 
     lateinit var showDetailBoardViewModel: ShowDetailBoardViewModel
 
+    var boardIdx:Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -39,14 +43,11 @@ class ShowDetailBoardFragment : Fragment() {
 
         boardActivity = activity as BoardActivity
 
-        boardActivity.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        boardIdx = arguments?.getInt("boardIdx")!!
 
         setToolbar()
         setCarousel()
         setCommentButton()
-
-
-
 
         return binding.root
     }
@@ -78,7 +79,7 @@ class ShowDetailBoardFragment : Fragment() {
     fun setToolbar(){
         binding.apply{
             toolbarShowDetailBoard.apply{
-                title = ""
+
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 setNavigationOnClickListener {
                     // 백버튼 클릭 이벤트
@@ -123,6 +124,12 @@ class ShowDetailBoardFragment : Fragment() {
     fun showBottomCommentSheet(){
 
         val bottomCommentFragment = BottomCommentFragment()
+
+        bottomCommentFragment.apply{
+            setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_MungNolZa_BottomSheet)
+            dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        }
+
         bottomCommentFragment.show(boardActivity.supportFragmentManager, "BottomCommentSheet")
     }
 

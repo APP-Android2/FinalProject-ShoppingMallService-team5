@@ -20,4 +20,9 @@
         <item name="colorPrimary">@color/white</item>
     </style>
 
+    <style name="Theme.MungNolZa.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
 </resources>
