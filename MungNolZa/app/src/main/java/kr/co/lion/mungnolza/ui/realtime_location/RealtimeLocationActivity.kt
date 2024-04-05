@@ -7,7 +7,10 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
@@ -16,9 +19,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityRealtimeLocationBinding
+import kr.co.lion.mungnolza.databinding.RowRealtimeLocationDetailChatBinding
+import kr.co.lion.mungnolza.ui.chat.fragment.DetailChatFragment
 
 class RealtimeLocationActivity : AppCompatActivity() {
 
@@ -55,6 +61,7 @@ class RealtimeLocationActivity : AppCompatActivity() {
 
         setToolbar()
         settingGoogleMap()
+        setRecyclerView()
     }
 
     // 툴바 설정
@@ -197,7 +204,7 @@ class RealtimeLocationActivity : AppCompatActivity() {
         }
 
         // 마커의 이미지를 변경한다.
-        val markerBitmap = BitmapDescriptorFactory.fromResource(R.drawable.my_location)
+        val markerBitmap = BitmapDescriptorFactory.fromResource(R.drawable.dogface)
         markerOptions.icon(markerBitmap)
 
         // 마커를 지도에 표시해준다.
@@ -228,6 +235,51 @@ class RealtimeLocationActivity : AppCompatActivity() {
 
             // 측정된 위치로 지도를 움직인다.
             setMyLocation(location)
+        }
+    }
+
+    // RecyclerView 설정
+    fun setRecyclerView(){
+        activityRealtimeLocationBinding.apply {
+            recyclerViewRealtimeLocationChat.apply {
+                // 어뎁터 설정
+                adapter = RecyclerMainAdapter()
+                // 레이아웃
+                layoutManager = LinearLayoutManager(this@RealtimeLocationActivity)
+            }
+        }
+    }
+
+    // recyclerView의 어뎁터
+    inner class RecyclerMainAdapter : RecyclerView.Adapter<RecyclerMainAdapter.RecyclerMainViewHolder>(){
+        inner class RecyclerMainViewHolder(rowRealtimeLocationDetailChatBinding: RowRealtimeLocationDetailChatBinding) : RecyclerView.ViewHolder(rowRealtimeLocationDetailChatBinding.root){
+            var rowRealtimeLocationDetailChatBinding: RowRealtimeLocationDetailChatBinding
+
+            init {
+                this.rowRealtimeLocationDetailChatBinding = rowRealtimeLocationDetailChatBinding
+
+                this.rowRealtimeLocationDetailChatBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerMainViewHolder {
+            val rowRealtimeLocationDetailChatBinding = RowRealtimeLocationDetailChatBinding.inflate(layoutInflater)
+            val recyclerMainViewHolder = RecyclerMainViewHolder(rowRealtimeLocationDetailChatBinding)
+
+            return recyclerMainViewHolder
+
+        }
+
+        override fun getItemCount(): Int {
+            return 10
+        }
+
+        override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
+            holder.rowRealtimeLocationDetailChatBinding.editTextRowRealtimeLocationDetailChat.setText("펫시터님 왜 거기계세요?")
+            holder.rowRealtimeLocationDetailChatBinding.textViewRowRealtimeLocationChatDate.text = "오전 10:40"
         }
     }
 }
