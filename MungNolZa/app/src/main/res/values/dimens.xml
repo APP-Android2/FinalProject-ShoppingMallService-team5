@@ -41,10 +41,6 @@
     <dimen name="fragment_join_edit_button_width">300dp</dimen>
     <dimen name="fragment_join_edit_button_height">60dp</dimen>
 
-    <dimen name="fragment_pet_profile_input_button_margin_top">10dp</dimen>
-    <dimen name="fragment_pet_profile_input_button_margin_start">50dp</dimen>
-    <dimen name="fragment_pet_profile_input_edittext_margin_start">25dp</dimen>
-
     <!-- 안영준 크기 -->
 
     <!-- common -->
@@ -122,5 +118,16 @@
     <dimen name="appointment_pet_select_item_margin_top">3dp</dimen>
     <dimen name="appointment_dog_time_common_margin">25dp</dimen>
     <dimen name="appointment_dog_time_padding">20dp</dimen>
+
+    <!--최나연 추가함-->
+    <dimen name="fragment_pet_profile_input_button_margin_top">10dp</dimen>
+    <dimen name="fragment_pet_profile_input_button_margin_start">50dp</dimen>
+    <dimen name="fragment_pet_profile_input_edittext_margin_start">25dp</dimen>
+
+    <dimen name="n_shared_profile_interval_margin_top">5dp</dimen>
+    <dimen name="n_shared_profile_interval_margin_left">8dp</dimen>
+    <dimen name="n_shared_pet_image_width_height">40dp</dimen>
+
+    <!--bottom navigation-->
 
 </resources>

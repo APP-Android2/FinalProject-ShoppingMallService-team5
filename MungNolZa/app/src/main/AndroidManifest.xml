@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +17,15 @@
         <activity
             android:name=".DialogSampleActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.realtime_location.RealtimeLocationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.reservation_list.ReservationListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.chat.ChatActivity"
             android:exported="true" />
@@ -47,6 +58,7 @@
         <activity
             android:name=".ui.intro.activity.LoginActivity"
             android:exported="true" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54"/>
     </application>
-
 </manifest>

@@ -59,4 +59,19 @@
     <string name="two_hour">120분</string>
     <string name="all_day">종일</string>
 
+    <!-- 최나연 사용 -->
+    <string name="toolbar_title_reservation">예약</string>
+    <string name="toolbar_title_petsitter_info">펫시터 정보</string>
+    <string name="toolbar_title_petsitter_review">후기</string>
+    <string name="toolbar_title_reservation_confirmed">예약 확인</string>
+    <string name="toolbar_title_reservation_list">예약 내역</string>
+    <string name="toolbar_title_petsitter_review_write">펫시터 후기 작성</string>
+    <string name="toolbar_title_realtime_location">실시간 펫 위치</string>
+    <!--bottom navigation menu item-->
+    <string name="menu_item_bottom_navigation_home">홈</string>
+    <string name="menu_item_bottom_navigation_chatting">채팅</string>
+    <string name="menu_item_bottom_navigation_freeboard">자유게시판</string>
+    <string name="menu_item_bottom_navigation_reservation">예약</string>
+    <string name="menu_item_bottom_navigation_profile">프로필</string>
+
 </resources>
