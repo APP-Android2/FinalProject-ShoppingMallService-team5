@@ -7,9 +7,11 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.ui.intro.RequestPermissionDialog
+import kr.co.lion.mungnolza.databinding.ActivityStartBinding
+import kr.co.lion.mungnolza.ui.dialog.RequestPermissionDialog
 
 class StartActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityStartBinding
     private val dialog = RequestPermissionDialog(
         buttonClick = {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -21,15 +23,15 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         initView()
-
     }
 
-    private fun initView(){
+    private fun initView() {
+        binding = ActivityStartBinding.inflate(layoutInflater)
+
         lifecycleScope.launch {
-            //delay(5000)
+            delay(3000)
             dialog.show(supportFragmentManager, "RequestPermissionDialog")
         }
     }
-
 
 }
