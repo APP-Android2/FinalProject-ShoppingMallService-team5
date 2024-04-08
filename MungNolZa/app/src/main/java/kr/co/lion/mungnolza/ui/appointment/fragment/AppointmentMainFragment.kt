@@ -4,12 +4,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
-import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -21,7 +19,7 @@ import kr.co.lion.mungnolza.ext.setColorPrimary
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.setColorkakaoYellow
 import kr.co.lion.mungnolza.model.PetInfo
-import kr.co.lion.mungnolza.ui.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 import kr.co.lion.mungnolza.ui.appointment.adapter.SelectPetAdapter
 
 class AppointmentMainFragment : Fragment(), View.OnClickListener {
