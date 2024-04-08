@@ -11,7 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPaymentBinding
 import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterActivity
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterFragmentName
+import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PaymentFragment : Fragment() {
 

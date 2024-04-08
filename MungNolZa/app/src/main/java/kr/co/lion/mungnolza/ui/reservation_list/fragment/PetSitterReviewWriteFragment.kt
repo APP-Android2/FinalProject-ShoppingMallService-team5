@@ -10,7 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewWriteBinding
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListFragmentName
+import kr.co.lion.mungnolza.util.ReservationListFragmentName
 
 class PetSitterReviewWriteFragment : Fragment() {
 

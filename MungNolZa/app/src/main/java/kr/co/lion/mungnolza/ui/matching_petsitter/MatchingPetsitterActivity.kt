@@ -10,7 +10,6 @@ import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityMatchingPetsitterBinding
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterFragmentName
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.MatchingFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PaymentFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterInfoFragment
@@ -18,6 +17,7 @@ import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterReviewFragme
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.ReservationConfirmedFragment
 import kr.co.lion.mungnolza.ui.realtime_location.RealtimeLocationActivity
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
+import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class MatchingPetsitterActivity : AppCompatActivity() {
 

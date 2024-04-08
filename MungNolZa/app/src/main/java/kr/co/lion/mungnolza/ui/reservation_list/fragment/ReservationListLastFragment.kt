@@ -12,7 +12,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.databinding.FragmentReservationListLastBinding
 import kr.co.lion.mungnolza.databinding.RowReservationListLastBinding
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListFragmentName
+import kr.co.lion.mungnolza.util.ReservationListFragmentName
 
 class ReservationListLastFragment : Fragment() {
 

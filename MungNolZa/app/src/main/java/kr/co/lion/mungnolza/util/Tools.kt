@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.matching_petsitter
+package kr.co.lion.mungnolza.util
 
 class Tools {
     companion object{
@@ -26,4 +26,3 @@ enum class ReservationListFragmentName(var str:String){
     // 펫시터 후기 작성 화면
     PETSITTER_REVIEW_WRITE_FRAGMENT("PetSitterReviewWriteFragment"),
 }
-

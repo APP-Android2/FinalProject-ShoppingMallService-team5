@@ -12,7 +12,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewBinding
 import kr.co.lion.mungnolza.databinding.RowPetSitterReviewBinding
 import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterActivity
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterFragmentName
+import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PetSitterReviewFragment : Fragment() {
 

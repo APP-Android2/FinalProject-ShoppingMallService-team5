@@ -10,6 +10,7 @@ import kr.co.lion.mungnolza.ui.reservation_list.fragment.PetSitterReviewWriteFra
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListFragment
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityReservationListBinding
+import kr.co.lion.mungnolza.util.ReservationListFragmentName
 
 class ReservationListActivity : AppCompatActivity() {
 
