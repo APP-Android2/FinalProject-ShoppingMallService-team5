@@ -1,10 +1,10 @@
-package kr.co.lion.mungnolza
+package kr.co.lion.mungnolza.ui.dialog
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kr.co.lion.mungnolza.databinding.ActivityDialogSampleBinding
-import kr.co.lion.mungnolza.ui.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class DialogSampleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDialogSampleBinding

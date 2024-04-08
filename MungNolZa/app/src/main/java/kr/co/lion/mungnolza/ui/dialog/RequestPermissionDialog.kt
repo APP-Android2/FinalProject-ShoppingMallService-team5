@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.intro
+package kr.co.lion.mungnolza.ui.dialog
 
 import android.content.DialogInterface
 import android.graphics.Color
