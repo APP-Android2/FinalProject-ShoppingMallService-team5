@@ -15,6 +15,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/to_appointmentDogTimeSelection2Fragment"
+            app:destination="@id/appointmentDogTimeSelection2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelectionFragment"
@@ -39,6 +42,24 @@
         <action
             android:id="@+id/to_appointmentDogTimeSelectionFragment"
             app:destination="@id/appointmentDogTimeSelectionFragment" />
+        <action
+            android:id="@+id/action_appointmentUserAddressFragment_to_appointmentDogTimeSelection2Fragment"
+            app:destination="@id/appointmentDogTimeSelection2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentDogTimeSelection2Fragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentDogTimeSelection2Fragment"
+        android:label="AppointmentDogTimeSelection2Fragment" >
+        <action
+            android:id="@+id/to_appointmentMainFragment"
+            app:destination="@id/appointmentMainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/to_appointmentUserAddressFragment"
+            app:destination="@id/appointmentUserAddressFragment" />
     </fragment>
 
 </navigation>
