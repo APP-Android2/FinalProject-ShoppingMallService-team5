@@ -3,12 +3,21 @@ package kr.co.lion.mungnolza.ext
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.util.Tools
+
+fun Context.hasPermission(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+}
+fun Context.hasImagePermission(): Boolean = Tools.REQUEST_IMAGE_PERMISSIONS.any { this.hasPermission(it) }
+
+fun Context.hasLocationPermission(): Boolean = Tools.REQUEST_LOCATION_PERMISSIONS.any { this.hasPermission(it) }
 
 fun Context.setColorWhite() = ContextCompat.getColorStateList(this, R.color.white)
 fun Context.setColorBlack() = ContextCompat.getColorStateList(this, R.color.black)
