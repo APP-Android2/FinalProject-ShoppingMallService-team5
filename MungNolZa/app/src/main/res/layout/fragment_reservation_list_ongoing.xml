@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:transitionGroup="true"
+    tools:context=".ui.reservation_list.fragment.ReservationListOngoingFragment">
+
+    <TextView
+        android:id="@+id/textViewReservationListOngoingCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="총 0건" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutReservationListOngoing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="아직 예약이 없습니다"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="지금 바로 멍놀자를 예약해보세요 !" />
+
+        <Button
+            android:id="@+id/buttonReservationListOngoingWalking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shared_button_design"
+            android:text="산책예약" />
+
+        <Button
+            android:id="@+id/buttonReservationListOngoingCare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shared_button_design"
+            android:gravity="center"
+            android:text="돌봄예약" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:visibility="visible">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerReservationListOngoing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+</FrameLayout>
