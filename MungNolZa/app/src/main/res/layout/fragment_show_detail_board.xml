@@ -87,7 +87,15 @@
                                 android:text="날짜"
                                 android:textSize="10sp" />
                         </LinearLayout>
+
                     </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider9"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -99,10 +107,17 @@
                             android:id="@+id/editTextTitleShowDetailBoard"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edittext_height_board_title"
+                            android:background="@color/transparent"
                             android:clickable="false"
                             android:cursorVisible="false"
                             android:focusable="false" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/divider7"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -114,11 +129,18 @@
                             android:id="@+id/editTextContentShowDetailBoard"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/edittext_height_board_content"
+                            android:background="@color/transparent"
                             android:clickable="false"
                             android:cursorVisible="false"
                             android:focusable="false"
                             android:gravity="start|end" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewPhotosShowDetailBoard"
