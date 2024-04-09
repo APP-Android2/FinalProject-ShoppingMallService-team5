@@ -3,16 +3,13 @@ package kr.co.lion.mungnolza.ui.freeboard
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityBoardBinding
 import kr.co.lion.mungnolza.ui.freeboard.fragment.AddBoardFragment
-import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
+import kr.co.lion.mungnolza.ui.main.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ShowDetailBoardFragment
 import kr.co.lion.mungnolza.util.BoardFragmentName

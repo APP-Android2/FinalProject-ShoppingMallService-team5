@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:transitionGroup="true"
-    tools:context=".ui.reservation_list.fragment.ReservationListOngoingFragment">
+    tools:context=".ui.main.fragment.ReservationListOngoingFragment">
 
     <TextView
         android:id="@+id/textViewReservationListOngoingCount"
