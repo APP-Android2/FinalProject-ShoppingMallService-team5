@@ -25,7 +25,17 @@
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/binggrae_bold"
+                android:gravity="center"
+                android:text="채팅"
+                android:textSize="@dimen/shared_toolbar_title_size"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewChatDetailChat"
@@ -56,14 +66,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginEnd="@dimen/layout_margin_end"
-                android:layout_marginBottom="@dimen/layout_margin_bottom"
                 android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="댓글을 입력해주세요"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextChatDetailChat"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/listDivider" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,9 +90,8 @@
                 android:id="@+id/imageViewSendDetailChat"
                 android:layout_width="@dimen/icon_width_send_bottom_comment"
                 android:layout_height="@dimen/icon_height_send_bottom_comment"
-                android:layout_marginTop="@dimen/resource_margin_top"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_send_24px" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
