@@ -16,11 +16,9 @@ import kr.co.lion.mungnolza.databinding.RowDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowDetailChatYouBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.model.ChatModel
-import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
 import kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel
 import kr.co.lion.mungnolza.util.ChatFragmentName
-
 
 class DetailChatFragment : Fragment() {
     lateinit var chatActivity: ChatActivity

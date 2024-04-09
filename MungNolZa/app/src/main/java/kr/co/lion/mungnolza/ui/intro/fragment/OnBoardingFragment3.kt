@@ -23,14 +23,14 @@ class OnBoardingFragment3 : Fragment() {
         initView()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun initView(){
         binding.btnNext.setOnClickListener {
             startActivity(Intent(requireContext(), MainActivity::class.java))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

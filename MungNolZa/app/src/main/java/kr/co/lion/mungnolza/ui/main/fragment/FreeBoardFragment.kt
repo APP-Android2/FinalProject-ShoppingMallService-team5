@@ -22,8 +22,7 @@ class FreeBoardFragment : Fragment() {
     private var _binding: FragmentFreeBoardBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var boardList:MutableList<BoardModel>
-
+    var boardList:MutableList<BoardModel> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {

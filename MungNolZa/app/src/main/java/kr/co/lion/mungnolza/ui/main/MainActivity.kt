@@ -22,5 +22,3 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navigationView, navController)
     }
 }
-
-
