@@ -20,7 +20,7 @@
             android:id="@+id/recyclerViewCommentBottomComment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintBottom_toTopOf="@+id/scrollViewComment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +28,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <ScrollView
-            android:id="@+id/scrollView2"
+            android:id="@+id/scrollViewComment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,15 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/edittext_height_comment" />
+                        android:layout_height="56dp"
+                        android:background="@color/transparent" />
+
+                    <View
+                        android:id="@+id/divider6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
