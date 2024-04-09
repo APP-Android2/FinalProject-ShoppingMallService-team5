@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.chat.fragment
+package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,31 +11,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMainChatBinding
-import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.databinding.RowMainChatBinding
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
 import kr.co.lion.mungnolza.ui.chat.viewmodel.MainChatViewModel
 import kr.co.lion.mungnolza.util.ChatFragmentName
-import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
 class MainChatFragment : Fragment() {
 
-    lateinit var binding:FragmentMainChatBinding
-    lateinit var chatActivity: ChatActivity
-    lateinit var mainChatViewModel: MainChatViewModel
+    private var _binding: FragmentMainChatBinding ? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_chat, container, false)
-        mainChatViewModel = MainChatViewModel()
-        binding.mainChatViewModel = mainChatViewModel
-        binding.lifecycleOwner = this
+        _binding = FragmentMainChatBinding.inflate(inflater,  container, false)
 
-        chatActivity = activity as ChatActivity
 
         setToolbar()
         setRecyclerViewMainChat()
@@ -64,9 +57,9 @@ class MainChatFragment : Fragment() {
                 // 어뎁터
                 adapter = RecyclerViewAdapterMainChat()
                 // 레이아웃 매니저
-                layoutManager = LinearLayoutManager(chatActivity)
+                layoutManager = LinearLayoutManager(requireContext())
                 // 데코레이션
-                val deco = MaterialDividerItemDecoration(chatActivity, MaterialDividerItemDecoration.VERTICAL)
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
                 addItemDecoration(deco)
             }
         }
@@ -104,9 +97,13 @@ class MainChatFragment : Fragment() {
             holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_jch)
 
             holder.rowMainChatBinding.root.setOnClickListener {
-                chatActivity.replaceFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT,true,true,null)
+
             }
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

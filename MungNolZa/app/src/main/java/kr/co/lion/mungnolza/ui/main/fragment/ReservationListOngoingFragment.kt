@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.reservation_list.fragment
+package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,27 +15,19 @@ import kr.co.lion.mungnolza.databinding.RowReservationListOngoingBinding
 
 class ReservationListOngoingFragment : Fragment() {
 
-    lateinit var fragmentReservationListOngoingBinding: FragmentReservationListOngoingBinding
-    lateinit var reservationListActivity: ReservationListActivity
+    private var _binding: FragmentReservationListOngoingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        fragmentReservationListOngoingBinding = FragmentReservationListOngoingBinding.inflate(layoutInflater)
-        reservationListActivity = activity as ReservationListActivity
+        _binding = FragmentReservationListOngoingBinding.inflate(inflater, container, false)
 
         setRecyclerView()
-        setTextView()
 
-        return fragmentReservationListOngoingBinding.root
+        return binding.root
     }
 
-    // textViewReservationListOngoingCount - 총 건수 설정
-    fun setTextView(){
-        fragmentReservationListOngoingBinding.apply {
-            textViewReservationListOngoingCount.setText("총 10건")
-        }
-    }
 
     // 예약내역이 0일때 vs 하나라도 있을 때 설정
     fun setView(){
@@ -46,14 +38,14 @@ class ReservationListOngoingFragment : Fragment() {
 
     // RecyclerView 설정
     fun setRecyclerView(){
-        fragmentReservationListOngoingBinding.apply {
+        binding.apply {
             recyclerReservationListOngoing.apply {
                 // 어뎁터 설정
                 adapter = RecyclerMainAdapter()
                 // 레이아웃
-                layoutManager = LinearLayoutManager(reservationListActivity)
+                layoutManager = LinearLayoutManager(requireContext())
                 // 데코
-                val deco = MaterialDividerItemDecoration(reservationListActivity, MaterialDividerItemDecoration.VERTICAL)
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
                 addItemDecoration(deco)
             }
         }
@@ -93,5 +85,10 @@ class ReservationListOngoingFragment : Fragment() {
             holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingDate.text = "2024년 4월 1일"
             holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingTime.text = "오후 5:00 ~ 5:30"
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

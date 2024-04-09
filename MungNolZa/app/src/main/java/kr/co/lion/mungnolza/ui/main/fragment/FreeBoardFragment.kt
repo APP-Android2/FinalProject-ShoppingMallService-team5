@@ -1,87 +1,37 @@
-package kr.co.lion.mungnolza.ui.freeboard.fragment
+package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentFreeBoardBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
-import kr.co.lion.mungnolza.model.BoardModel
-import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
-import kr.co.lion.mungnolza.ui.freeboard.viewmodel.FreeBoardViewModel
-import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
 class FreeBoardFragment : Fragment() {
 
-    lateinit var binding: FragmentFreeBoardBinding
-    lateinit var boardActivity: BoardActivity
-    lateinit var freeBoardViewModel: FreeBoardViewModel
-
-    lateinit var boardList:MutableList<BoardModel>
-
+    private var _binding: FragmentFreeBoardBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_free_board, container, false)
-        freeBoardViewModel = FreeBoardViewModel()
-        binding.freeBoardViewModel = freeBoardViewModel
-        binding.lifecycleOwner = this
+        _binding = FragmentFreeBoardBinding.inflate(inflater, container, false)
 
-        boardActivity = activity as BoardActivity
 
-        initData()
-        testData()
-
-        setToolbar()
         setSearchBar()
         setRecyclerViewFreeBoard()
         setRecyclerViewSearchFreeBoard()
 
+
         return binding.root
     }
 
-    fun initData(){
-        boardList = mutableListOf()
-    }
-
-    fun testData(){
-        var boardImageList1 = mutableListOf<String>()
-        var boardModel1 = BoardModel(1,"나는 멋쟁이 카리나",1, mutableListOf(""),1,"2024-04-03",1)
-        var boardModel2 = BoardModel(1,"나는 멋쟁이 카리나",1, mutableListOf(""),1,"2024-04-03",1)
-
-        boardList.add(boardModel1)
-        boardList.add(boardModel2)
-    }
-
-    fun setToolbar(){
-        binding.apply{
-            toolbarFreeBoard.apply{
-
-                // 네비게이션
-                setNavigationIcon(R.drawable.ic_arrow_back_24)
-                setNavigationOnClickListener {
-                    // 백버튼 클릭 이벤트
-                }
-                inflateMenu(R.menu.menu_free_board)
-                setOnMenuItemClickListener {
-                    when(it.itemId){
-                        R.id.menuItemAddFreeBoard -> {
-                            boardActivity.replaceFragment(BoardFragmentName.ADD_BOARD_FRAGMENT,true,true,null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
 
     fun setSearchBar(){
         binding.apply{
@@ -106,9 +56,9 @@ class FreeBoardFragment : Fragment() {
                 // 어뎁터
                 adapter = RecyclerViewAdapterFreeBoard()
                 // 레이아웃 매니저
-                layoutManager = LinearLayoutManager(boardActivity)
+                layoutManager = LinearLayoutManager(requireContext())
                 // 데코레이션
-                val deco = MaterialDividerItemDecoration(boardActivity, MaterialDividerItemDecoration.VERTICAL)
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
                 addItemDecoration(deco)
             }
         }
@@ -120,9 +70,9 @@ class FreeBoardFragment : Fragment() {
                 // 어뎁터
                 adapter = RecyclerViewAdapterSearchFreeBoard()
                 // 레이아웃 매니저
-                layoutManager = LinearLayoutManager(boardActivity)
+                layoutManager = LinearLayoutManager(requireContext())
                 // 데코레이션
-                val deco = MaterialDividerItemDecoration(boardActivity, MaterialDividerItemDecoration.VERTICAL)
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
                 addItemDecoration(deco)
             }
         }
@@ -150,22 +100,18 @@ class FreeBoardFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return boardList.size
+            return 100
         }
 
         override fun onBindViewHolder(holder: ViewHolderFreeBoard, position: Int) {
-            holder.rowFreeBoardBinding.textViewTitleFreeBoardRow.text = boardList[position].boardTitle
-            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "최나연"
-            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "거울에 왜 카리나가 있지?\nㅇㅅㅇ"
+            holder.rowFreeBoardBinding.textViewTitleFreeBoardRow.text = "제목 $position"
+            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "작성자 $position"
+            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "강아지 너무 귀엽죠!!\n참고로 암컷입니다!!! 남자 아닙니다!!"
             holder.rowFreeBoardBinding.textViewDateFreeBoardRow.text = "2024-03-26"
             holder.rowFreeBoardBinding.imageViewPhotoFreeBoardRow.setImageResource(R.drawable.img_dog)
 
-            // 게시판 하나의 글을 클릭 시 이벤트
             holder.rowFreeBoardBinding.root.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putInt("boardIdx",boardList[position].boardIdx)
-
-                boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,bundle)
+                //boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,null)
             }
         }
     }
@@ -200,4 +146,5 @@ class FreeBoardFragment : Fragment() {
             holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "작성자 $position"
         }
     }
+
 }
