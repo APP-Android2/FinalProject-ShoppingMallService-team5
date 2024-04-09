@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
-import kr.co.lion.mungnolza.ui.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 
 class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {

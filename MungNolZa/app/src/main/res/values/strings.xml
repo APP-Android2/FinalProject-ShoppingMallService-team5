@@ -36,6 +36,7 @@
     <string name="neutering_no">안했어요</string>
     <string name="pet_significant">강아지 특이사항</string>
     <string name="plz_know_unique_behavior">우리 아이만의 특별한 점을 알려주세요!</string>
+    <string name="three_hour">180분</string>
 
     <!-- 안영준 스트링값 -->
     <string name="title_text_reservation">예약</string>

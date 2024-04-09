@@ -17,7 +17,7 @@ import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
 import kr.co.lion.mungnolza.ext.hideSoftInput
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.showSoftInput
-import kr.co.lion.mungnolza.ui.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 

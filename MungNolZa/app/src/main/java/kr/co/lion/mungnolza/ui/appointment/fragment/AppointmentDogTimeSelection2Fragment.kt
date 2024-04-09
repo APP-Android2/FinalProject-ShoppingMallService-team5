@@ -10,7 +10,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelection2Binding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
-import kr.co.lion.mungnolza.ui.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 
 class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
