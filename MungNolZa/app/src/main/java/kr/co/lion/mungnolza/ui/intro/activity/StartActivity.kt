@@ -33,5 +33,4 @@ class StartActivity : AppCompatActivity() {
             dialog.show(supportFragmentManager, "RequestPermissionDialog")
         }
     }
-
 }

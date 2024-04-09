@@ -14,8 +14,6 @@ import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PaymentFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterInfoFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterReviewFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.ReservationConfirmedFragment
-import kr.co.lion.mungnolza.ui.realtime_location.RealtimeLocationActivity
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class MatchingPetsitterActivity : AppCompatActivity() {

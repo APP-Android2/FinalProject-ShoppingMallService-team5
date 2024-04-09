@@ -20,7 +20,6 @@ import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
 import kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel
 import kr.co.lion.mungnolza.util.ChatFragmentName
-import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
 class DetailChatFragment : Fragment() {
