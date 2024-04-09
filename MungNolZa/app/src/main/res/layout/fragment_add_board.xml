@@ -22,8 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:theme="?attr/actionBarTheme" >
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/binggrae_bold"
+                android:gravity="center"
+                android:text="자유게시판"
+                android:textSize="@dimen/shared_toolbar_title_size"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
         <ScrollView
@@ -46,8 +57,15 @@
                         android:id="@+id/editTextTitleAddBoard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/transparent"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -59,8 +77,17 @@
                         android:id="@+id/editTextContentAddBoard"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edittext_height_board_content"
-                        android:inputType="text" />
+                        android:background="@color/transparent"
+                        android:gravity="start|top"
+                        android:inputType="text|textMultiLine" />
+
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
 
                 <ImageView
                     android:id="@+id/imageViewPhotoAddBoard"

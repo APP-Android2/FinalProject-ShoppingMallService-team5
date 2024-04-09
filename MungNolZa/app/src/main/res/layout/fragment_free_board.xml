@@ -39,4 +39,3 @@
         android:textStyle="bold"
         app:icon="@drawable/ic_edit_24px" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

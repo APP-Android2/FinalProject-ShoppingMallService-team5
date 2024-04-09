@@ -58,7 +58,6 @@ class ModifyBoardFragment : Fragment() {
     }
     fun setToolbar(){
         binding.toolbarModifyBoard.apply{
-            title = "수정"
 
             setNavigationIcon(R.drawable.ic_arrow_back_24)
             setNavigationOnClickListener {
