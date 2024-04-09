@@ -26,26 +26,11 @@ class MainChatFragment : Fragment() {
     ): View {
         _binding = FragmentMainChatBinding.inflate(inflater, container, false)
 
-        setToolbar()
         setRecyclerViewMainChat()
 
         return binding.root
     }
 
-    fun initData(){
-
-    }
-
-    fun setToolbar(){
-        binding.apply{
-            toolbarMainChat.apply{
-
-                setNavigationIcon(R.drawable.ic_arrow_back_24px)
-
-                inflateMenu(R.menu.menu_main_chat)
-            }
-        }
-    }
 
     fun setRecyclerViewMainChat(){
         binding.apply {

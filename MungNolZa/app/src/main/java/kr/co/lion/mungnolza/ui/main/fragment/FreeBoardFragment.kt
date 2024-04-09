@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -13,9 +12,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentFreeBoardBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.model.BoardModel
-import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
-import kr.co.lion.mungnolza.ui.freeboard.viewmodel.FreeBoardViewModel
-import kr.co.lion.mungnolza.util.BoardFragmentName
+
 
 class FreeBoardFragment : Fragment() {
 
@@ -31,12 +28,8 @@ class FreeBoardFragment : Fragment() {
         setSearchBar()
         setRecyclerViewFreeBoard()
         setRecyclerViewSearchFreeBoard()
-
+        testData()
         return binding.root
-    }
-
-    fun initData(){
-        boardList = mutableListOf()
     }
 
     fun testData(){
