@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
-import kr.co.lion.mungnolza.ui.main.MainActivity
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
 

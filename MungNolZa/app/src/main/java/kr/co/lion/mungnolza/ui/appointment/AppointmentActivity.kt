@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityAppointmentBinding
-import kr.co.lion.mungnolza.databinding.ActivityMainBinding
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
 import kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentDateTimeSelectionFragment
 import kr.co.lion.mungnolza.ui.appointment.fragment.AppointmentDogTimeSelectionFragment

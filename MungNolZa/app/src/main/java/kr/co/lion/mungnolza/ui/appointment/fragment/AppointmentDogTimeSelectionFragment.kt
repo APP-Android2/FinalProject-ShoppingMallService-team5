@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
-import kr.co.lion.mungnolza.ui.main.MainActivity
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
 

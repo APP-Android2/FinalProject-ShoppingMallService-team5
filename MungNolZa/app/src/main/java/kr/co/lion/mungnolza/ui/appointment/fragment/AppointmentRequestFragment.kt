@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentRequestBinding
-import kr.co.lion.mungnolza.ui.main.MainActivity
 import kr.co.lion.mungnolza.ui.main.MainFragmentName
 
 class AppointmentRequestFragment : Fragment() {
