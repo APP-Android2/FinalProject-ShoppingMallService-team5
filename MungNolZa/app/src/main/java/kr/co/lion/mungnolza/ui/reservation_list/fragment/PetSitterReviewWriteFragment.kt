@@ -10,17 +10,28 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewWriteBinding
+import kr.co.lion.mungnolza.ui.reservation_list.viewmodel.PetSitterReviewWriteViewModel
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
 
 class PetSitterReviewWriteFragment : Fragment() {
 
     lateinit var fragmentPetSitterReviewWriteBinding: FragmentPetSitterReviewWriteBinding
     lateinit var reservationListActivity: ReservationListActivity
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentPetSitterReviewWriteBinding = FragmentPetSitterReviewWriteBinding.inflate(layoutInflater)
         reservationListActivity = activity as ReservationListActivity
+
+        // ViewModel 객체를 생성한다.
+        //petSitterReviewWriteViewModel = PetSitterReviewWriteViewModel()
+        // 생성한 ViewModel 객체를 layout 파일에 설정해준다.
+        //fragmentPetSitterReviewWriteBinding.petSitterReviewWriteViewModel = petSitterReviewWriteViewModel
+        // ViewModel의 생명주기를 Fragment와 일치시킨다. Fragment가 살아 있을 때 ViewModel 객체도 살아있게끔 해준다.
+        //fragmentPetSitterReviewWriteBinding.lifecycleOwner = this
+
+        // 왜 따라서 바뀌는거얌 !! 왜 !!
 
         setToolbar()
         setEvent()

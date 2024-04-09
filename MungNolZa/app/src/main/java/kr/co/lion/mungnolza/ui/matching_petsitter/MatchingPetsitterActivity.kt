@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityMatchingPetsitterBinding
-import kr.co.lion.mungnolza.ui.main.MainFragmentName
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.MatchingFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PaymentFragment
 import kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterInfoFragment
