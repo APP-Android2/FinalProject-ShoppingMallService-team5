@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.ui.intro.RequestPermissionDialog
@@ -15,17 +16,20 @@ class StartActivity : AppCompatActivity() {
             finish()
         }
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         initView()
+
     }
 
     private fun initView(){
         lifecycleScope.launch {
-            //delay(2000)
+            //delay(5000)
             dialog.show(supportFragmentManager, "RequestPermissionDialog")
         }
     }
+
 
 }

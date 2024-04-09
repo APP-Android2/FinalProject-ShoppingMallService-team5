@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_bottom_navigation_home"
+        android:icon="@drawable/ic_home_24px"
+        android:title="@string/menu_item_bottom_navigation_home"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_item_bottom_navigation_chatting"
+        android:icon="@drawable/ic_chat_bubble_24px"
+        android:title="@string/menu_item_bottom_navigation_chatting"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_item_bottom_navigation_freeboard"
+        android:icon="@drawable/ic_freeboard_24px"
+        android:title="@string/menu_item_bottom_navigation_freeboard"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_item_bottom_navigation_reservation"
+        android:icon="@drawable/ic_reservation_24px"
+        android:title="@string/menu_item_bottom_navigation_reservation"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_item_bottom_navigation_profile"
+        android:icon="@drawable/ic_my_page_24px"
+        android:title="@string/menu_item_bottom_navigation_profile"
+        android:visible="true" />
+</menu>

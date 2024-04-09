@@ -17,14 +17,15 @@ class RequestPermissionDialog(private val buttonClick: ()-> Unit): DialogFragmen
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = PermissionDialogBinding.inflate(inflater, container, false)
 
-        val width = (resources.displayMetrics.widthPixels * 0.8).toInt()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        initView()
+
+        return binding.root
+    }
+
+    private fun initView(){
         binding.btnNext.setOnClickListener {
             buttonClick.invoke()
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

@@ -11,12 +11,9 @@
     <string name="permission_request_reason_location">위치 정보 조회 시 사용</string>
     <string name="request_permission_reason_notification">다양한 소식 알람 시 사용</string>
     <string name="request_permission_reason_gallery">게시판, 반려 동물 프로필 등록 시 사용</string>
-
     <string name="permission_request_explain1">선택적 접근 권한은 해당 기능을 사용할 때만 허용이 필요합니다.</string>
     <string name="permission_request_explain2">비허용시에도 해당 기능, 외 서비스 이용이 가능합니다.</string>
     <string name="permission_request_explain3">허용 상태는 휴대폰 설정 메뉴에서 언제든지 변경할 수 있습니다.</string>
-
-
     <string name="let_start_with_mungnolza">이제 멍놀자와 함께 행복한\n 반려 생활을 시작해요</string>
     <string name="next">다음</string>
     <string name="provide_safe_walk_service">아이들과 안전하고 즐거운\n산책 서비스를 제공해요</string>
@@ -56,4 +53,26 @@
     <string name="hint_input_title">제목을 입력해주세요</string>
     <string name="hint_input_content">내용을 입력해주세요</string>
     <string name="hint_input_comment">댓글을 입력해주세요</string>
+    <string name="time">시간</string>
+    <string name="a_half_hour">30분</string>
+    <string name="one_hour">60분</string>
+    <string name="two_hour">120분</string>
+    <string name="all_day">종일</string>
+
+    <!-- 최나연 사용 -->
+    <string name="toolbar_title_reservation">예약</string>
+    <string name="toolbar_title_petsitter_info">펫시터 정보</string>
+    <string name="toolbar_title_petsitter_review">후기</string>
+    <string name="toolbar_title_reservation_confirmed">예약 확인</string>
+    <string name="toolbar_title_reservation_list">예약 내역</string>
+    <string name="toolbar_title_petsitter_review_write">펫시터 후기 작성</string>
+    <string name="toolbar_title_realtime_location">실시간 펫 위치</string>
+    <!--bottom navigation menu item-->
+    <string name="menu_item_bottom_navigation_home">홈</string>
+    <string name="menu_item_bottom_navigation_chatting">채팅</string>
+    <string name="menu_item_bottom_navigation_freeboard">자유게시판</string>
+    <string name="menu_item_bottom_navigation_reservation">예약</string>
+    <string name="menu_item_bottom_navigation_profile">프로필</string>
+    <string name="three_hour">180</string>
+
 </resources>

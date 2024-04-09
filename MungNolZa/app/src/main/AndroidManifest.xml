@@ -2,9 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <!-- 앨범으로 부터 사진을 가져오기 위한 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -21,6 +27,7 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+
             android:name=".ui.TestActivity"
             android:exported="true" >
             <intent-filter>
@@ -30,10 +37,24 @@
             </intent-filter>
 
         </activity>
-
+        <activity
+            android:name=".DialogSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.realtime_location.RealtimeLocationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.reservation_list.ReservationListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
+            android:exported="true"/>
 
         <activity
             android:name=".ui.chat.ChatActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.appointment.AppointmentActivity"
             android:exported="true" />
         <activity
             android:name=".ui.freeboard.BoardActivity"
@@ -57,6 +78,8 @@
         <activity
             android:name=".ui.intro.activity.LoginActivity"
             android:exported="true" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54"/>
     </application>
 
 </manifest>
