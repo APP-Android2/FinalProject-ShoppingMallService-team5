@@ -124,4 +124,19 @@
     <!-- toolbar -->
     <dimen name="toolbar_text_size">20dp</dimen>
 
+
+    <!-- toolbar -->
+
+    <dimen name="appointment_dog_time_common_margin">25dp</dimen>
+    <dimen name="appointment_dog_time_padding">20dp</dimen>
+
+    <!--최나연 추가함-->
+
+
+    <dimen name="n_shared_profile_interval_margin_top">5dp</dimen>
+    <dimen name="n_shared_profile_interval_margin_left">8dp</dimen>
+    <dimen name="n_shared_pet_image_width_height">40dp</dimen>
+
+    <!--bottom navigation-->
+
 </resources>
