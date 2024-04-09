@@ -22,15 +22,33 @@ class MainChatFragment : Fragment() {
     private var _binding: FragmentMainChatBinding ? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentMainChatBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_chat, container, false)
+        mainChatViewModel = MainChatViewModel()
+        binding.mainChatViewModel = mainChatViewModel
+        binding.lifecycleOwner = this
 
+        chatActivity = activity as ChatActivity
+
+        setToolbar()
         setRecyclerViewMainChat()
 
         return binding.root
     }
 
+    fun setToolbar(){
+        binding.apply{
+            toolbarMainChat.apply{
+                title = "채팅"
+                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+
+                inflateMenu(R.menu.menu_main_chat)
+            }
+        }
+    }
 
     fun setRecyclerViewMainChat(){
         binding.apply {
@@ -72,8 +90,8 @@ class MainChatFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolderMainChat, position: Int) {
-            holder.rowMainChatBinding.textViewContentRowMainChat.text = "박지성... 너 축구 잘해?"
-            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "정찬호"
+            holder.rowMainChatBinding.textViewContentRowMainChat.text = "박지성... 너 축구 잘해? $position"
+            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "수원 손흥민 정찬호 $position"
             holder.rowMainChatBinding.textViewDateRowMainChat.text = "2024-04-01"
             holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_jch)
 

@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowDetailChatBinding
-import kr.co.lion.mungnolza.databinding.RowDetailChatYouBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.model.ChatModel
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
@@ -25,10 +23,6 @@ class DetailChatFragment : Fragment() {
     lateinit var binding: FragmentDetailChatBinding
     lateinit var detailChatViewModel: DetailChatViewModel
 
-    lateinit var chatList:MutableList<ChatModel>
-
-    lateinit var testChat1:ChatModel
-    lateinit var testChat2:ChatModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,31 +36,16 @@ class DetailChatFragment : Fragment() {
 
         chatActivity = activity as ChatActivity
 
-        initData()
-        testData()
-
         setToolbar()
         setRecyclerViewDetailChat()
 
         return binding.root
     }
 
-    fun initData(){
-        chatList = mutableListOf()
-    }
-
-    fun testData(){
-        testChat1 = ChatModel("정찬호","박지성","수원의 아들은 나야나","5분전")
-        testChat2 = ChatModel("박지성","정찬호","룰루랄라~","6분전")
-
-        chatList.add(testChat1)
-        chatList.add(testChat2)
-    }
-
     fun setToolbar(){
         binding.apply{
             toolbarDetailChat.apply{
-                title = "정찬호"
+                title = "수원 손흥민 정찬호"
                 setNavigationIcon(R.drawable.ic_arrow_back_24px)
 
                 // 백버튼 이벤트
@@ -89,33 +68,12 @@ class DetailChatFragment : Fragment() {
         }
     }
 
-    inner class RecyclerViewAdapterDetailChat : RecyclerView.Adapter<ViewHolder>(){
-
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
-            val rowDetailChatBinding = RowDetailChatBinding.inflate(layoutInflater)
-            // val rowDetailChatYouBinding = RowDetailChatYouBinding.inflate(layoutInflater)
-
-            val mainViewHolder = ViewHolderDetailChat(rowDetailChatBinding)
-            return mainViewHolder
-        }
-
-        override fun getItemCount(): Int {
-            return chatList.size
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            (holder as ViewHolderDetailChat).rowDetailChatBinding.editTextChatRowDetailChat.setText(testChat1.chatContent)
-            (holder as ViewHolderDetailChat).rowDetailChatBinding.textViewDateRowDetailChat.text = testChat1.chatDate
-
-        }
-
+    inner class RecyclerViewAdapterDetailChat : RecyclerView.Adapter<RecyclerViewAdapterDetailChat.ViewHolderDetailChat>(){
         inner class ViewHolderDetailChat(rowDetailChatBinding: RowDetailChatBinding) : RecyclerView.ViewHolder(rowDetailChatBinding.root){
             val rowDetailChatBinding: RowDetailChatBinding
 
             init {
                 this.rowDetailChatBinding = rowDetailChatBinding
-
 
                 this.rowDetailChatBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -124,17 +82,20 @@ class DetailChatFragment : Fragment() {
             }
         }
 
-        inner class ViewHolderDetailChatYou(rowDetailChatYouBinding: RowDetailChatYouBinding) : RecyclerView.ViewHolder(rowDetailChatYouBinding.root){
-            val rowDetailChatYouBinding :RowDetailChatYouBinding
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderDetailChat {
+            val rowDetailChatBinding = RowDetailChatBinding.inflate(layoutInflater)
+            val mainViewHolder = ViewHolderDetailChat(rowDetailChatBinding)
+            return mainViewHolder
+        }
 
-            init {
-                this.rowDetailChatYouBinding = rowDetailChatYouBinding
+        override fun getItemCount(): Int {
+            return 100
+        }
 
-                this.rowDetailChatYouBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            }
+        override fun onBindViewHolder(holder: ViewHolderDetailChat, position: Int) {
+            holder.rowDetailChatBinding.editTextChatRowDetailChat.setText("박지성... 너 축구 잘해?")
+            holder.rowDetailChatBinding.textViewDateRowDetailChat.text = "오전 10:40"
         }
     }
+
 }

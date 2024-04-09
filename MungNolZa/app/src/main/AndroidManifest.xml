@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-
-    <!-- 앨범으로 부터 사진을 가져오기 위한 권한 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -51,7 +39,6 @@
         <activity
             android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
             android:exported="true"/>
-
         <activity
             android:name=".ui.chat.ChatActivity"
             android:exported="true" />
@@ -72,7 +59,11 @@
         <activity
             android:name=".ui.intro.activity.StartActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.intro.activity.OnBoardingActivity"
@@ -83,5 +74,4 @@
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54"/>
     </application>
-
 </manifest>
