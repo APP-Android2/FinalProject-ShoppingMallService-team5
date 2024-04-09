@@ -12,7 +12,6 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentFreeBoardBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
-import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.FreeBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
@@ -23,8 +22,6 @@ class FreeBoardFragment : Fragment() {
     lateinit var binding: FragmentFreeBoardBinding
     lateinit var boardActivity: BoardActivity
     lateinit var freeBoardViewModel: FreeBoardViewModel
-
-    lateinit var boardList:MutableList<BoardModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,34 +34,20 @@ class FreeBoardFragment : Fragment() {
 
         boardActivity = activity as BoardActivity
 
-        initData()
-        testData()
-
         setToolbar()
         setSearchBar()
         setRecyclerViewFreeBoard()
         setRecyclerViewSearchFreeBoard()
 
+
         return binding.root
-    }
-
-    fun initData(){
-        boardList = mutableListOf()
-    }
-
-    fun testData(){
-        var boardImageList1 = mutableListOf<String>()
-        var boardModel1 = BoardModel(1,"나는 멋쟁이 카리나",1, mutableListOf(""),1,"2024-04-03",1)
-        var boardModel2 = BoardModel(1,"나는 멋쟁이 카리나",1, mutableListOf(""),1,"2024-04-03",1)
-
-        boardList.add(boardModel1)
-        boardList.add(boardModel2)
     }
 
     fun setToolbar(){
         binding.apply{
             toolbarFreeBoard.apply{
-
+                // 타이틀
+                title = "자유 게시판"
                 // 네비게이션
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 setNavigationOnClickListener {
@@ -150,22 +133,18 @@ class FreeBoardFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return boardList.size
+            return 100
         }
 
         override fun onBindViewHolder(holder: ViewHolderFreeBoard, position: Int) {
-            holder.rowFreeBoardBinding.textViewTitleFreeBoardRow.text = boardList[position].boardTitle
-            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "최나연"
-            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "거울에 왜 카리나가 있지?\nㅇㅅㅇ"
+            holder.rowFreeBoardBinding.textViewTitleFreeBoardRow.text = "제목 $position"
+            holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "작성자 $position"
+            holder.rowFreeBoardBinding.textViewContentFreeBoardRow.text = "강아지 너무 귀엽죠!!\n참고로 암컷입니다!!! 남자 아닙니다!!"
             holder.rowFreeBoardBinding.textViewDateFreeBoardRow.text = "2024-03-26"
             holder.rowFreeBoardBinding.imageViewPhotoFreeBoardRow.setImageResource(R.drawable.img_dog)
 
-            // 게시판 하나의 글을 클릭 시 이벤트
             holder.rowFreeBoardBinding.root.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putInt("boardIdx",boardList[position].boardIdx)
-
-                boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,bundle)
+                boardActivity.replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,true,true,null)
             }
         }
     }
@@ -200,4 +179,5 @@ class FreeBoardFragment : Fragment() {
             holder.rowFreeBoardBinding.textViewNickNameFreeBoardRow.text = "작성자 $position"
         }
     }
+
 }

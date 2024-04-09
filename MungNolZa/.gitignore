@@ -16,4 +16,4 @@ deploymentTargetDropDown.xml
 .externalNativeBuild
 .cxx
 local.properties
-/app/google-services.json
+/google-services.json

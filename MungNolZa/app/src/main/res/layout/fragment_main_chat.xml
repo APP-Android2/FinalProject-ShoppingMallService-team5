@@ -19,17 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" >
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/binggrae_bold"
-                android:gravity="center"
-                android:text="채팅"
-                android:textSize="@dimen/shared_toolbar_title_size"
-                android:textStyle="bold" />
-        </com.google.android.material.appbar.MaterialToolbar>
+            android:theme="?attr/actionBarTheme" />
 
         <LinearLayout
             android:layout_width="match_parent"
