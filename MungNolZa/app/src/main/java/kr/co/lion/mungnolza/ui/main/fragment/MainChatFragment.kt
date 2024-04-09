@@ -26,12 +26,8 @@ class MainChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_chat, container, false)
-        mainChatViewModel = MainChatViewModel()
-        binding.mainChatViewModel = mainChatViewModel
-        binding.lifecycleOwner = this
+        _binding = FragmentMainChatBinding.inflate(inflater,  container, false)
 
-        chatActivity = activity as ChatActivity
 
         setToolbar()
         setRecyclerViewMainChat()

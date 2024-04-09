@@ -54,9 +54,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
     implementation("androidx.activity:activity:1.8.2")
-
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     testImplementation("junit:junit:4.13.2")

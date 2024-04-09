@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowDetailChatBinding
-import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
-import kr.co.lion.mungnolza.model.ChatModel
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
 import kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel
 import kr.co.lion.mungnolza.util.ChatFragmentName
