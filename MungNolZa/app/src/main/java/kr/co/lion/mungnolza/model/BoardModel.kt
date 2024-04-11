@@ -2,7 +2,7 @@ package kr.co.lion.mungnolza.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-
+@Parcelize
 data class BoardModel(
     var boardIdx: Int,
     var boardTitle: String,
@@ -13,7 +13,7 @@ data class BoardModel(
     var boardModifyDate: String,
     var boardLikeNumber: Int,
     var boardState: Int
-){
+): Parcelable{
     constructor() : this(
         boardIdx = 0,
         boardTitle = "",
