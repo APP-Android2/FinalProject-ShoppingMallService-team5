@@ -26,7 +26,6 @@ class MainViewModel(
     val boardContentList = _boardContentList.asStateFlow()
 
     init {
-        Log.d("dasdsaas", "초기화")
         fetchAllBoardDataWithUserInfo()
     }
 
