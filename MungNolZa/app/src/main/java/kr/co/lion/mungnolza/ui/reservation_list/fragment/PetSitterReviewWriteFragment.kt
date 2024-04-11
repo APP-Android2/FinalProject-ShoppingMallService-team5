@@ -1,19 +1,26 @@
 package kr.co.lion.mungnolza.ui.reservation_list.fragment
 
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.dao.PetsitterReviewDao
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewWriteBinding
+import kr.co.lion.mungnolza.model.PetsitterReviewModel
 import kr.co.lion.mungnolza.ui.reservation_list.viewmodel.PetSitterReviewWriteViewModel
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
 import kr.co.lion.mungnolza.util.Tools
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class PetSitterReviewWriteFragment : Fragment() {
 
@@ -72,6 +79,7 @@ class PetSitterReviewWriteFragment : Fragment() {
                     // 데이터를 저장하고 이동한다.
                     if(chk == true){
                         // (추가예정) 사용자가 입력한 데이터를 저장한다.
+                        savePetsitterReviewData()
 
                         // 키보드를 내려준다
                         Tools.hideSoftInput(reservationListActivity)
@@ -87,6 +95,33 @@ class PetSitterReviewWriteFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    // 데잍
+     fun savePetsitterReviewData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 펫시터 후기 번호 시퀀스 값을 가져온다.
+            val reviewIdxSequence = PetsitterReviewDao.getReviewIdx()
+            Log.d("test1234", "reviewIdxSequence : $reviewIdxSequence")
+            // 시퀀스 값을 1 증가시켜 덮어씌워준다.
+            PetsitterReviewDao.updateReviewIdx(reviewIdxSequence + 1)
+
+            // 저장할 데이터를 가져온다
+            val reviewIdx = reviewIdxSequence + 1
+            //val petsitterIdx
+            //val reviewWriterIdx
+            //val reviewWriterName
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val reviewWriteDate = simpleDateFormat.format(Date())
+            val reviewStarCount = petSitterReviewWriteViewModel.ratingBar2.value
+            val reviewText = petSitterReviewWriteViewModel.textfieldPetsitterReviewWrite.value!!
+
+            // 저장할 데이터를 객체에 담는다.
+            val petsitterReviewModel = PetsitterReviewModel(reviewIdx, reviewWriteDate, reviewStarCount, reviewText)
+
+            // 펫시터 후기 정보를 저장한다.
+            PetsitterReviewDao.insertPetsitterReviewData(petsitterReviewModel)
         }
     }
 
