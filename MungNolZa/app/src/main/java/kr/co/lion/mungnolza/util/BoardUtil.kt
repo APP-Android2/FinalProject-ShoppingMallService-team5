@@ -136,3 +136,8 @@ enum class BoardFragmentName(var str:String){
 
 //    EDIT_BOARD_FRAGMENT(),
 }
+
+enum class ContentState(var str:String, var number:Int){
+    CONTENT_STATE_NORMAL("정상", 1),
+    CONTENT_STATE_REMOVE("삭제", 2),
+}
