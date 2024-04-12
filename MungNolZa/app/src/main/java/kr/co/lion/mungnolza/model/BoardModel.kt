@@ -1,23 +1,26 @@
 package kr.co.lion.mungnolza.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class BoardModel(
     var boardIdx: Int,
     var boardTitle: String,
     var boardContent: String,
     var boardImagePathList: MutableList<String?>,
-    var boardWriterIdx: Int,
+    var boardWriterIdx: String,
     var boardWriteDate: String,
     var boardModifyDate: String,
     var boardLikeNumber: Int,
     var boardState: Int
-
-) {
+): Parcelable {
     constructor() : this(
         boardIdx = 0,
         boardTitle = "",
         boardContent= "",
         boardImagePathList = mutableListOf(),
-        boardWriterIdx = 0,
+        boardWriterIdx = "",
         boardWriteDate = "",
         boardModifyDate = "",
         boardLikeNumber = 0,

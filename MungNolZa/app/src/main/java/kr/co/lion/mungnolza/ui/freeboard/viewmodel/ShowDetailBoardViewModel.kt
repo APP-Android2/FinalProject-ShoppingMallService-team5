@@ -11,8 +11,6 @@ import javax.inject.Inject
 
 class ShowDetailBoardViewModel:ViewModel() {
 
-
-
     fun getUserData():UserModel{
         return UserModel(1,"카리나","최나연","cny123@naver.com","010-2222-3333","송파에서 제일 비싼 집","","22","여")
     }

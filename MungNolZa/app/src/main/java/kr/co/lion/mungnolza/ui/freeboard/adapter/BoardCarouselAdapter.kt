@@ -19,5 +19,4 @@ class BoardCarouselAdapter(): RecyclerView.Adapter<BoardCarouselViewHolder>() {
         holder.bind()
         //holder.bind(itemList[position])
     }
-
 }

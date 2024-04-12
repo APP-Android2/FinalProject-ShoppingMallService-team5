@@ -65,7 +65,6 @@ class ShowDetailBoardFragment : Fragment() {
 
         applyUserData()
 
-
         // boardIdx = arguments?.getInt("boardIdx")!!
 
         return binding.root
