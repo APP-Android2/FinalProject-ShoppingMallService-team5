@@ -12,12 +12,12 @@ import javax.inject.Inject
 class ShowDetailBoardViewModel:ViewModel() {
 
     fun getUserData():UserModel{
-        return UserModel(1,"카리나","최나연","cny123@naver.com","010-2222-3333","송파에서 제일 비싼 집","","22","여")
+        return UserModel("1","카리나","최나연","cny123@naver.com","010-2222-3333","송파에서 제일 비싼 집","","22","여")
     }
 
     fun getBoardData():BoardModel{
         return BoardModel(1,"카리나 어때?","나보다 별로지 않아?\nㅇㅅㅇ",
-            mutableListOf(),1,"2024-04-12-10:30","2024-04-12-10:48",2,1)
+            mutableListOf(),"1","2024-04-12-10:30","2024-04-12-10:48",2,1)
     }
 
 

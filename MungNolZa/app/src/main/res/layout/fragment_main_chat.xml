@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -10,17 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
+        app:title="@string/menu_item_bottom_navigation_chatting"
         android:theme="?attr/actionBarTheme">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/binggrae_bold"
-            android:gravity="center"
-            android:text="채팅"
-            android:textSize="@dimen/shared_toolbar_title_size"
-            android:textStyle="bold" />
     </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
