@@ -24,3 +24,4 @@ class InputPetProfileFragment : Fragment() {
         _binding = null
     }
 }
+

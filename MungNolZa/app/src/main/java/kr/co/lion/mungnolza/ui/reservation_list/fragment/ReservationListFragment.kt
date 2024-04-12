@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.databinding.FragmentReservationListBinding
+import kr.co.lion.mungnolza.ui.main.fragment.ReservationListOngoingFragment
 
 
 class ReservationListFragment : Fragment() {
