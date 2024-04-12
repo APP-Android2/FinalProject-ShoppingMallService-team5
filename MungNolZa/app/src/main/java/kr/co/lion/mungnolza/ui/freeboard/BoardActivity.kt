@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityBoardBinding
+import kr.co.lion.mungnolza.model.BoardModel
+import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.ui.freeboard.fragment.AddBoardFragment
 import kr.co.lion.mungnolza.ui.main.fragment.FreeBoardFragment
 import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
@@ -21,11 +23,13 @@ class BoardActivity : AppCompatActivity() {
     var oldFragment: Fragment? = null
     var newFragment: Fragment? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBoardBinding.inflate(layoutInflater)
 
-        replaceFragment(BoardFragmentName.FREE_BOARD_FRAGMENT,false,false,null)
+        replaceFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT,false,false,null)
 
         setContentView(binding.root)
     }

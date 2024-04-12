@@ -1,7 +1,9 @@
 package kr.co.lion.mungnolza.model
 
 import android.os.Parcelable
+
 import kotlinx.parcelize.Parcelize
+
 @Parcelize
 data class BoardModel(
     var boardIdx: Int,
