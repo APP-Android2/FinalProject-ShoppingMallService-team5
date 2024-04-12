@@ -20,6 +20,7 @@ object Tools {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
     }
+    val ADDR_RESULT_RESULT_CODE by lazy { 1002 }
 }
 
 
