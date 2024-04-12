@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.dao
+package kr.co.lion.mungnolza.repository
 
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.mungnolza.model.PetsitterReviewModel
 
-class PetsitterReviewDao {
+class PetsitterReviewRepository {
 
     companion object{
         // 후기글 번호 시퀀스값을 가져온다.
