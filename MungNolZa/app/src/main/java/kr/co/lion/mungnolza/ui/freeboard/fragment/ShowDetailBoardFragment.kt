@@ -9,25 +9,47 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.data.repository.BoardRepository
+import kr.co.lion.mungnolza.data.repository.BoardRepositoryImpl
+import kr.co.lion.mungnolza.data.repository.UserRepository
+import kr.co.lion.mungnolza.data.repository.UserRepositoryImpl
 import kr.co.lion.mungnolza.databinding.FragmentShowDetailBoardBinding
 import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
 import kr.co.lion.mungnolza.databinding.RowShowDetailBoardBinding
+import kr.co.lion.mungnolza.model.BoardModel
+import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
+import kr.co.lion.mungnolza.ui.freeboard.adapter.BoardCarouselAdapter
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.ShowDetailBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
 
 
 class ShowDetailBoardFragment : Fragment() {
 
-    lateinit var binding: FragmentShowDetailBoardBinding
+    private var _binding: FragmentShowDetailBoardBinding?= null
+    private val binding get() = _binding!!
+
     lateinit var boardActivity: BoardActivity
 
-    lateinit var showDetailBoardViewModel: ShowDetailBoardViewModel
+    private val showDetailBoardViewModel by viewModels<ShowDetailBoardViewModel>()
+
+    var userModel: UserModel?= null
+    var boardModel: BoardModel?= null
+
+    var imagePathList = mutableListOf<String>()
+
 
     var boardIdx:Int = 0
 
@@ -35,22 +57,49 @@ class ShowDetailBoardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_show_detail_board,container,false)
-        showDetailBoardViewModel = ShowDetailBoardViewModel()
-        binding.showDetailBoardViewModel = showDetailBoardViewModel
-        binding.lifecycleOwner = this
+        _binding = FragmentShowDetailBoardBinding.inflate(layoutInflater)
 
         boardActivity = activity as BoardActivity
 
-        boardIdx = arguments?.getInt("boardIdx")!!
+        setTest()
+
+        applyUserData()
+
+        // boardIdx = arguments?.getInt("boardIdx")!!
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setToolbar()
         setCarousel()
         setCommentButton()
 
-        return binding.root
     }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
+
+    // ----------------------------------------------------------------------------
+
+    fun setTest(){
+
+    }
+
+    fun applyUserData(){
+        binding.editTextTitleShowDetailBoard.setText(showDetailBoardViewModel.getBoardData().boardTitle)
+        binding.editTextContentShowDetailBoard.setText(showDetailBoardViewModel.getBoardData().boardContent)
+        binding.textViewDateShowDetailBoard.text = showDetailBoardViewModel.getBoardData().boardWriteDate
+
+        // 유저 정보는 boardModel로 접근해야 하는데 테스트는 일단 직접 호출
+        binding.textViewNickNameShowDetailBoard.text = showDetailBoardViewModel.getUserData().userNickname
+
+    }
+
 
     fun setCommentButton(){
         binding.apply{
@@ -65,7 +114,7 @@ class ShowDetailBoardFragment : Fragment() {
             // RecyclerView 셋팅
             recyclerViewPhotosShowDetailBoard.apply{
                 // 어댑터
-                adapter = RecyclerViewAdapterShowDetailBoard()
+                adapter = BoardCarouselAdapter()
                 // 레이아웃 매니저
                 layoutManager = CarouselLayoutManager()
                 // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
@@ -132,25 +181,25 @@ class ShowDetailBoardFragment : Fragment() {
         bottomCommentFragment.show(boardActivity.supportFragmentManager, "BottomCommentSheet")
     }
 
-    inner class RecyclerViewAdapterShowDetailBoard: RecyclerView.Adapter<RecyclerViewAdapterShowDetailBoard.ViewHolderShowDetailBoard>() {
-        inner class ViewHolderShowDetailBoard(rowShowDetailBoardBinding: RowShowDetailBoardBinding): RecyclerView.ViewHolder(rowShowDetailBoardBinding.root){
-            val rowShowDetailBoardBinding: RowShowDetailBoardBinding
-
-            init{
-                this.rowShowDetailBoardBinding = rowShowDetailBoardBinding
-            }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderShowDetailBoard {
-            val rowShowDetailBoardBinding = RowShowDetailBoardBinding.inflate(layoutInflater)
-            val viewHolderAddBoard = ViewHolderShowDetailBoard(rowShowDetailBoardBinding)
-            return viewHolderAddBoard
-        }
-
-        override fun getItemCount(): Int = 5
-
-        override fun onBindViewHolder(holder: ViewHolderShowDetailBoard, position: Int) {
-            holder.rowShowDetailBoardBinding.imageViewCarouselShowDetailBoard.setImageResource(R.drawable.img_dog)
-        }
-    }
+//    inner class RecyclerViewAdapterShowDetailBoard: RecyclerView.Adapter<RecyclerViewAdapterShowDetailBoard.ViewHolderShowDetailBoard>() {
+//        inner class ViewHolderShowDetailBoard(rowShowDetailBoardBinding: RowShowDetailBoardBinding): RecyclerView.ViewHolder(rowShowDetailBoardBinding.root){
+//            val rowShowDetailBoardBinding: RowShowDetailBoardBinding
+//
+//            init{
+//                this.rowShowDetailBoardBinding = rowShowDetailBoardBinding
+//            }
+//        }
+//
+//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderShowDetailBoard {
+//            val rowShowDetailBoardBinding = RowShowDetailBoardBinding.inflate(layoutInflater)
+//            val viewHolderAddBoard = ViewHolderShowDetailBoard(rowShowDetailBoardBinding)
+//            return viewHolderAddBoard
+//        }
+//
+//        override fun getItemCount(): Int = 5
+//
+//        override fun onBindViewHolder(holder: ViewHolderShowDetailBoard, position: Int) {
+//            holder.rowShowDetailBoardBinding.imageViewCarouselShowDetailBoard.setImageResource(R.drawable.img_dog)
+//        }
+//    }
 }

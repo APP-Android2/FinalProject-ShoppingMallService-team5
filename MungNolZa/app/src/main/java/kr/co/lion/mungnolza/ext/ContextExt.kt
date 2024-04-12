@@ -52,3 +52,13 @@ fun Context.showSoftInput(view: View) {
     inputMethodManger.showSoftInput(view, 0)
 }
 
+// 입력 요소가 비어있을때 보여줄 다이얼로그를 구성하는 메서드
+fun showErrorDialog(context: Context, view: View, title: String, message: String) {
+    val materialAlertDialogBuilder = MaterialAlertDialogBuilder(context)
+    materialAlertDialogBuilder.setTitle(title)
+    materialAlertDialogBuilder.setMessage(message)
+    materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+        context.showSoftInput(view)
+    }
+    materialAlertDialogBuilder.show()
+}
