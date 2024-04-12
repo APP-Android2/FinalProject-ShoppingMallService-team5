@@ -24,11 +24,4 @@
     <color name="selectedButtonColor">#ffea9f</color>
     <color name="defaultButtonColor">#e0e0e0</color>
 
-    <!-- 나연: 에러안나게 할라고 일단 붙붙-->
-    <color name="colorPrimary">#BB86FC</color>
-    <color name="colorPrimary2">#6750A4</color>
-    <color name="kakao_color">#FEE500</color>
-    <color name="v">#36BC9B</color>
-
-
 </resources>

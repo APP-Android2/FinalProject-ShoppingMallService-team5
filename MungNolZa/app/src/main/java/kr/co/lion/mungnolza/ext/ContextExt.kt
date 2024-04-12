@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.util.BoardUtil
 import kr.co.lion.mungnolza.util.Tools
 
 fun Context.hasPermission(permission: String): Boolean {
@@ -59,7 +58,7 @@ fun showErrorDialog(context: Context, view: View, title: String, message: String
     materialAlertDialogBuilder.setTitle(title)
     materialAlertDialogBuilder.setMessage(message)
     materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-        BoardUtil.showSoftInput(context, view)
+        context.showSoftInput(view)
     }
     materialAlertDialogBuilder.show()
 }
