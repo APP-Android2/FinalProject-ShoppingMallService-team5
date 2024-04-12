@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
 import kr.co.lion.mungnolza.model.PetInfo
-import kr.co.lion.mungnolza.ui.main.MainFragmentName
 import kr.co.lion.mungnolza.ui.appointment.adapter.SelectPetAdapter
-import kr.co.lion.mungnolza.ui.main.showAlertDialog
 
 
 class AppointmentMainFragment : Fragment() {
@@ -41,8 +39,10 @@ class AppointmentMainFragment : Fragment() {
 
     private fun initView(){
         // 테스트용 입니다!
-        dataList.add(PetInfo(getBitmapFromDrawable(requireContext(), R.drawable.doog),
-            "바둑이", "진돗개", "남자아이", 6, "20.2", "했어요", ""))
+        dataList.add(
+            PetInfo(getBitmapFromDrawable(requireContext(), R.drawable.doog),
+            "바둑이", "진돗개", "남자아이", 6, "20.2", "했어요", "")
+        )
 
         with(binding){
             with(rv){
