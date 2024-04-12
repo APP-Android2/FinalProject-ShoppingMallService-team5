@@ -20,8 +20,5 @@
     <color name="v">#36BC9B</color>
     <color name="orange_main">#FFB372</color>
     <color name="app_main_color">#FFEA9F</color>
-    <!-- 선택된 버튼의 색상 -->
-    <color name="selectedButtonColor">#ffea9f</color>
-    <color name="defaultButtonColor">#e0e0e0</color>
-
+    <color name="On_tertiary_container">#31111D</color>
 </resources>

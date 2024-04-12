@@ -17,6 +17,3 @@ data class PetsitterReviewModel(
     var reviewStarCount: Float?,
     var reviewText: String
 )
-
-
-
