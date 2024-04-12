@@ -22,6 +22,7 @@ object Tools {
     }
 }
 
+
 // MainFragment 에서 보여줄 프래그먼트들의 이름
 enum class MatchingPetsitterFragmentName(var str:String){
     // 매칭화면
