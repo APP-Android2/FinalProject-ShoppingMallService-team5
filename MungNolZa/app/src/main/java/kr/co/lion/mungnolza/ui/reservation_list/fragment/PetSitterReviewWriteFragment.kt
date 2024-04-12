@@ -21,6 +21,10 @@ import kr.co.lion.mungnolza.util.ReservationListFragmentName
 import kr.co.lion.mungnolza.util.Tools
 import java.text.SimpleDateFormat
 import java.util.Date
+// ContextExt.kt에 정의된 확장 함수를 import
+import kr.co.lion.mungnolza.ext.hideSoftInput
+import kr.co.lion.mungnolza.ext.showSoftInput
+import kr.co.lion.mungnolza.ext.showErrorDialog
 
 class PetSitterReviewWriteFragment : Fragment() {
 
@@ -82,7 +86,7 @@ class PetSitterReviewWriteFragment : Fragment() {
                         savePetsitterReviewData()
 
                         // 키보드를 내려준다
-                        Tools.hideSoftInput(reservationListActivity)
+                        context.hideSoftInput(reservationListActivity)
 
                         // 작성완료 다이어로그를 띄운다
                         val materialAlertDialogBuilder = MaterialAlertDialogBuilder(reservationListActivity)
@@ -134,7 +138,7 @@ class PetSitterReviewWriteFragment : Fragment() {
         // 별점수를 입력하지 않았다면
         if(starCount == 0f){
             // 다이어로그 띄워준다
-            Tools.showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.ratingBar2, "별점 입력 오류", "펫시터에게 별점을 남겨주세요.")
+            showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.ratingBar2, "별점 입력 오류", "펫시터에게 별점을 남겨주세요.")
             return false
         }
 
@@ -142,7 +146,7 @@ class PetSitterReviewWriteFragment : Fragment() {
         if(reviewText.isEmpty()){
             // 다이어로그 띄워준다
             // 다이어로그의 확인 클릭시, 뷰에 포커스를 주고 키보드를 올린다.
-            Tools.showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.textfieldPetsitterReviewWrite, "후기 작성 오류", "펫시터에게 후기를 작성해주세요.")
+            showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.textfieldPetsitterReviewWrite, "후기 작성 오류", "펫시터에게 후기를 작성해주세요.")
             return false
         }
         return true
