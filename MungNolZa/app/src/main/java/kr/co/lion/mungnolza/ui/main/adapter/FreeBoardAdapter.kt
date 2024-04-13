@@ -23,7 +23,7 @@ class FreeBoardAdapter(
                 tvNickname.text = item.writerNickName
 
                 Glide.with(binding.root)
-                    .load(item.imgUri)
+                    .load(item.imgUri.toString())
                     .into(thumbnail)
 
                 root.setOnClickListener {

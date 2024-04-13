@@ -1,19 +1,16 @@
 package kr.co.lion.mungnolza.ui.main.viewmodel
 
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.model.BoardAddUerInfoModel
-import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.repository.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.UserRepositoryImpl
+import java.net.URI
 
 class MainViewModel(
     private val freeBoardRepository: FreeBoardRepositoryImpl,
@@ -44,11 +41,11 @@ class MainViewModel(
         _boardContentList.value = contentList
     }
 
-    private suspend fun fetchBoardImg(boardIdx: String, imgName: String): Uri? {
+    private suspend fun fetchBoardImg(boardIdx: String, imgName: String): URI? {
         return freeBoardRepository.fetchAllBoardImage(boardIdx, imgName)
     }
 
-    suspend fun fetchUserProfileImage(path: String): Uri {
+    suspend fun fetchUserProfileImage(path: String): URI? {
         return userRepository.fetchUserProfileImage(path)
     }
 }
