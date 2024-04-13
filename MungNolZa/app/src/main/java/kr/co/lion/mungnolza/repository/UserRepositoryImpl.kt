@@ -1,12 +1,11 @@
 package kr.co.lion.mungnolza.repository
 
-import android.net.Uri
 import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.tasks.await
-import kr.co.lion.mungnolza.model.UserModel
+import java.net.URI
 
 class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
@@ -25,8 +24,15 @@ class UserRepositoryImpl : UserRepository {
         return nickName
     }
 
-    override suspend fun fetchUserProfileImage(path: String): Uri {
-        return storage.child(path).downloadUrl.await()
+    override suspend fun fetchUserProfileImage(path: String): URI? {
+        var result: URI? = null
+        try {
+            val response = storage.child(path).downloadUrl.await().toString()
+            result = URI.create(response)
+        }catch (e: Exception){
+            Log.e("FirebaseResult", "Error fetching UserProfileImage : ${storage.child(path)}")
+        }
+        return result
     }
 
 }

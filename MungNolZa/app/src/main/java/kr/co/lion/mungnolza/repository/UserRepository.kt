@@ -1,9 +1,8 @@
 package kr.co.lion.mungnolza.repository
 
-import android.net.Uri
-import kr.co.lion.mungnolza.model.UserModel
+import java.net.URI
 
 interface UserRepository {
     suspend fun fetchAllUserNickName(uniqueNumber: String) : String
-    suspend fun fetchUserProfileImage(path: String) : Uri
+    suspend fun fetchUserProfileImage(path: String) : URI?
 }
