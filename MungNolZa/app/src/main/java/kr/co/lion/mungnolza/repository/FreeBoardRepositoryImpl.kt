@@ -16,8 +16,7 @@ class FreeBoardRepositoryImpl : FreeBoardRepository {
     private val boardStore = Firebase.firestore.collection("Board")
     private val storage = Firebase.storage.reference
     override suspend fun fetchAllBoardData(): List<BoardModel> {
-        return withContext(Dispatchers.IO) {
-            try {
+        return try {
                 var query =
                     boardStore.whereEqualTo("boardState", ContentState.CONTENT_STATE_NORMAL.number)
                 query = query.orderBy("boardIdx", Query.Direction.DESCENDING)
@@ -29,19 +28,16 @@ class FreeBoardRepositoryImpl : FreeBoardRepository {
                 Log.e("FirebaseResult", "Error fetching Board: ${e.message}")
                 emptyList()
             }
-        }
     }
 
     override suspend fun fetchAllBoardImage(boardIdx: String, imgName: String): URI? {
         val path = "board/$boardIdx/$imgName"
-        return withContext(Dispatchers.IO) {
-            try {
+        return try {
                 val response = storage.child(path).downloadUrl.await().toString()
                 URI.create(response)
             } catch (e: Exception) {
                 Log.e("FirebaseResult", "Error fetching BoardImage : ${storage.child(path)}")
                 null
-            }
         }
     }
 }
