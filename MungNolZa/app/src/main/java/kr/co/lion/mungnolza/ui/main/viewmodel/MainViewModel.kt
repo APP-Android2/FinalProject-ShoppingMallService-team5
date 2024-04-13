@@ -23,10 +23,12 @@ class MainViewModel(
     val boardContentList = _boardContentList.asStateFlow()
 
     init {
-        fetchAllBoardDataWithUserInfo()
+        viewModelScope.launch {
+            fetchAllBoardDataWithUserInfo()
+        }
     }
 
-    private fun fetchAllBoardDataWithUserInfo() = viewModelScope.launch(Dispatchers.IO) {
+    private suspend fun fetchAllBoardDataWithUserInfo(){
         val response = freeBoardRepository.fetchAllBoardData()
         val contentList = ArrayList<BoardAddUerInfoModel>()
 
