@@ -6,15 +6,15 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BoardModel(
-    var boardIdx: Int,
-    var boardTitle: String,
-    var boardContent: String,
-    var boardImagePathList: MutableList<String?>,
-    var boardWriterIdx: String,
-    var boardWriteDate: String,
-    var boardModifyDate: String,
-    var boardLikeNumber: Int,
-    var boardState: Int
+    val boardIdx: Int,
+    val boardTitle: String,
+    val boardContent: String,
+    val boardImagePathList: MutableList<String?>,
+    val boardWriterIdx: String,
+    val boardWriteDate: String,
+    val boardModifyDate: String,
+    val boardLikeNumber: Int,
+    val boardState: Int
 ): Parcelable{
     constructor() : this(
         boardIdx = 0,
