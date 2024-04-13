@@ -30,10 +30,10 @@ class MainViewModel(
         val response = freeBoardRepository.fetchAllBoardData()
         val contentList = ArrayList<BoardAddUerInfoModel>()
 
-        response.forEach {
-            val nickName = userRepository.fetchAllUserNickName(it.boardWriterIdx)
-            val imgUri = fetchBoardImg(it.boardIdx.toString(), it.boardImagePathList[0].toString())
-            val content = imgUri?.let { uri -> BoardAddUerInfoModel(it, nickName, uri) }
+        response.mapIndexed { index, boardModel ->
+            val nickName = userRepository.fetchAllUserNickName(boardModel.boardWriterIdx)
+            val imgUri = fetchBoardImg(boardModel.boardIdx.toString(), boardModel.boardImagePathList[0].toString())
+            val content = imgUri?.let { uri -> BoardAddUerInfoModel(boardModel, nickName[index], uri) }
             if (content != null) {
                 contentList.add(content)
             }
