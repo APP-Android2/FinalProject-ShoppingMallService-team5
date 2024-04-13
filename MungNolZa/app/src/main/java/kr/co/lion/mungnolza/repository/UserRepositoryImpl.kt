@@ -10,18 +10,16 @@ import java.net.URI
 class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
     private val storage = Firebase.storage.reference
-    override suspend fun fetchAllUserNickName(uniqueNumber: String): String {
-        var nickName = ""
-        try {
+    override suspend fun fetchAllUserNickName(uniqueNumber: String): List<String> {
+        return try {
             val querySnapshot = userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
-            for (document in querySnapshot) {
-                nickName = document.getString("userNickname").toString()
-            }
+
+            querySnapshot.map { it.getString("userNickname").toString() }
+
         } catch (e: Exception) {
             Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+            emptyList()
         }
-
-        return nickName
     }
 
     override suspend fun fetchUserProfileImage(path: String): URI? {
