@@ -13,35 +13,28 @@ import kr.co.lion.mungnolza.util.ContentState
 class FreeBoardRepositoryImpl : FreeBoardRepository {
     private val boardStore = Firebase.firestore.collection("Board")
     private val storage = Firebase.storage.reference
-    override suspend fun fetchAllBoardData(): ArrayList<BoardModel> {
-        val boardList = ArrayList<BoardModel>()
-
-        try{
+    override suspend fun fetchAllBoardData(): List<BoardModel> {
+        return try{
             var query = boardStore.whereEqualTo("boardState", ContentState.CONTENT_STATE_NORMAL.number)
             query = query.orderBy("boardIdx", Query.Direction.DESCENDING)
 
             val querySnapshot = query.get().await()
-            querySnapshot.forEach {
-                val contentModel = it.toObject(BoardModel::class.java)
-                boardList.add(contentModel)
-            }
+            querySnapshot.map { it.toObject(BoardModel::class.java) }
 
         }catch (e: Exception) {
             Log.e("FirebaseResult", "Error fetching Board: ${e.message}")
+            emptyList()
         }
-
-        return boardList
     }
 
     override suspend fun fetchAllBoardImage(boardIdx: String, imgName: String): URI?{
-        var result: URI? = null
         val path = "board/$boardIdx/$imgName"
-        try {
+        return try {
             val response = storage.child(path).downloadUrl.await().toString()
-            result = URI.create(response)
+            URI.create(response)
         }catch (e: Exception){
             Log.e("FirebaseResult", "Error fetching BoardImage : ${storage.child(path)}")
+            null
         }
-        return result
     }
 }
