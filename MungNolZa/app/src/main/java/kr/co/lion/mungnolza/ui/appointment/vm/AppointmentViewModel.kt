@@ -8,13 +8,10 @@ import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
-import java.net.URI
 
 class AppointmentViewModel(
     private val petRepositoryImpl: PetRepositoryImpl
 ) : ViewModel() {
-    private val _careType = MutableStateFlow<Boolean?>(null)
-    val careType = _careType.asStateFlow()
 
     private val _myUserNumber = MutableStateFlow<String?>(null)
     private val myUserNumber = _myUserNumber.asStateFlow()
@@ -22,39 +19,36 @@ class AppointmentViewModel(
     private val _myPetData = MutableStateFlow<List<PetImgModel>>(emptyList())
     val myPetData = _myPetData.asStateFlow()
 
+    private val _selectedPet = MutableStateFlow<List<PetImgModel>>(emptyList())
+    val selectedPet = _selectedPet.asStateFlow()
+
+    private val _serviceType: MutableStateFlow<String?> = MutableStateFlow(null)
+    val serviceType = _serviceType.asStateFlow()
+
+    private val _careType: MutableStateFlow<String?> = MutableStateFlow(null)
+    val careType = _careType.asStateFlow()
+
     init {
         viewModelScope.launch {
-            //MainDataStore.setUserNumber("1234")
             MainDataStore.getUserNumber().collect {
                 _myUserNumber.value = it
             }
         }
     }
 
-    suspend fun fetchMyAllPetData() = viewModelScope.launch {
-        val petList = ArrayList<PetImgModel>()
-
-        myUserNumber.collect { myUserNumber ->
-            val result = myUserNumber?.let { data-> petRepositoryImpl.fetchMyPetData(data) }
-            result?.map{
-                val imgUri = fetchPetImg(it.ownerIdx, it.imgName)
-                val pet = imgUri?.let { data -> PetImgModel(it, data) }
-
-                if (pet != null) {
-                    petList.add(pet)
-                }
-            }
-            _myPetData.value = petList
-        }
+    fun setSelectedPet(selectedItem: List<PetImgModel>){
+        _selectedPet.value = selectedItem
     }
 
-    private suspend fun fetchPetImg(userIdx: String, petName: String): URI? {
-        return petRepositoryImpl.fetchMyPetImage(userIdx, petName)
+    fun setServiceType(service: String){
+        _serviceType.value = service
     }
 
-    fun setCareType(state: Boolean) {
-        _careType.value = state
+    fun setMyPetData(myPets: List<PetImgModel>){
+        _myPetData.value = myPets
     }
 
-
+    fun setCareType(type: String?) {
+        _careType.value = type
+    }
 }
