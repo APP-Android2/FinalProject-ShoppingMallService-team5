@@ -2,9 +2,8 @@ package kr.co.lion.mungnolza.ui.main.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import kr.co.lion.mungnolza.repository.FreeBoardRepository
-import kr.co.lion.mungnolza.repository.FreeBoardRepositoryImpl
-import kr.co.lion.mungnolza.repository.UserRepositoryImpl
+import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
+import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.lang.IllegalArgumentException
 
 class MainViewModelFactory: ViewModelProvider.Factory{
