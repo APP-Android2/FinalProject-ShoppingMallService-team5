@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
@@ -17,11 +18,15 @@ import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
 import kr.co.lion.mungnolza.ext.hideSoftInput
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.showSoftInput
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentUserAddressBinding? = null
+    private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+
     private val binding get() = _binding!!
     var selectedVisitType: String? = null
 
@@ -29,12 +34,12 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAppointmentUserAddressBinding.inflate(inflater)
-        initView()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initToolbar(view)
     }
 
@@ -46,8 +51,11 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initView() {
-
         with(binding) {
+            if(viewModel.careType.value == true){
+                addressContainer.visibility = GONE
+            }
+
             btnSaveAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnInputAddrComplete.setOnClickListener(this@AppointmentUserAddressFragment)
@@ -58,7 +66,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             imgSelectTime.setOnClickListener(this@AppointmentUserAddressFragment)
         }
     }
-
 
     private fun showMaterialTimePicker() {
         // MaterialTimePicker Builder를 사용하여 인스턴스 생성
@@ -78,18 +85,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             val selectedTime = String.format("%02d:%02d", picker.hour, picker.minute)
             binding.edittextSeletedTime.setText(selectedTime)
 
-            val checkBoxText = "$selectedTime 로 펫시터님이 협의를 제안합니다"
-            binding.checkBoxTime.apply {
-                text = checkBoxText
-                visibility = VISIBLE
-            }
-
-            // 여기에 CheckBox 변경하는 코드를 추가
-            binding.edittextSeletedTime.setText(selectedTime)
-
-            // 여기에 CheckBox의 가시성을 변경하는 코드를 추가
-            binding.checkBoxTime.visibility = View.VISIBLE
-            binding.checkBoxCan.visibility = View.VISIBLE
         }
     }
 
