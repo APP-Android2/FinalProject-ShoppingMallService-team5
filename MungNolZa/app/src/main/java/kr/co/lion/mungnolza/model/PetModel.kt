@@ -1,5 +1,9 @@
 package kr.co.lion.mungnolza.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class PetModel (
     val ownerIdx: String,
     val petName: String,
@@ -10,7 +14,7 @@ data class PetModel (
     val isNeutering: Boolean,
     val petSignificant: String,
     val imgName: String
-){
+): Parcelable {
     constructor(): this(
         ownerIdx = "",
         petName = "",
