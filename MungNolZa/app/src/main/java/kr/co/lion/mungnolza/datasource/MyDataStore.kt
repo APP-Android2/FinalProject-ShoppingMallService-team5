@@ -37,13 +37,13 @@ object MainDataStore {
         return currentValue
     }
 
-    suspend fun setCrn(uniqueNumber: String){
+    suspend fun setUserNumber(uniqueNumber: String){
         mDataStore.edit { pref->
             pref[USER_NUMBER] = uniqueNumber
         }
     }
 
-    fun getCrn(): Flow<String> {
+    fun getUserNumber(): Flow<String> {
         return mDataStore.data.map { preferences ->
             preferences[USER_NUMBER] ?: ""
         }
