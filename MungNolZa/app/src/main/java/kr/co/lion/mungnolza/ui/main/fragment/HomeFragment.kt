@@ -7,9 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentHomeBinding
 import kr.co.lion.mungnolza.ui.appointment.AppointmentActivity
+import kr.co.lion.mungnolza.ui.appointment.NoPetActivity
 import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
 import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
@@ -28,9 +33,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
-    private fun initView(){
+    private fun initView() {
         viewModel
-        with(binding){
+        with(binding) {
             weeklyPetssiter.setOnClickListener(this@HomeFragment)
             btnReserve.setOnClickListener(this@HomeFragment)
             btnReserveList.setOnClickListener(this@HomeFragment)
@@ -39,21 +44,34 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.weekly_petssiter -> {
 
             }
             R.id.btn_reserve -> {
-                startActivity(Intent(requireActivity(), AppointmentActivity::class.java))
+                viewLifecycleOwner.lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        viewModel.myPetData.collect {
+                            if (it.isEmpty()) {
+                                startActivity(Intent(requireActivity(), NoPetActivity::class.java))
+                            } else {
+                                val intent = Intent(requireActivity(), AppointmentActivity::class.java)
+                                intent.putExtra("myPet", it.toTypedArray())
+                                startActivity(intent)
+                            }
+                        }
+                    }
+                }
             }
+
             R.id.btn_reserve_list -> {
                 startActivity(Intent(requireActivity(), ReservationListActivity::class.java))
             }
+
             R.id.btn_review_list -> {
 
             }
         }
+
     }
-
-
 }
