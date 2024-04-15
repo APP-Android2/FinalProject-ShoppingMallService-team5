@@ -35,9 +35,6 @@
             android:name=".ui.reservation_list.ReservationListActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.chat.ChatActivity"
             android:exported="true" />
         <activity

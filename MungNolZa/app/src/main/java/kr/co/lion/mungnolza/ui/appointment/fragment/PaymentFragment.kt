@@ -1,6 +1,5 @@
-package kr.co.lion.mungnolza.ui.matching_petsitter.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.Navigation
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPaymentBinding
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterActivity
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PaymentFragment : Fragment(), View.OnClickListener {
 
