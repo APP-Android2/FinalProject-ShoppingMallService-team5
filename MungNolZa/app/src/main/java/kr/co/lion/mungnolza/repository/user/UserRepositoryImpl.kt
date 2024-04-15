@@ -24,6 +24,17 @@ class UserRepositoryImpl : UserRepository {
         return nickName
     }
 
+    override suspend fun fetchUserAddress(uniqueNumber: String): String {
+        return try {
+            val querySnapshot = userStore.document(uniqueNumber).get().await()
+            val result = querySnapshot.getString("userAddress").toString()
+            result
+        }catch (e: Exception){
+            Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+            ""
+        }
+    }
+
     override suspend fun fetchUserProfileImage(path: String): Uri {
         return storage.child(path).downloadUrl.await()
     }
