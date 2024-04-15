@@ -82,6 +82,7 @@
                         android:id="@+id/edittext_addr_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:endIconMode="clear_text"
                         app:helperTextTextColor="@color/red">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -273,7 +274,7 @@
                         android:text="방문 날짜 선택"
                         android:backgroundTint="@color/yellow200"
                         android:textColor="@color/blueGray800"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="16sp"
                         />
 
                     <TextView
