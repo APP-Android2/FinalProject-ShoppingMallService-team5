@@ -22,4 +22,6 @@
     <color name="selectedButtonColor">#ffea9f</color>
 
     <color name="defaultButtonColor">#e0e0e0</color>
+
+    <color name="blue">#459DE4</color>
 </resources>

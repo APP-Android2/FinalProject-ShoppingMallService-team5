@@ -1,43 +1,127 @@
 package kr.co.lion.mungnolza.ui.intro.activity
 
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.lifecycleScope
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityLoginBinding
+import kr.co.lion.mungnolza.ui.main.MainActivity
+
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var activityLoginBinding: ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
+
+    private lateinit var auth: FirebaseAuth
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        activityLoginBinding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(activityLoginBinding.root)
+        auth = FirebaseAuth.getInstance()
 
-        activityLoginBinding.apply {
+
+
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+
+
+        val signInButton = findViewById<Button>(R.id.button_login_google)
+        signInButton.setOnClickListener {
+            signIn()
+        }
+
+
+
+        // 현재 로그인한 유저가 있을 경우, MainActivity로 이동
+        if (currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+        kakaoLoginFunction()
+
+
+    }
+    private fun signIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+
+    fun kakaoLoginFunction(){
+        binding.apply {
             buttonLoginKakao.setOnClickListener {
                 kakaoLogin()
             }
         }
-
-//        lifecycleScope.launch {
-//            delay(2000)
-//            startActivity(Intent(this@LoginActivity, JoinActivity::class.java))
-//            finish()
-//        }
     }
 
-    fun kakaoLogin(){
+    fun kakaoLogin() {
 
         val TAG = "test1234"
 
@@ -57,9 +141,9 @@ class LoginActivity : AppCompatActivity() {
                 // 로그인한 사용자 정보를 가져온다.
                 // 이 때 accessToken 을 카카오 서버로 전달해야 해야하는데 알아서해준다.
                 UserApiClient.instance.me { user, error ->
-                    if(error != null){
+                    if (error != null) {
                         Log.e(TAG, "사용자 정보를 가져오는데 실패하였습니다", error)
-                    } else if(user != null){
+                    } else if (user != null) {
                         Log.d(TAG, "회원번호 : ${user.id}")
                         Log.d(TAG, "이메일 : ${user.kakaoAccount?.email}")
                         Log.d(TAG, "닉네임 : ${user.kakaoAccount?.profileNicknameNeedsAgreement}")
@@ -82,7 +166,10 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
-                    UserApiClient.instance.loginWithKakaoAccount(this@LoginActivity, callback = callback)
+                    UserApiClient.instance.loginWithKakaoAccount(
+                        this@LoginActivity,
+                        callback = callback
+                    )
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
                 }

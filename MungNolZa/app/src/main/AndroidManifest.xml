@@ -2,74 +2,85 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MungNolZa"
-        tools:targetApi="31">
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.INTERNET" />
 
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<application
+    android:allowBackup="true"
+    android:dataExtractionRules="@xml/data_extraction_rules"
+    android:fullBackupContent="@xml/backup_rules"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.MungNolZa"
+    tools:targetApi="31">
 
-                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="kakaoaf569264fe25d2489534a85f816d1ca9" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.realtime_location.RealtimeLocationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.reservation_list.ReservationListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".ui.chat.ChatActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.freeboard.BoardActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".ui.intro.activity.JoinActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.intro.activity.StartActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.intro.activity.OnBoardingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.intro.activity.LoginActivity"
-            android:exported="true" />
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54"/>
-    </application>
+    <activity
+        android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
 
+            <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+            <data
+                android:host="oauth"
+                android:scheme="kakaoaf569264fe25d2489534a85f816d1ca9" />
+        </intent-filter>
+    </activity>
+
+    <activity
+        android:name=".ui.realtime_location.RealtimeLocationActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.reservation_list.ReservationListActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.chat.ChatActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.freeboard.BoardActivity"
+        android:exported="true"
+        android:windowSoftInputMode="adjustPan" />
+    <activity
+        android:name=".ui.main.MainActivity"
+        android:exported="true"
+        android:windowSoftInputMode="adjustPan" />
+    <activity
+        android:name=".ui.intro.activity.JoinActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.intro.activity.StartActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity
+        android:name=".ui.intro.activity.OnBoardingActivity"
+        android:exported="true" />
+    <activity
+        android:name=".ui.intro.activity.LoginActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.Signin" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54" />
+</application>
 </manifest>

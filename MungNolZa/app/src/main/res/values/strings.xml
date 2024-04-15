@@ -40,6 +40,11 @@
     <string name="pet_significant">강아지 특이사항</string>
     <string name="plz_know_unique_behavior">우리 아이만의 특별한 점을 알려주세요!</string>
 
+    <!-- 이영주 스트링값 -->
+    <string name="default_web_client_id" translatable="false">891859683237-rqkbl4e5btctaeg4h2mlqj6jij4o0g85.apps.googleusercontent.com</string>
+    <string name="server_client_id" translatable="false">891859683237-orc9nuurmg6va6b398osqnalr0sqaut6.apps.googleusercontent.com</string>
+
+
     <!-- 안영준 스트링값 -->
     <string name="title_text_reservation">예약</string>
     <string name="user_where_to_visit">어디로 방문할까요?</string>

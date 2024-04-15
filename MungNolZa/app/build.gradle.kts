@@ -16,6 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        multiDexEnabled; true
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -85,5 +87,15 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.kakao.sdk:v2-user:2.20.1")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+
+    // Google Play services
+    implementation ("com.google.gms:google-services:4.3.13")
+    implementation ("com.google.firebase:firebase-auth:22.0.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+
 
 }
