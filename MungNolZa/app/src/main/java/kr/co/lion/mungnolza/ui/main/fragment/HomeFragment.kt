@@ -36,7 +36,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun initView() {
         viewModel
         with(binding) {
-            weeklyPetssiter.setOnClickListener(this@HomeFragment)
             btnReserve.setOnClickListener(this@HomeFragment)
             btnReserveList.setOnClickListener(this@HomeFragment)
             btnReviewList.setOnClickListener(this@HomeFragment)
@@ -45,9 +44,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.weekly_petssiter -> {
-
-            }
             R.id.btn_reserve -> {
                 viewLifecycleOwner.lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
