@@ -44,3 +44,18 @@ enum class ReservationListFragmentName(var str:String){
     // 펫시터 후기 작성 화면
     PETSITTER_REVIEW_WRITE_FRAGMENT("PetSitterReviewWriteFragment"),
 }
+
+enum class Week(val day: String){
+    SUNDAY("sunday"),
+    MONDAY("monday"),
+    TUESDAY("tuesday"),
+    WEDNESDAY("wednesday"),
+    THURSDAY("thursday"),
+    FRIDAY("friday"),
+    SATURDAY("saturday")
+}
+
+enum class VisitType(val type: String) {
+    COMMON_VISIT("common visit"),
+    REGULAR_VISIT("regular visit"),
+}
