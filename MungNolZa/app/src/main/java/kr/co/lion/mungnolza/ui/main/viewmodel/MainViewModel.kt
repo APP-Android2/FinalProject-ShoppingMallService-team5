@@ -21,6 +21,7 @@ class MainViewModel(
     private val userRepository: UserRepositoryImpl,
     private val petRepositoryImpl: PetRepositoryImpl
 ): ViewModel() {
+
     private val _userList = MutableStateFlow<List<UserModel>>(emptyList())
     val userList = _userList.asStateFlow()
 
@@ -41,7 +42,6 @@ class MainViewModel(
             }
         }
         fetchAllBoardDataWithUserInfo()
-        fetchMyAllPetData()
     }
 
     private fun fetchAllBoardDataWithUserInfo() = viewModelScope.launch(Dispatchers.IO) {
@@ -59,7 +59,7 @@ class MainViewModel(
         _boardContentList.value = contentList
     }
 
-    private fun fetchMyAllPetData() = viewModelScope.launch {
+    fun fetchMyAllPetData() = viewModelScope.launch {
         val petList = ArrayList<PetImgModel>()
 
         myUserNumber.collect { myUserNumber ->
@@ -85,5 +85,9 @@ class MainViewModel(
 
     suspend fun fetchUserProfileImage(path: String): Uri {
         return userRepository.fetchUserProfileImage(path)
+    }
+
+    fun setMyPetData(myPets: List<PetImgModel>){
+        _myPetData.value = myPets
     }
 }
