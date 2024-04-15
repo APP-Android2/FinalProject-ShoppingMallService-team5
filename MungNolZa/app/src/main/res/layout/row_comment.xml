@@ -79,7 +79,7 @@
                 android:layout_height="@dimen/icon_comment_width"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/ic_chat_bubble_24px" />
+                app:srcCompat="@drawable/ic_forum_24px" />
 
             <ImageView
                 android:id="@+id/imageViewDeleteRowComment"

@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.PetSitterReviewWriteFragment
-import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListFragment
+import kr.co.lion.mungnolza.ui.main.fragment.ReservationListFragment
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityReservationListBinding
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
