@@ -17,7 +17,7 @@
 
     <dimen name="fragment_request_permission_common_margin">20dp</dimen>
     <dimen name="fragment_request_permission_common_padding">10dp</dimen>
-    <dimen name="fragment_request_permission_bottom_request_info_padding">20dp</dimen>
+    <dimen name="fragment_request_permission_bottom_request_info_padding">15dp</dimen>
     <dimen name="fragment_request_permission_bottom_request_info_text_size">12sp</dimen>
 
     <dimen name="fragment_request_permission_subtitle_size">13sp</dimen>
@@ -117,10 +117,22 @@
     <dimen name="appointment_pet_select_item_img_size">30dp</dimen>
     <dimen name="appointment_pet_select_item_margin_top">3dp</dimen>
 
+    <!-- toolbar -->
+    <dimen name="toolbar_text_size">20dp</dimen>
+
+
+    <!-- toolbar -->
+
+
+    <dimen name="appointment_dog_time_common_margin">25dp</dimen>
+    <dimen name="appointment_dog_time_padding">20dp</dimen>
+
     <!--최나연 추가함-->
+
     <dimen name="fragment_pet_profile_input_button_margin_top">10dp</dimen>
     <dimen name="fragment_pet_profile_input_button_margin_start">50dp</dimen>
     <dimen name="fragment_pet_profile_input_edittext_margin_start">25dp</dimen>
+
 
     <dimen name="n_shared_profile_interval_margin_top">5dp</dimen>
     <dimen name="n_shared_profile_interval_margin_left">8dp</dimen>

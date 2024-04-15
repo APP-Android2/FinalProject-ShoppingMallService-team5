@@ -177,7 +177,7 @@ class RealtimeLocationActivity : AppCompatActivity() {
     fun setMyLocation(location:Location){
         // 위도와 경도를 출력한다.
         Snackbar.make(activityRealtimeLocationBinding.root, "provider : ${location.provider}, 위도 :${location.latitude}, 경도 : ${location.longitude}",
-        Snackbar.LENGTH_SHORT).show()
+            Snackbar.LENGTH_SHORT).show()
 
         // 위도와 경도를 관리하는 객체를 생성한다.
         val userLocation = LatLng(location.latitude, location.longitude)

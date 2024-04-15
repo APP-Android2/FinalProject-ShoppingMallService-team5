@@ -25,6 +25,7 @@ class MainChatFragment : Fragment() {
     lateinit var chatActivity: ChatActivity
     lateinit var mainChatViewModel: MainChatViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -42,10 +43,14 @@ class MainChatFragment : Fragment() {
         return binding.root
     }
 
+    fun initData(){
+
+    }
+
     fun setToolbar(){
         binding.apply{
             toolbarMainChat.apply{
-                title = "채팅"
+
                 setNavigationIcon(R.drawable.ic_arrow_back_24px)
 
                 inflateMenu(R.menu.menu_main_chat)
@@ -93,8 +98,8 @@ class MainChatFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolderMainChat, position: Int) {
-            holder.rowMainChatBinding.textViewContentRowMainChat.text = "박지성... 너 축구 잘해? $position"
-            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "수원 손흥민 정찬호 $position"
+            holder.rowMainChatBinding.textViewContentRowMainChat.text = "박지성... 너 축구 잘해?"
+            holder.rowMainChatBinding.textViewNickNameRowMainChat.text = "정찬호"
             holder.rowMainChatBinding.textViewDateRowMainChat.text = "2024-04-01"
             holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_jch)
 
