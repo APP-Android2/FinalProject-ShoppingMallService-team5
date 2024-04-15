@@ -8,11 +8,17 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
 import kr.co.lion.mungnolza.ext.hideSoftInput
@@ -26,6 +32,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentUserAddressBinding? = null
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private val args: AppointmentUserAddressFragmentArgs by navArgs()
 
     private val binding get() = _binding!!
     var selectedVisitType: String? = null
@@ -45,14 +52,30 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private fun initToolbar(view: View) {
         binding.toolbar.setNavigationOnClickListener {
-            val action = AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelectionFragment()
+            val action: NavDirections = when(args.flag){
+                AppointmentMainFragment.ServiceType.JOGGING.value -> {
+                    AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelectionFragment()
+                }
+
+                AppointmentMainFragment.ServiceType.CARE.value->{
+                    AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelection2Fragment()
+
+                }
+
+                else -> { return@setNavigationOnClickListener }
+            }
             Navigation.findNavController(view).navigate(action)
         }
     }
     private fun initView() {
         with(binding) {
-            if(viewModel.careType.value == true){
-                addressContainer.visibility = GONE
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED){
+                    val careType = viewModel.careType.value.toString()
+                    if (careType == AppointmentMainFragment.CareType.VISIT.value){
+                        addressContainer.visibility = GONE
+                    }
+                }
             }
 
             btnSaveAddr.setOnClickListener(this@AppointmentUserAddressFragment)
@@ -62,6 +85,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             cardviewRegularVisit.setOnClickListener(this@AppointmentUserAddressFragment)
             btnSelectDate.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
+            btnNext.setOnClickListener(this@AppointmentUserAddressFragment)
             imgSelectTime.setOnClickListener(this@AppointmentUserAddressFragment)
         }
     }

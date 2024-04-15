@@ -83,7 +83,9 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                         )
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     } else {
-                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment()
+                        val flag = AppointmentMainFragment.ServiceType.CARE.value
+
+                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment(flag)
                         Navigation.findNavController(v).navigate(action)
                     }
                 }

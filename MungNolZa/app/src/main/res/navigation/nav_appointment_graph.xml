@@ -49,6 +49,10 @@
         <action
             android:id="@+id/to_matchingFragment"
             app:destination="@id/matchingFragment" />
+        <argument
+            android:name="flag"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelection2Fragment"
@@ -76,6 +80,9 @@
         <action
             android:id="@+id/to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/to_appointmentUserAddressFragment"
+            app:destination="@id/appointmentUserAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/petSitterInfoFragment"
@@ -94,6 +101,9 @@
         <action
             android:id="@+id/to_reservationConfirmedFragment"
             app:destination="@id/reservationConfirmedFragment" />
+        <action
+            android:id="@+id/_to_matchingFragment"
+            app:destination="@id/matchingFragment" />
     </fragment>
     <fragment
         android:id="@+id/reservationConfirmedFragment"
