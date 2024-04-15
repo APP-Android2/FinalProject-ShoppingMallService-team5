@@ -31,6 +31,8 @@ import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 import kr.co.lion.mungnolza.ui.intro.activity.AddressActivity
 import kr.co.lion.mungnolza.util.Tools.ADDR_RESULT_CODE
+import kr.co.lion.mungnolza.util.VisitType
+import kr.co.lion.mungnolza.util.Week
 
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
@@ -38,12 +40,11 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
     private lateinit var launcherForActivity: ActivityResultLauncher<Intent>
     private val args: AppointmentUserAddressFragmentArgs by navArgs()
-
+    private val selectedWeek = mutableListOf<String>()
     private val binding get() = _binding!!
     private var selectedVisitType: String? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAppointmentUserAddressBinding.inflate(inflater)
         return binding.root
@@ -91,6 +92,15 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNext.setOnClickListener(this@AppointmentUserAddressFragment)
             imgSelectTime.setOnClickListener(this@AppointmentUserAddressFragment)
+
+            imgWeekSunday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekSaturday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekMonday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekTuesday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekWednesday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekThursday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekFriday.setOnClickListener(this@AppointmentUserAddressFragment)
+            imgWeekSaturday.setOnClickListener(this@AppointmentUserAddressFragment)
         }
     }
 
@@ -98,7 +108,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         val contracts = ActivityResultContracts.StartActivityForResult()
         launcherForActivity = registerForActivityResult(contracts) { result ->
             val callback = result.data
-            Log.d("dsadsa", callback.toString())
             if (callback != null){
                 if (result.resultCode == ADDR_RESULT_CODE){
                     val data = callback.getStringExtra("data")
@@ -139,8 +148,13 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     "${day.month + 1}월 ${day.dayOfMonth}일"
                 }.joinToString(separator = ", ")
 
-                // textViewDateDone에 선택된 날짜들 표시
-                binding.btnSelectDate.text = formattedDates
+                val selectDate = formattedDates.split(",")
+
+                if (selectDate.size > 1){
+                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
+                }else{
+                    binding.btnSelectDate.text = formattedDates
+                }
             }
             .initiallyPickedMultipleDays(listOf())
             .build()
@@ -163,6 +177,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     }
                 }
                 R.id.btn_new_addr ->{
+                    binding.edittextAddr.setText("")
                     launcherForActivity.launch(Intent(requireContext(), AddressActivity::class.java))
                 }
                 R.id.cardview_common_visit -> {
@@ -172,7 +187,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
                     cardviewRegularVisit.isChecked = false
                     cardviewRegularVisit.backgroundTintList = requireContext().setColorWhite()
-                    selectedVisitType = visitType.COMMON_VISIT.value
+                    selectedVisitType = VisitType.COMMON_VISIT.type
                 }
                 R.id.cardview_regular_visit -> {
                     imgWeekContainer.visibility = VISIBLE
@@ -181,7 +196,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
                     cardviewCommonVisit.isChecked = false
                     cardviewCommonVisit.backgroundTintList = requireContext().setColorWhite()
-                    selectedVisitType = visitType.REGULAR_VISIT.value
+                    selectedVisitType = VisitType.REGULAR_VISIT.type
                 }
                 R.id.img_select_time -> {
                     // 버튼을 눌렀을 때 TimePicker를 표시하는 메서드 호출
@@ -195,8 +210,9 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                             positiveButtonClick = { }
                         )
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
-                    }else{
+                    }else if (selectedVisitType == VisitType.COMMON_VISIT.type){
                         calendarSettingForMultipleDates()
+                    } else{
                     }
 
                 }
@@ -204,17 +220,133 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     val action = AppointmentUserAddressFragmentDirections.toMatchingFragment()
                     Navigation.findNavController(v).navigate(action)
                 }
+                R.id.img_week_sunday -> {
+                    if (!selectedWeek.contains(Week.SUNDAY.day)){
+                        addToSelectList(Week.SUNDAY.day)
+                    }else{
+                        removeToSelectList(Week.SUNDAY.day)
+                    }
+                }
+                R.id.img_week_monday -> {
+                    if (!selectedWeek.contains(Week.MONDAY.day)){
+                        addToSelectList(Week.MONDAY.day)
+                    }else{
+                        removeToSelectList(Week.MONDAY.day)
+                    }
+                }
+                R.id.img_week_tuesday -> {
+                    if (!selectedWeek.contains(Week.TUESDAY.day)){
+                        addToSelectList(Week.TUESDAY.day)
+                    }else{
+                        removeToSelectList(Week.TUESDAY.day)
+                    }
+                }
+                R.id.img_week_wednesday -> {
+                    if (!selectedWeek.contains(Week.WEDNESDAY.day)){
+                        addToSelectList(Week.WEDNESDAY.day)
+                    }else{
+                        removeToSelectList(Week.WEDNESDAY.day)
+                    }
+                }
+                R.id.img_week_thursday -> {
+                    if (!selectedWeek.contains(Week.THURSDAY.day)){
+                        addToSelectList(Week.THURSDAY.day)
+                    }else{
+                        removeToSelectList(Week.THURSDAY.day)
+                    }
+                }
+                R.id.img_week_friday -> {
+                    if (!selectedWeek.contains(Week.FRIDAY.day)){
+                        addToSelectList(Week.FRIDAY.day)
+                    }else{
+                        removeToSelectList(Week.FRIDAY.day)
+                    }
+                }
+                R.id.img_week_saturday -> {
+                    if (!selectedWeek.contains(Week.SATURDAY.day)){
+                        addToSelectList(Week.SATURDAY.day)
+                    }else{
+                        removeToSelectList(Week.SATURDAY.day)
+                    }
+                }
+
                 else -> {}
             }
         }
     }
+
+    private fun addToSelectList(day: String){
+        with(binding){
+            when(day){
+                Week.SUNDAY.day -> {
+                    selectedWeek.add(Week.SUNDAY.day)
+                    imgWeekSunday.setImageResource(R.drawable.img_week_sunday)
+                }
+                Week.MONDAY.day -> {
+                    selectedWeek.add(Week.MONDAY.day)
+                    imgWeekMonday.setImageResource(R.drawable.img_week_monday)
+                }
+                Week.TUESDAY.day -> {
+                    selectedWeek.add(Week.TUESDAY.day)
+                    imgWeekTuesday.setImageResource(R.drawable.img_week_wednesday)
+                }
+                Week.WEDNESDAY.day -> {
+                    selectedWeek.add(Week.WEDNESDAY.day)
+                    imgWeekWednesday.setImageResource(R.drawable.img_week_wednesday)
+                }
+                Week.THURSDAY.day -> {
+                    selectedWeek.add(Week.THURSDAY.day)
+                    imgWeekThursday.setImageResource(R.drawable.img_week_thursday)
+                }
+                Week.FRIDAY.day -> {
+                    selectedWeek.add(Week.FRIDAY.day)
+                    imgWeekFriday.setImageResource(R.drawable.img_week_friday)
+                }
+                Week.SATURDAY.day -> {
+                    selectedWeek.add(Week.SATURDAY.day)
+                    imgWeekSaturday.setImageResource(R.drawable.img_week_saturday)
+                }
+            }
+        }
+    }
+
+    private fun removeToSelectList(day: String){
+        with(binding){
+            when(day){
+                Week.SUNDAY.day -> {
+                    selectedWeek.remove(Week.SUNDAY.day)
+                    imgWeekSunday.setImageResource(R.drawable.img_week_sunday_dog)
+                }
+                Week.MONDAY.day -> {
+                    selectedWeek.remove(Week.MONDAY.day)
+                    imgWeekMonday.setImageResource(R.drawable.img_week_monday_dog)
+                }
+                Week.TUESDAY.day -> {
+                    selectedWeek.remove(Week.TUESDAY.day)
+                    imgWeekTuesday.setImageResource(R.drawable.img_week_thursday_dog)
+                }
+                Week.WEDNESDAY.day -> {
+                    selectedWeek.remove(Week.WEDNESDAY.day)
+                    imgWeekWednesday.setImageResource(R.drawable.img_week_wednesday_dog)
+                }
+                Week.THURSDAY.day -> {
+                    selectedWeek.remove(Week.THURSDAY.day)
+                    imgWeekThursday.setImageResource(R.drawable.img_week_thursday_dog)
+                }
+                Week.FRIDAY.day -> {
+                    selectedWeek.remove(Week.FRIDAY.day)
+                    imgWeekFriday.setImageResource(R.drawable.img_week_friday_dog)
+                }
+                Week.SATURDAY.day -> {
+                    selectedWeek.remove(Week.SATURDAY.day)
+                    imgWeekSaturday.setImageResource(R.drawable.img_week_saturday_dog)
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    enum class visitType(val value: String) {
-        COMMON_VISIT("common visit"),
-        REGULAR_VISIT("regular visit"),
     }
 }
