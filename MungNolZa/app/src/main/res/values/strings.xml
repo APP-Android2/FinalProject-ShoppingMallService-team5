@@ -44,7 +44,7 @@
     <string name="jogging_reservation">산책 예약</string>
     <string name="plz_select_reservation">원하시는 예약을 선택해주세요</string>
     <string name="care_reservation">돌봄 예약</string>
-    <string name="no_pet_msg1">등록된 반려 동물이 없어요\n 반려 동물을 등록해주세요</string>
+    <string name="no_pet_msg1">등록된 반려 동물이 없어요\n소중한 우리 아이를 등록해주세요</string>
     <string name="go_pet_registration">우리 아이 등록하기</string>
     <string name="select_reservation_pet">예약할 반려동물 선택</string>
     <string name="plz_enter_detail_addr">상세주소를 입력해주세요.</string>
@@ -91,5 +91,6 @@
     <string name="lets_reserve">예약하기</string>
     <string name="lets_reserve_list">예약 목록 보기</string>
     <string name="view_all">전체 보기</string>
+    <string name="reserve_complete">예약이 완료되었어요</string>
 
 </resources>

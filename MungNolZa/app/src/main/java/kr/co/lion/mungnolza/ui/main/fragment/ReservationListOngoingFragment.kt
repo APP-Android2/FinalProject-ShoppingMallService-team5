@@ -19,7 +19,6 @@ class ReservationListOngoingFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
 
         _binding = FragmentReservationListOngoingBinding.inflate(inflater, container, false)
 
