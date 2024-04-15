@@ -9,12 +9,12 @@
         android:visible="true" />
     <item
         android:id="@+id/menu_item_bottom_navigation_chatting"
-        android:icon="@drawable/ic_chat_bubble_24px"
+        android:icon="@drawable/ic_forum_24px"
         android:title="@string/menu_item_bottom_navigation_chatting"
         android:visible="true" />
     <item
         android:id="@+id/menu_item_bottom_navigation_freeboard"
-        android:icon="@drawable/ic_freeboard_24px"
+        android:icon="@drawable/ic_newspaper_24px"
         android:title="@string/menu_item_bottom_navigation_freeboard"
         android:visible="true" />
     <item

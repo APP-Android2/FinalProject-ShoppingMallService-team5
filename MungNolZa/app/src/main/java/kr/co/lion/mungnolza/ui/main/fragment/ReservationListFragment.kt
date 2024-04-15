@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.reservation_list.fragment
+package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,26 +9,32 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.databinding.FragmentReservationListBinding
-import kr.co.lion.mungnolza.ui.main.fragment.ReservationListOngoingFragment
+import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListLastFragment
+import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListOngoingFragment
 
 
 class ReservationListFragment : Fragment() {
 
-    lateinit var fragmentReservationListBinding: FragmentReservationListBinding
-    lateinit var reservationListActivity : ReservationListActivity
+    private var _binding: FragmentReservationListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        _binding = FragmentReservationListBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
-        fragmentReservationListBinding = FragmentReservationListBinding.inflate(layoutInflater)
-        reservationListActivity = activity as ReservationListActivity
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
 
+    private fun initView(){
         // 진행 중인 예약과 지난 예약을 보여줄 두 개의 Fragment 객체 생성
         val reservationListOngoingFragment = ReservationListOngoingFragment()
         val reservationListLastFragment = ReservationListLastFragment()
 
         // 두 개의 Fragment를 담은 리스트 생성
-        val fragments = arrayListOf<Fragment>(reservationListOngoingFragment, reservationListLastFragment)
+        val fragments = arrayListOf(reservationListOngoingFragment, reservationListLastFragment)
         // ViewPager2에 사용할 어댑터 생성
         val tabAdapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
@@ -40,19 +46,15 @@ class ReservationListFragment : Fragment() {
             }
         }
         // ViewPager2에 어댑터 설정
-        fragmentReservationListBinding.viewPagerReservationList.adapter = tabAdapter
+        binding.viewPagerReservationList.adapter = tabAdapter
         // TabLayout과 ViewPager2를 연결하여 탭을 설정하는 코드
-        TabLayoutMediator(fragmentReservationListBinding.tabLayoutReservationList, fragmentReservationListBinding.viewPagerReservationList) {tab,position ->
+        TabLayoutMediator(binding.tabLayoutReservationList, binding.viewPagerReservationList) {tab,position ->
             when(position){
                 0 -> tab.setText("진행 중인 예약")
                 1 -> tab.setText("지난 예약")
             }
         }.attach()
-
-        return fragmentReservationListBinding.root
     }
-
-    //
 }
 
 
