@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.repository
+package kr.co.lion.mungnolza.repository.user
 
 import android.net.Uri
 import kr.co.lion.mungnolza.model.UserModel

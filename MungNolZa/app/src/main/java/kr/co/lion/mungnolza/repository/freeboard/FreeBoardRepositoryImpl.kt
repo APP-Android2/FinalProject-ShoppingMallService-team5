@@ -1,12 +1,10 @@
-package kr.co.lion.mungnolza.repository
+package kr.co.lion.mungnolza.repository.freeboard
 
 import android.net.Uri
 import android.util.Log
 import com.google.firebase.Firebase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.mungnolza.model.BoardModel
