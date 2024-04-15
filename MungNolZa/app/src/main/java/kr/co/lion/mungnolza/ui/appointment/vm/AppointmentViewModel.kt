@@ -1,6 +1,5 @@
 package kr.co.lion.mungnolza.ui.appointment.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +41,6 @@ class AppointmentViewModel(
 
     fun getUserAddress() = viewModelScope.launch{
         val userNumber = myUserNumber.value
-        Log.d("sdasdas", userNumber.toString())
         _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber.toString())
     }
 

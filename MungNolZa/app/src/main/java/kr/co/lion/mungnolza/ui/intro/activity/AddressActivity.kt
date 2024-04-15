@@ -7,7 +7,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kr.co.lion.mungnolza.databinding.ActivityAddressBinding
-import kr.co.lion.mungnolza.util.Tools.ADDR_RESULT_RESULT_CODE
+import kr.co.lion.mungnolza.util.Tools.ADDR_RESULT_CODE
 
 class AddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddressBinding
@@ -40,7 +40,7 @@ class AddressActivity : AppCompatActivity() {
             // 카카오 주소 검색 API 결과를 브릿지 경로를 통해 전달 받는다(from Javascript)
             val intent = Intent()
             intent.putExtra("data", data)
-            setResult(ADDR_RESULT_RESULT_CODE, intent)
+            setResult(ADDR_RESULT_CODE, intent)
             finish()
         }
     }

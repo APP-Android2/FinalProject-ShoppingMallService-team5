@@ -48,7 +48,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/v"
+                    android:background="@color/app_main_color"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -57,14 +57,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/shared_common_margin"
-                        android:fontFamily="@font/binggrae_bold"
+                        android:textStyle="bold"
                         android:text="@string/user_where_to_visit"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
                     <Button
                         android:id="@+id/btn_save_addr"
-                        style="@style/Widget.Material3.Button.TonalButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -73,7 +72,6 @@
 
                     <Button
                         android:id="@+id/btn_new_addr"
-                        style="@style/Widget.Material3.Button.TonalButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -106,17 +104,6 @@
                         android:inputType="text"
                         android:textColor="@color/white" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_input_addr_complete"
-                        android:layout_width="@dimen/shared_button_width"
-                        android:layout_height="@dimen/shared_button_height"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/shared_common_margin"
-                        android:background="@drawable/shared_button_design"
-                        android:fontFamily="@font/binggrae_bold"
-                        android:text="@string/next"
-                        android:textColor="@color/blueGray800"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

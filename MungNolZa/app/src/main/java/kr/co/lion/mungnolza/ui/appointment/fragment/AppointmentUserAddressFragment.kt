@@ -1,12 +1,16 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,21 +25,22 @@ import com.google.android.material.timepicker.TimeFormat
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
-import kr.co.lion.mungnolza.ext.hideSoftInput
 import kr.co.lion.mungnolza.ext.setColorWhite
-import kr.co.lion.mungnolza.ext.showSoftInput
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
+import kr.co.lion.mungnolza.ui.intro.activity.AddressActivity
+import kr.co.lion.mungnolza.util.Tools.ADDR_RESULT_CODE
 
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentUserAddressBinding? = null
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private lateinit var launcherForActivity: ActivityResultLauncher<Intent>
     private val args: AppointmentUserAddressFragmentArgs by navArgs()
 
     private val binding get() = _binding!!
-    var selectedVisitType: String? = null
+    private var selectedVisitType: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -48,6 +53,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initToolbar(view)
+        initContract()
     }
 
     private fun initToolbar(view: View) {
@@ -59,7 +65,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
                 AppointmentMainFragment.ServiceType.CARE.value->{
                     AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelection2Fragment()
-
                 }
 
                 else -> { return@setNavigationOnClickListener }
@@ -80,13 +85,26 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
             btnSaveAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
-            btnInputAddrComplete.setOnClickListener(this@AppointmentUserAddressFragment)
             cardviewCommonVisit.setOnClickListener(this@AppointmentUserAddressFragment)
             cardviewRegularVisit.setOnClickListener(this@AppointmentUserAddressFragment)
             btnSelectDate.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNext.setOnClickListener(this@AppointmentUserAddressFragment)
             imgSelectTime.setOnClickListener(this@AppointmentUserAddressFragment)
+        }
+    }
+
+    private fun initContract(){
+        val contracts = ActivityResultContracts.StartActivityForResult()
+        launcherForActivity = registerForActivityResult(contracts) { result ->
+            val callback = result.data
+            Log.d("dsadsa", callback.toString())
+            if (callback != null){
+                if (result.resultCode == ADDR_RESULT_CODE){
+                    val data = callback.getStringExtra("data")
+                    binding.edittextAddr.setText(data)
+                }
+            }
         }
     }
 
@@ -135,20 +153,17 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             when (v?.id) {
                 R.id.btn_save_addr -> {
                     // 내 주소 가져오기
+                    viewModel.getUserAddress()
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        repeatOnLifecycle(Lifecycle.State.STARTED){
+                            viewModel.userAddress.collect{
+                                edittextAddr.setText(it)
+                            }
+                        }
+                    }
                 }
                 R.id.btn_new_addr ->{
-                    // 주소 API 호출
-                }
-
-                R.id.btn_input_addr_complete ->{
-                    if (edittextAddr.text.toString().isEmpty()){
-                        edittextAddrLayout.helperText = "주소를 입력해 주세요"
-                        requireContext().showSoftInput(edittextAddr)
-                    }else{
-                        edittextAddrLayout.helperText = ""
-                        timeSelectContainer.visibility = VISIBLE
-                        requireContext().hideSoftInput(requireActivity())
-                    }
+                    launcherForActivity.launch(Intent(requireContext(), AddressActivity::class.java))
                 }
                 R.id.cardview_common_visit -> {
                     imgWeekContainer.visibility = GONE

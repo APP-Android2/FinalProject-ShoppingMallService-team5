@@ -36,7 +36,7 @@ class MatchingFragment : Fragment() {
     private fun initToolbar(view: View){
         with(binding.toolbar){
             setNavigationOnClickListener {
-                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
+                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null, null, 0)
                 Navigation.findNavController(view).navigate(action)
             }
         }
