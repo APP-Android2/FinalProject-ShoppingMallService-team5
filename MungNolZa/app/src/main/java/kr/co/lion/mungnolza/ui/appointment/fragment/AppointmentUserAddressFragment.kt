@@ -35,6 +35,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initToolbar(view)
     }
 
@@ -44,7 +45,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             Navigation.findNavController(view).navigate(action)
         }
     }
-
     private fun initView() {
 
         with(binding) {
@@ -166,6 +166,10 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                         calendarSettingForMultipleDates()
                     }
 
+                }
+                R.id.btn_next -> {
+                    val action = AppointmentUserAddressFragmentDirections.toMatchingFragment()
+                    Navigation.findNavController(v).navigate(action)
                 }
                 else -> {}
             }
