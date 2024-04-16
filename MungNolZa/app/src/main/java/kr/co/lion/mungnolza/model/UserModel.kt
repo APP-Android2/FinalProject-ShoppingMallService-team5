@@ -1,15 +1,15 @@
 package kr.co.lion.mungnolza.model
 
 data class UserModel(
-    var uniqueNumber: String,
-    var userNickname: String,
-    var userName: String,
-    var userEmail: String,
-    var userPhone: String,
-    var userAddress: String,
-    var userProfileImgPath: String,
-    var userAgeRange : String,
-    var userGender: String
+    val uniqueNumber: String,
+    val userNickname: String,
+    val userName: String,
+    val userEmail: String,
+    val userPhone: String,
+    val userAddress: String,
+    val userProfileImgPath: String,
+    val userAgeRange : String,
+    val userGender: String
 ){
     constructor(): this(
         uniqueNumber = "",

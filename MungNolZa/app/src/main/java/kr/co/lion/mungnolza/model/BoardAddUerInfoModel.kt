@@ -1,9 +1,9 @@
 package kr.co.lion.mungnolza.model
 
-import android.net.Uri
+import java.net.URI
 
 data class BoardAddUerInfoModel (
     val contentData: BoardModel,
     val writerNickName: String,
-    val imgUri: Uri
+    val imgUri: URI
 )

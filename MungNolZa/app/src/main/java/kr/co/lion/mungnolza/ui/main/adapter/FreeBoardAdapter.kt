@@ -11,9 +11,15 @@ class FreeBoardAdapter(
     private val dataSet: List<BoardAddUerInfoModel>,
     private val onClick: (Int) -> Unit
 ) : RecyclerView.Adapter<FreeBoardAdapter.FreeBoardAdapterViewHolder>() {
+
     class FreeBoardAdapterViewHolder(
         private val binding: RowFreeBoardBinding, private val onClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                onClick.invoke(adapterPosition)
+            }
+        }
         fun bind(item: BoardAddUerInfoModel) {
             with(binding) {
                 tvTitle.text = item.contentData.boardTitle
@@ -23,12 +29,8 @@ class FreeBoardAdapter(
                 tvNickname.text = item.writerNickName
 
                 Glide.with(binding.root)
-                    .load(item.imgUri)
+                    .load(item.imgUri.toString())
                     .into(thumbnail)
-
-                root.setOnClickListener {
-                    onClick.invoke(item.contentData.boardIdx)
-                }
             }
         }
     }
