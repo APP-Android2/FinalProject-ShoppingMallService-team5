@@ -1,7 +1,10 @@
 package kr.co.lion.mungnolza.data.repository
 
+import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
@@ -70,9 +73,9 @@ class BoardRepositoryImpl() : BoardRepository {
         // 삭제가 아닌 BoardState 변경
     }
 
-    override suspend fun getBoardImageListPath(boardModel: BoardModel):Uri?{
+    override suspend fun getBoardImageUri(boardIdx:Int,imageFilePath: String):Uri?{
         var response:Uri? = null
-        val path = "board/${boardModel.boardIdx}/${boardModel.boardImagePathList}"
+        val path = "board/${boardIdx}/${imageFilePath}"
         try{
             response = storage.child(path).downloadUrl.await()
         }catch (e:Exception){
@@ -80,8 +83,15 @@ class BoardRepositoryImpl() : BoardRepository {
                 "Error Get BoardImageListPath : ${storage.child(path)}")
         }
         return response
-
     }
 
+    override suspend fun getBoardImageUriList(boardModel:BoardModel): MutableList<Uri?> {
+        var imageUriList:MutableList<Uri?> = mutableListOf()
+
+        boardModel.boardImagePathList.forEach {
+            imageUriList.add(getBoardImageUri(boardModel.boardIdx,it!!)!!)
+        }
+        return imageUriList
+    }
 
 }

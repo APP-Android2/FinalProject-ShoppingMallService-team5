@@ -22,38 +22,46 @@ import kr.co.lion.mungnolza.ui.main.adapter.FreeBoardAdapter
 import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
 import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
 
-class FreeBoardFragment : Fragment() {
+class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
 
     private var _binding: FragmentFreeBoardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
     private lateinit var freeBoardAdapter: FreeBoardAdapter
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentFreeBoardBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentFreeBoardBinding.bind(view)
         initView()
-
-        return binding.root
     }
 
     private fun initView() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.boardContentList.collect { boardList ->
-                    freeBoardAdapter = FreeBoardAdapter(
+                    val freeBoardAdapter = FreeBoardAdapter(
                         dataSet = boardList,
                         onClick = { selectedItemIdx ->
-                            val selectedItem = boardList.find { it.contentData.boardIdx == selectedItemIdx }
-                            val selectedItemData = selectedItem?.contentData
+                            val selectedItem = boardList[selectedItemIdx]
+
+                            val selectedItemData = selectedItem.contentData
+                            val writerData = viewModel.findUserData(selectedItemData.boardWriterIdx)
+
                             val intent = Intent(requireContext(), BoardActivity::class.java)
-                            Log.d("FreeBoardFragment intent 데이터","${selectedItem}")
                             intent.putExtra("boardData", selectedItemData)
+                            intent.putExtra("userData", writerData)
+
                             startActivity(intent)
                         }
                     )
-                    setRecyclerViewFreeBoard()
+                    with(binding.recyclerViewFreeBoard) {
+                        adapter = freeBoardAdapter
+                        layoutManager = LinearLayoutManager(requireContext())
+                        val deco = MaterialDividerItemDecoration(
+                            requireContext(),
+                            MaterialDividerItemDecoration.VERTICAL
+                        )
+                        addItemDecoration(deco)
+                    }
                 }
             }
         }

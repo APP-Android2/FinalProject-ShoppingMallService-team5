@@ -1,6 +1,7 @@
 package kr.co.lion.mungnolza.ui.freeboard.fragment
 
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,16 +10,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.data.repository.BoardRepository
+import kr.co.lion.mungnolza.data.repository.BoardRepositoryImpl
 import kr.co.lion.mungnolza.databinding.FragmentShowDetailBoardBinding
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.model.UserModel
+import kr.co.lion.mungnolza.repository.user.UserRepository
+import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.adapter.BoardCarouselAdapter
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.BoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
+import java.net.URI
 
 
 class ShowDetailBoardFragment : Fragment() {
@@ -33,10 +46,17 @@ class ShowDetailBoardFragment : Fragment() {
 
     var userData: UserModel? = null
     var boardData: BoardModel? = null
+    var boardList: ArrayList<BoardModel>? = null
+
+    lateinit var userRepository: UserRepository
+    lateinit var boardRepository: BoardRepository
+    var imgUri: URI? = null
+
+    var imageUriList: MutableList<Uri?> = mutableListOf()
 
     var imagePathList = mutableListOf<String>()
 
-    var boardIdx: Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,13 +68,9 @@ class ShowDetailBoardFragment : Fragment() {
 
         setTest()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            boardData = boardActivity.intent.getParcelableExtra("boardData", BoardModel::class.java)
-        } else {
-            boardData = boardActivity.intent.getParcelableExtra<BoardModel>("boardData")
+        lifecycleScope.launch {
+            initData()
         }
-
-        Log.d("ShowDetailBoardFragment intent 데이터", "${boardData?.boardImagePathList?.get(0)}")
 
         applyUserData()
 
@@ -64,10 +80,10 @@ class ShowDetailBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setToolbar()
         setCarousel()
-        setCommentButton()
 
+        setToolbar()
+        setCommentButton()
     }
 
     override fun onDestroy() {
@@ -77,19 +93,67 @@ class ShowDetailBoardFragment : Fragment() {
 
     // ----------------------------------------------------------------------------
 
+    suspend fun initData(){
+        userRepository = UserRepositoryImpl()
+        boardRepository = BoardRepositoryImpl()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            boardData = boardActivity.intent.getParcelableExtra("boardData", BoardModel::class.java)
+            userData = boardActivity.intent.getParcelableExtra("userData", UserModel::class.java)
+        } else {
+            boardData = boardActivity.intent.getParcelableExtra<BoardModel>("boardData")
+            userData = boardActivity.intent.getParcelableExtra<UserModel>("userData")
+        }
+
+        boardData?.boardImagePathList?.forEach {
+            Log.d("게시판 boardImagePathList","${it}")
+        }
+
+
+        val job1 = CoroutineScope(Dispatchers.IO).launch {
+            imgUri = userRepository.fetchUserProfileImage(userData?.userProfileImgPath!!)!!
+            Log.d("프로필 이미지 uri","${imgUri}")
+
+
+        }
+        job1.join()
+
+        val job2 = CoroutineScope(Dispatchers.IO).launch {
+            boardList = boardRepository.getBoardList()
+            imageUriList = boardRepository.getBoardImageUriList(boardData!!)
+            imageUriList.forEach {
+                Log.d("이미지 Uri 리스트",it.toString())
+            }
+
+
+        }
+        job2.join()
+    }
     fun setTest() {
 
     }
 
-    suspend fun applyImage(){
-        // binding.imageViewProfileShowDetailBoard.setImageURI()
-    }
+
     fun applyUserData() {
-        binding.editTextTitleShowDetailBoard.setText(boardData?.boardTitle)
-        binding.editTextContentShowDetailBoard.setText(boardData?.boardContent)
-        binding.textViewDateShowDetailBoard.text = boardData?.boardWriteDate
+        binding.apply{
+            editTextTitleShowDetailBoard.setText(boardData?.boardTitle)
+            editTextContentShowDetailBoard.setText(boardData?.boardContent)
+            textViewDateShowDetailBoard.text = boardData?.boardWriteDate
+            textViewNickNameShowDetailBoard.text = userData?.userNickname
 
 
+            lifecycleScope.launch {
+                delay(1000)
+                Log.d("이미지 Uri 리스트 Glide 이전",imgUri.toString())
+                Glide.with(requireContext())
+                    .load(imgUri)
+                    .error(R.drawable.eunwoo)
+                    .into(binding.imageViewProfileShowDetailBoard)
+
+                // boardRepository.applyBoardImage(requireContext(), boardData!!.boardImagePathList[0]!!, binding.imageViewProfileShowDetailBoard)
+            }
+
+        }
         // 유저 정보는 boardModel로 접근해야 하는데 테스트는 일단 직접 호출
     }
 
@@ -107,7 +171,7 @@ class ShowDetailBoardFragment : Fragment() {
             // RecyclerView 셋팅
             recyclerViewPhotosShowDetailBoard.apply {
                 // 어댑터
-                adapter = BoardCarouselAdapter()
+                adapter = BoardCarouselAdapter(imageUriList)
                 // 레이아웃 매니저
                 layoutManager = CarouselLayoutManager()
                 // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
@@ -181,6 +245,4 @@ class ShowDetailBoardFragment : Fragment() {
 
         bottomCommentFragment.show(boardActivity.supportFragmentManager, "BottomCommentSheet")
     }
-
-
 }

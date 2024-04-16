@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.data.repository.BoardRepository
 import kr.co.lion.mungnolza.model.BoardModel
-import kr.co.lion.mungnolza.repository.FreeBoardRepository
-import kr.co.lion.mungnolza.repository.UserRepository
+import kr.co.lion.mungnolza.repository.user.UserRepository
 
 class BoardViewModel(
     private val boardRepository:BoardRepository,
@@ -32,7 +31,4 @@ class BoardViewModel(
         return boardList
     }
 
-    private suspend fun getBoardImg(boardModel: BoardModel): Uri?{
-        return boardRepository.getBoardImageListPath(boardModel)
-    }
 }

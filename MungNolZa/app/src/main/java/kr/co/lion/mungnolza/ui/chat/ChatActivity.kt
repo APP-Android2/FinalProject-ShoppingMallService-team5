@@ -23,7 +23,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
 
-        replaceFragment(ChatFragmentName.MAIN_CHAT_FRAGMENT,false,false,null)
+        replaceFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT,false,false,null)
 
         setContentView(binding.root)
     }
