@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.repository
+package kr.co.lion.mungnolza.repository.user
 
 import android.util.Log
 import com.google.firebase.Firebase
@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.net.URI
-
 class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
     private val storage = Firebase.storage.reference
@@ -38,5 +37,4 @@ class UserRepositoryImpl : UserRepository {
             }
         }
     }
-
 }

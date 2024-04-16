@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.repository
+package kr.co.lion.mungnolza.repository.freeboard
 
 import java.net.URI
 import kr.co.lion.mungnolza.model.BoardModel

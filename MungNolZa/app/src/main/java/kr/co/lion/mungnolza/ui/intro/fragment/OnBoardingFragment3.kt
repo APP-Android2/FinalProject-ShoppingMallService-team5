@@ -6,13 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.lion.mungnolza.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.databinding.FragmentOnBoarding3Binding
 import kr.co.lion.mungnolza.ui.main.MainActivity
+import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
+import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
 
 class OnBoardingFragment3 : Fragment() {
     private var _binding: FragmentOnBoarding3Binding? = null
     private val binding get() = _binding!!
+    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOnBoarding3Binding.inflate(layoutInflater)
         return binding.root
@@ -25,7 +33,15 @@ class OnBoardingFragment3 : Fragment() {
 
     private fun initView(){
         binding.btnNext.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.myPetData.collect {
+                        val intent = Intent(requireActivity(), MainActivity::class.java)
+                        intent.putExtra("myPet", it.toTypedArray())
+                        startActivity(intent)
+                    }
+                }
+            }
         }
     }
 

@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/address_container"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -332,26 +333,6 @@
                             android:src="@drawable/ic_add_box_24px"/>
                     </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/checkBoxTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="00:00 - 00:00로 펫시터님이 협의를 제안합니다"
-                        android:visibility="visible" />
-
-                    <CheckBox
-                        android:id="@+id/checkBoxCan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="펫시터님 가능한 시간에 맞출 수 있어요\n채팅으로 펫시터님이 직접 가능한 시간을 제안합니다"
-                        android:visibility="visible" />
-
-                    <CheckBox
-                        android:id="@+id/checkBoxImpossible"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="시간 협의 불가해요.\n예약 신청 후에도 목록에서 언제든 변경 가능합니다."
-                        android:visibility="visible" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -21,8 +21,8 @@
 
     <fragment
         android:id="@+id/menu_item_bottom_navigation_reservation"
-        android:name="kr.co.lion.mungnolza.ui.main.fragment.ReservationListOngoingFragment"
-        tools:layout="@layout/fragment_reservation_list_ongoing" />
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.ReservationListFragment"
+        tools:layout="@layout/fragment_reservation_list" />
 
     <fragment
         android:id="@+id/menu_item_bottom_navigation_profile"

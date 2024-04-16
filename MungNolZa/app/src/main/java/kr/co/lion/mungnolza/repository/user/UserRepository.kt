@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.repository
+package kr.co.lion.mungnolza.repository.user
 
 import java.net.URI
 
