@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.intro.fragment
+package kr.co.lion.mungnolza.ui.onboarding.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
