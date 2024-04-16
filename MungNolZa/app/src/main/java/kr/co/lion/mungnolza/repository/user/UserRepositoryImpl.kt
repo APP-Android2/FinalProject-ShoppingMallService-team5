@@ -22,8 +22,6 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
-<<<<<<< HEAD
-=======
     override suspend fun fetchUserAddress(uniqueNumber: String): String {
         return try {
             val querySnapshot = userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
@@ -35,7 +33,6 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
     override suspend fun fetchAllUserNickName(uniqueNumber: String): List<String> {
         return withContext(Dispatchers.IO) {
             try {

@@ -25,11 +25,9 @@ class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
     private var _binding: FragmentFreeBoardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
-<<<<<<< HEAD
-    private lateinit var freeBoardAdapter: FreeBoardAdapter
-=======
 
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
+    private lateinit var freeBoardAdapter: FreeBoardAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentFreeBoardBinding.bind(view)
@@ -49,13 +47,10 @@ class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
                             val writerData = viewModel.findUserData(selectedItemData.boardWriterIdx)
 
                             val intent = Intent(requireContext(), BoardActivity::class.java)
-<<<<<<< HEAD
+
                             intent.putExtra("boardData", selectedItemData)
                             intent.putExtra("userData", writerData)
-=======
-                            intent.putExtra("content", selectedItemData)
-                            intent.putExtra("writer", writerData)
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
+
 
                             startActivity(intent)
                         }
@@ -84,8 +79,5 @@ class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
         super.onDestroyView()
         _binding = null
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
 }

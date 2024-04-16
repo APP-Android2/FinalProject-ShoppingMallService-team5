@@ -21,16 +21,16 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
+
             android:name=".ui.freeboard.AddBoardActivity"
             android:exported="false" />
-=======
+        <activity
             android:name=".ui.appointment.NoPetActivity"
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.AddressActivity"
             android:exported="true" />
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
+
         <activity
             android:name=".ui.TestActivity"
             android:exported="true" />
@@ -64,17 +64,14 @@
             </intent-filter>
         </activity>
         <activity
-<<<<<<< HEAD
+
             android:name=".ui.intro.activity.JoinActivity"
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.StartActivity"
             android:exported="true"></activity>
         <activity
-            android:name=".ui.intro.activity.OnBoardingActivity"
-=======
             android:name=".ui.onboarding.OnBoardingActivity"
->>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.LoginActivity"
