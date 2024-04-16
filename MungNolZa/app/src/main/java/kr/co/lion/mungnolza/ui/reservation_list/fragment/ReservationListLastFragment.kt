@@ -17,19 +17,24 @@ import kr.co.lion.mungnolza.util.ReservationListFragmentName
 class ReservationListLastFragment : Fragment() {
 
     lateinit var fragmentReservationListLastBinding : FragmentReservationListLastBinding
-    lateinit var reservationListActivity: ReservationListActivity
+    //lateinit var reservationListActivity: ReservationListActivity
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentReservationListLastBinding = FragmentReservationListLastBinding.inflate(layoutInflater)
-        reservationListActivity = activity as ReservationListActivity
-
-        setRecyclerView()
-        setTextView()
+        //reservationListActivity = activity as ReservationListActivity
 
         return fragmentReservationListLastBinding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
+        setTextView()
+    }
+
 
     // textViewReservationListLastCount - 총 건수 설정
     fun setTextView(){
@@ -45,9 +50,9 @@ class ReservationListLastFragment : Fragment() {
                 // 어뎁터 설정
                 adapter = RecyclerMainAdapter()
                 // 레이아웃
-                layoutManager = LinearLayoutManager(reservationListActivity)
+                layoutManager = LinearLayoutManager(requireContext())
                 // 데코
-                val deco = MaterialDividerItemDecoration(reservationListActivity, MaterialDividerItemDecoration.VERTICAL)
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
                 addItemDecoration(deco)
             }
         }
@@ -90,12 +95,12 @@ class ReservationListLastFragment : Fragment() {
             // '후기작성' 항목을 누르면 동작하는 리스너
             holder.rowReservationListLastBinding.textViewRowReservationiListLastWriteReview.setOnClickListener {
                 // PetSitterReviewWriteFragment가 보여진다
-                reservationListActivity.replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+                (requireActivity() as ReservationListActivity).replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
             }
             // '후기작성' 아이콘 항목을 누르면 동작하는 리스너
             holder.rowReservationListLastBinding.imageViewRowReservationListLastEdit.setOnClickListener {
                 // PetSitterReviewWriteFragment가 보여진다
-                reservationListActivity.replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+                (requireActivity() as ReservationListActivity).replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
             }
         }
     }
