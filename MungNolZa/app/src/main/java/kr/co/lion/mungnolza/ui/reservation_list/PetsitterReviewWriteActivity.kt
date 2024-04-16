@@ -1,76 +1,52 @@
-package kr.co.lion.mungnolza.ui.reservation_list.fragment
+package kr.co.lion.mungnolza.ui.reservation_list
 
 import android.content.DialogInterface
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.repository.PetsitterReviewRepository
-import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewWriteBinding
+import kr.co.lion.mungnolza.databinding.ActivityPetsitterReviewWriteBinding
+import kr.co.lion.mungnolza.ext.hideSoftInput
+import kr.co.lion.mungnolza.ext.showErrorDialog
 import kr.co.lion.mungnolza.model.PetsitterReviewModel
+import kr.co.lion.mungnolza.repository.PetsitterReviewRepository
 import kr.co.lion.mungnolza.ui.reservation_list.viewmodel.PetSitterReviewWriteViewModel
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
 import java.text.SimpleDateFormat
 import java.util.Date
-// ContextExt.kt에 정의된 확장 함수를 import
-import kr.co.lion.mungnolza.ext.hideSoftInput
-import kr.co.lion.mungnolza.ext.showErrorDialog
 
-class PetSitterReviewWriteFragment : Fragment() {
+class PetsitterReviewWriteActivity : AppCompatActivity() {
 
-    lateinit var fragmentPetSitterReviewWriteBinding: FragmentPetSitterReviewWriteBinding
-    lateinit var reservationListActivity: ReservationListActivity
+    lateinit var activityPetsitterReviewWriteBinding: ActivityPetsitterReviewWriteBinding
 
     lateinit var petSitterReviewWriteViewModel : PetSitterReviewWriteViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        fragmentPetSitterReviewWriteBinding = FragmentPetSitterReviewWriteBinding.inflate(layoutInflater)
-        reservationListActivity = activity as ReservationListActivity
+        activityPetsitterReviewWriteBinding = ActivityPetsitterReviewWriteBinding.inflate(layoutInflater)
+        setContentView(activityPetsitterReviewWriteBinding.root)
 
         // ViewModel 객체를 생성한다.
         petSitterReviewWriteViewModel = PetSitterReviewWriteViewModel()
         // 생성한 ViewModel 객체를 layout 파일에 설정해준다.
-        fragmentPetSitterReviewWriteBinding.petSitterReviewWriteViewModel = petSitterReviewWriteViewModel
+        activityPetsitterReviewWriteBinding.petSitterReviewWriteViewModel = petSitterReviewWriteViewModel
         // ViewModel의 생명주기를 Fragment와 일치시킨다. Fragment가 살아 있을 때 ViewModel 객체도 살아 있게끔 해준다.
-        fragmentPetSitterReviewWriteBinding.lifecycleOwner = this
+        activityPetsitterReviewWriteBinding.lifecycleOwner = this
 
-
-        setToolbar()
         setButtonDone()
         setTextField()
         initData()
-
-        return fragmentPetSitterReviewWriteBinding.root
-    }
-
-    // 툴바 설정
-    fun setToolbar(){
-        fragmentPetSitterReviewWriteBinding.apply {
-            toolbarPetSitterReviewWrite.apply {
-                // 뒤로가기
-                setNavigationIcon(R.drawable.ic_arrow_back_24px)
-                setNavigationOnClickListener {
-                    // PetSitterReviewWriteFragment를 사라지게 한다.
-                    reservationListActivity.removeFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT)
-                }
-            }
-        }
     }
 
     // 작성 완료 버튼 (이벤트 설정)
     fun setButtonDone(){
         // buttonPetsitterReviewWriteDone 작성완료 버튼 설정
-        fragmentPetSitterReviewWriteBinding.apply {
+        activityPetsitterReviewWriteBinding.apply {
             buttonPetsitterReviewWriteDone.apply {
                 // 버튼을 눌럿을 때
                 setOnClickListener {
@@ -84,10 +60,10 @@ class PetSitterReviewWriteFragment : Fragment() {
                         savePetsitterReviewData()
 
                         // 키보드를 내려준다
-                        context.hideSoftInput(reservationListActivity)
+                        context.hideSoftInput(this@PetsitterReviewWriteActivity)
 
                         // 작성완료 다이어로그를 띄운다
-                        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(reservationListActivity)
+                        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this@PetsitterReviewWriteActivity)
                         materialAlertDialogBuilder.setTitle("작성 완료")
                         materialAlertDialogBuilder.setMessage("후기 작성이 완료되었습니다 !")
                         materialAlertDialogBuilder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
@@ -101,7 +77,7 @@ class PetSitterReviewWriteFragment : Fragment() {
     }
 
     // 데잍
-     fun savePetsitterReviewData() {
+    fun savePetsitterReviewData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 펫시터 후기 번호 시퀀스 값을 가져온다.
             val reviewIdxSequence = PetsitterReviewRepository.getReviewIdx()
@@ -136,7 +112,7 @@ class PetSitterReviewWriteFragment : Fragment() {
         // 별점수를 입력하지 않았다면
         if(starCount == 0f){
             // 다이어로그 띄워준다
-            showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.ratingBar2, "별점 입력 오류", "펫시터에게 별점을 남겨주세요.")
+            showErrorDialog(this@PetsitterReviewWriteActivity, activityPetsitterReviewWriteBinding.ratingBar2, "별점 입력 오류", "펫시터에게 별점을 남겨주세요.")
             return false
         }
 
@@ -144,7 +120,7 @@ class PetSitterReviewWriteFragment : Fragment() {
         if(reviewText.isEmpty()){
             // 다이어로그 띄워준다
             // 다이어로그의 확인 클릭시, 뷰에 포커스를 주고 키보드를 올린다.
-            showErrorDialog(reservationListActivity, fragmentPetSitterReviewWriteBinding.textfieldPetsitterReviewWrite, "후기 작성 오류", "펫시터에게 후기를 작성해주세요.")
+            showErrorDialog(this@PetsitterReviewWriteActivity, activityPetsitterReviewWriteBinding.textfieldPetsitterReviewWrite, "후기 작성 오류", "펫시터에게 후기를 작성해주세요.")
             return false
         }
         return true
@@ -157,9 +133,10 @@ class PetSitterReviewWriteFragment : Fragment() {
         petSitterReviewWriteViewModel.textfieldPetsitterReviewWrite.value = ""
     }
 
+
     // 임시 가짜 데이터 셋팅
     fun initData(){
-        fragmentPetSitterReviewWriteBinding.apply {
+        activityPetsitterReviewWriteBinding.apply {
             imageViewPetSitterReviewWrite.setImageResource(R.drawable.petsitter)
             textViewPetSitterReviewWriteName.setText("이영주 펫시터")
             textViewPetSitterReviewWriteScore.setText("5점")
@@ -167,4 +144,5 @@ class PetSitterReviewWriteFragment : Fragment() {
             textViewPetSitterReviewWriteCountReview.setText("89개의 후기")
         }
     }
+
 }

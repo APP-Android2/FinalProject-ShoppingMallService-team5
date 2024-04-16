@@ -20,6 +20,12 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+            android:name=".ui.reservation_list.PetsitterReviewWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.petsitter_main.PetsitterMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.intro.activity.AddressActivity"
             android:exported="true" />
         <activity

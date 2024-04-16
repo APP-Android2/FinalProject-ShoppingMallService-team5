@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.reservation_list.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,19 +13,17 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.databinding.FragmentReservationListLastBinding
 import kr.co.lion.mungnolza.databinding.RowReservationListLastBinding
+import kr.co.lion.mungnolza.ui.reservation_list.PetsitterReviewWriteActivity
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
 
 class ReservationListLastFragment : Fragment() {
 
     lateinit var fragmentReservationListLastBinding : FragmentReservationListLastBinding
-    //lateinit var reservationListActivity: ReservationListActivity
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentReservationListLastBinding = FragmentReservationListLastBinding.inflate(layoutInflater)
-        //reservationListActivity = activity as ReservationListActivity
 
         return fragmentReservationListLastBinding.root
     }
@@ -94,13 +93,15 @@ class ReservationListLastFragment : Fragment() {
 
             // '후기작성' 항목을 누르면 동작하는 리스너
             holder.rowReservationListLastBinding.textViewRowReservationiListLastWriteReview.setOnClickListener {
-                // PetSitterReviewWriteFragment가 보여진다
-                (requireActivity() as ReservationListActivity).replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+                // PetsitterReviewWriteActivity가 보여진다
+                val intent = Intent(context, PetsitterReviewWriteActivity::class.java)
+                startActivity(intent)
             }
             // '후기작성' 아이콘 항목을 누르면 동작하는 리스너
             holder.rowReservationListLastBinding.imageViewRowReservationListLastEdit.setOnClickListener {
-                // PetSitterReviewWriteFragment가 보여진다
-                (requireActivity() as ReservationListActivity).replaceFragment(ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT, true, true, null)
+                // PetsitterReviewWriteActivity가 보여진다
+                val intent = Intent(context, PetsitterReviewWriteActivity::class.java)
+                startActivity(intent)
             }
         }
     }
