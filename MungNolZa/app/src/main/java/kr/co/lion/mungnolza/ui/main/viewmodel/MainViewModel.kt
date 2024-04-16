@@ -40,6 +40,12 @@ class MainViewModel(
                 _myUserNumber.value = it
             }
         }
+
+    }
+
+    private suspend fun fetchAllUserData(){
+        val response = userRepository.fetchAllUserData()
+        _userList.value = response
     }
 
     private suspend fun fetchAllBoardDataWithUserInfo(){
