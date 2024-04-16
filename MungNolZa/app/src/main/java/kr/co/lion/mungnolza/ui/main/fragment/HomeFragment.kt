@@ -27,10 +27,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
     private var myPet: List<PetImgModel>? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         initView()
         return binding.root
