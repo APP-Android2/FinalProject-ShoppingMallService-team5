@@ -15,8 +15,8 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentFreeBoardBinding
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.main.adapter.FreeBoardAdapter
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
+import kr.co.lion.mungnolza.ui.main.vm.MainViewModel
+import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
 
 class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
 
