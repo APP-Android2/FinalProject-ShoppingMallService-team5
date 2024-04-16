@@ -35,14 +35,14 @@ class AppointmentViewModel(
         viewModelScope.launch {
             MainDataStore.getUserNumber().collect {
                 _myUserNumber.value = it
+                getUserAddress(it)
             }
         }
     }
 
-    fun getUserAddress() = viewModelScope.launch{
-        val userNumber = myUserNumber.value
-        _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber.toString())
-    }
+     private suspend fun getUserAddress(userNumber: String){
+        _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber)
+     }
 
     fun setSelectedPet(selectedItem: List<PetImgModel>){
         _selectedPet.value = selectedItem

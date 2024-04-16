@@ -37,11 +37,11 @@ import kr.co.lion.mungnolza.util.Week
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentUserAddressBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
     private lateinit var launcherForActivity: ActivityResultLauncher<Intent>
     private val args: AppointmentUserAddressFragmentArgs by navArgs()
     private val selectedWeek = mutableListOf<String>()
-    private val binding get() = _binding!!
     private var selectedVisitType: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -84,6 +84,8 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 }
             }
 
+            edittextAddr.setText(viewModel.userAddress.value)
+
             btnSaveAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             btnNewAddr.setOnClickListener(this@AppointmentUserAddressFragment)
             cardviewCommonVisit.setOnClickListener(this@AppointmentUserAddressFragment)
@@ -117,67 +119,15 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun showMaterialTimePicker() {
-        // MaterialTimePicker Builder를 사용하여 인스턴스 생성
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(12) // 초기 시간 설정
-            .setMinute(0) // 초기 분 설정
-            .setTitleText("시간 선택")
-            .build()
-
-        // TimePickerDialog 표시
-        picker.show(parentFragmentManager, picker.toString())
-
-        // 사용자가 시간을 선택하고 확인 버튼을 누른 후의 리스너 설정
-        picker.addOnPositiveButtonClickListener {
-            // 사용자가 선택한 시간을 EditText에 표시
-            val selectedTime = String.format("%02d:%02d", picker.hour, picker.minute)
-            binding.edittextSeletedTime.setText(selectedTime)
-
-        }
-    }
-
-    private fun calendarSettingForMultipleDates() {
-        val today = CivilCalendar()
-
-        val datePicker = PrimeDatePicker.bottomSheetWith(today)
-            .pickMultipleDays { selectedDays ->
-
-                val formattedDates = selectedDays.map { day ->
-                    "${day.month + 1}월 ${day.dayOfMonth}일"
-                }.joinToString(separator = ", ")
-
-                val selectDate = formattedDates.split(",")
-
-                if (selectDate.size > 1){
-                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
-                }else{
-                    binding.btnSelectDate.text = formattedDates
-                }
-            }
-            .initiallyPickedMultipleDays(listOf())
-            .build()
-
-        datePicker.show(requireActivity().supportFragmentManager, "MULTIPLE_DATE_PICKER_TAG")
-    }
-
     override fun onClick(v: View?) {
         with(binding) {
             when (v?.id) {
                 R.id.btn_save_addr -> {
-                    // 내 주소 가져오기
-                    viewModel.getUserAddress()
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        repeatOnLifecycle(Lifecycle.State.STARTED){
-                            viewModel.userAddress.collect{
-                                edittextAddr.setText(it)
-                            }
-                        }
-                    }
+                    edittextAddr.setText(viewModel.userAddress.value)
                 }
                 R.id.btn_new_addr ->{
-                    binding.edittextAddr.setText("")
+                    btnSaveAddr.visibility = VISIBLE
+                    editTextDetailAddr.visibility = VISIBLE
                     launcherForActivity.launch(Intent(requireContext(), AddressActivity::class.java))
                 }
                 R.id.cardview_common_visit -> {
@@ -211,8 +161,9 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                         )
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     }else if (selectedVisitType == VisitType.COMMON_VISIT.type){
-                        calendarSettingForMultipleDates()
+                        showCommonVisitCalender()
                     } else{
+                        showRegularVisitCalender()
                     }
 
                 }
@@ -274,6 +225,9 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             }
         }
     }
+
+
+
 
     private fun addToSelectList(day: String){
         with(binding){
@@ -342,6 +296,77 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     imgWeekSaturday.setImageResource(R.drawable.img_week_saturday_dog)
                 }
             }
+        }
+    }
+
+    private fun showCommonVisitCalender() {
+        val today = CivilCalendar()
+
+        val datePicker = PrimeDatePicker.bottomSheetWith(today)
+            .pickMultipleDays { selectedDays ->
+
+                val formattedDates = selectedDays.map { day ->
+                    "${day.month + 1}월 ${day.dayOfMonth}일"
+                }.joinToString(separator = ", ")
+
+                val selectDate = formattedDates.split(",")
+
+                if (selectDate.size > 1){
+                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
+                }else{
+                    binding.btnSelectDate.text = formattedDates
+                }
+            }
+            .initiallyPickedMultipleDays(listOf())
+            .minPossibleDate(today)
+            .build()
+
+        datePicker.show(requireActivity().supportFragmentManager, "MULTIPLE_DATE_PICKER_TAG")
+    }
+
+    private fun showRegularVisitCalender() {
+        val today = CivilCalendar()
+        val datePicker = PrimeDatePicker.bottomSheetWith(today)
+            .pickMultipleDays { selectedDays ->
+
+                val formattedDates = selectedDays.map { day ->
+                    "${day.month + 1}월 ${day.dayOfMonth}일"
+                }.joinToString(separator = ", ")
+
+                val selectDate = formattedDates.split(",")
+
+                if (selectDate.size > 1){
+                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
+                }else{
+                    binding.btnSelectDate.text = formattedDates
+                }
+            }
+            .initiallyPickedMultipleDays(listOf())
+            .minPossibleDate(today)
+            //.maxPossibleDate()
+            .build()
+
+        datePicker.show(requireActivity().supportFragmentManager, "MULTIPLE_DATE_PICKER_TAG")
+    }
+
+    private fun showMaterialTimePicker() {
+        // MaterialTimePicker Builder를 사용하여 인스턴스 생성
+        val picker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(12) // 초기 시간 설정
+            .setMinute(0) // 초기 분 설정
+            .setTitleText("시간 선택")
+            .build()
+
+        // TimePickerDialog 표시
+        picker.show(parentFragmentManager, picker.toString())
+
+        // 사용자가 시간을 선택하고 확인 버튼을 누른 후의 리스너 설정
+        picker.addOnPositiveButtonClickListener {
+            // 사용자가 선택한 시간을 EditText에 표시
+            val selectedTime = String.format("%02d:%02d", picker.hour, picker.minute)
+            binding.edittextSeletedTime.setText(selectedTime)
+
         }
     }
 
