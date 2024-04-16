@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".ui.matching_petsitter.fragment.MatchingFragment">
+    tools:context=".ui.appointment.fragment.MatchingFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"

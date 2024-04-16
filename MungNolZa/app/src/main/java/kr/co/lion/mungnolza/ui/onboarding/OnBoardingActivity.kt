@@ -19,7 +19,7 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     private fun initView(){
-        val fragments = listOf(OnBoardingFragment1(), OnBoardingFragment2() ,  OnBoardingFragment3())
+        val fragments = listOf(OnBoardingFragment1(), OnBoardingFragment2(), OnBoardingFragment3())
         val vAdapter = OnBoardingViewPagerAdapter(fragments, this)
         binding.viewpager.adapter = vAdapter
     }

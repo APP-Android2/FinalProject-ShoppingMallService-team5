@@ -183,7 +183,6 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        selectedService = null
         _binding = null
     }
 

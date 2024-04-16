@@ -22,6 +22,17 @@ class UserRepositoryImpl : UserRepository {
         }
     }
 
+    override suspend fun fetchUserAddress(uniqueNumber: String): String {
+        return try {
+            val querySnapshot = userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
+            querySnapshot.documents.first().getString("userAddress").toString()
+
+        }catch (e: Exception){
+            Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+            ""
+        }
+    }
+
     override suspend fun fetchAllUserNickName(uniqueNumber: String): List<String> {
         return withContext(Dispatchers.IO) {
             try {
