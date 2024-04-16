@@ -35,6 +35,9 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+            fetchAllUserData()
+            fetchAllBoardDataWithUserInfo()
+
             //MainDataStore.setUserNumber("1234")
             MainDataStore.getUserNumber().collect {
                 _myUserNumber.value = it
@@ -90,6 +93,10 @@ class MainViewModel(
 
     suspend fun fetchUserProfileImage(path: String): URI? {
         return userRepository.fetchUserProfileImage(path)
+    }
+
+    fun findUserData(writerIdx: String): UserModel? {
+        return userList.value.find { it.uniqueNumber == writerIdx }
     }
 
     fun setMyPetData(myPets: List<PetImgModel>){
