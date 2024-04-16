@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.intro.fragment
+package kr.co.lion.mungnolza.ui.onboarding.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import kr.co.lion.mungnolza.databinding.FragmentOnBoarding1Binding
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
+import kr.co.lion.mungnolza.ui.onboarding.vm.OnBoardingViewModel
+import kr.co.lion.mungnolza.ui.onboarding.vm.OnBoardingViewModelFactory
 
 class OnBoardingFragment1 : Fragment() {
     private var _binding: FragmentOnBoarding1Binding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
+    private val viewModel: OnBoardingViewModel by activityViewModels { OnBoardingViewModelFactory() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOnBoarding1Binding.inflate(layoutInflater)

@@ -65,7 +65,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.intro.activity.OnBoardingActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.LoginActivity"
