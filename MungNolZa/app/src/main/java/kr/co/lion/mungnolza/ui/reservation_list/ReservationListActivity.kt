@@ -6,7 +6,6 @@ import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
-import kr.co.lion.mungnolza.ui.reservation_list.fragment.PetSitterReviewWriteFragment
 import kr.co.lion.mungnolza.ui.main.fragment.ReservationListFragment
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityReservationListBinding
@@ -55,7 +54,7 @@ class ReservationListActivity : AppCompatActivity() {
             }
             // 펫시터 후기 작성 화면 프래그먼트
             ReservationListFragmentName.PETSITTER_REVIEW_WRITE_FRAGMENT -> {
-                newFragment = PetSitterReviewWriteFragment()
+                /*newFragment = PetSitterReviewWriteFragment()*/
             }
 
         }
