@@ -1,6 +1,5 @@
-package kr.co.lion.mungnolza.ui.main.viewmodel
+package kr.co.lion.mungnolza.ui.main.vm
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -64,27 +63,6 @@ class MainViewModel(
             }
         }
         _boardContentList.value = contentList
-    }
-
-    fun fetchMyAllPetData() = viewModelScope.launch {
-        val petList = ArrayList<PetImgModel>()
-
-        myUserNumber.collect { myUserNumber ->
-            val result = myUserNumber?.let { data-> petRepositoryImpl.fetchMyPetData(data) }
-            result?.map{
-                val imgUri = fetchPetImg(it.ownerIdx, it.imgName)
-                val pet = imgUri?.let { data -> PetImgModel(it, data) }
-
-                if (pet != null) {
-                    petList.add(pet)
-                }
-            }
-            _myPetData.value = petList
-        }
-    }
-
-    private suspend fun fetchPetImg(userIdx: String, petName: String): URI? {
-        return petRepositoryImpl.fetchMyPetImage(userIdx, petName)
     }
 
     private suspend fun fetchBoardImg(boardIdx: String, imgName: String): URI? {
