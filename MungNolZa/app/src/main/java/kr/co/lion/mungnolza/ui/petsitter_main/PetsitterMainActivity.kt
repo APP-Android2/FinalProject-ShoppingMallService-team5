@@ -18,10 +18,12 @@ class PetsitterMainActivity : AppCompatActivity() {
 
         activityPetsitterMainBinding = ActivityPetsitterMainBinding.inflate(layoutInflater)
         setContentView(activityPetsitterMainBinding.root)
+
+        initView()
     }
 
     private fun initView(){
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_petsitter) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(activityPetsitterMainBinding.navigationView, navController)
 
