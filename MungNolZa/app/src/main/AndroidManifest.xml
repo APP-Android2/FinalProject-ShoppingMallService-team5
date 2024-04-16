@@ -73,9 +73,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.intro.activity.OnBoardingActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.intro.activity.LoginActivity"
             android:exported="true" />
 
