@@ -9,8 +9,8 @@ import androidx.navigation.ui.NavigationUI
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityMainBinding
 import kr.co.lion.mungnolza.model.PetImgModel
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
-import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModelFactory
+import kr.co.lion.mungnolza.ui.main.vm.MainViewModel
+import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

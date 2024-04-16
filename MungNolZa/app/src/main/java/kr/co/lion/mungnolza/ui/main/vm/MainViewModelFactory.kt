@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.viewmodel
+package kr.co.lion.mungnolza.ui.main.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

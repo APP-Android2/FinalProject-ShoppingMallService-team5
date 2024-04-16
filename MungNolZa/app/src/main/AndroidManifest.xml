@@ -26,6 +26,9 @@
             android:name=".ui.petsitter_main.PetsitterMainActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.appointment.NoPetActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.intro.activity.AddressActivity"
             android:exported="true" />
         <activity
