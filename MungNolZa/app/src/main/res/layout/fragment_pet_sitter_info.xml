@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".ui.matching_petsitter.fragment.PetSitterInfoFragment">
+    tools:context=".ui.appointment.fragment.PetSitterInfoFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarPetSitterInfo"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back_24">
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,7 +125,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageViewPetSitterInfoReviewButton"
+                    android:id="@+id/btn_petSitter_review"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

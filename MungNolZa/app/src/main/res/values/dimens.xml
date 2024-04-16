@@ -3,7 +3,7 @@
     <dimen name="shared_toolbar_title_size">20sp</dimen>
     <dimen name="shared_layout_padding">10dp</dimen>
     <dimen name="shared_min_text_size">10sp</dimen>
-    <dimen name="shared_button_width">250dp</dimen>
+    <dimen name="shared_button_width">260dp</dimen>
     <dimen name="shared_button_height">55dp</dimen>
     <dimen name="shared_edittext_margin_top">20dp</dimen>
     <dimen name="shared_common_margin">20dp</dimen>

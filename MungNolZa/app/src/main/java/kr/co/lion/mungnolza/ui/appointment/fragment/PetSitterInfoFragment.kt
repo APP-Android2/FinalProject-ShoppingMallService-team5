@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.matching_petsitter.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
+import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.databinding.FragmentPetSitterInfoBinding
+import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
-class MatchingFragment : Fragment() {
-
-    private var _binding: FragmentMatchingBinding? = null
+class PetSitterInfoFragment : Fragment() {
+    private var _binding: FragmentPetSitterInfoBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentMatchingBinding.inflate(layoutInflater)
+        _binding = FragmentPetSitterInfoBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -24,26 +25,21 @@ class MatchingFragment : Fragment() {
     }
 
     private fun initView(view: View){
-        with(binding){
-            buttonMatchingDone.setOnClickListener {
-                val action = MatchingFragmentDirections.toPaymentFragment()
-                Navigation.findNavController(view).navigate(action)
-            }
-        }
         initToolbar(view)
+
+        binding.btnPetSitterReview.setOnClickListener{
+            val action = PetSitterInfoFragmentDirections.toPetSitterReviewFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
     private fun initToolbar(view: View){
         with(binding.toolbar){
             setNavigationOnClickListener {
-                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
+                val action = PetSitterInfoFragmentDirections.toMatchingFragment()
                 Navigation.findNavController(view).navigate(action)
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

@@ -53,6 +53,13 @@
             android:name="flag"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="time"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="payment"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelection2Fragment"
@@ -71,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/matchingFragment"
-        android:name="kr.co.lion.mungnolza.ui.matching_petsitter.fragment.MatchingFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.MatchingFragment"
         android:label="fragment_matching"
         tools:layout="@layout/fragment_matching" >
         <action
@@ -86,16 +93,19 @@
     </fragment>
     <fragment
         android:id="@+id/petSitterInfoFragment"
-        android:name="kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PetSitterInfoFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.PetSitterInfoFragment"
         android:label="fragment_pet_sitter_info"
         tools:layout="@layout/fragment_pet_sitter_info" >
         <action
             android:id="@+id/to_matchingFragment"
             app:destination="@id/matchingFragment" />
+        <action
+            android:id="@+id/to_petSitterReviewFragment"
+            app:destination="@id/petSitterReviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="kr.co.lion.mungnolza.ui.matching_petsitter.fragment.PaymentFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.PaymentFragment"
         android:label="fragment_payment_"
         tools:layout="@layout/fragment_payment" >
         <action
@@ -107,8 +117,17 @@
     </fragment>
     <fragment
         android:id="@+id/reservationConfirmedFragment"
-        android:name="kr.co.lion.mungnolza.ui.matching_petsitter.fragment.ReservationConfirmedFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.ReservationConfirmedFragment"
         android:label="fragment_reservation_confirmed"
         tools:layout="@layout/fragment_reservation_confirmed" />
+    <fragment
+        android:id="@+id/petSitterReviewFragment"
+        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.PetSitterReviewFragment"
+        android:label="fragment_pet_sitter_review"
+        tools:layout="@layout/fragment_pet_sitter_review" >
+        <action
+            android:id="@+id/to_petSitterInfoFragment"
+            app:destination="@id/petSitterInfoFragment" />
+    </fragment>
 
 </navigation>

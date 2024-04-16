@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.matching_petsitter.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentReservationConfirmedBinding
 import kr.co.lion.mungnolza.ui.main.MainActivity
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterActivity
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class ReservationConfirmedFragment : Fragment() {
 
