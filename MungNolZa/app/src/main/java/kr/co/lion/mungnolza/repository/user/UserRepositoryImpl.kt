@@ -7,15 +7,25 @@ import com.google.firebase.storage.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kr.co.lion.mungnolza.model.UserModel
 import java.net.URI
 class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
     private val storage = Firebase.storage.reference
+    override suspend fun fetchAllUserData(): List<UserModel> {
+        return try {
+            val querySnapshot = userStore.get().await()
+            querySnapshot.map { it.toObject(UserModel::class.java) }
+        }catch (e: Exception){
+            Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+            emptyList()
+        }
+    }
+
     override suspend fun fetchAllUserNickName(uniqueNumber: String): List<String> {
         return withContext(Dispatchers.IO) {
             try {
-                val querySnapshot =
-                    userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
+                val querySnapshot = userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
 
                 querySnapshot.map { it.getString("userNickname").toString() }
 
