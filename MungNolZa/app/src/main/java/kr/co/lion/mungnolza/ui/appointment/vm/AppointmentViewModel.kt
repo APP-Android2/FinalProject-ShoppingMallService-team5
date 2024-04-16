@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.PetImgModel
+import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 
 class AppointmentViewModel(
@@ -31,6 +32,9 @@ class AppointmentViewModel(
     private val _userAddress: MutableStateFlow<String?> = MutableStateFlow(null)
     val userAddress = _userAddress.asStateFlow()
 
+    private val _reserveSchedule: MutableStateFlow<SelectScheduleModel?> = MutableStateFlow(null)
+    val reserveSchedule = _reserveSchedule.asStateFlow()
+
     init {
         viewModelScope.launch {
             MainDataStore.getUserNumber().collect {
@@ -43,6 +47,10 @@ class AppointmentViewModel(
      private suspend fun getUserAddress(userNumber: String){
         _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber)
      }
+
+    fun setSchedule(schedule: SelectScheduleModel){
+        _reserveSchedule.value = schedule
+    }
 
     fun setSelectedPet(selectedItem: List<PetImgModel>){
         _selectedPet.value = selectedItem

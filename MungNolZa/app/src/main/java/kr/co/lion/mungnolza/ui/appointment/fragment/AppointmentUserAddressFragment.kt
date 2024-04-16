@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
 import kr.co.lion.mungnolza.ext.setColorWhite
+import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
@@ -42,7 +43,10 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     private lateinit var launcherForActivity: ActivityResultLauncher<Intent>
     private val args: AppointmentUserAddressFragmentArgs by navArgs()
     private val selectedWeek = mutableListOf<String>()
+
+    private val selectDate = ArrayList<String>()
     private var selectedVisitType: String? = null
+    private var selectedVisitTime: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -168,8 +172,35 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
                 }
                 R.id.btn_next -> {
-                    val action = AppointmentUserAddressFragmentDirections.toMatchingFragment()
-                    Navigation.findNavController(v).navigate(action)
+                    if(edittextAddr.text.isNullOrEmpty() &&
+                        viewModel.careType.value.toString() != AppointmentMainFragment.CareType.VISIT.value
+                    ){
+                        showDialog("주소를 입력해 볼까요?" ,"방문 주소을 선택해 주세요")
+                    } else if (selectedVisitType.isNullOrEmpty()){
+                        showDialog("방문 타입을 선택해 볼까요?" ,"방문 타입을 선택해 주세요")
+                    }else if(selectDate.isEmpty()){
+                        showDialog("방문 날짜를 선택해 볼까요?" ,"방문 날짜를 선택해 주세요")
+                    }else if (selectedVisitTime.isNullOrEmpty()){
+                        showDialog("방문 시간을 선택해 볼까요?" ,"방문 시간을 선택해 주세요")
+                    }else{
+                        val addr = "${edittextAddr.text} ${editTextDetailAddr.text}"
+                        val request = appointmentRequestTextview.text.toString()
+
+                        viewModel.setSchedule(
+                            SelectScheduleModel(
+                                addr,
+                                selectedVisitTime.toString(),
+                                request,
+                                selectedVisitType.toString(),
+                                viewModel.selectedPet.value,
+                                selectDate,
+                                calcPayment(),
+                            )
+                        )
+
+                        val action = AppointmentUserAddressFragmentDirections.toMatchingFragment()
+                        Navigation.findNavController(v).navigate(action)
+                    }
                 }
                 R.id.img_week_sunday -> {
                     if (!selectedWeek.contains(Week.SUNDAY.day)){
@@ -242,7 +273,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 }
                 Week.TUESDAY.day -> {
                     selectedWeek.add(Week.TUESDAY.day)
-                    imgWeekTuesday.setImageResource(R.drawable.img_week_wednesday)
+                    imgWeekTuesday.setImageResource(R.drawable.img_week_tuesday)
                 }
                 Week.WEDNESDAY.day -> {
                     selectedWeek.add(Week.WEDNESDAY.day)
@@ -277,7 +308,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 }
                 Week.TUESDAY.day -> {
                     selectedWeek.remove(Week.TUESDAY.day)
-                    imgWeekTuesday.setImageResource(R.drawable.img_week_thursday_dog)
+                    imgWeekTuesday.setImageResource(R.drawable.img_week_tuesday_dog)
                 }
                 Week.WEDNESDAY.day -> {
                     selectedWeek.remove(Week.WEDNESDAY.day)
@@ -309,7 +340,8 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     "${day.month + 1}월 ${day.dayOfMonth}일"
                 }.joinToString(separator = ", ")
 
-                val selectDate = formattedDates.split(",")
+                selectDate.clear()
+                formattedDates.split(",").map { selectDate.add(it) }
 
                 if (selectDate.size > 1){
                     binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
@@ -333,7 +365,8 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     "${day.month + 1}월 ${day.dayOfMonth}일"
                 }.joinToString(separator = ", ")
 
-                val selectDate = formattedDates.split(",")
+                selectDate.clear()
+                formattedDates.split(",").map { selectDate.add(it) }
 
                 if (selectDate.size > 1){
                     binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
@@ -365,9 +398,26 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         picker.addOnPositiveButtonClickListener {
             // 사용자가 선택한 시간을 EditText에 표시
             val selectedTime = String.format("%02d:%02d", picker.hour, picker.minute)
+            selectedVisitTime = selectedTime
             binding.edittextSeletedTime.setText(selectedTime)
 
         }
+    }
+
+    private fun calcPayment(): Int{
+        val pets = viewModel.selectedPet.value.size
+        val pay = args.payment
+        val day = selectDate.size
+        return (pets * pay) * day
+    }
+
+    private fun showDialog(title: String, message: String) {
+        val dialog = PositiveCustomDialog(
+            title,
+            message,
+            positiveButtonClick = { }
+        )
+        dialog.show(childFragmentManager, "PositiveCustomDialog")
     }
 
     override fun onDestroyView() {
