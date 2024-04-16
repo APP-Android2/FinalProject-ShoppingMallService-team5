@@ -17,6 +17,7 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentAppointmentDogTimeSelection2Binding? = null
     private val binding get() = _binding!!
     private var selectedTime: String? = null
+    private var payment: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -58,6 +59,7 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                     btn2Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     btn3Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.ONE_HOUR.value
+                    payment = ServiceTime.ONE_HOUR.pay
                 }
 
                 R.id.btn_2_hour -> {
@@ -66,6 +68,7 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                     btn3Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     btn1Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.TWO_HOUR.value
+                    payment = ServiceTime.TWO_HOUR.pay
                 }
                 R.id.btn_3_hour -> {
                     btn3Hour.backgroundTintList = requireContext().setSelectTimeButtonColor()
@@ -73,6 +76,7 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                     btn1Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     btn2Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.THREE_HOUR.value
+                    payment = ServiceTime.THREE_HOUR.pay
                 }
                 R.id.btn_next -> {
                     if (selectedTime.isNullOrEmpty()) {
@@ -83,16 +87,18 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                         )
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     } else {
-                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment()
+                        val flag = AppointmentMainFragment.ServiceType.CARE.value
+
+                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment(flag, selectedTime, payment)
                         Navigation.findNavController(v).navigate(action)
                     }
                 }
             }
         }
     }
-    enum class ServiceTime(val value: String) {
-        ONE_HOUR("1 HOUR"),
-        TWO_HOUR("2 HOUR"),
-        THREE_HOUR("3 HOUR")
+    enum class ServiceTime(val value: String, val pay: Int) {
+        ONE_HOUR("1 HOUR", 28500),
+        TWO_HOUR("2 HOUR", 38000),
+        THREE_HOUR("3 HOUR", 46000)
     }
 }

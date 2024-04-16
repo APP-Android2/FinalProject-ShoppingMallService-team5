@@ -1,4 +1,4 @@
-package kr.co.lion.mungnolza.ui.main.fragment
+package kr.co.lion.mungnolza.ui.reservation_list.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 import kr.co.lion.mungnolza.databinding.FragmentReservationListOngoingBinding
 import kr.co.lion.mungnolza.databinding.RowReservationListOngoingBinding
 
@@ -19,7 +18,6 @@ class ReservationListOngoingFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
 
         _binding = FragmentReservationListOngoingBinding.inflate(inflater, container, false)
 

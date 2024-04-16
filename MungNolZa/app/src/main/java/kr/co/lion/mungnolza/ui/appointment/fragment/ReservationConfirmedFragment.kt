@@ -1,5 +1,6 @@
-package kr.co.lion.mungnolza.ui.matching_petsitter.fragment
+package kr.co.lion.mungnolza.ui.appointment.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,41 +8,33 @@ import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentReservationConfirmedBinding
-import kr.co.lion.mungnolza.ui.matching_petsitter.MatchingPetsitterActivity
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
+import kr.co.lion.mungnolza.ui.main.MainActivity
 
 class ReservationConfirmedFragment : Fragment() {
 
-    lateinit var fragmentReservationConfirmedBinding: FragmentReservationConfirmedBinding
-    lateinit var matchingPetsitterActivity: MatchingPetsitterActivity
+    private var _binding: FragmentReservationConfirmedBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-
-        fragmentReservationConfirmedBinding = FragmentReservationConfirmedBinding.inflate(layoutInflater)
-        matchingPetsitterActivity = activity as MatchingPetsitterActivity
-
-        setToolbar()
-        setCardMatching()
-
-        return fragmentReservationConfirmedBinding.root
+        _binding = FragmentReservationConfirmedBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    // 툴바 설정
-    fun setToolbar(){
-        fragmentReservationConfirmedBinding.apply {
-            toolbarReservationConfirmed.apply {
-                // 뒤로가기
-                setNavigationIcon(R.drawable.ic_arrow_back_24px)
-                setNavigationOnClickListener {
-                    matchingPetsitterActivity.removeFragment(MatchingPetsitterFragmentName.RESERVATION_CONFIRMED_FRAGMENT)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        setCardMatching()
+    }
+
+    private fun initView(){
+        binding.btnNext.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            activity?.finish()
         }
     }
 
     // cardMatchingReservationDetail의 내용을 설정해준다
-    fun setCardMatching(){
-        fragmentReservationConfirmedBinding.apply {
+    private fun setCardMatching(){
+        with(binding) {
             // 펫 사진
             imageViewReservationConfirmedPet.setImageResource(R.drawable.nayeon)
             // 돌봄 서비스 유형 및 시간
@@ -62,5 +55,10 @@ class ReservationConfirmedFragment : Fragment() {
             // 예약 날짜-시간
             textViewReservationConfirmedDateTime.setText("3월29일 오후5:00-5:30")
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

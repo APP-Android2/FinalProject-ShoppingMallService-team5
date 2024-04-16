@@ -14,14 +14,23 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".ui.freeboard.AddBoardActivity"
             android:exported="false" />
+=======
+            android:name=".ui.appointment.NoPetActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.intro.activity.AddressActivity"
+            android:exported="true" />
+>>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
         <activity
             android:name=".ui.TestActivity"
             android:exported="true" />
@@ -33,9 +42,6 @@
             android:exported="true" />
         <activity
             android:name=".ui.reservation_list.ReservationListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.matching_petsitter.MatchingPetsitterActivity"
             android:exported="true" />
         <activity
             android:name=".ui.chat.ChatActivity"
@@ -58,6 +64,7 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".ui.intro.activity.JoinActivity"
             android:exported="true" />
         <activity
@@ -65,6 +72,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".ui.intro.activity.OnBoardingActivity"
+=======
+            android:name=".ui.onboarding.OnBoardingActivity"
+>>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.LoginActivity"

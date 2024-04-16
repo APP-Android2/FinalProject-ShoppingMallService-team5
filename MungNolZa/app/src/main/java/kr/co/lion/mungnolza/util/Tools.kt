@@ -20,6 +20,7 @@ object Tools {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
     }
+    val ADDR_RESULT_CODE by lazy { 1002 }
 }
 
 
@@ -42,4 +43,19 @@ enum class ReservationListFragmentName(var str:String){
     RESERVATION_LIST_FRAGMENT("ReservationListFragment"),
     // 펫시터 후기 작성 화면
     PETSITTER_REVIEW_WRITE_FRAGMENT("PetSitterReviewWriteFragment"),
+}
+
+enum class Week(val day: String){
+    SUNDAY("sunday"),
+    MONDAY("monday"),
+    TUESDAY("tuesday"),
+    WEDNESDAY("wednesday"),
+    THURSDAY("thursday"),
+    FRIDAY("friday"),
+    SATURDAY("saturday")
+}
+
+enum class VisitType(val type: String) {
+    COMMON_VISIT("common visit"),
+    REGULAR_VISIT("regular visit"),
 }

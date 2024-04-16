@@ -37,55 +37,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/no_pet_cardview"
+                android:id="@+id/service_container"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/shared_common_margin"
-                android:layout_marginTop="@dimen/shared_common_margin"
-                android:layout_marginEnd="@dimen/shared_common_margin">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/layout_padding"
-                        android:src="@drawable/img_sungooli_dog" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/shared_common_margin_10"
-                        android:fontFamily="@font/binggrae_regular"
-                        android:text="@string/no_pet_msg1" />
-
-                    <Button
-                        android:id="@+id/btn_registration_pet"
-                        style="@style/Widget.Material3.Button.IconButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_chevron_right_24px"
-                        android:text="@string/go_pet_registration"
-                        android:textColor="@color/grey" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Outlined"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/shared_common_margin"
-                android:layout_marginTop="@dimen/shared_common_margin"
-                android:layout_marginEnd="@dimen/shared_common_margin">
+                android:layout_margin="@dimen/shared_common_margin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -177,21 +136,21 @@
                         </com.google.android.material.button.MaterialButtonToggleGroup>
 
                     </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_next"
+                        android:layout_width="@dimen/shared_button_width"
+                        android:layout_height="@dimen/shared_button_height"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/shared_common_margin_10"
+                        android:layout_marginBottom="@dimen/shared_common_margin"
+                        android:background="@drawable/shared_button_design"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:text="@string/next"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_next"
-                android:layout_width="@dimen/shared_button_width"
-                android:layout_height="@dimen/shared_button_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/shared_common_margin_10"
-                android:layout_marginBottom="@dimen/shared_common_margin"
-                android:background="@drawable/shared_button_design"
-                android:fontFamily="@font/binggrae_bold"
-                android:text="@string/next"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

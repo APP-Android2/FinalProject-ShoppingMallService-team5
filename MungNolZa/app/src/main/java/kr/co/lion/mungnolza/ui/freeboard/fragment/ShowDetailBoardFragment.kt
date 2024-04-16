@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+<<<<<<< HEAD
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.carousel.CarouselLayoutManager
@@ -22,6 +23,11 @@ import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.data.repository.BoardRepository
 import kr.co.lion.mungnolza.data.repository.BoardRepositoryImpl
+=======
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kr.co.lion.mungnolza.R
+>>>>>>> 0e73214e0419402e5d3d00412ff2905432afe7a8
 import kr.co.lion.mungnolza.databinding.FragmentShowDetailBoardBinding
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.model.UserModel

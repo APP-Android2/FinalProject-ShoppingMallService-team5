@@ -1,8 +1,5 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,33 +7,31 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
 import kr.co.lion.mungnolza.ext.setColorBlack
 import kr.co.lion.mungnolza.ext.setColorPrimary
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.setColorkakaoYellow
-import kr.co.lion.mungnolza.model.PetInfo
+import kr.co.lion.mungnolza.model.PetImgModel
+import kr.co.lion.mungnolza.ui.appointment.adapter.MyPetAdapter
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
-import kr.co.lion.mungnolza.ui.appointment.adapter.SelectPetAdapter
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 
 class AppointmentMainFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentAppointmentMainBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
 
-    private val dataList = ArrayList<PetInfo>()
-
-    private val rvAdapter: SelectPetAdapter by lazy {
-        SelectPetAdapter(
-            dataList,
-            itemClick = {
-
-            }
-        )
-    }
-
+    private var selectedPet = mutableListOf<PetImgModel>()
     private var selectedService: String? = null
     private var careType: String? = null
     override fun onCreateView(
@@ -45,33 +40,26 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAppointmentMainBinding.inflate(inflater)
-        initView()
         return binding.root
     }
 
-    private fun getBitmapFromDrawable(context: Context, id: Int): Bitmap {
-        return BitmapFactory.decodeResource(context.resources, id)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
     }
 
     private fun initView() {
-        //테스트용 입니다!
-        dataList.add(PetInfo(
-                getBitmapFromDrawable(requireContext(), R.drawable.doog),
-        "바둑이", "진돗개", "남자아이", 6, "20.2", "했어요", ""
-            ) )
-
         with(binding) {
             with(rv) {
-
-                if (dataList.isEmpty()) {
-                    noPetCardview.visibility = VISIBLE
-                    rv.visibility = GONE
-                } else {
-                    noPetCardview.visibility = GONE
-                    rv.visibility = VISIBLE
-
-                    adapter = rvAdapter
-                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+                        viewModel.myPetData.collect {
+                            adapter = MyPetAdapter(it) { selectedIdx ->
+                                selectedPet.add(it[selectedIdx])
+                            }
+                            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+                        }
+                    }
                 }
             }
 
@@ -83,6 +71,8 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
 
                         btnVisit.backgroundTintList = requireContext().setColorWhite()
                         btnVisit.setTextColor(requireContext().setColorPrimary())
+
+                        viewModel.setCareType(CareType.ENTRUST.value)
                         careType = CareType.ENTRUST.value
                     }
 
@@ -92,9 +82,16 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
 
                         btnEntrust.backgroundTintList = requireContext().setColorWhite()
                         btnEntrust.setTextColor(requireContext().setColorPrimary())
+
+                        viewModel.setCareType(CareType.VISIT.value)
                         careType = CareType.VISIT.value
+
                     }
                 }
+            }
+
+            toolbar.setNavigationOnClickListener {
+                activity?.finish()
             }
 
             btnJogging.setOnClickListener(this@AppointmentMainFragment)
@@ -114,7 +111,11 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                     btnCare.setTextColor(requireContext().setColorPrimary())
 
                     toggleGroup.visibility = GONE
+
                     selectedService = ServiceType.JOGGING.value
+                    viewModel.setServiceType(ServiceType.JOGGING.value)
+                    viewModel.setCareType(null)
+
                 }
 
                 R.id.btn_care -> {
@@ -125,39 +126,44 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                     btnJogging.setTextColor(requireContext().setColorPrimary())
 
                     toggleGroup.visibility = VISIBLE
+
                     selectedService = ServiceType.CARE.value
+                    viewModel.setServiceType(ServiceType.CARE.value)
                 }
 
                 R.id.btn_next -> {
                     when (selectedService) {
                         ServiceType.JOGGING.value -> {
-                            val action =
-                                AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
-                            Navigation.findNavController(v).navigate(action)
+                            if (selectedPet.isEmpty()){
+                                showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                            }else{
+                                viewModel.setSelectedPet(selectedPet)
+                                viewModel.setCareType(null)
+
+                                val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
+                                Navigation.findNavController(v).navigate(action)
+                            }
                         }
-
                         ServiceType.CARE.value -> {
-                            val action =
-                                AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
-
-                            if (careType == CareType.ENTRUST.value) {
+                            if (selectedPet.isEmpty()){
+                                showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                            }else if (careType.isNullOrEmpty()) {
+                                showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요 !")
+                            } else if (careType == CareType.ENTRUST.value) {
                                 // 맡김 일 때의 처리
+                                viewModel.setCareType(CareType.ENTRUST.value)
                             } else if (careType == CareType.VISIT.value) {
                                 // 방문일 때의 처리
-                            } else if (careType.isNullOrEmpty()) {
-                                showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요 !")
+                                viewModel.setCareType(CareType.VISIT.value)
                             }
 
-                            if (careType != null) {
+                            if (careType != null && selectedPet.isNotEmpty()) {
+                                val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
                                 Navigation.findNavController(v).navigate(action)
                             }
                         }
                         else -> {
-                            if (dataList.isEmpty()){
-                                showDialog("반려 동물을 등록해야 해요", "소중한 우리 아이를 등록해 주세요")
-                            }else{
-                                showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 !")
-                            }
+                            showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 !")
 
                         }
                     }
@@ -177,8 +183,6 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        selectedService = null
-        careType = null
         _binding = null
     }
 
