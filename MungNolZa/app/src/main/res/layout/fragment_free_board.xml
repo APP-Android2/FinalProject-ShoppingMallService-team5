@@ -11,10 +11,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/menu_item_bottom_navigation_freeboard"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:menu="@menu/menu_free_board"/>
+        app:title="@string/menu_item_bottom_navigation_freeboard" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -31,6 +30,15 @@
             android:layout_height="match_parent"
             android:layout_marginTop="90dp" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonAddBoardFreeBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="64dp"
+            app:srcCompat="@drawable/ic_add_24px" />
+
         <com.google.android.material.search.SearchView
             android:id="@+id/searchViewFreeBoard"
             android:layout_width="match_parent"
@@ -43,5 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.search.SearchView>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

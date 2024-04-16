@@ -8,6 +8,9 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.storage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.util.ContentState
@@ -45,5 +48,37 @@ class FreeBoardRepositoryImpl : FreeBoardRepository {
                 "Error fetching BoardImage path : ${storage.child(path)}")
         }
         return response
+    }
+
+    // insert
+    override suspend fun insertBoardData(boardModel: BoardModel){
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            boardStore.add(boardModel)
+        }
+        job.join()
+    }
+
+    // update
+    override suspend fun updateBoardData(boardModel:BoardModel, isRemoveImage:Boolean){
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            val query = boardStore.whereEqualTo("boardIdx", boardModel.boardIdx).get().await()
+
+            val map = mutableMapOf<String, Any?>()
+            map["boardTitle"] = boardModel.boardTitle
+            map["boardContent"] = boardModel.boardContent
+            map["boardWriteDate"] = boardModel.boardWriteDate
+
+            if(boardModel.boardImagePathList.isNotEmpty()){
+                map["boardImagePathList"] = boardModel.boardImagePathList
+            }
+
+            if(isRemoveImage == true){
+                map["boardImagePathList"] = null
+            }
+
+            query.documents[0].reference.update(map)
+        }
+
+        job.join()
     }
 }

@@ -17,23 +17,33 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
+import kr.co.lion.mungnolza.data.repository.BoardRepository
+import kr.co.lion.mungnolza.data.repository.BoardRepositoryImpl
 import kr.co.lion.mungnolza.databinding.FragmentAddBoardBinding
 import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
+import kr.co.lion.mungnolza.model.BoardModel
+import kr.co.lion.mungnolza.repository.UserRepository
+import kr.co.lion.mungnolza.repository.UserRepositoryImpl
+import kr.co.lion.mungnolza.ui.freeboard.AddBoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.AddBoardViewModel
+import kr.co.lion.mungnolza.ui.freeboard.viewmodel.BoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
 import kr.co.lion.mungnolza.util.BoardUtil
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class AddBoardFragment : Fragment() {
     lateinit var binding: FragmentAddBoardBinding
-    lateinit var boardActivity: BoardActivity
+    lateinit var addBoardActivity: AddBoardActivity
 
     lateinit var addBoardViewModel: AddBoardViewModel
     lateinit var boardImageList: MutableList<Bitmap>
@@ -50,13 +60,14 @@ class AddBoardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_add_board,container,false)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_board, container, false)
+
         addBoardViewModel = AddBoardViewModel()
         binding.addBoardViewModel = addBoardViewModel
         binding.lifecycleOwner = this
 
-        boardActivity = activity as BoardActivity
+        addBoardActivity = activity as AddBoardActivity
 
         initData()
         setToolbar()
@@ -70,6 +81,38 @@ class AddBoardFragment : Fragment() {
     fun initData() {
         boardImageList = mutableListOf()
         adapterAddBoard = RecyclerViewAdapterAddBoard()
+    }
+
+    fun uploadBoardData(){
+        lifecycleScope.launch {
+            var serverFileName:String? = null
+
+            if(isAddPicture){
+
+            }
+
+            val boardRepository = BoardRepositoryImpl()
+            val userRepository = UserRepositoryImpl()
+
+            // boardIdx 수정 필요
+            val boardIdx = 2
+            val boardTitle = addBoardViewModel.editTextTitleAddBoard.value!!
+            val boardContent = addBoardViewModel.editTextContentAddBoard.value!!
+            val boardImagePathList = mutableListOf<String?>()
+            val boardWriterIdx = ""
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd-HH-mm")
+            val boardWriteDate = simpleDateFormat.format(Date())
+            val boardLikeNumber = 0
+            val boardState = 1
+
+            val boardModel = BoardModel(boardIdx,boardTitle,boardContent,boardImagePathList,boardWriterIdx,boardWriteDate,boardWriteDate,boardLikeNumber,boardState)
+
+            boardRepository.insertBoard(boardModel)
+
+            val intent = Intent(requireContext(),BoardActivity::class.java)
+            intent.putExtra("boardData",boardModel)
+            startActivity(intent)
+        }
     }
 
     fun setCarousel() {
@@ -92,17 +135,14 @@ class AddBoardFragment : Fragment() {
             toolbarAddBoard.apply {
 
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
-                // 백버튼 이벤트
-                setNavigationOnClickListener {
-                    boardActivity.removeFragment(BoardFragmentName.ADD_BOARD_FRAGMENT)
-                }
+
                 inflateMenu(R.menu.menu_add_board)
 
                 setOnMenuItemClickListener {
                     when (it.itemId) {
                         // 완료 버튼 이벤트
                         R.id.menuCompleteAddBoard -> {
-
+                            uploadBoardData()
                         }
                     }
                     true
@@ -137,13 +177,13 @@ class AddBoardFragment : Fragment() {
                         val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             // 이미지를 생성할 수 있는 객체를 생성한다.
                             val source =
-                                ImageDecoder.createSource(boardActivity.contentResolver, uri)
+                                ImageDecoder.createSource(addBoardActivity.contentResolver, uri)
                             // Bitmap을 생성한다.
                             ImageDecoder.decodeBitmap(source)
                         } else {
                             // 컨텐츠 프로바이더를 통해 이미지 데이터에 접근한다.
                             val cursor =
-                                boardActivity.contentResolver.query(uri, null, null, null, null)
+                                addBoardActivity.contentResolver.query(uri, null, null, null, null)
                             if (cursor != null) {
                                 cursor.moveToNext()
 
@@ -159,7 +199,7 @@ class AddBoardFragment : Fragment() {
                         }
 
                         // 회전 각도값을 가져온다.
-                        val degree = BoardUtil.getDegree(boardActivity, uri)
+                        val degree = BoardUtil.getDegree(addBoardActivity, uri)
                         // 회전 이미지를 가져온다.
                         val bitmap2 = BoardUtil.rotateBitmap(bitmap!!, degree.toFloat())
                         // 크기를 줄인 이미지를 가져온다.

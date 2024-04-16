@@ -19,9 +19,11 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+            android:name=".ui.freeboard.AddBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.TestActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.dialog.DialogSampleActivity"
             android:exported="true" />
@@ -47,19 +49,19 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ui.intro.activity.JoinActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.intro.activity.StartActivity"
-            android:exported="true">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.intro.activity.JoinActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.intro.activity.StartActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".ui.intro.activity.OnBoardingActivity"
             android:exported="true" />

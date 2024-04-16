@@ -2,6 +2,7 @@ package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentFreeBoardBinding
+import kr.co.lion.mungnolza.ui.freeboard.AddBoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.main.adapter.FreeBoardAdapter
 import kr.co.lion.mungnolza.ui.main.viewmodel.MainViewModel
@@ -42,11 +45,11 @@ class FreeBoardFragment : Fragment() {
                     freeBoardAdapter = FreeBoardAdapter(
                         dataSet = boardList,
                         onClick = { selectedItemIdx ->
-
                             val selectedItem = boardList.find { it.contentData.boardIdx == selectedItemIdx }
                             val selectedItemData = selectedItem?.contentData
                             val intent = Intent(requireContext(), BoardActivity::class.java)
-                            intent.putExtra("content", selectedItemData)
+                            Log.d("FreeBoardFragment intent 데이터","${selectedItem}")
+                            intent.putExtra("boardData", selectedItemData)
                             startActivity(intent)
                         }
                     )
@@ -54,6 +57,12 @@ class FreeBoardFragment : Fragment() {
                 }
             }
         }
+
+        binding.buttonAddBoardFreeBoard.setOnClickListener{
+            val intent = Intent(requireContext(), AddBoardActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setRecyclerViewFreeBoard() {
@@ -67,7 +76,5 @@ class FreeBoardFragment : Fragment() {
             addItemDecoration(deco)
         }
     }
-
-
 
 }

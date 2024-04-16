@@ -1,13 +1,8 @@
 package kr.co.lion.mungnolza.ui.freeboard.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import kr.co.lion.mungnolza.data.repository.BoardRepository
-import kr.co.lion.mungnolza.data.repository.UserRepository
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.model.UserModel
-import javax.inject.Inject
 
 class ShowDetailBoardViewModel:ViewModel() {
 
