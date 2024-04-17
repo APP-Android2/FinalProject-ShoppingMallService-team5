@@ -34,26 +34,6 @@
                     android:text="돌봄30분"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                <TextView
-                    android:id="@+id/textViewRowReservationiListLastWriteReview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:gravity="right"
-                    android:text="후기 작성"
-                    android:textColor="#009688" />
-
-                <ImageView
-                    android:id="@+id/imageViewRowReservationListLastEdit"
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="0.1"
-                    android:tint="#009688"
-                    app:srcCompat="@drawable/edit_24px"
-                    tools:ignore="UseAppTint" />
-
             </LinearLayout>
 
             <LinearLayout
