@@ -99,9 +99,6 @@
         <action
             android:id="@+id/to_matchingFragment"
             app:destination="@id/matchingFragment" />
-        <action
-            android:id="@+id/to_petSitterReviewFragment"
-            app:destination="@id/petSitterReviewFragment" />
         <argument
             android:name="info"
             app:argType="kr.co.lion.mungnolza.model.PetSitterModel"
@@ -124,14 +121,5 @@
         android:name="kr.co.lion.mungnolza.ui.appointment.fragment.ReservationConfirmedFragment"
         android:label="fragment_reservation_confirmed"
         tools:layout="@layout/fragment_reservation_confirmed" />
-    <fragment
-        android:id="@+id/petSitterReviewFragment"
-        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.PetSitterReviewFragment"
-        android:label="fragment_pet_sitter_review"
-        tools:layout="@layout/fragment_pet_sitter_review" >
-        <action
-            android:id="@+id/to_petSitterInfoFragment"
-            app:destination="@id/petSitterInfoFragment" />
-    </fragment>
 
 </navigation>
