@@ -12,7 +12,6 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewBinding
 import kr.co.lion.mungnolza.databinding.RowPetSitterReviewBinding
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PetSitterReviewFragment : Fragment() {
 
