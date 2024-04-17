@@ -92,5 +92,7 @@
     <string name="lets_reserve_list">예약 목록 보기</string>
     <string name="view_all">전체 보기</string>
     <string name="reserve_complete">예약이 완료되었어요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

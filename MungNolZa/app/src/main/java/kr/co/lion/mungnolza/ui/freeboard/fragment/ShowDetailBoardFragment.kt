@@ -57,8 +57,6 @@ class ShowDetailBoardFragment : Fragment() {
 
     var imagePathList = mutableListOf<String>()
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -71,9 +69,11 @@ class ShowDetailBoardFragment : Fragment() {
 
         lifecycleScope.launch {
             initData()
+
         }
 
         applyUserData()
+
 
         return binding.root
     }
@@ -115,7 +115,6 @@ class ShowDetailBoardFragment : Fragment() {
             imgUri = userRepository.fetchUserProfileImage(userData?.userProfileImgPath!!)!!
             Log.d("프로필 이미지 uri","${imgUri}")
 
-
         }
         job1.join()
 
@@ -144,9 +143,9 @@ class ShowDetailBoardFragment : Fragment() {
 
 
             lifecycleScope.launch {
-                delay(1000)
+
                 Log.d("이미지 Uri 리스트 Glide 이전",imgUri.toString())
-                Glide.with(requireContext())
+                Glide.with(this@ShowDetailBoardFragment)
                     .load(imgUri)
                     .error(R.drawable.eunwoo)
                     .into(binding.imageViewProfileShowDetailBoard)
