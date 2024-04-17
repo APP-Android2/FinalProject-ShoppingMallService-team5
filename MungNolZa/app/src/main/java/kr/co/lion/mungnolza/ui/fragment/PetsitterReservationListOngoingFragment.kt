@@ -77,8 +77,8 @@ class PetsitterReservationListOngoingFragment : Fragment() {
 
         override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
             holder.rowPetsitterReservationListOngoingBinding.textViewRowReservationOngoingPetCareType.text = "돌봄 30분 ${position}"
-            holder.rowPetsitterReservationListOngoingBinding.imageViewRowReservationListOngoingUser.setImageResource(R.drawable.petsitter)
-            holder.rowPetsitterReservationListOngoingBinding.textViewRowReservationListOngoingUserName.text = "이영주 펫시터 ${position}"
+            holder.rowPetsitterReservationListOngoingBinding.imageViewRowReservationListOngoingUser.setImageResource(R.drawable.ic_my_page_24px)
+            holder.rowPetsitterReservationListOngoingBinding.textViewRowReservationListOngoingUserName.text = "임정혀니 ${position}"
             holder.rowPetsitterReservationListOngoingBinding.imageViewRowReservationListOngoingPet.setImageResource(R.drawable.nayeon)
             holder.rowPetsitterReservationListOngoingBinding.textViewRowReservationListOngoingPetName.text = "뽀삐나연 ${position}"
             holder.rowPetsitterReservationListOngoingBinding.textViewRowReservationListOngoingDate.text = "2024년 4월 1일"
