@@ -73,7 +73,7 @@ class DetailChatFragment : Fragment() {
 
                 // 백버튼 이벤트
                 setNavigationOnClickListener {
-                    chatActivity.removeFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT)
+                    chatActivity.finish()
                 }
             }
         }

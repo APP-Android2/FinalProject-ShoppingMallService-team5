@@ -179,8 +179,7 @@ class ShowDetailBoardFragment : Fragment() {
 
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 setNavigationOnClickListener {
-                    // 백버튼 클릭 이벤트
-                    boardActivity.removeFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT)
+                    boardActivity.finish()
                 }
 
                 inflateMenu(R.menu.menu_show_detail_board)

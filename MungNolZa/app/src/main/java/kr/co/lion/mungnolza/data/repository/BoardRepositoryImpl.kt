@@ -54,11 +54,19 @@ class BoardRepositoryImpl() : BoardRepository {
         return boardList
     }
 
-    override suspend fun insertBoard(boardModel: BoardModel) {
-        boardStore.add(boardModel)
+    override suspend fun insertBoardData(boardModel: BoardModel) {
+        boardStore.document("${boardModel.boardIdx}")
+            .set(boardModel)
+            .addOnSuccessListener {
+                Log.d("FirebaseResult","Success Insert Board Data")
+            }
+            .addOnFailureListener {
+                Log.e("FirebaseResult", "Error Insert Board Data: ${it.message}")
+            }
+
     }
 
-    override suspend fun updateBoard(boardModel: BoardModel, isRemoveImage: Boolean) {
+    override suspend fun updateBoardData(boardModel: BoardModel, isRemoveImage: Boolean) {
         try{
             val query = boardStore.whereEqualTo("boardIdx",boardModel.boardIdx).get().await()
 
@@ -81,7 +89,7 @@ class BoardRepositoryImpl() : BoardRepository {
 
     }
 
-    override suspend fun deleteBoard(boardModel: BoardModel) {
+    override suspend fun deleteBoardData(boardModel: BoardModel) {
         // 삭제가 아닌 BoardState 변경
     }
 

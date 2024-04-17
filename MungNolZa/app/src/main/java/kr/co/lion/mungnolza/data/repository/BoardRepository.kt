@@ -12,12 +12,12 @@ interface BoardRepository {
     suspend fun getBoardData(boardIdx:Int):BoardModel?
     suspend fun getBoardList():ArrayList<BoardModel>
 
-    suspend fun insertBoard(boardModel:BoardModel)
+    suspend fun insertBoardData(boardModel:BoardModel)
 
-    suspend fun deleteBoard(boardModel: BoardModel)
+    suspend fun deleteBoardData(boardModel: BoardModel)
 
 
-    suspend fun updateBoard(boardModel:BoardModel, isRemoveImage:Boolean)
+    suspend fun updateBoardData(boardModel:BoardModel, isRemoveImage:Boolean)
 
     suspend fun getBoardImageUri(boardIdx:Int,imageFilePath: String):Uri?
 
