@@ -9,7 +9,8 @@
         android:id="@+id/menu_item_bottom_navigation_home"
         android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterHomeFragment"
         android:label="fragment_petsitter_home"
-        tools:layout="@layout/fragment_petsitter_home" />
+        tools:layout="@layout/fragment_petsitter_home" >
+    </fragment>
     <fragment
         android:id="@+id/menu_item_bottom_navigation_freeboard"
         android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterFreeBoardFragment"

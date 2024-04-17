@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterInfoBinding
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PetSitterInfoFragment : Fragment() {
     private var _binding: FragmentPetSitterInfoBinding? = null

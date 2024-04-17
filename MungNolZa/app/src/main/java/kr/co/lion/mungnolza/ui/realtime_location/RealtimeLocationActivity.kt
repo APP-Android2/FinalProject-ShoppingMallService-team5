@@ -68,6 +68,12 @@ class RealtimeLocationActivity : AppCompatActivity() {
     fun setToolbar(){
         activityRealtimeLocationBinding.apply {
             toolbarRealtimeLocation.apply {
+
+                setNavigationIcon(R.drawable.ic_arrow_back_24)
+                setNavigationOnClickListener {
+                    // 백버튼 클릭 이벤트
+                    this@RealtimeLocationActivity.finish()
+                }
                 // 메뉴아이템
                 inflateMenu(R.menu.menu_realtime_location_activivty)
                 setOnMenuItemClickListener {
