@@ -7,7 +7,6 @@
     android:transitionGroup="true">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardRowMatchingReservationDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
@@ -24,67 +23,97 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Title, secondary and supporting text -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageViewRowMatchingPetSitter"
+                        android:id="@+id/img_pet_sitter"
                         android:layout_width="@dimen/n_shared_pet_image_width_height"
                         android:layout_height="@dimen/n_shared_pet_image_width_height"
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:id="@+id/textViewRowMatchingPetSitterName"
+                        android:id="@+id/petSitter_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/binggrae_bold"
                         android:text="이름"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:rating="5" />
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                        android:progressTint="@color/male"
+                        android:layout_gravity="top"
+                        android:isIndicator="true"
+                        android:layout_marginBottom="@dimen/shared_common_margin_10"
+                        android:numStars="1"
+                        android:rating="5" />
+
+                    <TextView
+                        android:id="@+id/review_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:text="5.0"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:textColor="@color/gray600"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/review_cnt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:text="20개의 리뷰"
+                        android:textColor="@color/gray600"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/img_tropy" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="경력"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textViewRowMatchingCareer"
-                    android:layout_width="match_parent"
+                    android:id="@+id/pet_sitter_career"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:inputType="datetime|time"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:text="경력"
+                    android:text="반려동물 훈련-관리사 교육 강사"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="?android:attr/textColorSecondary" />
-
-                <TextView
-                    android:id="@+id/textViewRowMatchingReservationDateTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="예약날짜시간"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="?android:attr/textColorSecondary" />
-
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageViewRowMatchingReviewButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/nexticon" />
 
         </LinearLayout>
 

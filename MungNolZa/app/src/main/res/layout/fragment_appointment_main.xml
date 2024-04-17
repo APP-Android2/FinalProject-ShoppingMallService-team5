@@ -136,21 +136,20 @@
                         </com.google.android.material.button.MaterialButtonToggleGroup>
 
                     </LinearLayout>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_next"
-                        android:layout_width="@dimen/shared_button_width"
-                        android:layout_height="@dimen/shared_button_height"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/shared_common_margin_10"
-                        android:layout_marginBottom="@dimen/shared_common_margin"
-                        android:background="@drawable/shared_button_design"
-                        android:fontFamily="@font/binggrae_bold"
-                        android:text="@string/next"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/shared_common_margin_10"
+                android:background="@drawable/shared_button_design"
+                android:fontFamily="@font/binggrae_bold"
+                android:text="@string/next"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

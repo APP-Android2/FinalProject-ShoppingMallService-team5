@@ -21,9 +21,11 @@
         android:theme="@style/Theme.MungNolZa"
         tools:targetApi="31">
         <activity
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.freeboard.AddBoardActivity"
-            android:exported="false" />
-
+            android:exported="true" />
         <activity
             android:name=".ui.reservation_list.PetsitterReviewWriteActivity"
             android:exported="true" />
@@ -75,10 +77,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.intro.activity.StartActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".ui.onboarding.OnBoardingActivity"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".ui.intro.activity.LoginActivity"
             android:exported="true" />
@@ -86,5 +85,4 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54" />
     </application>
-
 </manifest>

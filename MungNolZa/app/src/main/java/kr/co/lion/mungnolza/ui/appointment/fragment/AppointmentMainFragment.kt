@@ -55,7 +55,11 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         viewModel.myPetData.collect {
                             adapter = MyPetAdapter(it) { selectedIdx ->
-                                selectedPet.add(it[selectedIdx])
+                                if(selectedPet.contains(it[selectedIdx])){
+                                    selectedPet.remove(it[selectedIdx])
+                                }else{
+                                    selectedPet.add(it[selectedIdx])
+                                }
                             }
                             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
                         }
