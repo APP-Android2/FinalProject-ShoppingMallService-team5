@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:transitionGroup="true"
-    tools:context=".ui.fragment.PetsitterReservationListOngoingFragment">
+    tools:context=".ui.petsitter_reservation_list.fragment.PetsitterReservationListOngoingFragment">
 
     <TextView
         android:id="@+id/textViewPetsitterReservationListOngoingCount"
