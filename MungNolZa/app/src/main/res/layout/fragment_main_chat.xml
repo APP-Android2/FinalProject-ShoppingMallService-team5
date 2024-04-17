@@ -11,10 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        app:title="@string/menu_item_bottom_navigation_chatting"
         android:theme="?attr/actionBarTheme">
 
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/binggrae_bold"
+            android:gravity="center"
+            android:text="채팅"
+            android:textSize="@dimen/shared_toolbar_title_size" />
+
     </com.google.android.material.appbar.MaterialToolbar>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,17 +34,10 @@
         android:orientation="vertical"
         android:padding="@dimen/layout_padding">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMainChat"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/layout_padding">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMainChat"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </LinearLayout>

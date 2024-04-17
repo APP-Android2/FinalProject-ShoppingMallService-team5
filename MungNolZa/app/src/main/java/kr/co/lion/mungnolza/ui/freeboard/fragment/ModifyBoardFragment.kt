@@ -12,6 +12,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentModifyBoardBinding
 import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
 import kr.co.lion.mungnolza.databinding.RowModifyBoardBinding
+import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.ModifyBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
@@ -22,6 +23,7 @@ class ModifyBoardFragment : Fragment() {
     lateinit var boardActivity: BoardActivity
 
     lateinit var modifyBoardViewModel: ModifyBoardViewModel
+    lateinit var boardData:BoardModel
 
 
     override fun onCreateView(
@@ -35,11 +37,22 @@ class ModifyBoardFragment : Fragment() {
         binding.modifyBoardViewModel = modifyBoardViewModel
         binding.lifecycleOwner = this
 
+        boardData = arguments?.getParcelable("boardData")!!
+
+
         setToolbar()
         setCarousel()
+        setData()
 
 
         return binding.root
+    }
+
+    fun setData(){
+        binding.apply {
+            editTextTitleModifyBoard.setText(boardData.boardTitle)
+            editTextContentModifyBoard.setText(boardData.boardContent)
+        }
     }
 
     fun setCarousel(){
@@ -97,5 +110,4 @@ class ModifyBoardFragment : Fragment() {
             holder.rowModifyBoardBinding.imageViewCarouselModifyBoard.setImageResource(R.drawable.img_dog)
         }
     }
-
 }
