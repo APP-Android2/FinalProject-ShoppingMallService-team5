@@ -36,7 +36,7 @@ class PetSitterReviewFragment : Fragment() {
 
     private fun initToolbar(view: View){
         binding.toolbar.setNavigationOnClickListener{
-            val action = PetSitterReviewFragmentDirections.toPetSitterInfoFragment()
+            val action = PetSitterReviewFragmentDirections.toPetSitterInfoFragment(null)
             Navigation.findNavController(view).navigate(action)
         }
 
