@@ -65,7 +65,7 @@ class AppointmentViewModel(
         _petSitterData.value = petSitterList
     }
 
-    private suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
+    suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
         return petSitterRepository.fetchPetSitterImage(petSitterIdx, imgName)
     }
 

@@ -35,11 +35,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageViewPetSitterInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/img_pet_sitter"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/petsitter"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/circle_arc" />
 
             <LinearLayout
@@ -49,7 +49,6 @@
                 android:padding="10dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardPetSitterInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp">
@@ -67,83 +66,144 @@
                             android:padding="16dp">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
+
                                 <TextView
-                                    android:id="@+id/pet_Sitter_name"
+                                    android:id="@+id/petSitter_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                                    android:fontFamily="@font/binggrae_bold"
                                     android:text="이름"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/pet_Sitter_qualification"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                                android:text="멍놀자 펫시터 자격 수료" />
-
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
-
                                 <RatingBar
-                                    android:id="@+id/petSitter_rating"
+                                    android:id="@+id/ratingBar"
                                     style="@style/Widget.AppCompat.RatingBar.Small"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                                    android:layout_marginBottom="@dimen/shared_common_margin_10"
                                     android:isIndicator="true"
-                                    android:numStars="5"
-                                    android:rating="5"
-                                    tools:isIndicator="true" />
+                                    android:numStars="1"
+                                    android:progressTint="@color/male"
+                                    android:rating="5" />
 
                                 <TextView
-                                    android:id="@+id/petSitter_review_cnt"
-                                    android:layout_width="wrap_content"
+                                    android:id="@+id/review_score"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_weight="1"
-                                    android:text="2개의 후기" />
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="3dp"
+                                    android:fontFamily="@font/binggrae_bold"
+                                    android:text="5.0"
+                                    android:textColor="@color/gray600"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:id="@+id/review_cnt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="5dp"
+                                    android:fontFamily="@font/binggrae_bold"
+                                    android:text="20개의 리뷰"
+                                    android:textColor="@color/gray600"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/img_tropy" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="경력"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/petSitter_career"
-                                android:layout_width="match_parent"
+                                android:id="@+id/pet_sitter_career"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                                android:text="경력"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
+                                android:layout_marginTop="5dp"
+                                android:text="반려동물 훈련-관리사 교육 강사"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="?android:attr/textColorSecondary" />
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/shared_common_margin_10"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/img_thumb" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="자격증"
+                                    android:textColor="?android:attr/textColorSecondary"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/pet_sitter_certification"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textColor="?android:attr/textColorSecondary" />
                         </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/btn_petSitter_review"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/nexticon" />
-
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/shared_common_margin_10"
+                    android:background="@color/black" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                    android:fontFamily="@font/binggrae_bold"
+                    android:layout_marginTop="@dimen/shared_common_margin_10"
+                    android:text="자기소개"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 <TextView
                     android:id="@+id/petSitter_introduce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
+                    android:textSize="16sp"
                     android:text="안녕하세요! 반려동물을 사랑하는 OOO 입니다. 반려동물 관리 학과를 졸업하고 반려동물 관리 자격증을 취득하여, 다양한 종류의 반려동물들을 돌보는 데 경험이 풍부합니다.  현재는 사랑스러운 반려동물 3마리와 함께 살고 있습니다.  저와 함께라면 반려동물들이 집을 떠나더라도 안심하고 즐거운 시간을 보낼 수 있을 거예요! 언제든지 저를 찾아주시면 반려동물 친구들을 마음 편히 맡기실 수 있으십니다. " />
             </LinearLayout>
         </LinearLayout>

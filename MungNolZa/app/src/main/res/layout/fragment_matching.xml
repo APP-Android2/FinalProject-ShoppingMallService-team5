@@ -182,10 +182,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:fontFamily="@font/binggrae_regular"
+                        android:fontFamily="@font/binggrae_bold"
                         android:text="원하는 펫시터를 선택해주세요"
+                        android:textSize="17sp"
                         android:textColor="@color/male"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_petsitter"
