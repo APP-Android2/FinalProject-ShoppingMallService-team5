@@ -39,6 +39,7 @@ android {
         jvmTarget = "1.8"
     }
 
+
     viewBinding {
         enable = true
     }
@@ -46,6 +47,8 @@ android {
     buildFeatures{
         dataBinding = true
     }
+
+
 }
 
 dependencies {
@@ -57,6 +60,7 @@ dependencies {
     implementation("androidx.activity:activity:1.8.2")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation("androidx.datastore:datastore-core:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

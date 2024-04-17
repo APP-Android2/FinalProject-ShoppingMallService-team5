@@ -9,15 +9,23 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
+
 import kr.co.lion.mungnolza.databinding.ActivityPetsitterReviewWriteBinding
 import kr.co.lion.mungnolza.ext.hideSoftInput
 import kr.co.lion.mungnolza.ext.showErrorDialog
 import kr.co.lion.mungnolza.model.PetsitterReviewModel
-import kr.co.lion.mungnolza.repository.PetsitterReviewRepository
+
+
+
 import kr.co.lion.mungnolza.ui.reservation_list.viewmodel.PetSitterReviewWriteViewModel
 import kr.co.lion.mungnolza.util.ReservationListFragmentName
 import java.text.SimpleDateFormat
 import java.util.Date
+
+// ContextExt.kt에 정의된 확장 함수를 import
+import kr.co.lion.mungnolza.ext.hideSoftInput
+import kr.co.lion.mungnolza.ext.showErrorDialog
+import kr.co.lion.mungnolza.repository.PetsitterReviewRepository
 
 class PetsitterReviewWriteActivity : AppCompatActivity() {
 
