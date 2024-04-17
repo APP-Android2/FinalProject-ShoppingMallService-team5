@@ -16,6 +16,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityLoginBinding
@@ -49,9 +50,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
-
 
         val signInButton = findViewById<Button>(R.id.button_login_google)
         signInButton.setOnClickListener {
@@ -134,9 +132,12 @@ class LoginActivity : AppCompatActivity() {
             if (error != null) {
                 // 이 부분에는 로그인이 실패했을 때의 처리를 해주세요
                 Log.e(TAG, "카카오계정으로 로그인 실패", error)
+                // android key hash 값을 출력하고 이를 등록해야 한다.
+                Log.d("test1234", Utility.getKeyHash(this@LoginActivity))
             } else if (token != null) {
                 // 이 부분에는 로그인에 성공했을 때의 처리를 해주세요
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
+                updateUIWithUser()
 
                 // 로그인한 사용자 정보를 가져온다.
                 // 이 때 accessToken 을 카카오 서버로 전달해야 해야하는데 알아서해준다.
@@ -153,11 +154,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
+
         // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this@LoginActivity)) {
             UserApiClient.instance.loginWithKakaoTalk(this@LoginActivity) { token, error ->
                 if (error != null) {
                     Log.e(TAG, "카카오톡으로 로그인 실패", error)
+
 
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
                     // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
@@ -172,10 +176,16 @@ class LoginActivity : AppCompatActivity() {
                     )
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                    updateUIWithUser()
                 }
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this@LoginActivity, callback = callback)
         }
+    }
+
+    private fun updateUIWithUser() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

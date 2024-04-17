@@ -40,7 +40,8 @@
 
     <!-- 이영주 스트링값 -->
     <string name="default_web_client_id" translatable="false">891859683237-rqkbl4e5btctaeg4h2mlqj6jij4o0g85.apps.googleusercontent.com</string>
-    <string name="server_client_id" translatable="false">891859683237-orc9nuurmg6va6b398osqnalr0sqaut6.apps.googleusercontent.com</string>
+
+<!--    <string name="server_client_id" translatable="false">891859683237-orc9nuurmg6va6b398osqnalr0sqaut6.apps.googleusercontent.com</string>-->
 
 
     <!-- 안영준 스트링값 -->
@@ -79,6 +80,6 @@
     <string name="menu_item_bottom_navigation_freeboard">자유게시판</string>
     <string name="menu_item_bottom_navigation_reservation">예약</string>
     <string name="menu_item_bottom_navigation_profile">프로필</string>
-    <string name="three_hour">180</string>
+<!--    <string name="three_hour">180</string>-->
 
 </resources>
