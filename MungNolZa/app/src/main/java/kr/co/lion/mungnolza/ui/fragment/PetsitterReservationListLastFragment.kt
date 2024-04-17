@@ -88,19 +88,6 @@ class PetsitterReservationListLastFragment : Fragment() {
             holder.rowPetsitterReservationListLastBinding.textViewRowReservationListLastPetName.text = "뽀삐나연 ${position}"
             holder.rowPetsitterReservationListLastBinding.textViewRowReservationListLastDate.text = "2024년 4월 17일"
             holder.rowPetsitterReservationListLastBinding.textViewRowReservationListLastTime.text = "오후 5:00 ~ 5:30"
-
-            // '후기작성' 항목을 누르면 동작하는 리스너
-            /*holder.rowPetsitterReservationListLastBinding.textViewRowReservationiListLastWriteReview.setOnClickListener {
-                // PetsitterReviewWriteActivity가 보여진다
-                val intent = Intent(context, PetsitterReviewWriteActivity::class.java)
-                startActivity(intent)
-            }*/
-            // '후기작성' 아이콘 항목을 누르면 동작하는 리스너
-            /*holder.rowPetsitterReservationListLastBinding.imageViewRowReservationListLastEdit.setOnClickListener {
-                // PetsitterReviewWriteActivity가 보여진다
-                val intent = Intent(context, PetsitterReviewWriteActivity::class.java)
-                startActivity(intent)
-            }*/
         }
     }
 }
