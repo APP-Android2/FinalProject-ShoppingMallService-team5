@@ -61,7 +61,7 @@
     <string name="all_day">종일</string>
 
     <!-- 최나연 사용 -->
-    <string name="toolbar_title_reservation">예약</string>
+    <string name="toolbar_title_reservation">신청내역</string>
     <string name="toolbar_title_petsitter_info">펫시터 정보</string>
     <string name="toolbar_title_petsitter_review">후기</string>
     <string name="toolbar_title_reservation_confirmed">예약 확인</string>
