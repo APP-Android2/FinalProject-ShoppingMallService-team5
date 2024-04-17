@@ -20,6 +20,7 @@ import kr.co.lion.mungnolza.ui.appointment.AppointmentActivity
 import kr.co.lion.mungnolza.ui.appointment.NoPetActivity
 import kr.co.lion.mungnolza.ui.main.vm.MainViewModel
 import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
+import kr.co.lion.mungnolza.ui.realtime_location.RealtimeLocationActivity
 import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -61,7 +62,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.btn_reserve_list -> {
-                startActivity(Intent(requireActivity(), ReservationListActivity::class.java))
+                startActivity(Intent(requireActivity(), RealtimeLocationActivity::class.java))
             }
 
             R.id.btn_review_list -> {
