@@ -9,8 +9,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetsitterReservationListBinding
-import kr.co.lion.mungnolza.ui.fragment.PetsitterReservationListLastFragment
-import kr.co.lion.mungnolza.ui.fragment.PetsitterReservationListOngoingFragment
+import kr.co.lion.mungnolza.ui.petsitter_reservation_list.fragment.PetsitterReservationListLastFragment
+import kr.co.lion.mungnolza.ui.petsitter_reservation_list.fragment.PetsitterReservationListOngoingFragment
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListLastFragment
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListOngoingFragment
 

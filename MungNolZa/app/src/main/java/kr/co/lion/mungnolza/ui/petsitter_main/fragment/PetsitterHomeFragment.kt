@@ -42,10 +42,18 @@ class PetsitterHomeFragment : Fragment() {
             // 요청된 예약 목록
             imageViewRowMatchingReviewButton.setOnClickListener {
                 // PetsitterReservationListFragment를 띄워준다.
-
+                petsitterMainActivity.activityPetsitterMainBinding.navigationView.selectedItemId = R.id.menu_item_bottom_navigation_reservation
             }
             // 채팅 목록
+            imageViewPetsitterHomeGoChatList.setOnClickListener {
+                // PetsitterMainChatFragment를 띄워준다.
+                petsitterMainActivity.activityPetsitterMainBinding.navigationView.selectedItemId = R.id.menu_item_bottom_navigation_chatting
+            }
             // 게시판 목록
+            cardViewPetsitterGoFreeBoard.setOnClickListener{
+                // PetsitterFreeBoardFragment를 띄워준다.
+                petsitterMainActivity.activityPetsitterMainBinding.navigationView.selectedItemId = R.id.menu_item_bottom_navigation_freeboard
+            }
             // 실시간 위치
             cardViewPetsitterGoRealtimeLocation.setOnClickListener {
                 // RealtimeLocationActivity 실시간 펫 위치 화면을 띄워준다
@@ -97,7 +105,7 @@ class PetsitterHomeFragment : Fragment() {
 
         override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
             holder.rowPetsitterHomeChatPersonListBinding.imageViewRowPetsitterHomeChatListPerson.setImageResource(R.drawable.eunwoo)
-            holder.rowPetsitterHomeChatPersonListBinding.textViewRowPetsitterHomeChatListPersonName.text = "영준"
+            holder.rowPetsitterHomeChatPersonListBinding.textViewRowPetsitterHomeChatListPersonName.text = "영준 $position"
         }
     }
 }

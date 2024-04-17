@@ -17,7 +17,7 @@ import kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterReservationListF
 
 class PetsitterMainActivity : AppCompatActivity() {
 
-    private lateinit var activityPetsitterMainBinding: ActivityPetsitterMainBinding
+    lateinit var activityPetsitterMainBinding: ActivityPetsitterMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
