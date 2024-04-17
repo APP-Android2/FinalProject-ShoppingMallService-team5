@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.firestore
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
@@ -20,6 +23,7 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityLoginBinding
+import kr.co.lion.mungnolza.model.KakaoUserModel
 import kr.co.lion.mungnolza.ui.main.MainActivity
 
 
@@ -137,6 +141,8 @@ class LoginActivity : AppCompatActivity() {
             } else if (token != null) {
                 // 이 부분에는 로그인에 성공했을 때의 처리를 해주세요
                 Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
+
+
                 updateUIWithUser()
 
                 // 로그인한 사용자 정보를 가져온다.
@@ -149,8 +155,20 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(TAG, "이메일 : ${user.kakaoAccount?.email}")
                         Log.d(TAG, "닉네임 : ${user.kakaoAccount?.profileNicknameNeedsAgreement}")
                         Log.d(TAG, "프로필사진 : ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+
+                        val kakaoUserModel = KakaoUserModel(
+                            userId = user.id.toString(),
+                            email = user.kakaoAccount?.email ?: "",
+                            nickname = user.kakaoAccount?.profile?.nickname ?: "",
+                            profileImage = user.kakaoAccount?.profile?.thumbnailImageUrl ?: ""
+                        )
+
+                        // Firebase에 사용자 정보 등록
+                        registerUserToFirebase(kakaoUserModel)
                     }
                 }
+
+
             }
         }
 
@@ -187,5 +205,15 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUIWithUser() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    // Firebase에 사용자 정보를 등록하는 함수
+    private fun registerUserToFirebase(user: KakaoUserModel) {
+        // Firebase Realtime Database에 접근하여 사용자 정보 저장
+        val database = FirebaseDatabase.getInstance()
+
+        val collectionReference = Firebase.firestore.collection("User")
+        val usersRef = database.getReference("users")
+        collectionReference.add(user)
     }
 }
