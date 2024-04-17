@@ -16,11 +16,23 @@ import kotlinx.coroutines.tasks.await
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.util.ContentState
+import java.net.URI
 
 class BoardRepositoryImpl() : BoardRepository {
 
     private val boardStore = Firebase.firestore.collection("Board")
     private val storage = Firebase.storage.reference
+
+    override suspend fun getBoardData(boardIdx:Int):BoardModel?{
+        var boardModel:BoardModel? = null
+        try{
+            val querySnapshot = boardStore.whereEqualTo("boardIdx",boardIdx).get().await()
+            boardModel = querySnapshot.documents[0].toObject(BoardModel::class.java)
+        }catch (e:Exception){
+            Log.e("FirebaseResult", "Error Get Board Data: ${e.message}")
+        }
+        return boardModel
+    }
 
     override suspend fun getBoardList(): ArrayList<BoardModel> {
         val boardList = arrayListOf<BoardModel>()
@@ -37,7 +49,7 @@ class BoardRepositoryImpl() : BoardRepository {
             }
 
         } catch (e: Exception) {
-            Log.e("FirebaseResult", "Error Get Board Data: ${e.message}")
+            Log.e("FirebaseResult", "Error Get Board List: ${e.message}")
         }
         return boardList
     }
@@ -73,9 +85,9 @@ class BoardRepositoryImpl() : BoardRepository {
         // 삭제가 아닌 BoardState 변경
     }
 
-    override suspend fun getBoardImageUri(boardIdx:Int,imageFilePath: String):Uri?{
+    override suspend fun getBoardImageUri(boardIdx:Int,imageFileName: String):Uri?{
         var response:Uri? = null
-        val path = "board/${boardIdx}/${imageFilePath}"
+        val path = "board/${boardIdx}/${imageFileName}"
         try{
             response = storage.child(path).downloadUrl.await()
         }catch (e:Exception){
@@ -85,10 +97,10 @@ class BoardRepositoryImpl() : BoardRepository {
         return response
     }
 
-    override suspend fun getBoardImageUriList(boardModel:BoardModel): MutableList<Uri?> {
-        var imageUriList:MutableList<Uri?> = mutableListOf()
+    override suspend fun getBoardImageUriList(boardModel:BoardModel?): ArrayList<Uri?> {
+        val imageUriList:ArrayList<Uri?> = ArrayList()
 
-        boardModel.boardImagePathList.forEach {
+        boardModel?.boardImagePathList?.forEach {
             imageUriList.add(getBoardImageUri(boardModel.boardIdx,it!!)!!)
         }
         return imageUriList
