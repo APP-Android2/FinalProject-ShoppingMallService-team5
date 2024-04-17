@@ -11,10 +11,19 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/menu_item_bottom_navigation_freeboard"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:menu="@menu/menu_free_board"/>
+        android:theme="?attr/actionBarTheme" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/binggrae_bold"
+            android:gravity="center"
+            android:text="@string/menu_item_bottom_navigation_freeboard"
+            android:textSize="@dimen/shared_toolbar_title_size" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -23,13 +32,26 @@
         <com.google.android.material.search.SearchBar
             android:id="@+id/searchBarMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/main_color_yellow" />
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFreeBoard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="90dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonAddBoardFreeBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="70dp"
+            app:backgroundTint="@color/main_color_yellow"
+            app:srcCompat="@drawable/ic_add_24px" />
 
         <com.google.android.material.search.SearchView
             android:id="@+id/searchViewFreeBoard"
@@ -43,5 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.search.SearchView>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </LinearLayout>

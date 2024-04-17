@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.main.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -69,7 +70,7 @@ class MainChatFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 100
+            return 3
         }
 
         override fun onBindViewHolder(holder: ViewHolderMainChat, position: Int) {
@@ -79,7 +80,9 @@ class MainChatFragment : Fragment() {
             holder.rowMainChatBinding.imageViewProfileRowMainChat.setImageResource(R.drawable.img_jch)
 
             holder.rowMainChatBinding.root.setOnClickListener {
+                val intent = Intent(requireContext(),ChatActivity::class.java)
 
+                startActivity(intent)
             }
         }
     }

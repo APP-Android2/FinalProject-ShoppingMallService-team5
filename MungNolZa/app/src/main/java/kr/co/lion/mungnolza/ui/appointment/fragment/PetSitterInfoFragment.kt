@@ -1,7 +1,6 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
-import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterInfoBinding
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PetSitterInfoFragment : Fragment() {
     private var _binding: FragmentPetSitterInfoBinding? = null

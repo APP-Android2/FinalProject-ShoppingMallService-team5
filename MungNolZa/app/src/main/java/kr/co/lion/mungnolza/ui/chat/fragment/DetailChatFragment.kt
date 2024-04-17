@@ -69,11 +69,11 @@ class DetailChatFragment : Fragment() {
         binding.apply{
             toolbarDetailChat.apply{
                 title = "정찬호"
-                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+                setNavigationIcon(R.drawable.ic_arrow_back_24)
 
                 // 백버튼 이벤트
                 setNavigationOnClickListener {
-                    chatActivity.removeFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT)
+                    chatActivity.finish()
                 }
             }
         }

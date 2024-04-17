@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kr.co.lion.mungnolza.util.App
 
+
 object MainDataStore {
     private fun getContext(): Context = App.context()
 
