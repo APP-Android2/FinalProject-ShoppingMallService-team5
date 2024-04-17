@@ -172,10 +172,16 @@
                             android:id="@+id/textviewFreeboard"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:text="게시판"
                             android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/divider12"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
 
                         <ImageView
                             android:id="@+id/imageViewFreeboard"
@@ -203,10 +209,16 @@
                             android:id="@+id/textViewRealtimeLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:text="실시간 위치"
                             android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/divider14"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
 
                         <ImageView
                             android:id="@+id/imageViewRealtimeLocation"
