@@ -23,7 +23,7 @@ import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityLoginBinding
-import kr.co.lion.mungnolza.model.KakaoUserModel
+import kr.co.lion.mungnolza.model.User
 import kr.co.lion.mungnolza.ui.main.MainActivity
 
 
@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "구글 로그인 실패: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -105,11 +105,11 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    Toast.makeText(this, "${user?.displayName}로 로그인 하시겠습니까?", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "인증 실패", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -147,24 +147,29 @@ class LoginActivity : AppCompatActivity() {
 
                 // 로그인한 사용자 정보를 가져온다.
                 // 이 때 accessToken 을 카카오 서버로 전달해야 해야하는데 알아서해준다.
-                UserApiClient.instance.me { user, error ->
+                UserApiClient.instance.me { kakaoUser, error ->
                     if (error != null) {
                         Log.e(TAG, "사용자 정보를 가져오는데 실패하였습니다", error)
-                    } else if (user != null) {
-                        Log.d(TAG, "회원번호 : ${user.id}")
-                        Log.d(TAG, "이메일 : ${user.kakaoAccount?.email}")
-                        Log.d(TAG, "닉네임 : ${user.kakaoAccount?.profileNicknameNeedsAgreement}")
-                        Log.d(TAG, "프로필사진 : ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                    } else if (kakaoUser != null) {
+                        Log.d(TAG, "회원번호 : ${kakaoUser.id}")
+                        Log.d(TAG, "이메일 : ${kakaoUser.kakaoAccount?.email}")
+                        Log.d(TAG, "닉네임 : ${kakaoUser.kakaoAccount?.profileNicknameNeedsAgreement}")
+                        Log.d(TAG, "프로필사진 : ${kakaoUser.kakaoAccount?.profile?.thumbnailImageUrl}")
 
-                        val kakaoUserModel = KakaoUserModel(
-                            userId = user.id.toString(),
-                            email = user.kakaoAccount?.email ?: "",
-                            nickname = user.kakaoAccount?.profile?.nickname ?: "",
-                            profileImage = user.kakaoAccount?.profile?.thumbnailImageUrl ?: ""
+                        val user = User(
+                            uniqueNumber = kakaoUser.id.toString(),
+                            userAddress = "",
+                            userAgeRange = "",
+                            userEmail = kakaoUser.kakaoAccount?.email ?: "",
+                            userGender= "",
+                            userName= "",
+                            userNickname = kakaoUser.kakaoAccount?.profile?.nickname ?: "",
+                            userPhone= "",
+                            userProfileImgPath = kakaoUser.kakaoAccount?.profile?.thumbnailImageUrl ?: "",
                         )
 
                         // Firebase에 사용자 정보 등록
-                        registerUserToFirebase(kakaoUserModel)
+                        registerUserToFirebase(user)
                     }
                 }
 
@@ -208,7 +213,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Firebase에 사용자 정보를 등록하는 함수
-    private fun registerUserToFirebase(user: KakaoUserModel) {
+    private fun registerUserToFirebase(user: User) {
         // Firebase Realtime Database에 접근하여 사용자 정보 저장
         val database = FirebaseDatabase.getInstance()
 
