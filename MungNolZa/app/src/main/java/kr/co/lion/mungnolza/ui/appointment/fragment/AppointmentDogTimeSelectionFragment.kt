@@ -11,6 +11,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
+import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.PaymentTimeModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
@@ -95,12 +96,7 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
 
                 R.id.btn_next -> {
                     if (selectedTime.isEmpty()) {
-                        val dialog = PositiveCustomDialog(
-                            title = "서비스 시간을 선택해 볼까요 ?",
-                            message = "원하시는 서비스 시간을 선택해 주세요!",
-                            positiveButtonClick = { }
-                        )
-                        dialog.show(childFragmentManager, "PositiveCustomDialog")
+                        childFragmentManager.showDialog("서비스 시간을 선택해 볼까요 ?", "원하시는 서비스 시간을 선택해 주세요!")
                     } else {
                         val flag = AppointmentMainFragment.ServiceType.JOGGING.value
                         viewModel.setPayment(PaymentTimeModel(payment, selectedTime))

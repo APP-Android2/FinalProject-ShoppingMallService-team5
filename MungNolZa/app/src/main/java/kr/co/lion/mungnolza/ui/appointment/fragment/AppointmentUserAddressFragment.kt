@@ -25,6 +25,7 @@ import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
 import kr.co.lion.mungnolza.ext.setColorWhite
+import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
@@ -179,13 +180,13 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     if(edittextAddr.text.isNullOrEmpty() &&
                         viewModel.careType.value.toString() != AppointmentMainFragment.CareType.VISIT.value
                     ){
-                        showDialog("주소를 입력해 볼까요?" ,"방문 주소을 선택해 주세요")
+                        childFragmentManager.showDialog("주소를 입력해 볼까요?" ,"방문 주소을 선택해 주세요")
                     } else if (selectedVisitType.isNullOrEmpty()){
-                        showDialog("방문 타입을 선택해 볼까요?" ,"방문 타입을 선택해 주세요")
+                        childFragmentManager.showDialog("방문 타입을 선택해 볼까요?" ,"방문 타입을 선택해 주세요")
                     }else if(selectDate.isEmpty()){
-                        showDialog("방문 날짜를 선택해 볼까요?" ,"방문 날짜를 선택해 주세요")
+                        childFragmentManager.showDialog("방문 날짜를 선택해 볼까요?" ,"방문 날짜를 선택해 주세요")
                     }else if (selectedVisitTime.isNullOrEmpty()){
-                        showDialog("방문 시간을 선택해 볼까요?" ,"방문 시간을 선택해 주세요")
+                        childFragmentManager.showDialog("방문 시간을 선택해 볼까요?" ,"방문 시간을 선택해 주세요")
                     }else{
                         val addr = "${edittextAddr.text} ${editTextDetailAddr.text}"
                         val request = appointmentRequestTextview.text.toString()
@@ -412,15 +413,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         val pay = viewModel.payment.value.payment
         val day = selectDate.size
         return (pets * pay) * day
-    }
-
-    private fun showDialog(title: String, message: String) {
-        val dialog = PositiveCustomDialog(
-            title,
-            message,
-            positiveButtonClick = { }
-        )
-        dialog.show(childFragmentManager, "PositiveCustomDialog")
     }
 
     override fun onDestroyView() {
