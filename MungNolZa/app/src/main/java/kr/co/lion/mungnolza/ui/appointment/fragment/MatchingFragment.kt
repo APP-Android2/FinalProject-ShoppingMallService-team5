@@ -18,12 +18,14 @@ import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class MatchingFragment : Fragment() {
 
     private var _binding: FragmentMatchingBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private var selectedPetSitter: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,13 +54,14 @@ class MatchingFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.petSitterData.collect {
-
                     if (it != null) {
-                            val petSitterAdapter = PetSitterAdapter(petSitters = it) { idx ->
+                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
                             val info = it[idx].petSitter
                             val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
                             Navigation.findNavController(view).navigate(action)
-                        }
+                        }, { idx ->
+                            selectedPetSitter = idx
+                        })
 
                         with(binding) {
                             with(rvPetsitter) {
@@ -111,8 +114,7 @@ class MatchingFragment : Fragment() {
     private fun initToolbar(view: View) {
         with(binding.toolbar) {
             setNavigationOnClickListener {
-                val action =
-                    MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
+                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
                 Navigation.findNavController(view).navigate(action)
             }
         }
