@@ -110,7 +110,8 @@
             app:destination="@id/matchingFragment" />
         <argument
             android:name="idx"
-            app:argType="integer" />
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/reservationConfirmedFragment"
