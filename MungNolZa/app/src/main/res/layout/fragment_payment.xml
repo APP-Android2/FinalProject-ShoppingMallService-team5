@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.appointment.fragment.PaymentFragment">
 
@@ -37,29 +37,35 @@
             android:text="결제수단"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <RadioButton
-            android:id="@+id/radioButtonPaymentEasyCard"
+        <RadioGroup
+            android:id="@+id/group1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:padding="@dimen/shared_layout_padding"
-            android:text="간편 카드결제" />
+            android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
+            <RadioButton
+                android:id="@+id/radioButtonPaymentEasyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="@dimen/shared_layout_padding"
+                android:text="간편 카드결제" />
 
-        <RadioButton
-            android:id="@+id/radioButtonPaymentRegular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:padding="@dimen/shared_layout_padding"
-            android:text="일반 결제" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPaymentRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="@dimen/shared_layout_padding"
+                android:text="일반 결제" />
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,10 +122,10 @@
             android:id="@+id/spinnerPaymentCardType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:padding="@dimen/shared_layout_padding"
-            android:layout_marginTop="10dp" />
+            android:padding="@dimen/shared_layout_padding" />
 
         <Spinner
             android:id="@+id/spinnerPaymentCardPeriod"
@@ -168,7 +174,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
-                android:id="@+id/textViewPaymentTotalAmount"
+                android:id="@+id/total_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -181,9 +187,11 @@
             android:id="@+id/btn_done"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@drawable/shared_button_design"
-            android:text="결제" />
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/next"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
