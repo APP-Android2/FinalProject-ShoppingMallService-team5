@@ -6,17 +6,23 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
+import kr.co.lion.mungnolza.model.CareServiceModel
 import kr.co.lion.mungnolza.model.PaymentTimeModel
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.model.PetSitterModelWithImg
 import kr.co.lion.mungnolza.model.SelectScheduleModel
+import kr.co.lion.mungnolza.model.WalkServiceModel
 import kr.co.lion.mungnolza.repository.petsitter.PetSitterRepository
+import kr.co.lion.mungnolza.repository.reservation.ReservationRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class AppointmentViewModel(
     private val userRepositoryImpl: UserRepositoryImpl,
-    private val petSitterRepository: PetSitterRepository
+    private val petSitterRepository: PetSitterRepository,
+    private val reservationRepositoryImpl: ReservationRepositoryImpl
 ) : ViewModel() {
 
     private val _myUserNumber = MutableStateFlow<String?>(null)
@@ -43,10 +49,11 @@ class AppointmentViewModel(
     private val _userAddress: MutableStateFlow<String?> = MutableStateFlow(null)
     val userAddress = _userAddress.asStateFlow()
 
-    private val _reserveSchedule: MutableStateFlow<SelectScheduleModel?> = MutableStateFlow(null)
+    private val _reserveSchedule: MutableStateFlow<SelectScheduleModel> = MutableStateFlow(SelectScheduleModel())
     val reserveSchedule = _reserveSchedule.asStateFlow()
 
-    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> = MutableStateFlow(null)
+    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> =
+        MutableStateFlow(null)
     val petSitterData = _petSitterData.asStateFlow()
 
     init {
@@ -58,11 +65,47 @@ class AppointmentViewModel(
         }
     }
 
-    fun fetchAllPetSitterData() = viewModelScope.launch{
+    fun requestService(petSitterIdx: String){
+        when(serviceType.value.toString()){
+            "JOGGING" -> {
+                requestWalkService(petSitterIdx)
+            }
+            "CARE" -> {
+                requestCareService(petSitterIdx)
+            }
+        }
+    }
+
+    private fun requestCareService(petSitterIdx: String) = viewModelScope.launch{
+        val request = CareServiceModel(
+            myUserNumber.value.toString(),
+            reservationRepositoryImpl.findLastReservationIdx() + 1,
+                reserveSchedule.value,
+                careType.value.toString(),
+                petSitterIdx,
+                getCurrentDate(),
+                true
+                )
+        reservationRepositoryImpl.careServiceRequest(request)
+    }
+
+    private fun requestWalkService(petSitterIdx: String) = viewModelScope.launch{
+        val request = WalkServiceModel(
+            myUserNumber.value.toString(),
+            reservationRepositoryImpl.findLastReservationIdx() + 1,
+            reserveSchedule.value,
+            petSitterIdx,
+            getCurrentDate(),
+            true
+        )
+        reservationRepositoryImpl.walkServiceRequest(request)
+    }
+
+    fun fetchAllPetSitterData() = viewModelScope.launch {
         val response = petSitterRepository.fetchAllPetSitterData()
         val petSitterList = ArrayList<PetSitterModelWithImg>()
 
-        response.map{
+        response.map {
             val imgUri = fetchPetSitterImage(it.petSitterIdx, it.imgName)
             val petSitter = imgUri?.let { uri -> PetSitterModelWithImg(it, uri) }
             if (petSitter != null) {
@@ -76,35 +119,40 @@ class AppointmentViewModel(
         return petSitterRepository.fetchPetSitterImage(petSitterIdx, imgName)
     }
 
-     private suspend fun getUserAddress(userNumber: String){
+    private suspend fun getUserAddress(userNumber: String) {
         _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber)
-     }
+    }
 
-    fun setFlag(flag: String){
+    fun setFlag(flag: String) {
         _fromWhere.value = flag
     }
 
-    fun setPayment(payment: PaymentTimeModel){
+    fun setPayment(payment: PaymentTimeModel) {
         _payment.value = payment
     }
 
-    fun setSchedule(schedule: SelectScheduleModel){
+    fun setSchedule(schedule: SelectScheduleModel) {
         _reserveSchedule.value = schedule
     }
 
-    fun setSelectedPet(selectedItem: List<PetImgModel>){
+    fun setSelectedPet(selectedItem: List<PetImgModel>) {
         _selectedPet.value = selectedItem
     }
 
-    fun setServiceType(service: String){
+    fun setServiceType(service: String) {
         _serviceType.value = service
     }
 
-    fun setMyPetData(myPets: List<PetImgModel>){
+    fun setMyPetData(myPets: List<PetImgModel>) {
         _myPetData.value = myPets
     }
 
     fun setCareType(type: String?) {
         _careType.value = type
+    }
+
+    fun getCurrentDate(): String{
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        return simpleDateFormat.format(Date())
     }
 }
