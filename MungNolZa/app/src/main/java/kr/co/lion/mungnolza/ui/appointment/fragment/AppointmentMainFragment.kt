@@ -191,12 +191,12 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
     }
 
     enum class ServiceType(val value: String) {
-        JOGGING("jogging"),
-        CARE("care")
+        JOGGING("JOGGING"),
+        CARE("CARE")
     }
 
     enum class CareType(val value: String) {
-        ENTRUST("entrust"),
-        VISIT("visit")
+        ENTRUST("ENTRUST"),
+        VISIT("VISIT")
     }
 }

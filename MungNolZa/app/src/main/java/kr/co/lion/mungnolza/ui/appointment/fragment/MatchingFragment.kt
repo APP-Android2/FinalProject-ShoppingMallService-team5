@@ -14,16 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
+import kr.co.lion.mungnolza.ext.moneyFormat
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
+import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class MatchingFragment : Fragment() {
 
     private var _binding: FragmentMatchingBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private var selectedPetSitter: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,13 +55,14 @@ class MatchingFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.petSitterData.collect {
-
                     if (it != null) {
-                            val petSitterAdapter = PetSitterAdapter(petSitters = it) { idx ->
+                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
                             val info = it[idx].petSitter
                             val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
                             Navigation.findNavController(view).navigate(action)
-                        }
+                        }, { idx ->
+                            selectedPetSitter = it[idx].petSitter.petSitterIdx
+                        })
 
                         with(binding) {
                             with(rvPetsitter) {
@@ -81,28 +85,35 @@ class MatchingFragment : Fragment() {
 
             val date = StringBuilder()
 
-            if (schedule != null) {
-                schedule.reserveDate.map {
-                    date.append(it).append("\n".trim())
-                }
-
-                reserveDate.text = date.trim()
-                reserveServiceType.text =
-                    if (schedule.serviceType == AppointmentMainFragment.ServiceType.JOGGING.value) {
-                        "산책 서비스 예약 확인"
-                    } else {
-                        "돌봄 서비스 예약 확인"
-                    }
-                serviceTime.text = schedule.serviceTime
-                reserveDate.text = date.trim()
-                reserveTime.text = schedule.reserveTime
-                reserveAddr.text = schedule.address
-                reservePrice.text = schedule.totalPrice.toString()
+            schedule.reserveDate.map {
+                date.append(it).append("\n".trim())
             }
 
+            reserveDate.text = date.trim()
+            reserveServiceType.text =
+                if (schedule.serviceType == AppointmentMainFragment.ServiceType.JOGGING.value) {
+                    "산책 서비스 예약 확인"
+                } else {
+                    "돌봄 서비스 예약 확인"
+                }
+            serviceTime.text = schedule.serviceTime
+            reserveDate.text = date.trim()
+            reserveTime.text = schedule.reserveTime
+            reserveAddr.text = schedule.address
+            reservePrice.text = reservePrice.moneyFormat(schedule.totalPrice)
+
             btnNext.setOnClickListener {
-                val action = MatchingFragmentDirections.toPaymentFragment()
-                Navigation.findNavController(view).navigate(action)
+                if (selectedPetSitter.isNotEmpty()){
+                    val action = MatchingFragmentDirections.toPaymentFragment(selectedPetSitter)
+                    Navigation.findNavController(view).navigate(action)
+                }else{
+                    val dialog = PositiveCustomDialog(
+                        title ="펫시터를 선택해 볼까요 ?",
+                        message = "펫시터를 선택해 주세요",
+                        positiveButtonClick = { }
+                    )
+                    dialog.show(childFragmentManager, "PositiveCustomDialog")
+                }
             }
         }
         initToolbar(view)
@@ -111,8 +122,7 @@ class MatchingFragment : Fragment() {
     private fun initToolbar(view: View) {
         with(binding.toolbar) {
             setNavigationOnClickListener {
-                val action =
-                    MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
+                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
                 Navigation.findNavController(view).navigate(action)
             }
         }
