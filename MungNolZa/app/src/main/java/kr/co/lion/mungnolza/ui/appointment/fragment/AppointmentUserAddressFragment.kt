@@ -61,8 +61,11 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initToolbar(view: View) {
+        val flag = args.flag
+        if (flag != null) { viewModel.setFlag(flag) }
+
         binding.toolbar.setNavigationOnClickListener {
-            val action: NavDirections = when(args.flag){
+            val action: NavDirections = when(viewModel.fromWhere.value){
                 AppointmentMainFragment.ServiceType.JOGGING.value -> {
                     AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelectionFragment()
                 }
@@ -116,7 +119,11 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             if (callback != null){
                 if (result.resultCode == ADDR_RESULT_CODE){
                     val data = callback.getStringExtra("data")
-                    binding.edittextAddr.setText(data)
+                    with(binding){
+                        btnSaveAddr.visibility = VISIBLE
+                        editTextDetailAddr.visibility = VISIBLE
+                        edittextAddr.setText(data)
+                    }
                 }
             }
         }
@@ -129,8 +136,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     edittextAddr.setText(viewModel.userAddress.value)
                 }
                 R.id.btn_new_addr ->{
-                    btnSaveAddr.visibility = VISIBLE
-                    editTextDetailAddr.visibility = VISIBLE
                     launcherForActivity.launch(Intent(requireContext(), AddressActivity::class.java))
                 }
                 R.id.cardview_common_visit -> {
@@ -191,6 +196,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                                 selectedVisitTime.toString(),
                                 request,
                                 viewModel.serviceType.value.toString(),
+                                viewModel.payment.value.time,
                                 viewModel.selectedPet.value,
                                 selectDate,
                                 calcPayment(),
@@ -255,8 +261,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             }
         }
     }
-
-
 
 
     private fun addToSelectList(day: String){
@@ -405,7 +409,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private fun calcPayment(): Int{
         val pets = viewModel.selectedPet.value.size
-        val pay = args.payment
+        val pay = viewModel.payment.value.payment
         val day = selectDate.size
         return (pets * pay) * day
     }
