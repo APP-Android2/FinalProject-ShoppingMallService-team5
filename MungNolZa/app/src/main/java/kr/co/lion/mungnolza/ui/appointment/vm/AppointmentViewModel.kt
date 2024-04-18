@@ -27,6 +27,9 @@ class AppointmentViewModel(
     private val _selectedPet = MutableStateFlow<List<PetImgModel>>(emptyList())
     val selectedPet = _selectedPet.asStateFlow()
 
+    private val _fromWhere: MutableStateFlow<String> = MutableStateFlow("")
+    val fromWhere = _fromWhere.asStateFlow()
+
     private val _serviceType: MutableStateFlow<String?> = MutableStateFlow(null)
     val serviceType = _serviceType.asStateFlow()
 
@@ -72,6 +75,14 @@ class AppointmentViewModel(
      private suspend fun getUserAddress(userNumber: String){
         _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber)
      }
+
+    fun setFlag(flag: String){
+        _fromWhere.value = flag
+    }
+
+    fun setPayment(payment: PaymentTimeModel){
+        _payment.value = payment
+    }
 
     fun setSchedule(schedule: SelectScheduleModel){
         _reserveSchedule.value = schedule
