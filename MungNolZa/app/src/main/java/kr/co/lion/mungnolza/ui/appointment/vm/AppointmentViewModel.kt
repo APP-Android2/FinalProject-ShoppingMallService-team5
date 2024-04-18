@@ -36,6 +36,9 @@ class AppointmentViewModel(
     private val _careType: MutableStateFlow<String?> = MutableStateFlow(null)
     val careType = _careType.asStateFlow()
 
+    private val _payment: MutableStateFlow<PaymentTimeModel> = MutableStateFlow(PaymentTimeModel(0, ""))
+    val payment = _payment.asStateFlow()
+
     private val _userAddress: MutableStateFlow<String?> = MutableStateFlow(null)
     val userAddress = _userAddress.asStateFlow()
 
