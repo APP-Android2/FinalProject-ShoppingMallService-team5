@@ -20,6 +20,7 @@ import kr.co.lion.mungnolza.ext.setColorBlack
 import kr.co.lion.mungnolza.ext.setColorPrimary
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.setColorkakaoYellow
+import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.ui.appointment.adapter.MyPetAdapter
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
@@ -139,7 +140,7 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                     when (selectedService) {
                         ServiceType.JOGGING.value -> {
                             if (selectedPet.isEmpty()){
-                                showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                                childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
                             }else{
                                 viewModel.setSelectedPet(selectedPet)
                                 viewModel.setCareType(null)
@@ -150,9 +151,9 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                         }
                         ServiceType.CARE.value -> {
                             if (selectedPet.isEmpty()){
-                                showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                                childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
                             }else if (careType.isNullOrEmpty()) {
-                                showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요 !")
+                                childFragmentManager.showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요")
                             } else if (careType == CareType.ENTRUST.value) {
                                 // 맡김 일 때의 처리
                                 viewModel.setCareType(CareType.ENTRUST.value)
@@ -167,22 +168,12 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                             }
                         }
                         else -> {
-                            showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 !")
-
+                            childFragmentManager.showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 ")
                         }
                     }
                 }
             }
         }
-    }
-
-    private fun showDialog(title: String, message: String) {
-        val dialog = PositiveCustomDialog(
-            title,
-            message,
-            positiveButtonClick = { }
-        )
-        dialog.show(childFragmentManager, "PositiveCustomDialog")
     }
 
     override fun onDestroyView() {

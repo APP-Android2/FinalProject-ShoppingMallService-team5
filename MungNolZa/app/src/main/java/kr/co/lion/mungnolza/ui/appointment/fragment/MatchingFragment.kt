@@ -15,6 +15,7 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
+import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
@@ -107,12 +108,7 @@ class MatchingFragment : Fragment() {
                     val action = MatchingFragmentDirections.toPaymentFragment(selectedPetSitter)
                     Navigation.findNavController(view).navigate(action)
                 }else{
-                    val dialog = PositiveCustomDialog(
-                        title ="펫시터를 선택해 볼까요 ?",
-                        message = "펫시터를 선택해 주세요",
-                        positiveButtonClick = { }
-                    )
-                    dialog.show(childFragmentManager, "PositiveCustomDialog")
+                    childFragmentManager.showDialog("펫시터를 선택해 볼까요 ?", "펫시터를 선택해 주세요")
                 }
             }
         }
