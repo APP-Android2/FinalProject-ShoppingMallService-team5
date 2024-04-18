@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:transitionGroup="true"
+    tools:context="ui.profile.fragment.UserProfileFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarUserProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_gravity="clip_horizontal|center|clip_vertical"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/imageViewUserProfileUserPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/jeounghyun_test" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/top_round_container"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="clip_horizontal|center_horizontal|center_vertical"
+                    android:layout_marginTop="25dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/textViewUserProfileUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/binggrae_bold"
+                            android:text="사용자 이름"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:id="@+id/textViewUserProfileUserNiclkName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_account_circle_24px"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/binggrae_bold"
+                            android:gravity="center|start"
+                            android:text="사용자 닉네임" />
+
+                        <TextView
+                            android:id="@+id/textViewUserProfileUserPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_call_24px"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/binggrae_bold"
+                            android:gravity="center|start"
+                            android:text="사용자 전화번호" />
+
+                        <TextView
+                            android:id="@+id/textViewUserProfileUserAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_home_24px"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/binggrae_bold"
+                            android:gravity="center|start"
+                            android:text="사용자 주소" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/buttonUserProfilePetProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:gravity="clip_horizontal|center|clip_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/textViewUserProfilePetProfile"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="335dp"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:gravity="center|start|center_horizontal|center_vertical"
+                                android:text="반려동물 프로필"
+                                android:textColor="#000000"
+                                app:icon="@drawable/ic_sound_detection_dog_barking_24px"
+                                app:iconTint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/imageView1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_arrow_forward_ios_24px" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonUserProfileEditUserProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:gravity="clip_horizontal|center|clip_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/textViewUserProfileEditUserProfile"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="335dp"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:gravity="center|start|center_horizontal|center_vertical"
+                                android:text="내 프로필 수정"
+                                android:textColor="#000000"
+                                app:icon="@drawable/ic_person_edit_24px"
+                                app:iconTint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_arrow_forward_ios_24px" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonUserProfileFollowPetSitter"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:gravity="clip_horizontal|center|clip_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/textViewUserProfileFollowPetSitter"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="335dp"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:gravity="center|start|center_horizontal|center_vertical"
+                                android:text="펫시터 찜"
+                                android:textColor="#000000"
+                                app:icon="@drawable/ic_favorite_24px"
+                                app:iconTint="#000000" />
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_arrow_forward_ios_24px" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonUserProfileNotice"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:gravity="clip_horizontal|center|clip_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/textViewUserProfileNotice"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="335dp"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:gravity="center|start|center_horizontal|center_vertical"
+                                android:text="공지사항"
+                                android:textColor="#000000"
+                                app:icon="@drawable/ic_brand_awareness_24px"
+                                app:iconTint="#000000" />
+
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_arrow_forward_ios_24px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonUserProfilePetSitterMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shared_button_design"
+                    android:drawableStart="@drawable/ic_change_circle_24px"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/binggrae_bold"
+                    android:gravity="center|start"
+                    android:paddingStart="15dp"
+                    android:text="펫시터 모드로 전환"
+                    android:textColor="#000000"
+                    app:icon="@drawable/ic_badge_24px"
+                    app:iconTint="#000000" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonUserProfileAdministratorMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shared_button_design"
+                    android:drawableStart="@drawable/ic_change_circle_24px"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/binggrae_bold"
+                    android:gravity="center|start"
+                    android:paddingStart="15dp"
+                    android:text="관리자 모드로 전환"
+                    android:textColor="#000000"
+                    app:icon="@drawable/ic_manage_accounts_24px"
+                    app:iconTint="#000000" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
