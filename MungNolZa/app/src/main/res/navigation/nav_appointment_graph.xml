@@ -53,13 +53,6 @@
             android:name="flag"
             app:argType="string"
             app:nullable="true" />
-        <argument
-            android:name="time"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="payment"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/appointmentDogTimeSelection2Fragment"

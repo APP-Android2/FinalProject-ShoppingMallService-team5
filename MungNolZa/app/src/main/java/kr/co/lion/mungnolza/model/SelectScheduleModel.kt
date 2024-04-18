@@ -9,6 +9,7 @@ data class SelectScheduleModel(
     val reserveTime: String,
     val customerRequests:String,
     val serviceType: String,
+    val serviceTime: String,
     val reservedPets: List<PetImgModel>,
     val reserveDate: List<String>,
     val totalPrice: Int
@@ -18,6 +19,7 @@ data class SelectScheduleModel(
         reserveTime = "",
         customerRequests = "",
         serviceType = "",
+        serviceTime = "",
         reservedPets = emptyList<PetImgModel>(),
         reserveDate = emptyList<String>(),
         totalPrice = 0

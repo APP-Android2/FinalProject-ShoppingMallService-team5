@@ -25,7 +25,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -147,7 +147,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="반려동물 훈련-관리사 교육 강사"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -193,19 +192,65 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                    android:fontFamily="@font/binggrae_bold"
                     android:layout_marginTop="@dimen/shared_common_margin_10"
+                    android:fontFamily="@font/binggrae_bold"
                     android:text="자기소개"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
                 <TextView
                     android:id="@+id/petSitter_introduce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    android:textSize="16sp"
-                    android:text="안녕하세요! 반려동물을 사랑하는 OOO 입니다. 반려동물 관리 학과를 졸업하고 반려동물 관리 자격증을 취득하여, 다양한 종류의 반려동물들을 돌보는 데 경험이 풍부합니다.  현재는 사랑스러운 반려동물 3마리와 함께 살고 있습니다.  저와 함께라면 반려동물들이 집을 떠나더라도 안심하고 즐거운 시간을 보낼 수 있을 거예요! 언제든지 저를 찾아주시면 반려동물 친구들을 마음 편히 맡기실 수 있으십니다. " />
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewPetSitterReviewScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="점수 5.0"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarPetSitterReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5" />
+
+                <TextView
+                    android:id="@+id/textViewPetSitterReviewCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="리뷰 개수" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/black"
+                    android:padding="10dp"
+                    tools:layout_marginTop="10dp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerPetSitterReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

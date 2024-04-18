@@ -126,6 +126,8 @@
 
     <dimen name="n_shared_profile_interval_margin_top">5dp</dimen>
     <dimen name="n_shared_profile_interval_margin_left">8dp</dimen>
-    <dimen name="n_shared_pet_image_width_height">40dp</dimen>
+    <dimen name="n_shared_pet_image_width_height">50dp</dimen>
 
+    <dimen name="fragment_matching_result_title_text">17sp</dimen>
+    <dimen name="fragment_matching_result_text">15sp</dimen>
 </resources>

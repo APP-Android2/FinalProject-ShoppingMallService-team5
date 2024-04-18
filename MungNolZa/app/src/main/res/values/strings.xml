@@ -97,5 +97,7 @@
     <string name="reserve_pay">결제 금액</string>
     <string name="matched_petsitter">매칭된 팻시터</string>
     <string name="plz_select_petsitter">원하는 펫시터를 선택해주세요</string>
+    <string name="service_time">신청 시간</string>
+    <string name="reserve_addr">예약 주소</string>
 
 </resources>

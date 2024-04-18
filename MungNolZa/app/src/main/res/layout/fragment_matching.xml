@@ -25,7 +25,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:text="@string/reserve_date"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/fragment_matching_result_title_text"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -87,17 +87,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                            android:textSize="@dimen/fragment_matching_result_text"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="?android:attr/textColorSecondary" />
-
-
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:text="@string/reserve_time"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/fragment_matching_result_title_text"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -106,17 +105,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/fragment_matching_result_text"
                             android:textColor="?android:attr/textColorSecondary" />
-
-
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:text="예약 주소"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:text="@string/service_time"
+                            android:textSize="@dimen/fragment_matching_result_title_text"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/service_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                            android:textSize="@dimen/fragment_matching_result_text"
+                            android:textColor="?android:attr/textColorSecondary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                            android:text="@string/reserve_addr"
+                            android:textSize="@dimen/fragment_matching_result_title_text"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -125,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/fragment_matching_result_text"
                             android:textColor="?android:attr/textColorSecondary" />
 
 
@@ -134,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
                             android:text="@string/reserve_pay"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="@dimen/fragment_matching_result_title_text"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -143,7 +156,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:layout_marginStart="2dp"
+                            android:textSize="@dimen/fragment_matching_result_text"
                             android:textColor="?android:attr/textColorSecondary" />
                 </LinearLayout>
 
@@ -205,5 +219,5 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
