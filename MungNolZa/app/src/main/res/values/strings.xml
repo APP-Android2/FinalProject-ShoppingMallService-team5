@@ -49,7 +49,7 @@
     <string name="jogging_reservation">산책 예약</string>
     <string name="plz_select_reservation">원하시는 예약을 선택해주세요</string>
     <string name="care_reservation">돌봄 예약</string>
-    <string name="no_pet_msg1">등록된 반려 동물이 없어요\n 반려 동물을 등록해주세요</string>
+    <string name="no_pet_msg1">등록된 반려 동물이 없어요\n소중한 우리 아이를 등록해주세요</string>
     <string name="go_pet_registration">우리 아이 등록하기</string>
     <string name="select_reservation_pet">예약할 반려동물 선택</string>
     <string name="plz_enter_detail_addr">상세주소를 입력해주세요.</string>
@@ -66,7 +66,7 @@
     <string name="all_day">종일</string>
 
     <!-- 최나연 사용 -->
-    <string name="toolbar_title_reservation">예약</string>
+    <string name="toolbar_title_reservation">신청내역</string>
     <string name="toolbar_title_petsitter_info">펫시터 정보</string>
     <string name="toolbar_title_petsitter_review">후기</string>
     <string name="toolbar_title_reservation_confirmed">예약 확인</string>
@@ -79,6 +79,26 @@
     <string name="menu_item_bottom_navigation_freeboard">자유게시판</string>
     <string name="menu_item_bottom_navigation_reservation">예약</string>
     <string name="menu_item_bottom_navigation_profile">프로필</string>
-<!--    <string name="three_hour">180</string>-->
+
+
+    <!-- 이영주 스트링값 -->
+    <string name="toolbar_main_text">멍놀자</string>
+    <string name="main_button_text">예약하기</string>
+    <string name="main_button_text_location">실시간 위치</string>
+    <string name="main_text_review">고객 리뷰</string>
+    <string name="main_text_petsitter">매칭된 팻시터 현황을 확인해보세요!</string>
+    <string name="main_text_petsitter_introduce1">🎉 2024년 </string>
+    <string name="main_text_petsitter_introduce2"> 우수 펫시터</string>
+    <string name="main_text_petsitter_introduce3">를 소개합니다 🎉</string>
+    <string name="main_text_petsitter_whats_best_sitter">🏆 월간 우수 펫시터란?</string>
+    <string name="main_text_petsitter_whats_best_sitter_explain">월간 우수 펫시터는 2024년 4월 고객과 반려 동물 아이들에게 가장 많은 사랑을 주신 펫시터분을 선정해요</string>
+    <string name="main_text_petsitter_thanksto">🙏 감사의 마음을 담아</string>
+    <string name="board_write">글쓰기</string>
+    <string name="lets_reserve">예약하기</string>
+    <string name="lets_reserve_list">예약 목록 보기</string>
+    <string name="view_all">전체 보기</string>
+    <string name="reserve_complete">예약이 완료되었어요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

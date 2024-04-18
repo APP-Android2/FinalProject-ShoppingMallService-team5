@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/petsitter_bottom_navigation_graph"
+    app:startDestination="@id/menu_item_bottom_navigation_home">
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_home"
+        android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterHomeFragment"
+        android:label="fragment_petsitter_home"
+        tools:layout="@layout/fragment_petsitter_home" >
+    </fragment>
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_freeboard"
+        android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterFreeBoardFragment"
+        android:label="fragment_petsitter_free_board"
+        tools:layout="@layout/fragment_petsitter_free_board" />
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_chatting"
+        android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterMainChatFragment"
+        android:label="fragment_petsitter_main_chat"
+        tools:layout="@layout/fragment_petsitter_main_chat" />
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_reservation"
+        android:name="kr.co.lion.mungnolza.ui.petsitter_main.fragment.PetsitterReservationListFragment"
+        android:label="fragment_petsitter_reservation_list"
+        tools:layout="@layout/fragment_petsitter_reservation_list" />
+</navigation>

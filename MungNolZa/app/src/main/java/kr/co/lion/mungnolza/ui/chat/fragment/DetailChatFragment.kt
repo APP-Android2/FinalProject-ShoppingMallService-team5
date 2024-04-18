@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
@@ -16,12 +17,10 @@ import kr.co.lion.mungnolza.databinding.RowDetailChatBinding
 import kr.co.lion.mungnolza.databinding.RowDetailChatYouBinding
 import kr.co.lion.mungnolza.databinding.RowFreeBoardBinding
 import kr.co.lion.mungnolza.model.ChatModel
-import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
+
 import kr.co.lion.mungnolza.ui.chat.ChatActivity
 import kr.co.lion.mungnolza.ui.chat.viewmodel.DetailChatViewModel
 import kr.co.lion.mungnolza.util.ChatFragmentName
-import kr.co.lion.mungnolza.util.BoardFragmentName
-
 
 class DetailChatFragment : Fragment() {
     lateinit var chatActivity: ChatActivity
@@ -70,11 +69,11 @@ class DetailChatFragment : Fragment() {
         binding.apply{
             toolbarDetailChat.apply{
                 title = "정찬호"
-                setNavigationIcon(R.drawable.ic_arrow_back_24px)
+                setNavigationIcon(R.drawable.ic_arrow_back_24)
 
                 // 백버튼 이벤트
                 setNavigationOnClickListener {
-                    chatActivity.removeFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT)
+                    chatActivity.finish()
                 }
             }
         }

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarmainPetsitterHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/toolbar_main_text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/shared_toolbar_title_size"
+            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/shared_common_margin"
+            android:layout_marginEnd="@dimen/shared_common_margin"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:layout_marginTop="@dimen/shared_common_margin"
+                app:cardBackgroundColor="@color/app_main_color"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="110dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/img_mainbutton_location"
+                            android:scaleType="centerCrop" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/shared_common_margin"
+                            android:layout_marginEnd="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/img_mainbutton_reserve"
+                            android:scaleType="centerCrop" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_reserve"
+                        android:layout_width="@dimen/shared_button_width"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/shared_common_margin"
+                        android:layout_marginBottom="@dimen/shared_common_margin_10"
+                        android:background="@drawable/shared_button_design_pink"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:text="@string/lets_reserve"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/On_tertiary_container"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_reserve_list"
+                        android:layout_width="@dimen/shared_button_width"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/shared_common_margin"
+                        android:background="@drawable/shared_button_design_pink"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:text="실시간 위치"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/On_tertiary_container"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shared_common_margin"
+                    android:text="@string/main_text_review"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_review_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:drawableEnd="@drawable/nexticon"
+                    android:gravity="center_vertical|end"
+                    android:text="@string/view_all"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

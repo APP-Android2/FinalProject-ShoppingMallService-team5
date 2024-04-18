@@ -12,14 +12,15 @@ import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
-
 class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentDogTimeSelectionBinding? = null
     private val binding get() = _binding!!
     private var selectedTime: String? = null
+    private var payment: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAppointmentDogTimeSelectionBinding.inflate(inflater)
         initView()
@@ -41,7 +42,8 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
         with(binding) {
             when (v?.id) {
                 R.id.btn_back -> {
-                    val action = AppointmentDogTimeSelectionFragmentDirections.toAppointmentMainFragment()
+                    val action =
+                        AppointmentDogTimeSelectionFragmentDirections.toAppointmentMainFragment()
                     Navigation.findNavController(v).navigate(action)
                 }
 
@@ -52,6 +54,7 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                     btn1Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     btn2Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.ALL_DAY.value
+                    payment = ServiceTime.ALL_DAY.pay
                 }
 
                 R.id.btn_30_minutes -> {
@@ -61,6 +64,8 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                     btn1Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     btn2Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.HALF_AN_HOUR.value
+                    payment = ServiceTime.HALF_AN_HOUR.pay
+
                 }
 
                 R.id.btn_1_hour -> {
@@ -70,6 +75,7 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                     btn30Minutes.backgroundTintList = requireContext().setColorGreenBlue()
                     btn2Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.ONE_HOUR.value
+                    payment = ServiceTime.ONE_HOUR.pay
                 }
 
                 R.id.btn_2_hour -> {
@@ -79,6 +85,7 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                     btn30Minutes.backgroundTintList = requireContext().setColorGreenBlue()
                     btn1Hour.backgroundTintList = requireContext().setColorGreenBlue()
                     selectedTime = ServiceTime.TWO_HOUR.value
+                    payment = ServiceTime.TWO_HOUR.ordinal
                 }
 
                 R.id.btn_next -> {
@@ -90,7 +97,14 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                         )
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     } else {
-                        val action = AppointmentDogTimeSelectionFragmentDirections.toAppointmentUserAddressFragment()
+                        val flag = AppointmentMainFragment.ServiceType.JOGGING.value
+
+                        val action =
+                            AppointmentDogTimeSelectionFragmentDirections.toAppointmentUserAddressFragment(
+                                flag,
+                                selectedTime,
+                                payment
+                            )
                         Navigation.findNavController(v).navigate(action)
                     }
                 }
@@ -104,11 +118,11 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
         _binding = null
     }
 
-    enum class ServiceTime(val value: String) {
-        ALL_DAY("all day"),
-        HALF_AN_HOUR("30 minutes"),
-        ONE_HOUR("1 HOUR"),
-        TWO_HOUR("2 HOUR")
+    enum class ServiceTime(val value: String, val pay: Int) {
+        ALL_DAY("all day", 100000),
+        HALF_AN_HOUR("30 minutes", 18000),
+        ONE_HOUR("1 HOUR", 28000),
+        TWO_HOUR("2 HOUR", 38000)
     }
 }
 

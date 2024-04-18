@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".ui.reservation_list.fragment.ReservationListFragment">
+    tools:context=".ui.main.fragment.ReservationListFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarReservationList"

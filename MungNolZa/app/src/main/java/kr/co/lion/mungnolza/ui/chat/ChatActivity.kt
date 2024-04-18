@@ -2,24 +2,15 @@ package kr.co.lion.mungnolza.ui.chat
 
 import android.os.Bundle
 import android.os.SystemClock
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.mungnolza.R
-import kr.co.lion.mungnolza.databinding.ActivityBoardBinding
 import kr.co.lion.mungnolza.databinding.ActivityChatBinding
-import kr.co.lion.mungnolza.ui.freeboard.fragment.FreeBoardFragment
-import kr.co.lion.mungnolza.ui.freeboard.fragment.ModifyBoardFragment
-import kr.co.lion.mungnolza.ui.freeboard.fragment.ShowDetailBoardFragment
 import kr.co.lion.mungnolza.ui.chat.fragment.DetailChatFragment
-import kr.co.lion.mungnolza.ui.chat.fragment.MainChatFragment
-import kr.co.lion.mungnolza.ui.freeboard.fragment.AddBoardFragment
+import kr.co.lion.mungnolza.ui.main.fragment.MainChatFragment
 import kr.co.lion.mungnolza.util.ChatFragmentName
-import kr.co.lion.mungnolza.util.BoardFragmentName
 
 class ChatActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatBinding
@@ -32,7 +23,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
 
-        replaceFragment(ChatFragmentName.MAIN_CHAT_FRAGMENT,false,false,null)
+        replaceFragment(ChatFragmentName.DETAIL_CHAT_FRAGMENT,false,false,null)
 
         setContentView(binding.root)
     }

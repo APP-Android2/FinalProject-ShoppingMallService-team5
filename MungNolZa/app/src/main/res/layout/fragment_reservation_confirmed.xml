@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".ui.matching_petsitter.fragment.ReservationConfirmedFragment">
+    tools:context=".ui.appointment.fragment.ReservationConfirmedFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarReservationConfirmed"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/binggrae_bold"
-            android:text="@string/toolbar_title_petsitter_review"
+            android:text="예약 완료"
             android:textSize="@dimen/shared_toolbar_title_size"
             android:textStyle="bold" />
 
@@ -26,17 +26,51 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textView4"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/no_pet_cardview"
+            style="@style/Widget.Material3.CardView.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="center"
-            android:text="예약이 확정되었습니다 !" />
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/shared_common_margin"
+            android:backgroundTint="@color/app_main_color"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/shared_common_margin_10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/layout_padding"
+                    android:src="@drawable/img_sungooli_dog" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/shared_common_margin_10"
+                    android:fontFamily="@font/binggrae_regular"
+                    android:text="@string/reserve_complete" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_chevron_right_24px"
+                    android:text="돌아가기"
+                    android:textColor="@color/grey" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardReservationConfirmedDetail"
@@ -52,7 +86,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Title, secondary and supporting text -->
                 <TextView
                     android:id="@+id/textViewReservationConfirmedPetCareType"
                     android:layout_width="wrap_content"
@@ -174,23 +207,9 @@
                             android:text="예약날짜시간"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="?android:attr/textColorSecondary" />
-
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonReservationConfirmedDone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
-            android:background="@drawable/shared_button_design"
-            android:text="확인" />
-
     </LinearLayout>
-
 </LinearLayout>

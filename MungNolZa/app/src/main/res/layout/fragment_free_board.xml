@@ -1,75 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
-    <data>
-        <variable
-            name="freeBoardViewModel"
-            type="kr.co.lion.mungnolza.ui.freeboard.viewmodel.FreeBoardViewModel" />
-    </data>
-
-
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:transitionGroup="true"
-        >
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" >
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarFreeBoard"
-            style="@style/Theme.MungNolZa.Toolbar"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme">
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/binggrae_bold"
+            android:gravity="center"
+            android:text="@string/menu_item_bottom_navigation_freeboard"
+            android:textSize="@dimen/shared_toolbar_title_size" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/binggrae_bold"
-                android:gravity="center"
-                android:text="자유게시판"
-                android:textSize="@dimen/shared_toolbar_title_size"
-                android:textStyle="bold" />
-        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/searchBarMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/main_color_yellow" />
 
-            <com.google.android.material.search.SearchBar
-                android:id="@+id/searchBarFreeBoard"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFreeBoard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonAddBoardFreeBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="70dp"
+            app:backgroundTint="@color/main_color_yellow"
+            app:srcCompat="@drawable/ic_add_24px" />
+
+        <com.google.android.material.search.SearchView
+            android:id="@+id/searchViewFreeBoard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="검색어를 입력해주세요"
+            app:layout_anchor="@id/searchBarMain">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFreeBoard"
+                android:id="@+id/recyclerViewSearchFreeBoard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/recyclerview_margin_top_free_board" />
-
-            <com.google.android.material.search.SearchView
-                android:id="@+id/searchViewFreeBoard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_anchor="@id/searchBarFreeBoard">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewSearchFreeBoard"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.search.SearchView>
+                android:layout_height="match_parent" />
+        </com.google.android.material.search.SearchView>
 
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </LinearLayout>
-</layout>
+</LinearLayout>

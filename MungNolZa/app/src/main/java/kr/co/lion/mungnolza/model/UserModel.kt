@@ -1,21 +1,29 @@
 package kr.co.lion.mungnolza.model
 
-data class UserModel(
-    var userIdx:Int,
-    var userId:String,
-    var userPw:String,
-    var userNickName:String,
-    var userState:Int
-)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class User(
-    var uniqueNumber:String,
-    var userAddress:String,
-    var userAgeRange:String,
-    var userEmail:String,
-    var userGender:String,
-    var userName:String,
-    var userNickname:String,
-    var userPhone:String,
-    var userProfileImgPath:String,
-)
+@Parcelize
+data class UserModel(
+    val uniqueNumber: String,
+    val userNickname: String,
+    val userName: String,
+    val userEmail: String,
+    val userPhone: String,
+    val userAddress: String,
+    val userProfileImgPath: String,
+    val userAgeRange : String,
+    val userGender: String
+): Parcelable {
+    constructor(): this(
+        uniqueNumber = "",
+        userNickname = "",
+        userName = "",
+        userEmail = "",
+        userPhone = "",
+        userAddress = "",
+        userProfileImgPath = "",
+        userAgeRange = "",
+        userGender = ""
+    )
+}

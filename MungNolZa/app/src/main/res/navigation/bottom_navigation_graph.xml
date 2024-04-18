@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/menu_item_bottom_navigation_home">
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_home"
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_chatting"
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.MainChatFragment"
+        tools:layout="@layout/fragment_main_chat"/>
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_freeboard"
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.FreeBoardFragment"
+        tools:layout="@layout/fragment_free_board"/>
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_reservation"
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.ReservationListFragment"
+        tools:layout="@layout/fragment_reservation_list" />
+
+    <fragment
+        android:id="@+id/menu_item_bottom_navigation_profile"
+        android:name="kr.co.lion.mungnolza.ui.main.fragment.TestFragment"
+        tools:layout="@layout/fragment_test" />
+
+</navigation>

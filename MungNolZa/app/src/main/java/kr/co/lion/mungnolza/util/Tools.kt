@@ -20,25 +20,36 @@ object Tools {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
     }
+    val ADDR_RESULT_CODE by lazy { 1002 }
 }
 
-// MainFragment 에서 보여줄 프래그먼트들의 이름
-enum class MatchingPetsitterFragmentName(var str:String){
-    // 매칭화면
-    MATCHING_FRAGMENT("MatchingFragment"),
-    // 펫시터 프로필 화면
-    PETSITTER_INFO_FRAGMENT("PetSitterInfoFragment"),
-    // 펫시터 리뷰 목록 화면
-    PETSITTER_REVIEW_FRAGMENT("PetSitterReviewFragment"),
-    // 결제 화면
-    PAYMENT_FRAGMENT("PaymentFragment"),
-    // 예약 확정 화면
-    RESERVATION_CONFIRMED_FRAGMENT("ReservationConfirmedFragment"),
-}
 
 enum class ReservationListFragmentName(var str:String){
     // 상위-예약 목록 화면
     RESERVATION_LIST_FRAGMENT("ReservationListFragment"),
     // 펫시터 후기 작성 화면
     PETSITTER_REVIEW_WRITE_FRAGMENT("PetSitterReviewWriteFragment"),
+}
+
+/*enum class PetsitterMainFragmentsName(var str:String) {
+    // 펫시터 전용 홈화면
+    PETSITTER_HOME_FRAGMEMT("PetsitterHomeFragment"),
+
+    // 펫시터 전용 예약목록화면
+    PETSITTER_RESERVATION_LIST_FRAGMENT("PetsitterReservationListFragmnet"),
+}*/
+
+enum class Week(val day: String){
+    SUNDAY("sunday"),
+    MONDAY("monday"),
+    TUESDAY("tuesday"),
+    WEDNESDAY("wednesday"),
+    THURSDAY("thursday"),
+    FRIDAY("friday"),
+    SATURDAY("saturday")
+}
+
+enum class VisitType(val type: String) {
+    COMMON_VISIT("common visit"),
+    REGULAR_VISIT("regular visit"),
 }
