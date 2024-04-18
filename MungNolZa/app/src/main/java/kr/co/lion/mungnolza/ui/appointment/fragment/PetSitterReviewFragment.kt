@@ -12,7 +12,6 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterReviewBinding
 import kr.co.lion.mungnolza.databinding.RowPetSitterReviewBinding
-import kr.co.lion.mungnolza.util.MatchingPetsitterFragmentName
 
 class PetSitterReviewFragment : Fragment() {
 
@@ -36,7 +35,7 @@ class PetSitterReviewFragment : Fragment() {
 
     private fun initToolbar(view: View){
         binding.toolbar.setNavigationOnClickListener{
-            val action = PetSitterReviewFragmentDirections.toPetSitterInfoFragment()
+            val action = PetSitterReviewFragmentDirections.toPetSitterInfoFragment(null)
             Navigation.findNavController(view).navigate(action)
         }
 

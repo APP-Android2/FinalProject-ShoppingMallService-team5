@@ -102,6 +102,10 @@
         <action
             android:id="@+id/to_petSitterReviewFragment"
             app:destination="@id/petSitterReviewFragment" />
+        <argument
+            android:name="info"
+            app:argType="kr.co.lion.mungnolza.model.PetSitterModel"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
