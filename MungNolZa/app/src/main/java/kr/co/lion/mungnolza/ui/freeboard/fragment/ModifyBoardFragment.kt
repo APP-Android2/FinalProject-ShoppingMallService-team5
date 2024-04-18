@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.freeboard.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import kr.co.lion.mungnolza.databinding.RowAddBoardBinding
 import kr.co.lion.mungnolza.databinding.RowModifyBoardBinding
 import kr.co.lion.mungnolza.model.BoardModel
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
+import kr.co.lion.mungnolza.ui.freeboard.adapter.BoardCarouselAdapter
+import kr.co.lion.mungnolza.ui.freeboard.adapter.BoardModifyCarouselAdapter
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.ModifyBoardViewModel
 import kr.co.lion.mungnolza.util.BoardFragmentName
 
@@ -23,8 +26,8 @@ class ModifyBoardFragment : Fragment() {
     lateinit var boardActivity: BoardActivity
 
     lateinit var modifyBoardViewModel: ModifyBoardViewModel
-    lateinit var boardData:BoardModel
-
+    var boardData:BoardModel? =null
+    var imageUriList:ArrayList<Uri?> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +40,7 @@ class ModifyBoardFragment : Fragment() {
         binding.modifyBoardViewModel = modifyBoardViewModel
         binding.lifecycleOwner = this
 
-        boardData = arguments?.getParcelable("boardData")!!
-
-
+        initData()
         setToolbar()
         setCarousel()
         setData()
@@ -48,10 +49,21 @@ class ModifyBoardFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
+
+    fun initData(){
+        boardData = arguments?.getParcelable("boardData")!!
+        imageUriList = arguments?.getParcelableArrayList("imageUriList")!!
+    }
+
     fun setData(){
         binding.apply {
-            editTextTitleModifyBoard.setText(boardData.boardTitle)
-            editTextContentModifyBoard.setText(boardData.boardContent)
+            editTextTitleModifyBoard.setText(boardData?.boardTitle)
+            editTextContentModifyBoard.setText(boardData?.boardContent)
         }
     }
 
@@ -60,7 +72,7 @@ class ModifyBoardFragment : Fragment() {
             // RecyclerView 셋팅
             recyclerViewPhotosModifyBoard.apply{
                 // 어댑터
-                adapter = RecyclerViewAdapterModifyBoard()
+                adapter = BoardModifyCarouselAdapter(imageUriList)
                 // 레이아웃 매니저
                 layoutManager = CarouselLayoutManager()
                 // layoutManager = CarouselLayoutManager(MultiBrowseCarouselStrategy())
@@ -89,25 +101,5 @@ class ModifyBoardFragment : Fragment() {
         }
     }
 
-    inner class RecyclerViewAdapterModifyBoard: RecyclerView.Adapter<RecyclerViewAdapterModifyBoard.ViewHolderModifyBoard>() {
-        inner class ViewHolderModifyBoard(rowModifyBoardBinding: RowModifyBoardBinding): RecyclerView.ViewHolder(rowModifyBoardBinding.root){
-            val rowModifyBoardBinding: RowModifyBoardBinding
 
-            init{
-                this.rowModifyBoardBinding = rowModifyBoardBinding
-            }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderModifyBoard {
-            val rowModifyBoardBinding = RowModifyBoardBinding.inflate(layoutInflater)
-            val viewHolderModifyBoard = ViewHolderModifyBoard(rowModifyBoardBinding)
-            return viewHolderModifyBoard
-        }
-
-        override fun getItemCount(): Int = 5
-
-        override fun onBindViewHolder(holder: ViewHolderModifyBoard, position: Int) {
-            holder.rowModifyBoardBinding.imageViewCarouselModifyBoard.setImageResource(R.drawable.img_dog)
-        }
-    }
 }

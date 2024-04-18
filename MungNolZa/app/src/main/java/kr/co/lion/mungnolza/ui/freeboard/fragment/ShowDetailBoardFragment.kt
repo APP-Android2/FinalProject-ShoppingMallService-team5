@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 
 import androidx.lifecycle.lifecycleScope
@@ -42,7 +43,6 @@ class ShowDetailBoardFragment : Fragment() {
 
     lateinit var boardActivity: BoardActivity
 
-
     private val boardViewModel by viewModels<BoardViewModel>()
 
     var userData: UserModel? = null
@@ -53,7 +53,7 @@ class ShowDetailBoardFragment : Fragment() {
     lateinit var boardRepository: BoardRepository
     var imgUri: URI? = null
 
-    var imageUriList: MutableList<Uri?> = mutableListOf()
+    var imageUriList: ArrayList<Uri?> = ArrayList()
 
     var imagePathList = mutableListOf<String>()
 
@@ -74,14 +74,13 @@ class ShowDetailBoardFragment : Fragment() {
 
         applyUserData()
 
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setCarousel()
+        // setCarousel()
 
         setToolbar()
         setCommentButton()
@@ -92,7 +91,7 @@ class ShowDetailBoardFragment : Fragment() {
         super.onDestroy()
     }
 
-    // ----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------
 
     suspend fun initData(){
         userRepository = UserRepositoryImpl()
@@ -111,23 +110,26 @@ class ShowDetailBoardFragment : Fragment() {
         }
 
 
-        val job1 = CoroutineScope(Dispatchers.IO).launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             imgUri = userRepository.fetchUserProfileImage(userData?.userProfileImgPath!!)!!
             Log.d("프로필 이미지 uri","${imgUri}")
 
+            Log.d("이미지 Uri 리스트 Glide 이전",imgUri.toString())
+            Glide.with(requireContext())
+                .load(imgUri.toString())
+                .error(R.drawable.ic_pets_foot_24px)
+                .into(binding.imageViewProfileShowDetailBoard)
         }
-        job1.join()
 
-        val job2 = CoroutineScope(Dispatchers.IO).launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             boardList = boardRepository.getBoardList()
             imageUriList = boardRepository.getBoardImageUriList(boardData!!)
             imageUriList.forEach {
                 Log.d("이미지 Uri 리스트",it.toString())
             }
-
-
+            setCarousel()
         }
-        job2.join()
+
     }
     fun setTest() {
 
@@ -140,19 +142,7 @@ class ShowDetailBoardFragment : Fragment() {
             editTextContentShowDetailBoard.setText(boardData?.boardContent)
             textViewDateShowDetailBoard.text = boardData?.boardWriteDate
             textViewNickNameShowDetailBoard.text = userData?.userNickname
-
-
-            lifecycleScope.launch {
-
-                Log.d("이미지 Uri 리스트 Glide 이전",imgUri.toString())
-                Glide.with(this@ShowDetailBoardFragment)
-                    .load(imgUri)
-                    .error(R.drawable.eunwoo)
-                    .into(binding.imageViewProfileShowDetailBoard)
-
-                // boardRepository.applyBoardImage(requireContext(), boardData!!.boardImagePathList[0]!!, binding.imageViewProfileShowDetailBoard)
-            }
-
+            textViewLikeShowDetailBoard.text = boardData?.boardLikeNumber.toString()
         }
         // 유저 정보는 boardModel로 접근해야 하는데 테스트는 일단 직접 호출
     }
@@ -170,6 +160,7 @@ class ShowDetailBoardFragment : Fragment() {
         binding.apply {
             // RecyclerView 셋팅
             recyclerViewPhotosShowDetailBoard.apply {
+
                 // 어댑터
                 adapter = BoardCarouselAdapter(imageUriList)
                 // 레이아웃 매니저
@@ -188,8 +179,6 @@ class ShowDetailBoardFragment : Fragment() {
 
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
                 setNavigationOnClickListener {
-                    // 백버튼 클릭 이벤트
-                    //boardActivity.removeFragment(BoardFragmentName.SHOW_DETAIL_BOARD_FRAGMENT)
                     boardActivity.finish()
                 }
 
@@ -201,6 +190,7 @@ class ShowDetailBoardFragment : Fragment() {
                         R.id.menuItemModifyShowDetailBoard -> {
                             val bundle = Bundle()
                             bundle.putParcelable("boardData",boardData)
+                            bundle.putParcelableArrayList("imageUriList",imageUriList)
 
                             boardActivity.replaceFragment(
                                 BoardFragmentName.MODIFY_BOARD_FRAGMENT,

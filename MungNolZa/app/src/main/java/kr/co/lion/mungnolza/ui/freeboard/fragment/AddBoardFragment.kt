@@ -29,6 +29,7 @@ import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import kr.co.lion.mungnolza.ui.freeboard.AddBoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.BoardActivity
 import kr.co.lion.mungnolza.ui.freeboard.viewmodel.AddBoardViewModel
+import kr.co.lion.mungnolza.util.BoardFragmentName
 import kr.co.lion.mungnolza.util.BoardUtil
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -93,14 +94,14 @@ class AddBoardFragment : Fragment() {
             val boardContent = addBoardViewModel.editTextContentAddBoard.value!!
             val boardImagePathList = mutableListOf<String?>()
             val boardWriterIdx = ""
-            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd-HH-mm")
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
             val boardWriteDate = simpleDateFormat.format(Date())
             val boardLikeNumber = 0
             val boardState = 1
 
             val boardModel = BoardModel(boardIdx,boardTitle,boardContent,boardImagePathList,boardWriterIdx,boardWriteDate,boardWriteDate,boardLikeNumber,boardState)
 
-            boardRepository.insertBoard(boardModel)
+            boardRepository.insertBoardData(boardModel)
 
             val intent = Intent(requireContext(),BoardActivity::class.java)
             intent.putExtra("boardData",boardModel)
@@ -128,6 +129,9 @@ class AddBoardFragment : Fragment() {
             toolbarAddBoard.apply {
 
                 setNavigationIcon(R.drawable.ic_arrow_back_24)
+                setNavigationOnClickListener {
+                    addBoardActivity.finish()
+                }
 
                 inflateMenu(R.menu.menu_add_board)
 
