@@ -131,6 +131,7 @@
                             android:text="@string/reserve_addr"
                             android:textSize="@dimen/fragment_matching_result_title_text"
                             android:textColor="@color/black"
+                            android:maxLines="2"
                             android:textStyle="bold" />
 
                         <TextView
