@@ -47,7 +47,6 @@ class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
                             val writerData = viewModel.findUserData(selectedItemData.boardWriterIdx)
 
                             val intent = Intent(requireContext(), BoardActivity::class.java)
-
                             intent.putExtra("boardData", selectedItemData)
                             intent.putExtra("userData", writerData)
 

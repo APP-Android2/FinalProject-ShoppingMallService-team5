@@ -1,6 +1,7 @@
 package kr.co.lion.mungnolza.ui.appointment.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
@@ -15,15 +16,25 @@ class PetSitterAdapter(
     private val petSitters: ArrayList<PetSitterModelWithImg>,
     private val itemClick: (Int) -> Unit
 ): RecyclerView.Adapter<PetSitterAdapter.PetSitterViewHolder>() {
-    class PetSitterViewHolder(
+    private var selectedItemPosition: Int = RecyclerView.NO_POSITION
+
+    inner class PetSitterViewHolder(
         private val context: Context,
         private val binding: RowMatchingBinding,
         private val itemClick: (Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root){
 
         init {
+
             binding.reviewCnt.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    notifyItemChanged(selectedItemPosition) // 기존 선택된 아이템 배경색 변경
+                    selectedItemPosition = adapterPosition
+                    notifyItemChanged(selectedItemPosition) // 새로운 선택된 아이템 배경색 변경
+                }
+
                 itemClick.invoke(adapterPosition)
+
             }
         }
 
@@ -47,6 +58,7 @@ class PetSitterAdapter(
                     .load(item.profileImg.toString())
                     .into(imgPetSitter)
 
+                itemView.setBackgroundColor(if (adapterPosition == selectedItemPosition) Color.YELLOW else Color.TRANSPARENT)
             }
         }
     }

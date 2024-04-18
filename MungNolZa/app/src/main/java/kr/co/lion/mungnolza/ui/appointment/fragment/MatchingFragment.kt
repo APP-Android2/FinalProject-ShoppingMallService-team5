@@ -25,7 +25,11 @@ class MatchingFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMatchingBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -89,6 +93,8 @@ class MatchingFragment : Fragment() {
                     } else {
                         "돌봄 서비스 예약 확인"
                     }
+                serviceTime.text = schedule.serviceTime
+                reserveDate.text = date.trim()
                 reserveTime.text = schedule.reserveTime
                 reserveAddr.text = schedule.address
                 reservePrice.text = schedule.totalPrice.toString()
@@ -106,7 +112,7 @@ class MatchingFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationOnClickListener {
                 val action =
-                    MatchingFragmentDirections.toAppointmentUserAddressFragment(null, null, 0)
+                    MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
                 Navigation.findNavController(view).navigate(action)
             }
         }

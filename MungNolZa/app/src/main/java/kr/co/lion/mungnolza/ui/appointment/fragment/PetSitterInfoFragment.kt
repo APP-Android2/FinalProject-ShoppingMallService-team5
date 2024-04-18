@@ -69,10 +69,7 @@ class PetSitterInfoFragment : Fragment() {
         }
 
 
-        binding.reviewCnt.setOnClickListener{
-            val action = PetSitterInfoFragmentDirections.toPetSitterReviewFragment()
-            Navigation.findNavController(view).navigate(action)
-        }
+
     }
 
     private fun initToolbar(view: View){
