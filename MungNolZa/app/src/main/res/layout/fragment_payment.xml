@@ -136,23 +136,6 @@
             android:padding="@dimen/shared_layout_padding" />
 
         <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="?android:attr/listDivider" />
-
-        <CheckBox
-            android:id="@+id/checkBoxPaymentDefaultMethod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:padding="@dimen/shared_layout_padding"
-            android:text="기본 결제수단으로 저장" />
-
-        <View
-            android:id="@+id/divider4"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="10dp"
@@ -169,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="0.4"
+                android:layout_weight="0.7"
                 android:text="  결제 금액:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
