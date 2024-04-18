@@ -5,18 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
+import kr.co.lion.mungnolza.model.PaymentTimeModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAppointmentDogTimeSelectionBinding? = null
     private val binding get() = _binding!!
-    private var selectedTime: String? = null
+    private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private var selectedTime: String = ""
     private var payment: Int = 0
 
     override fun onCreateView(
@@ -89,7 +94,7 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                 }
 
                 R.id.btn_next -> {
-                    if (selectedTime.isNullOrEmpty()) {
+                    if (selectedTime.isEmpty()) {
                         val dialog = PositiveCustomDialog(
                             title = "서비스 시간을 선택해 볼까요 ?",
                             message = "원하시는 서비스 시간을 선택해 주세요!",
@@ -98,13 +103,8 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     } else {
                         val flag = AppointmentMainFragment.ServiceType.JOGGING.value
-
-                        val action =
-                            AppointmentDogTimeSelectionFragmentDirections.toAppointmentUserAddressFragment(
-                                flag,
-                                selectedTime,
-                                payment
-                            )
+                        viewModel.setPayment(PaymentTimeModel(payment, selectedTime))
+                        val action = AppointmentDogTimeSelectionFragmentDirections.toAppointmentUserAddressFragment(flag)
                         Navigation.findNavController(v).navigate(action)
                     }
                 }
@@ -114,15 +114,14 @@ class AppointmentDogTimeSelectionFragment : Fragment(), View.OnClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        selectedTime = null
         _binding = null
     }
 
     enum class ServiceTime(val value: String, val pay: Int) {
-        ALL_DAY("all day", 100000),
-        HALF_AN_HOUR("30 minutes", 18000),
-        ONE_HOUR("1 HOUR", 28000),
-        TWO_HOUR("2 HOUR", 38000)
+        ALL_DAY("종일권", 80000),
+        HALF_AN_HOUR("30분", 18000),
+        ONE_HOUR("1시간", 28000),
+        TWO_HOUR("2시간", 38000)
     }
 }
 

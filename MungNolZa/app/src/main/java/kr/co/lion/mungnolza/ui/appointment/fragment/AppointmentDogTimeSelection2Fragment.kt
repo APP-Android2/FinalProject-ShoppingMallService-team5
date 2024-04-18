@@ -5,18 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelection2Binding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
 import kr.co.lion.mungnolza.ext.setSelectTimeButtonColor
+import kr.co.lion.mungnolza.model.PaymentTimeModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
+import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 
 class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentAppointmentDogTimeSelection2Binding? = null
     private val binding get() = _binding!!
-    private var selectedTime: String? = null
+    private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
+    private var selectedTime: String = ""
     private var payment: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,10 +45,6 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onClick(v: View?) {
         with(binding) {
@@ -79,7 +80,7 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                     payment = ServiceTime.THREE_HOUR.pay
                 }
                 R.id.btn_next -> {
-                    if (selectedTime.isNullOrEmpty()) {
+                    if (selectedTime.isEmpty()) {
                         val dialog = PositiveCustomDialog(
                             title = "서비스 시간을 선택해 볼까요?",
                             message = "원하시는 서비스 시간을 선택해 주세요!",
@@ -88,8 +89,8 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
                         dialog.show(childFragmentManager, "PositiveCustomDialog")
                     } else {
                         val flag = AppointmentMainFragment.ServiceType.CARE.value
-
-                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment(flag, selectedTime, payment)
+                        viewModel.setPayment(PaymentTimeModel(payment, selectedTime))
+                        val action = AppointmentDogTimeSelection2FragmentDirections.toAppointmentUserAddressFragment(flag)
                         Navigation.findNavController(v).navigate(action)
                     }
                 }
@@ -97,8 +98,13 @@ class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
         }
     }
     enum class ServiceTime(val value: String, val pay: Int) {
-        ONE_HOUR("1 HOUR", 28500),
-        TWO_HOUR("2 HOUR", 38000),
-        THREE_HOUR("3 HOUR", 46000)
+        ONE_HOUR("1시간", 28000),
+        TWO_HOUR("2시간", 37000),
+        THREE_HOUR("3시간", 46000)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
