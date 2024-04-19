@@ -162,6 +162,7 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                             }
 
                             if (careType != null && selectedPet.isNotEmpty()) {
+                                viewModel.setSelectedPet(selectedPet)
                                 val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
                                 Navigation.findNavController(v).navigate(action)
                             }
