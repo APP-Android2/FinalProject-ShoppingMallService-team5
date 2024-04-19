@@ -23,7 +23,6 @@ import kr.co.lion.mungnolza.ext.setColorkakaoYellow
 import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.ui.appointment.adapter.MyPetAdapter
-import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 

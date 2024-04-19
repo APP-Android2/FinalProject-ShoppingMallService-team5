@@ -15,7 +15,6 @@ import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.PaymentTimeModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
-import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
 
 class AppointmentDogTimeSelection2Fragment : Fragment(), View.OnClickListener {
