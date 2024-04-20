@@ -7,28 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentReservationListBinding
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListLastFragment
 import kr.co.lion.mungnolza.ui.reservation_list.fragment.ReservationListOngoingFragment
 
 
-class ReservationListFragment : Fragment() {
-
-    private var _binding: FragmentReservationListBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentReservationListBinding.inflate(layoutInflater)
-        return binding.root
-    }
+class ReservationListFragment : Fragment(R.layout.fragment_reservation_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
+        val binding = FragmentReservationListBinding.bind(view)
 
-    private fun initView(){
         // 진행 중인 예약과 지난 예약을 보여줄 두 개의 Fragment 객체 생성
         val reservationListOngoingFragment = ReservationListOngoingFragment()
         val reservationListLastFragment = ReservationListLastFragment()
@@ -55,10 +45,7 @@ class ReservationListFragment : Fragment() {
             }
         }.attach()
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }
 
 
