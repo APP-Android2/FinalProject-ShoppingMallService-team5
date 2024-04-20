@@ -49,8 +49,7 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
                         if (it != null) {
                             val petSitterAdapter = PetSitterAdapter(it, { idx ->
                                 val info = it[idx].petSitter
-                                val action =
-                                    MatchingFragmentDirections.toPetSitterInfoFragment(info)
+                                val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
                                 Navigation.findNavController(view).navigate(action)
                             }, { idx ->
                                 selectedPetSitter = it[idx].petSitter.petSitterIdx
