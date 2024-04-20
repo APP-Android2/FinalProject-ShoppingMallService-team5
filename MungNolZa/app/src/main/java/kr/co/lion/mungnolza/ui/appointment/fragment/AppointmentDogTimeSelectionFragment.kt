@@ -1,12 +1,14 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentDogTimeSelectionBinding
 import kr.co.lion.mungnolza.ext.setColorGreenBlue
@@ -27,6 +29,19 @@ class AppointmentDogTimeSelectionFragment : Fragment(R.layout.fragment_appointme
         val binding = FragmentAppointmentDogTimeSelectionBinding.bind(view)
 
         with(binding) {
+
+            val imgUrl = viewModel.selectedPet.value[0].imgUrl
+
+            Glide.with(this@AppointmentDogTimeSelectionFragment)
+                .load(imgUrl.toString())
+                .into(object : CustomTarget<Drawable>() {
+                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                        imgDog.background = resource
+                    }
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                    }
+                })
+
             btnBack.setOnClickListener{
                 val action = AppointmentDogTimeSelectionFragmentDirections.toAppointmentMainFragment()
                 Navigation.findNavController(view).navigate(action)
