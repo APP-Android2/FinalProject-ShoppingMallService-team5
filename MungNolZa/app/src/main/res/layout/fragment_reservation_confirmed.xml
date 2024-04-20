@@ -24,192 +24,308 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent" >
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/no_pet_cardview"
-            style="@style/Widget.Material3.CardView.Outlined"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/shared_common_margin"
-            android:backgroundTint="@color/app_main_color"
-            app:cardElevation="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/shared_common_margin_10"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/layout_padding"
-                    android:src="@drawable/img_sungooli_dog" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/shared_common_margin_10"
-                    android:fontFamily="@font/binggrae_regular"
-                    android:text="@string/reserve_complete" />
-
-                <Button
-                    android:id="@+id/btn_next"
-                    style="@style/Widget.Material3.Button.IconButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_chevron_right_24px"
-                    android:text="돌아가기"
-                    android:textColor="@color/grey" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardReservationConfirmedDetail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
             android:padding="10dp">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/no_pet_cardview"
+                style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/textViewReservationConfirmedPetCareType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                    android:text="돌봄서비스 유형 및 시간"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                <View
-                    android:id="@+id/divider5"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="?android:attr/listDivider" />
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/shared_common_margin"
+                android:backgroundTint="@color/app_main_color"
+                app:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="@dimen/shared_common_margin_10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageViewReservationConfirmedPet"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@mipmap/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/textViewReservationConfirmedPetName"
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                        android:text="펫이름"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="?android:attr/textColorSecondary" />
+                        android:paddingTop="@dimen/layout_padding"
+                        android:src="@drawable/img_sungooli_dog" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/shared_common_margin_10"
+                        android:fontFamily="@font/binggrae_bold"
+                        android:text="@string/reserve_complete"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <Button
+                        android:id="@+id/btn_next"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_chevron_right_24px"
+                        android:text="돌아가기"
+                        android:textColor="@color/gray600" />
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/textViewReservationConfirmedAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                    android:text="예약 주소"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="?android:attr/textColorSecondary" />
 
-                <View
-                    android:id="@+id/divider6"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="?android:attr/listDivider" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMatchingReservationDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/shared_common_margin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/reserve_service_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="?android:attr/listDivider" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:orientation="horizontal">
 
-                        <!-- Title, secondary and supporting text -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_pet_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="@string/reserve_date"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reserve_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="@dimen/fragment_matching_result_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="@string/reserve_time"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reserve_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="@dimen/fragment_matching_result_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="@string/service_time"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/service_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="@dimen/fragment_matching_result_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:maxLines="2"
+                        android:text="@string/reserve_addr"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reserve_addr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="@dimen/fragment_matching_result_text" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="@string/reserve_pay"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reserve_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="@dimen/fragment_matching_result_text" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/shared_common_margin_10"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                        android:text="예약 펫시터"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fragment_matching_result_title_text"
+                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/shared_common_margin_10">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/imageViewReservationConfirmedPetSitter"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:id="@+id/img_pet_sitter"
+                                android:layout_width="@dimen/n_shared_pet_image_width_height"
+                                android:layout_height="@dimen/n_shared_pet_image_width_height"
                                 android:src="@mipmap/ic_launcher" />
 
                             <TextView
-                                android:id="@+id/textViewReservationConfirmedPetSitterName"
+                                android:id="@+id/petSitter_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                                android:text="이름"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                                android:layout_marginStart="@dimen/n_shared_profile_interval_margin_top"
+                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                         </LinearLayout>
 
-                        <RatingBar
-                            android:id="@+id/ratingBarReservationConfirmedPetSitter"
-                            style="@style/Widget.AppCompat.RatingBar.Small"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:isIndicator="true"
-                            android:numStars="5"
-                            android:rating="5"
-                            tools:isIndicator="true" />
+                            android:orientation="horizontal">
+
+                            <RatingBar
+                                android:id="@+id/ratingBar"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                                android:layout_marginBottom="@dimen/shared_common_margin_10"
+                                android:isIndicator="true"
+                                android:numStars="1"
+                                android:progressTint="@color/male"
+                                android:rating="5" />
+
+                            <TextView
+                                android:id="@+id/review_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="3dp"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:text="5.0"
+                                android:textColor="@color/gray600"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/review_cnt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/binggrae_bold"
+                                android:text="20개의 리뷰"
+                                android:textColor="@color/gray600"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/img_tropy" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="경력"
+                                android:textColor="?android:attr/textColorSecondary"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/textViewReservationConfirmedPetSitterCareer"
-                            android:layout_width="match_parent"
+                            android:id="@+id/pet_sitter_career"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/shared_common_margin_10"
                             android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:inputType="datetime|time"
-                            android:minWidth="48dp"
-                            android:minHeight="48dp"
-                            android:text="경력"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?android:attr/textColorSecondary" />
-
-                        <TextView
-                            android:id="@+id/textViewReservationConfirmedDateTime"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:text="예약날짜시간"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="?android:attr/textColorSecondary" />
                     </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

@@ -126,7 +126,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment){
     }
 
     private fun moveFragment(view: View){
-        val action = PaymentFragmentDirections.toReservationConfirmedFragment()
+        val action = PaymentFragmentDirections.toReservationConfirmedFragment(args.idx)
         Navigation.findNavController(view).navigate(action)
     }
 }
