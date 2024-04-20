@@ -14,27 +14,17 @@ class PositiveCustomDialog(
     private val title: String,
     private val message: String,
     private val positiveButtonClick: () -> Unit
-) : DialogFragment() {
-    private var _binding: PositiveCustomDialogBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        _binding = PositiveCustomDialogBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
+) : DialogFragment(R.layout.positive_custom_dialog) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, R.style.CustomPositiveDialogTheme)
     }
 
-    private fun initView(){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = PositiveCustomDialogBinding.bind(view)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         with(binding){
             tvTitle.text = title
             tvMessage.text = message
@@ -43,10 +33,5 @@ class PositiveCustomDialog(
                 dismiss()
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

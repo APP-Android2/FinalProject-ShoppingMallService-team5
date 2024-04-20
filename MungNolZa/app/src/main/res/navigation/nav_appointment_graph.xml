@@ -117,6 +117,10 @@
         android:id="@+id/reservationConfirmedFragment"
         android:name="kr.co.lion.mungnolza.ui.appointment.fragment.ReservationConfirmedFragment"
         android:label="fragment_reservation_confirmed"
-        tools:layout="@layout/fragment_reservation_confirmed" />
+        tools:layout="@layout/fragment_reservation_confirmed" >
+        <argument
+            android:name="idx"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

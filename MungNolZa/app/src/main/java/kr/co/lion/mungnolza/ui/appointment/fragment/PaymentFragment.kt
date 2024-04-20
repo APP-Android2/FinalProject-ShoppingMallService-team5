@@ -2,9 +2,7 @@ package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -55,7 +53,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment){
             spinnerPaymentCardType.adapter = adapter1
             spinnerPaymentCardPeriod.adapter = adapter2
 
-            totalPrice.text = totalPrice.moneyFormat(viewModel.payment.value.payment)
+            totalPrice.text = totalPrice.moneyFormat(viewModel.reserveSchedule.value.totalPrice)
 
             btnCredit.setOnClickListener{
                 selectedCardType = 1
@@ -128,7 +126,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment){
     }
 
     private fun moveFragment(view: View){
-        val action = PaymentFragmentDirections.toReservationConfirmedFragment()
+        val action = PaymentFragmentDirections.toReservationConfirmedFragment(args.idx)
         Navigation.findNavController(view).navigate(action)
     }
 }
