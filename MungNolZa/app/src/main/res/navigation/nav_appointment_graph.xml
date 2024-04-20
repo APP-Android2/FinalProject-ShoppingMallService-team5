@@ -75,27 +75,11 @@
         android:label="fragment_matching"
         tools:layout="@layout/fragment_matching" >
         <action
-            android:id="@+id/to_petSitterInfoFragment"
-            app:destination="@id/petSitterInfoFragment" />
-        <action
             android:id="@+id/to_paymentFragment"
             app:destination="@id/paymentFragment" />
         <action
             android:id="@+id/to_appointmentUserAddressFragment"
             app:destination="@id/appointmentUserAddressFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/petSitterInfoFragment"
-        android:name="kr.co.lion.mungnolza.ui.appointment.fragment.PetSitterInfoFragment"
-        android:label="fragment_pet_sitter_info"
-        tools:layout="@layout/fragment_pet_sitter_info" >
-        <action
-            android:id="@+id/to_matchingFragment"
-            app:destination="@id/matchingFragment" />
-        <argument
-            android:name="info"
-            app:argType="kr.co.lion.mungnolza.model.PetSitterModel"
-            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"

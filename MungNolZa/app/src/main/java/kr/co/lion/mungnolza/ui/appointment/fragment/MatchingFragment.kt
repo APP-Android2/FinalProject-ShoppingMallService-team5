@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
 import kr.co.lion.mungnolza.ext.showDialog
+import kr.co.lion.mungnolza.ui.appointment.PetSitterInfoActivity
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
@@ -46,23 +48,25 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.petSitterData.collect {
-                        if (it != null) {
-                            val petSitterAdapter = PetSitterAdapter(it, { idx ->
-                                val info = it[idx].petSitter
-                                val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
-                                Navigation.findNavController(view).navigate(action)
-                            }, { idx ->
-                                selectedPetSitter = it[idx].petSitter.petSitterIdx
-                            })
+                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
+                            val info = it[idx].petSitter
 
-                            rvPetsitter.adapter = petSitterAdapter
-                            rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
-                            val deco = MaterialDividerItemDecoration(
-                                requireContext(),
-                                MaterialDividerItemDecoration.VERTICAL
-                            )
-                            rvPetsitter.addItemDecoration(deco)
-                        }
+                            val intent = Intent(requireContext(), PetSitterInfoActivity::class.java)
+                            intent.putExtra("petSitterIdx", info.petSitterIdx)
+                            startActivity(intent)
+
+                        }, { idx ->
+                            selectedPetSitter = it[idx].petSitter.petSitterIdx
+                        })
+
+                        rvPetsitter.adapter = petSitterAdapter
+                        rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
+                        val deco = MaterialDividerItemDecoration(
+                            requireContext(),
+                            MaterialDividerItemDecoration.VERTICAL
+                        )
+                        rvPetsitter.addItemDecoration(deco)
+
                     }
                 }
             }

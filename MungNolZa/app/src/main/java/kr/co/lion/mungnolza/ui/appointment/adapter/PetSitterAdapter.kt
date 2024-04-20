@@ -13,7 +13,7 @@ import kr.co.lion.mungnolza.databinding.RowMatchingBinding
 import kr.co.lion.mungnolza.model.PetSitterModelWithImg
 
 class PetSitterAdapter(
-    private val petSitters: ArrayList<PetSitterModelWithImg>,
+    private val petSitters: List<PetSitterModelWithImg>,
     private val reviewCntClick: (Int) -> Unit,
     private val itemClick: (Int) -> Unit,
 ): RecyclerView.Adapter<PetSitterAdapter.PetSitterViewHolder>() {
@@ -28,7 +28,7 @@ class PetSitterAdapter(
 
         init {
 
-            binding.reviewCnt.setOnClickListener {
+            binding.reviewContainer.setOnClickListener {
                 reviewCntClick.invoke(adapterPosition)
             }
 
