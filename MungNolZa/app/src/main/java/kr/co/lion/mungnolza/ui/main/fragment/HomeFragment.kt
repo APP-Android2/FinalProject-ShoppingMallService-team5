@@ -1,13 +1,9 @@
 package kr.co.lion.mungnolza.ui.main.fragment
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,20 +17,15 @@ import kr.co.lion.mungnolza.ui.appointment.NoPetActivity
 import kr.co.lion.mungnolza.ui.main.vm.MainViewModel
 import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
 import kr.co.lion.mungnolza.ui.realtime_location.RealtimeLocationActivity
-import kr.co.lion.mungnolza.ui.reservation_list.ReservationListActivity
 
-class HomeFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : Fragment(R.layout.fragment_home){
     private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
     private var myPet: List<PetImgModel>? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        initView()
-        return binding.root
-    }
 
-    private fun initView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentHomeBinding.bind(view)
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.myPetData.collect {
@@ -42,16 +33,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
-        with(binding) {
-            btnReserve.setOnClickListener(this@HomeFragment)
-            btnReserveList.setOnClickListener(this@HomeFragment)
-            btnReviewList.setOnClickListener(this@HomeFragment)
-        }
-    }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.btn_reserve -> {
+        with(binding){
+            btnReserve.setOnClickListener{
                 if (myPet?.isEmpty() == true) {
                     startActivity(Intent(requireActivity(), NoPetActivity::class.java))
                 } else {
@@ -60,15 +44,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     startActivity(intent)
                 }
             }
-
-            R.id.btn_reserve_list -> {
+            btnReserveList.setOnClickListener{
                 startActivity(Intent(requireActivity(), RealtimeLocationActivity::class.java))
             }
-
-            R.id.btn_review_list -> {
-
-            }
+            btnReviewList.setOnClickListener { }
         }
-
     }
 }

@@ -1,10 +1,8 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
 import kr.co.lion.mungnolza.ext.showDialog
@@ -20,70 +19,56 @@ import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
-import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 
-class MatchingFragment : Fragment() {
+class MatchingFragment : Fragment(R.layout.fragment_matching) {
 
-    private var _binding: FragmentMatchingBinding? = null
-    private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
     private var selectedPetSitter: String = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMatchingBinding.inflate(layoutInflater)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view)
-    }
+        val binding = FragmentMatchingBinding.bind(view)
 
-    private fun initView(view: View) {
         viewModel.fetchAllPetSitterData()
-
         val myPetImg = viewModel.myPetData.value.map { it.imgUrl }
         val imgAdapter = PetImgAdapter(myPetImg)
-        with(binding.rvPetImg) {
-            adapter = imgAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.petSitterData.collect {
-                    if (it != null) {
-                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
-                            val info = it[idx].petSitter
-                            val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
-                            Navigation.findNavController(view).navigate(action)
-                        }, { idx ->
-                            selectedPetSitter = it[idx].petSitter.petSitterIdx
-                        })
+        with(binding) {
+            rvPetImg.adapter = imgAdapter
+            rvPetImg.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-                        with(binding) {
-                            with(rvPetsitter) {
-                                adapter = petSitterAdapter
-                                layoutManager = LinearLayoutManager(requireContext())
-                                val deco = MaterialDividerItemDecoration(
-                                    requireContext(),
-                                    MaterialDividerItemDecoration.VERTICAL
-                                )
-                                addItemDecoration(deco)
-                            }
+            toolbar.setNavigationOnClickListener {
+                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
+                Navigation.findNavController(view).navigate(action)
+            }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.petSitterData.collect {
+                        if (it != null) {
+                            val petSitterAdapter = PetSitterAdapter(it, { idx ->
+                                val info = it[idx].petSitter
+                                val action =
+                                    MatchingFragmentDirections.toPetSitterInfoFragment(info)
+                                Navigation.findNavController(view).navigate(action)
+                            }, { idx ->
+                                selectedPetSitter = it[idx].petSitter.petSitterIdx
+                            })
+
+                            rvPetsitter.adapter = petSitterAdapter
+                            rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
+                            val deco = MaterialDividerItemDecoration(
+                                requireContext(),
+                                MaterialDividerItemDecoration.VERTICAL
+                            )
+                            rvPetsitter.addItemDecoration(deco)
                         }
                     }
                 }
             }
-        }
 
-        with(binding) {
             val schedule = viewModel.reserveSchedule.value
-
             val date = StringBuilder()
 
             schedule.reserveDate.map {
@@ -104,28 +89,13 @@ class MatchingFragment : Fragment() {
             reservePrice.text = reservePrice.moneyFormat(schedule.totalPrice)
 
             btnNext.setOnClickListener {
-                if (selectedPetSitter.isNotEmpty()){
+                if (selectedPetSitter.isNotEmpty()) {
                     val action = MatchingFragmentDirections.toPaymentFragment(selectedPetSitter)
                     Navigation.findNavController(view).navigate(action)
-                }else{
+                } else {
                     childFragmentManager.showDialog("펫시터를 선택해 볼까요 ?", "펫시터를 선택해 주세요")
                 }
             }
         }
-        initToolbar(view)
-    }
-
-    private fun initToolbar(view: View) {
-        with(binding.toolbar) {
-            setNavigationOnClickListener {
-                val action = MatchingFragmentDirections.toAppointmentUserAddressFragment(null)
-                Navigation.findNavController(view).navigate(action)
-            }
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

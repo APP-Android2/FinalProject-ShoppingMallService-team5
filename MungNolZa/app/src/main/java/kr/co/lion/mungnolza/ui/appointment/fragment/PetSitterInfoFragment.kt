@@ -1,82 +1,63 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentPetSitterInfoBinding
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 
-class PetSitterInfoFragment : Fragment() {
-    private var _binding: FragmentPetSitterInfoBinding? = null
-    private val binding get() = _binding!!
-    private val args : PetSitterInfoFragmentArgs by navArgs()
+class PetSitterInfoFragment : Fragment(R.layout.fragment_pet_sitter_info) {
+    private val args: PetSitterInfoFragmentArgs by navArgs()
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentPetSitterInfoBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view)
-    }
+        val binding = FragmentPetSitterInfoBinding.bind(view)
 
-    private fun initView(view: View){
-        initToolbar(view)
-
-        val petSitter = args.info
-        if (petSitter != null){
-
-            val career = StringBuilder()
-            petSitter.petSitterCareer.map {
-                career.append(it).append("\n")
+        with(binding) {
+            toolbar.setNavigationOnClickListener {
+                val action = PetSitterInfoFragmentDirections.toMatchingFragment()
+                Navigation.findNavController(view).navigate(action)
             }
 
-            val certification = StringBuilder()
-            petSitter.petSitterCertificate.map {
-                certification.append(it).append("\n")
-            }
+            val petSitter = args.info
+            if (petSitter != null) {
 
-            val introduce = petSitter.petSitterIntroduce.
-                            split("\\.".toRegex())
-                            .joinToString("\n\n") {
-                                it.trim()
-                            }
+                val career = StringBuilder()
+                petSitter.petSitterCareer.map {
+                    career.append(it).append("\n")
+                }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                val img = viewModel.fetchPetSitterImage(petSitter.petSitterIdx, petSitter.imgName)
-                Glide.with(binding.root)
-                    .load(img.toString())
-                    .into(binding.imgPetSitter)
-            }
+                val certification = StringBuilder()
+                petSitter.petSitterCertificate.map {
+                    certification.append(it).append("\n")
+                }
 
-            with(binding){
+                val introduce = petSitter.petSitterIntroduce.split("\\.".toRegex())
+                    .joinToString("\n\n") {
+                        it.trim()
+                    }
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val img =
+                        viewModel.fetchPetSitterImage(petSitter.petSitterIdx, petSitter.imgName)
+                    Glide.with(binding.root)
+                        .load(img.toString())
+                        .into(binding.imgPetSitter)
+                }
+
                 petSitterName.text = petSitter.petSitterName
                 petSitterIntroduce.text = introduce
                 petSitterCertification.text = certification
                 this.petSitterCareer.text = career
-            }
-        }
-
-
-
-    }
-
-    private fun initToolbar(view: View){
-        with(binding.toolbar){
-            setNavigationOnClickListener {
-                val action = PetSitterInfoFragmentDirections.toMatchingFragment()
-                Navigation.findNavController(view).navigate(action)
             }
         }
     }

@@ -56,30 +56,56 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-        initToolbar(view)
-        initContract()
-    }
-
-    private fun initToolbar(view: View) {
         val flag = args.flag
         if (flag != null) { viewModel.setFlag(flag) }
 
-        binding.toolbar.setNavigationOnClickListener {
-            val action: NavDirections = when(viewModel.fromWhere.value){
-                AppointmentMainFragment.ServiceType.JOGGING.value -> {
-                    AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelectionFragment()
+        val contracts = ActivityResultContracts.StartActivityForResult()
+        launcherForActivity = registerForActivityResult(contracts) { result ->
+            val callback = result.data
+            if (callback != null){
+                if (result.resultCode == ADDR_RESULT_CODE){
+                    val data = callback.getStringExtra("data")
+                    with(binding){
+                        btnSaveAddr.visibility = VISIBLE
+                        editTextDetailAddr.visibility = VISIBLE
+                        edittextAddr.setText(data)
+                    }
                 }
-
-                AppointmentMainFragment.ServiceType.CARE.value->{
-                    AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelection2Fragment()
-                }
-
-                else -> { return@setNavigationOnClickListener }
             }
-            Navigation.findNavController(view).navigate(action)
         }
+
+        with(binding) {
+            binding.toolbar.setNavigationOnClickListener {
+                val action: NavDirections = when (viewModel.fromWhere.value) {
+                    AppointmentMainFragment.ServiceType.JOGGING.value -> {
+                        AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelectionFragment()
+                    }
+
+                    AppointmentMainFragment.ServiceType.CARE.value -> {
+                        AppointmentUserAddressFragmentDirections.toAppointmentDogTimeSelection2Fragment()
+                    }
+
+                    else -> {
+                        return@setNavigationOnClickListener
+                    }
+                }
+                Navigation.findNavController(view).navigate(action)
+            }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    val careType = viewModel.careType.value.toString()
+                    if (careType == AppointmentMainFragment.CareType.VISIT.value) {
+                        addressContainer.visibility = GONE
+                    }
+                }
+            }
+
+            edittextAddr.setText(viewModel.userAddress.value)
+        }
+        initView()
     }
+
     private fun initView() {
         with(binding) {
             viewLifecycleOwner.lifecycleScope.launch {
@@ -110,23 +136,6 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
             imgWeekThursday.setOnClickListener(this@AppointmentUserAddressFragment)
             imgWeekFriday.setOnClickListener(this@AppointmentUserAddressFragment)
             imgWeekSaturday.setOnClickListener(this@AppointmentUserAddressFragment)
-        }
-    }
-
-    private fun initContract(){
-        val contracts = ActivityResultContracts.StartActivityForResult()
-        launcherForActivity = registerForActivityResult(contracts) { result ->
-            val callback = result.data
-            if (callback != null){
-                if (result.resultCode == ADDR_RESULT_CODE){
-                    val data = callback.getStringExtra("data")
-                    with(binding){
-                        btnSaveAddr.visibility = VISIBLE
-                        editTextDetailAddr.visibility = VISIBLE
-                        edittextAddr.setText(data)
-                    }
-                }
-            }
         }
     }
 
