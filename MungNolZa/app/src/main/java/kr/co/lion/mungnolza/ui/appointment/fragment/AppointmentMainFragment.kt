@@ -26,42 +26,31 @@ import kr.co.lion.mungnolza.ui.appointment.adapter.MyPetAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 
-class AppointmentMainFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentAppointmentMainBinding? = null
-    private val binding get() = _binding!!
+class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
 
     private var selectedPet = mutableListOf<PetImgModel>()
     private var selectedService: String? = null
     private var careType: String? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAppointmentMainBinding.inflate(inflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
+        val binding = FragmentAppointmentMainBinding.bind(view)
 
-    private fun initView() {
         with(binding) {
             with(rv) {
                 viewLifecycleOwner.lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
                         viewModel.myPetData.collect {
                             adapter = MyPetAdapter(it) { selectedIdx ->
-                                if(selectedPet.contains(it[selectedIdx])){
+                                if (selectedPet.contains(it[selectedIdx])) {
                                     selectedPet.remove(it[selectedIdx])
-                                }else{
+                                } else {
                                     selectedPet.add(it[selectedIdx])
                                 }
                             }
-                            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+                            layoutManager =
+                                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
                         }
                     }
                 }
@@ -98,87 +87,73 @@ class AppointmentMainFragment : Fragment(), View.OnClickListener {
                 activity?.finish()
             }
 
-            btnJogging.setOnClickListener(this@AppointmentMainFragment)
-            btnCare.setOnClickListener(this@AppointmentMainFragment)
-            btnNext.setOnClickListener(this@AppointmentMainFragment)
-        }
-    }
+            btnJogging.setOnClickListener {
+                btnJogging.backgroundTintList = requireContext().setColorkakaoYellow()
+                btnJogging.setTextColor(requireContext().setColorBlack())
 
-    override fun onClick(v: View?) {
-        with(binding) {
-            when (v?.id) {
-                R.id.btn_jogging -> {
-                    btnJogging.backgroundTintList = requireContext().setColorkakaoYellow()
-                    btnJogging.setTextColor(requireContext().setColorBlack())
+                btnCare.backgroundTintList = requireContext().setColorWhite()
+                btnCare.setTextColor(requireContext().setColorPrimary())
 
-                    btnCare.backgroundTintList = requireContext().setColorWhite()
-                    btnCare.setTextColor(requireContext().setColorPrimary())
+                toggleGroup.visibility = GONE
 
-                    toggleGroup.visibility = GONE
+                selectedService = ServiceType.JOGGING.value
+                viewModel.setServiceType(ServiceType.JOGGING.value)
+                viewModel.setCareType(null)
+            }
 
-                    selectedService = ServiceType.JOGGING.value
-                    viewModel.setServiceType(ServiceType.JOGGING.value)
-                    viewModel.setCareType(null)
+            btnCare.setOnClickListener {
+                btnCare.backgroundTintList = requireContext().setColorkakaoYellow()
+                btnCare.setTextColor(requireContext().setColorBlack())
 
-                }
+                btnJogging.backgroundTintList = requireContext().setColorWhite()
+                btnJogging.setTextColor(requireContext().setColorPrimary())
 
-                R.id.btn_care -> {
-                    btnCare.backgroundTintList = requireContext().setColorkakaoYellow()
-                    btnCare.setTextColor(requireContext().setColorBlack())
+                toggleGroup.visibility = VISIBLE
 
-                    btnJogging.backgroundTintList = requireContext().setColorWhite()
-                    btnJogging.setTextColor(requireContext().setColorPrimary())
+                selectedService = ServiceType.CARE.value
+                viewModel.setServiceType(ServiceType.CARE.value)
+            }
 
-                    toggleGroup.visibility = VISIBLE
+            btnNext.setOnClickListener {
+                when (selectedService) {
+                    ServiceType.JOGGING.value -> {
+                        if (selectedPet.isEmpty()) {
+                            childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                        } else {
+                            viewModel.setSelectedPet(selectedPet)
+                            viewModel.setCareType(null)
 
-                    selectedService = ServiceType.CARE.value
-                    viewModel.setServiceType(ServiceType.CARE.value)
-                }
-
-                R.id.btn_next -> {
-                    when (selectedService) {
-                        ServiceType.JOGGING.value -> {
-                            if (selectedPet.isEmpty()){
-                                childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
-                            }else{
-                                viewModel.setSelectedPet(selectedPet)
-                                viewModel.setCareType(null)
-
-                                val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
-                                Navigation.findNavController(v).navigate(action)
-                            }
+                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
+                            Navigation.findNavController(view).navigate(action)
                         }
-                        ServiceType.CARE.value -> {
-                            if (selectedPet.isEmpty()){
-                                childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
-                            }else if (careType.isNullOrEmpty()) {
-                                childFragmentManager.showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요")
-                            } else if (careType == CareType.ENTRUST.value) {
-                                // 맡김 일 때의 처리
-                                viewModel.setCareType(CareType.ENTRUST.value)
-                            } else if (careType == CareType.VISIT.value) {
-                                // 방문일 때의 처리
-                                viewModel.setCareType(CareType.VISIT.value)
-                            }
+                    }
 
-                            if (careType != null && selectedPet.isNotEmpty()) {
-                                viewModel.setSelectedPet(selectedPet)
-                                val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
-                                Navigation.findNavController(v).navigate(action)
-                            }
+                    ServiceType.CARE.value -> {
+                        if (selectedPet.isEmpty()) {
+                            childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
+                        } else if (careType.isNullOrEmpty()) {
+                            childFragmentManager.showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요")
+                        } else if (careType == CareType.ENTRUST.value) {
+                            // 맡김 일 때의 처리
+                            viewModel.setCareType(CareType.ENTRUST.value)
+                        } else if (careType == CareType.VISIT.value) {
+                            // 방문일 때의 처리
+                            viewModel.setCareType(CareType.VISIT.value)
                         }
-                        else -> {
-                            childFragmentManager.showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 ")
+
+                        if (careType != null && selectedPet.isNotEmpty()) {
+                            viewModel.setSelectedPet(selectedPet)
+                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
+                            Navigation.findNavController(view).navigate(action)
                         }
+                    }
+
+                    else -> {
+                        childFragmentManager.showDialog("서비스를 선택해 볼까요?", "원하시는 서비스를 선택해 주세요 ")
                     }
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     enum class ServiceType(val value: String) {
