@@ -3,7 +3,7 @@ package kr.co.lion.mungnolza.model
 data class CareServiceModel (
     val userIdx: String = "",
     val reserveIdx: Long = 0L,
-    val selectService: SelectScheduleModel = SelectScheduleModel(),
+    val selectService: SelectScheduleModel,
     val visitType:String = "",
     val petSitterIdx: String = "",
     val reservationCompleteDate: String = "",
