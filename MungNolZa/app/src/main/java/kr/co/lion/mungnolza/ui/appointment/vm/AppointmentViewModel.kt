@@ -52,8 +52,7 @@ class AppointmentViewModel(
     private val _reserveSchedule: MutableStateFlow<SelectScheduleModel> = MutableStateFlow(SelectScheduleModel())
     val reserveSchedule = _reserveSchedule.asStateFlow()
 
-    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> =
-        MutableStateFlow(null)
+    private val _petSitterData: MutableStateFlow<List<PetSitterModelWithImg>> = MutableStateFlow(emptyList())
     val petSitterData = _petSitterData.asStateFlow()
 
     init {
@@ -115,7 +114,7 @@ class AppointmentViewModel(
         _petSitterData.value = petSitterList
     }
 
-    suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
+    private suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
         return petSitterRepository.fetchPetSitterImage(petSitterIdx, imgName)
     }
 
@@ -151,7 +150,7 @@ class AppointmentViewModel(
         _careType.value = type
     }
 
-    fun getCurrentDate(): String{
+    private fun getCurrentDate(): String{
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         return simpleDateFormat.format(Date())
     }
