@@ -13,23 +13,28 @@ class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
     private val storage = Firebase.storage.reference
     override suspend fun fetchAllUserData(): List<UserModel> {
-        return try {
-            val querySnapshot = userStore.get().await()
-            querySnapshot.map { it.toObject(UserModel::class.java) }
-        }catch (e: Exception){
-            Log.e("FirebaseResult", "Error fetching users: ${e.message}")
-            emptyList()
+        return withContext(Dispatchers.IO) {
+            try {
+                val querySnapshot = userStore.get().await()
+                querySnapshot.map { it.toObject(UserModel::class.java) }
+            } catch (e: Exception) {
+                Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+                emptyList()
+            }
         }
     }
 
     override suspend fun fetchUserAddress(uniqueNumber: String): String {
-        return try {
-            val querySnapshot = userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
-            querySnapshot.documents.first().getString("userAddress").toString()
+        return withContext(Dispatchers.IO) {
+            try {
+                val querySnapshot =
+                    userStore.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
+                querySnapshot.documents.first().getString("userAddress").toString()
 
-        }catch (e: Exception){
-            Log.e("FirebaseResult", "Error fetching users: ${e.message}")
-            ""
+            } catch (e: Exception) {
+                Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+                ""
+            }
         }
     }
 
