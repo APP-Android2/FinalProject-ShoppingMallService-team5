@@ -123,7 +123,7 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
                             viewModel.setSelectedPet(selectedPet)
                             viewModel.setCareType(null)
 
-                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
+                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
                             Navigation.findNavController(view).navigate(action)
                         }
                     }
@@ -143,7 +143,7 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
 
                         if (careType != null && selectedPet.isNotEmpty()) {
                             viewModel.setSelectedPet(selectedPet)
-                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
+                            val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
                             Navigation.findNavController(view).navigate(action)
                         }
                     }
