@@ -1,9 +1,11 @@
 package kr.co.lion.mungnolza.ui.intro.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.PetImgModel
@@ -17,13 +19,12 @@ class StartViewModel(
     private val _myPetData = MutableStateFlow<List<PetImgModel>>(emptyList())
     val myPetData = _myPetData.asStateFlow()
 
-    init {
-        fetchMyAllPetData()
-    }
-    private fun fetchMyAllPetData() = viewModelScope.launch {
+    fun fetchMyAllPetData(callback: (Boolean) -> Unit) = viewModelScope.launch {
         val petList = ArrayList<PetImgModel>()
-        MainDataStore.getUserNumber().collect { myUserNumber ->
-            val result = myUserNumber.let { data-> petRepositoryImpl.fetchMyPetData(data) }
+        val success = try{
+            val myUserNumber = MainDataStore.getUserNumber().stateIn(this).value
+            val result = petRepositoryImpl.fetchMyPetData(myUserNumber)
+
             result.map{
                 val imgUri = fetchPetImg(it.ownerIdx, it.imgName)
                 val pet = imgUri?.let { data -> PetImgModel(it, data) }
@@ -33,11 +34,15 @@ class StartViewModel(
                 }
             }
             _myPetData.value = petList
+            true
+        }catch (e: Exception){
+            false
         }
+        callback(success)
     }
 
-    private suspend fun fetchPetImg(userIdx: String, petName: String): URI? {
-        return petRepositoryImpl.fetchMyPetImage(userIdx, petName)
+    private suspend fun fetchPetImg(ownerIdx: String, imgName: String): URI? {
+        return petRepositoryImpl.fetchMyPetImage(ownerIdx, imgName)
     }
     suspend fun checkFistFlag(): Boolean{
         return MainDataStore.getFirstFlag()
