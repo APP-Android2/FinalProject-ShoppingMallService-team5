@@ -12,6 +12,19 @@ import java.net.URI
 class UserRepositoryImpl : UserRepository {
     private val userStore = Firebase.firestore.collection("User")
     private val storage = Firebase.storage.reference
+    override suspend fun userJoin(userModel: UserModel) {
+        withContext(Dispatchers.IO) {
+            userStore.document(userModel.uniqueNumber)
+                .set(userModel)
+                .addOnSuccessListener {
+                    Log.d("FirebaseResult","Success Insert Board Data")
+                }
+                .addOnFailureListener {
+                    Log.e("FirebaseResult", "Error Insert Board Data: ${it.message}")
+                }
+        }
+    }
+
     override suspend fun fetchAllUserId(): List<String> {
         return withContext(Dispatchers.IO) {
             try {
