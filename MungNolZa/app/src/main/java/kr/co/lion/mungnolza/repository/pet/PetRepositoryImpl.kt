@@ -18,22 +18,22 @@ class PetRepositoryImpl: PetRepository {
             try {
                 val querySnapshot = petStore.whereEqualTo("ownerIdx", ownerIdx).get().await()
                 querySnapshot.map { it.toObject(PetModel::class.java) }
+
             } catch (e: Exception) {
                 Log.d("FirebaseResult", "Error fetching pet: ${e.message}")
                 emptyList()
             }
         }
     }
-
-    override suspend fun fetchMyPetImage(userIdx: String, imgName: String): URI? {
-        val path = "user/$userIdx/$imgName"
+    override suspend fun fetchMyPetImage(ownerIdx: String, imgName: String): URI? {
+        val path = "pet/$ownerIdx/$imgName"
 
         return withContext(Dispatchers.IO) {
             try {
                 val response = storage.child(path).downloadUrl.await().toString()
                 URI.create(response)
             } catch (e: Exception) {
-                Log.d("FirebaseResult", "Error fetching PetImage : ${storage.child(path)}")
+                Log.d("FirebaseResult", "Error fetching PetImage : ${e.message}")
                 null
             }
         }
