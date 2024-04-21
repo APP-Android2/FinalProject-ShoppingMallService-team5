@@ -4,12 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityStartBinding
+import kr.co.lion.mungnolza.ext.repeatOnStarted
 import kr.co.lion.mungnolza.ui.dialog.RequestPermissionDialog
 import kr.co.lion.mungnolza.ui.intro.vm.StartViewModel
 import kr.co.lion.mungnolza.ui.intro.vm.StartViewModelFactory
@@ -34,19 +31,17 @@ class StartActivity : AppCompatActivity() {
     private fun initView() {
         binding = ActivityStartBinding.inflate(layoutInflater)
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                if (!viewModel.checkFistFlag()) {
-                    dialog.show(supportFragmentManager, "RequestPermissionDialog")
-                } else {
-                    viewModel.fetchMyAllPetData{
-                        if (it){
-                            val myPetData = viewModel.myPetData.value
-                            val intent = Intent(this@StartActivity, MainActivity::class.java)
-                            intent.putExtra("myPet", myPetData.toTypedArray())
-                            startActivity(intent)
-                            finish()
-                        }
+        repeatOnStarted {
+            if (!viewModel.checkFistFlag()) {
+                dialog.show(supportFragmentManager, "RequestPermissionDialog")
+            } else {
+                viewModel.fetchMyAllPetData {
+                    if (it) {
+                        val myPetData = viewModel.myPetData.value
+                        val intent = Intent(this@StartActivity, MainActivity::class.java)
+                        intent.putExtra("myPet", myPetData.toTypedArray())
+                        startActivity(intent)
+                        finish()
                     }
                 }
             }
