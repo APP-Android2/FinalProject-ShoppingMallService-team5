@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/shrine_pink_50"
+    android:background="@color/app_main_color"
     android:orientation="vertical">
 
 
@@ -13,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,108 +28,91 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:background="@drawable/top_round_container"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/img_sungooli_dog" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="@string/plz_enter_addr"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/brown400"
+            android:layout_marginTop="@dimen/shared_common_margin" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <ImageView
-                android:layout_width="@dimen/fragment_image_size"
-                android:layout_height="@dimen/fragment_image_size"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/shared_common_margin"
-                android:background="@drawable/blank_image_container"
-                android:elevation="@dimen/fragment_image_elevation"
-                android:padding="@dimen/fragment_image_padding"
-                android:src="@drawable/blank_img_input" />
-
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/shared_common_margin"
-                android:background="@drawable/top_round_container"
-                android:orientation="vertical"
-                android:paddingStart="@dimen/shared_common_margin"
-                android:paddingEnd="@dimen/shared_common_margin">
+                android:layout_height="@dimen/shared_button_height"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/On_tertiary_container"
+                android:text="@string/addr_search_button_text"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shared_edittext_margin_top">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fragment_join_edit_text_margin"
-                    app:helperTextTextColor="@color/red">
+                    android:gravity="start"
+                    android:lines="2"
+                    app:helperTextTextColor="@color/red" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/input_profile_name" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shared_edittext_margin_top">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_detail_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/shared_edittext_margin_top"
-                    app:helperTextTextColor="@color/red">
+                    android:hint="@string/input_profile_detail_addr" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/input_profile_phone"
-                        android:inputType="phone" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <android.widget.Button
-                    android:id="@+id/btn_addr"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/shared_button_height"
-                    android:layout_marginTop="25dp"
-                    android:text="@string/addr_search_button_text"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/shared_edittext_margin_top">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_addr"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/input_profile_addr"
-                        app:helperTextTextColor="@color/red" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/shared_edittext_margin_top">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_detail_addr"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/input_profile_detail_addr" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_next"
-                    android:layout_width="@dimen/shared_button_width"
-                    android:layout_height="@dimen/shared_button_height"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/shared_common_margin"
-                    android:background="@drawable/shared_button_design"
-                    android:fontFamily="@font/binggrae_bold"
-                    android:text="@string/lets_start"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/shared_common_margin_10"
+                android:layout_marginBottom="@dimen/shared_common_margin_10"
+                android:background="@drawable/shared_button_design"
+                android:fontFamily="@font/binggrae_bold"
+                android:text="@string/next"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
