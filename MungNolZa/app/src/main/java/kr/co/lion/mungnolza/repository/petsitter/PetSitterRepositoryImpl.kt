@@ -19,7 +19,7 @@ class PetSitterRepositoryImpl : PetSitterRepository {
                 val querySnapshot = petSitterStore.get().await()
                 querySnapshot.map { it.toObject(PetSitterModel::class.java) }
             } catch (e: Exception) {
-                Log.e("FirebaseResult", "Error fetching users: ${e.message}")
+                Log.e("FirebaseResult", "Error fetching PetSitterData: ${e.message}")
                 emptyList()
             }
         }
@@ -32,7 +32,7 @@ class PetSitterRepositoryImpl : PetSitterRepository {
                 val response = storage.child(path).downloadUrl.await().toString()
                 URI.create(response)
             } catch (e: Exception) {
-                Log.e("FirebaseResult", "Error fetching UserProfileImage : ${storage.child(path)}")
+                Log.e("FirebaseResult", "Error fetching PetSitterImage : ${storage.child(path)}")
                 null
             }
         }

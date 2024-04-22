@@ -15,10 +15,6 @@ class OnBoardingActivity : AppCompatActivity() {
         binding = ActivityOnBoardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initView()
-    }
-
-    private fun initView(){
         val fragments = listOf(OnBoardingFragment1(), OnBoardingFragment2(), OnBoardingFragment3())
         val vAdapter = OnBoardingViewPagerAdapter(fragments, this)
         binding.viewpager.adapter = vAdapter
