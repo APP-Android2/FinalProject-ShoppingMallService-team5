@@ -15,6 +15,7 @@ import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.databinding.ActivityLoginBinding
+import kr.co.lion.mungnolza.ext.repeatOnStarted
 import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.ui.intro.vm.LoginViewModel
 import kr.co.lion.mungnolza.ui.intro.vm.LoginViewModelFactory
@@ -80,12 +81,22 @@ class LoginActivity : AppCompatActivity() {
 
                     UserApiClient.instance.me { user, _ ->
                         if (user != null) {
-                            lifecycleScope.launch {
+                            repeatOnStarted {
                                 val userId = user.id.toString()
 
                                 if (viewModel.isExistUser(userId)) {
                                     viewModel.setUpDataStore(userId)
-                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+
+                                    viewModel.fetchMyAllPetData(userId) {
+                                        if (it) {
+                                            val myPetData = viewModel.myPetData.value
+                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                            intent.putExtra("myPet", myPetData.toTypedArray())
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                    }
+
                                 } else {
                                     val newUser = UserModel(
                                         uniqueNumber = user.id.toString(),
