@@ -67,7 +67,7 @@
     <string name="toolbar_title_reservation_confirmed">예약 확인</string>
     <string name="toolbar_title_reservation_list">예약 내역</string>
     <string name="toolbar_title_petsitter_review_write">펫시터 후기 작성</string>
-    <string name="toolbar_title_realtime_location">실시간 펫 위치</string>
+    <string name="toolbar_title_realtime_location">실시간 위치</string>
     <!--bottom navigation menu item-->
     <string name="menu_item_bottom_navigation_home">홈</string>
     <string name="menu_item_bottom_navigation_chatting">채팅</string>
