@@ -10,8 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://repository.map.naver.com/archive/maven")
         maven {
-            url = uri("https://jitpack.io")
+            url = java.net.URI("https://jitpack.io")
             url = java.net.URI("https://devrepo.kakao.com/nexus/content/groups/public/")
         }
     }
