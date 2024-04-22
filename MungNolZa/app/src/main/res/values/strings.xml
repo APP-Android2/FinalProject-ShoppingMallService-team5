@@ -100,5 +100,7 @@
     <string name="service_time">신청 시간</string>
     <string name="reserve_addr">예약 주소</string>
     <string name="plz_enter_addr">주소를 입력해 주세요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="관리자">
+        <menu>
+            <item
+                android:title="회원">
+                <menu>
+                    <item
+                        android:id="@+id/menuItemMemberManagement"
+                        android:checkable="true"
+                        android:title="회원관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentPetManagement"
+                        android:checkable="true"
+                        android:title="반려동물관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentReviewManagement"
+                        android:checkable="true"
+                        android:title="리뷰관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentClaimManagement"
+                        android:checkable="true"
+                        android:title="클레임관리"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+            <item
+                android:title="펫시터">
+                <menu>
+                    <item
+                        android:id="@+id/menuItemContentNavigation4"
+                        android:checkable="true"
+                        android:title="펫시터관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentPetsitterReview"
+                        android:checkable="true"
+                        android:title="리뷰관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentPetsitterQuestions"
+                        android:checkable="true"
+                        android:title="펫시터문의사항"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+            <item
+                android:title="예약">
+                <menu>
+                    <item
+                        android:id="@+id/menuItemContentAppointmentManagement"
+                        android:checkable="true"
+                        android:title="예약관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentAppointmentDetail"
+                        android:checkable="true"
+                        android:title="예약 세부사항"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentAppointmentReview"
+                        android:checkable="true"
+                        android:title="예약 후기정보"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+            <item
+                android:title="게시판">
+                <menu>
+                    <item
+                        android:id="@+id/menuItemContentBoardManagement"
+                        android:checkable="true"
+                        android:title="게시글"
+                        app:showAsAction="ifRoom" />
+
+                    <item
+                        android:id="@+id/menuItemContentBoardAdmin"
+                        android:checkable="true"
+                        android:title="관리자권한"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+            <item
+                android:title="설정">
+                <menu>
+                    <item
+                        android:id="@+id/menuItemContentSettingCategory"
+                        android:checkable="true"
+                        android:title="카테고리 관리"
+                        app:showAsAction="ifRoom" />
+
+                    <item
+                        android:id="@+id/menuItemContentSettingCost"
+                        android:checkable="true"
+                        android:title="비용관리"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentSettingBottonSheet"
+                        android:checkable="true"
+                        android:title="바텀시트 수정 권한"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentSettingMonthlyPetsitter"
+                        android:checkable="true"
+                        android:title="이달의 펫시터 수정 권한"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/menuItemContentSettingAnnouncement"
+                        android:checkable="true"
+                        android:title="공지사항 데이터"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menuItemContentNavigationLogout"
+        android:checkable="true"
+        android:title="로그아웃"
+        app:showAsAction="ifRoom" />
+</menu>

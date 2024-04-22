@@ -96,4 +96,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.kakao.sdk:v2-user:2.20.1")
 
+
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
 }
