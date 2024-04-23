@@ -17,7 +17,7 @@ class PetRepositoryImpl(private val myPetDao: MyPetDao): PetRepository {
     private val petStore = Firebase.firestore.collection("Pet")
     private val storage = Firebase.storage.reference
 
-    suspend fun getMyPetData(): Flow<List<MyPetEntity>> {
+    suspend fun readMyPetData(): Flow<List<MyPetEntity>> {
         return withContext(Dispatchers.IO){
             myPetDao.readMyPet()
         }
