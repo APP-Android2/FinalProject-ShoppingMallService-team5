@@ -19,7 +19,7 @@ import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
 import kr.co.lion.mungnolza.ui.realtime_location.RealtimeLocationActivity
 
 class HomeFragment : Fragment(R.layout.fragment_home){
-    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
+    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(requireContext()) }
     private var myPet: List<PetImgModel>? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

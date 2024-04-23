@@ -5,5 +5,5 @@ import java.net.URI
 
 interface PetRepository {
     suspend fun fetchMyPetData(ownerIdx: String): List<PetModel>
-    suspend fun fetchMyPetImage(ownerIdx: String, imgName: String): URI?
+    suspend fun fetchMyPetImage(ownerIdx: String, imgName: String): URI
 }

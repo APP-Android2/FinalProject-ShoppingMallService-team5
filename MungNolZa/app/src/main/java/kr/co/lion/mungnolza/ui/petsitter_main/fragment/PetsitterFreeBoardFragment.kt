@@ -27,7 +27,7 @@ class PetsitterFreeBoardFragment : Fragment() {
 
     lateinit var freeBoardAdapter: FreeBoardAdapter
 
-    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
+    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(requireContext()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -64,7 +64,7 @@ class PetsitterFreeBoardFragment : Fragment() {
                         layoutManager = LinearLayoutManager(requireContext())
                         val deco = MaterialDividerItemDecoration(
                             requireContext(),
-                            com.google.android.material.divider.MaterialDividerItemDecoration.VERTICAL
+                            MaterialDividerItemDecoration.VERTICAL
                         )
                         addItemDecoration(deco)
                     }

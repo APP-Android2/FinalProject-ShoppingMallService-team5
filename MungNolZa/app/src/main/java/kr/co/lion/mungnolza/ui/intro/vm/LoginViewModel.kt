@@ -1,49 +1,48 @@
 package kr.co.lion.mungnolza.ui.intro.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
-import kr.co.lion.mungnolza.model.PetImgModel
+import kr.co.lion.mungnolza.datasource.local.MyPetEntity
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
-import java.net.URI
 
 class LoginViewModel(
     private val userRepositoryImpl: UserRepositoryImpl,
     private val petRepositoryImpl: PetRepositoryImpl
 ): ViewModel() {
 
-    private val _myPetData = MutableStateFlow<List<PetImgModel>>(emptyList())
-    val myPetData = _myPetData.asStateFlow()
-
-    fun fetchMyAllPetData(ownerIdx: String,callback: (Boolean) -> Unit) = viewModelScope.launch {
-        val petList = ArrayList<PetImgModel>()
-
+    fun onLoginSuccess(ownerIdx: String, callback: (Boolean) -> Unit) = viewModelScope.launch {
         val success = try{
+            MainDataStore.setupFirstData()
+            MainDataStore.setUserNumber(ownerIdx)
+
             val result = petRepositoryImpl.fetchMyPetData(ownerIdx)
 
             result.map{
-                val imgUri = fetchPetImg(it.ownerIdx, it.imgName)
-                val pet = imgUri?.let { data -> PetImgModel(it, data) }
-
-                if (pet != null) {
-                    petList.add(pet)
-                }
+                petRepositoryImpl.insertMyPetData(
+                    MyPetEntity(
+                    petName = it.petName,
+                    ownerIdx = it.ownerIdx,
+                    petBreed = it.petBreed,
+                    petGender = it.petGender,
+                    petWeight = it.petWeight,
+                    petAge = it.petAge,
+                    isNeutering = it.isNeutering,
+                    petSignificant = it.petSignificant,
+                    imgPath = it.imgName
+                ))
             }
-            _myPetData.value = petList
             true
         }catch (e: Exception){
+            Log.d("FireBaseResult", "Error Message : $e")
             false
         }
         callback(success)
     }
 
-    private suspend fun fetchPetImg(ownerIdx: String, imgName: String): URI? {
-        return petRepositoryImpl.fetchMyPetImage(ownerIdx, imgName)
-    }
 
     suspend fun isExistUser(userId: String): Boolean{
         return userRepositoryImpl.fetchAllUserId().contains(userId)
@@ -53,8 +52,4 @@ class LoginViewModel(
         return MainDataStore.getFirstFlag()
     }
 
-    fun setUpDataStore(userNumber: String) = viewModelScope.launch {
-        MainDataStore.setupFirstData()
-        MainDataStore.setUserNumber(userNumber)
-    }
 }

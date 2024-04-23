@@ -23,7 +23,7 @@ import kr.co.lion.mungnolza.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private val viewModel: LoginViewModel by viewModels { LoginViewModelFactory() }
+    private val viewModel: LoginViewModel by viewModels { LoginViewModelFactory(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -85,18 +85,12 @@ class LoginActivity : AppCompatActivity() {
                                 val userId = user.id.toString()
 
                                 if (viewModel.isExistUser(userId)) {
-                                    viewModel.setUpDataStore(userId)
-
-                                    viewModel.fetchMyAllPetData(userId) {
+                                    viewModel.onLoginSuccess(userId) {
                                         if (it) {
-                                            val myPetData = viewModel.myPetData.value
-                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                            intent.putExtra("myPet", myPetData.toTypedArray())
-                                            startActivity(intent)
+                                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                             finish()
                                         }
                                     }
-
                                 } else {
                                     val newUser = UserModel(
                                         uniqueNumber = user.id.toString(),

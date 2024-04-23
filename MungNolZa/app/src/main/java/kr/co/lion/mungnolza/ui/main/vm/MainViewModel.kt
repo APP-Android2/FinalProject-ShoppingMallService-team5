@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.BoardAddUerInfoModel
-import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.model.PetImgModel
+import kr.co.lion.mungnolza.model.PetModel
+import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
@@ -34,6 +36,7 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+            readMyPetData()
             fetchAllUserData()
             fetchAllBoardDataWithUserInfo()
 
@@ -42,8 +45,30 @@ class MainViewModel(
                 _myUserNumber.value = it
             }
         }
-
     }
+
+    private suspend fun readMyPetData(){
+        petRepositoryImpl.readMyPetData().stateIn(viewModelScope).collect{ data ->
+            val result = data.map {
+                PetImgModel(
+                    PetModel(
+                        ownerIdx = it.ownerIdx,
+                        petName = it.petName,
+                        petBreed = it.petBreed,
+                        petGender = it.petGender,
+                        petWeight = it.petWeight,
+                        petAge = it.petAge,
+                        isNeutering = it.isNeutering,
+                        petSignificant = it.petSignificant,
+                        imgName = it.imgPath
+                    ),
+                    petRepositoryImpl.fetchMyPetImage(it.ownerIdx, it.imgPath)
+                )
+            }
+            _myPetData.value = result
+        }
+    }
+
 
     private suspend fun fetchAllUserData(){
         val response = userRepository.fetchAllUserData()
@@ -77,7 +102,4 @@ class MainViewModel(
         return userList.value.find { it.uniqueNumber == writerIdx }
     }
 
-    fun setMyPetData(myPets: List<PetImgModel>){
-        _myPetData.value = myPets
-    }
 }
