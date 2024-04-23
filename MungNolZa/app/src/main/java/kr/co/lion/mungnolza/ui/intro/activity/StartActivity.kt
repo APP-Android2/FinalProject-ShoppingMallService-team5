@@ -25,22 +25,15 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        initView()
-    }
-
-    private fun initView() {
         binding = ActivityStartBinding.inflate(layoutInflater)
 
         repeatOnStarted {
             if (!viewModel.checkFistFlag()) {
                 dialog.show(supportFragmentManager, "RequestPermissionDialog")
             } else {
-                viewModel.fetchMyAllPetData {
+                viewModel.onLoginSuccess {
                     if (it) {
-                        val myPetData = viewModel.myPetData.value
-                        val intent = Intent(this@StartActivity, MainActivity::class.java)
-                        intent.putExtra("myPet", myPetData.toTypedArray())
-                        startActivity(intent)
+                        startActivity(Intent(this@StartActivity, MainActivity::class.java))
                         finish()
                     }
                 }
