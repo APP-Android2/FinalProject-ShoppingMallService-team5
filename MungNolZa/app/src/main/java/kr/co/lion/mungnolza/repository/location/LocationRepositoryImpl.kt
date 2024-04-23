@@ -18,22 +18,27 @@ import kr.co.lion.mungnolza.model.LocationRequestModel
 class LocationRepositoryImpl : LocationRepository {
     private val db = Firebase.database
     private val locationRef = db.getReference("Location")
+
     override suspend fun insertLocation(locationRequest: LocationRequestModel) {
-        locationRef.push().setValue(locationRequest)
+        val locationKey = locationRef.push().key
+        if (locationKey != null) {
+            locationRef.child(locationKey).setValue(locationRequest)
+        }
     }
-    override suspend fun readCurrentLocation(reservationIdx: String): Location {
+
+    override suspend fun readCurrentLocation(reservationIdx: String): List<Location> {
         return withContext(Dispatchers.IO) {
             val query = locationRef.orderByChild("reservationIdx").equalTo(reservationIdx)
 
-            val deferred = CompletableDeferred<Location>()
+            val deferred = CompletableDeferred<List<Location>>()
 
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val location = dataSnapshot.children.map {
+                    val locations = dataSnapshot.children.mapNotNull {
                         it.child("location").getValue(Location::class.java)
-                    }[0]
+                    }
 
-                    location?.let { deferred.complete(location) }
+                    deferred.complete(locations)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -44,4 +49,5 @@ class LocationRepositoryImpl : LocationRepository {
             deferred.await()
         }
     }
+
 }
