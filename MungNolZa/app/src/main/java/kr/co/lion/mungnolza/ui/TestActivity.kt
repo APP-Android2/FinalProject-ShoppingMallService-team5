@@ -20,15 +20,6 @@ class TestActivity : AppCompatActivity() {
 
         binding = ActivityTestBinding.inflate(layoutInflater)
 
-        binding.button.setOnClickListener {
-            val intent = Intent(this,BoardActivity::class.java)
-            startActivity(intent)
-        }
-        binding.button2.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-        }
-
         setContentView(binding.root)
 
     }

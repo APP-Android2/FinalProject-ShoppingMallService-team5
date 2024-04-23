@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="kakao_client_secret" translatable="false">kakao$a3f0344e66edd54dc79db6320b708c36</string>
+    <string name="naver_map_sdk_client_id" translatable="false">pf6yx4yemn</string>
+    <string name="naver_map_sdk_client_secret" translatable="false">5nuQg43eaBIgP0Vg1xt5y5gOH032GuONBD7N7bi5</string>
 </resources>
