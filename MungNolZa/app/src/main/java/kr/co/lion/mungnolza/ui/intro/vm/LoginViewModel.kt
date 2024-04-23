@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.intro.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,7 +10,6 @@ import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
-import java.net.URI
 
 class LoginViewModel(
     private val userRepositoryImpl: UserRepositoryImpl,
@@ -26,24 +26,19 @@ class LoginViewModel(
             val result = petRepositoryImpl.fetchMyPetData(ownerIdx)
 
             result.map{
-                val imgUri = fetchPetImg(it.ownerIdx, it.imgName)
-                val pet = imgUri?.let { data -> PetImgModel(it, data) }
-
-                if (pet != null) {
-                    petList.add(pet)
-                }
+                val imgUri = petRepositoryImpl.fetchMyPetImage(it.ownerIdx, it.imgName)
+                val pet = PetImgModel(it, imgUri)
+                petList.add(pet)
             }
             _myPetData.value = petList
             true
         }catch (e: Exception){
+            Log.d("FireBaseResult", "Error Message : $e")
             false
         }
         callback(success)
     }
 
-    private suspend fun fetchPetImg(ownerIdx: String, imgName: String): URI? {
-        return petRepositoryImpl.fetchMyPetImage(ownerIdx, imgName)
-    }
 
     suspend fun isExistUser(userId: String): Boolean{
         return userRepositoryImpl.fetchAllUserId().contains(userId)
