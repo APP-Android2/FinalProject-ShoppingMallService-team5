@@ -13,6 +13,16 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
+    <!-- BottomSheet Design -->
+    <style name="Theme.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="android:backgroundTint">@color/chat_room_color</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+
     <style name="Theme.MungNolZa" parent="Base.Theme.MungNolZa" />
 
     <!-- Toolbar 용 테마. Toolbar 마다 지정해준다. -->

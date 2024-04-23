@@ -130,4 +130,6 @@
 
     <dimen name="fragment_matching_result_title_text">17sp</dimen>
     <dimen name="fragment_matching_result_text">15sp</dimen>
+
+    <dimen name="path_width">10dp</dimen>
 </resources>
