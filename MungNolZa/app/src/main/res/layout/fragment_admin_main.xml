@@ -22,122 +22,137 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent" >
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textViewNewPetsitterCount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:text="펫시터 지원 총 0건"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                    <ScrollView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerNewPetsitterList"
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:layout_marginTop="30dp"
-                        android:visibility="visible">
+                        android:layout_height="400dp" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerNewPetsitterList"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </ScrollView>
-                </FrameLayout>
-                <TextView
-                    android:id="@+id/textViewChecklist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="체크사항"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <TextView
+                        android:id="@+id/textViewNewTodayReservation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="오늘의 예약 현황"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewMemberCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="새로운 회원 0명"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerNewTodayReservationList"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp" />
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:drawableRight="@drawable/ic_arrow_forward_24"
-                    android:text="자세히 보기" />
+                    <TextView
+                        android:id="@+id/textViewChecklist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="체크사항"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewResevationCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="새로운 예약 0개"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <TextView
+                        android:id="@+id/textViewNewMemberCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="4월 새로운 회원 0명"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewResevationDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:drawableRight="@drawable/ic_arrow_forward_24"
-                    android:text="자세히 보기" />
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:drawableRight="@drawable/ic_arrow_forward_24"
+                        android:text="자세히 보기" />
 
-                <TextView
-                    android:id="@+id/textViewNewReportCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="신고 목록 0개"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <TextView
+                        android:id="@+id/textViewNewResevationCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="4월 새로운 예약 0개"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewReportDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:drawableRight="@drawable/ic_arrow_forward_24"
-                    android:text="자세히 보기" />
+                    <TextView
+                        android:id="@+id/textViewNewResevationDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:drawableRight="@drawable/ic_arrow_forward_24"
+                        android:text="자세히 보기" />
 
-                <TextView
-                    android:id="@+id/textViewNewClaimCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="클레임 0개"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <TextView
+                        android:id="@+id/textViewNewReportCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="4월 신고 목록 0개"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewClaimDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:drawableRight="@drawable/ic_arrow_forward_24"
-                    android:text="자세히 보기" />
+                    <TextView
+                        android:id="@+id/textViewNewReportDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:drawableRight="@drawable/ic_arrow_forward_24"
+                        android:text="자세히 보기" />
 
-                <TextView
-                    android:id="@+id/textViewNewPetsitterClaimCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="펫시터 문의사항 0개"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    <TextView
+                        android:id="@+id/textViewNewClaimCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="4월 클레임 0개"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <TextView
-                    android:id="@+id/textViewNewPetsitterClaimDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:drawableRight="@drawable/ic_arrow_forward_24"
-                    android:text="자세히 보기" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textViewNewClaimDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:drawableRight="@drawable/ic_arrow_forward_24"
+                        android:text="자세히 보기" />
+
+                    <TextView
+                        android:id="@+id/textViewNewPetsitterClaimCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="펫시터 문의사항 0개"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/textViewNewPetsitterClaimDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:drawableRight="@drawable/ic_arrow_forward_24"
+                        android:text="자세히 보기" />
+                </LinearLayout>
+            </ScrollView>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>

@@ -51,6 +51,7 @@ class AdminMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerViewPetsitter()
         setTextViewPetsitter()
+        setRecyclerViewReservation()
     }
 
     fun setTextViewPetsitter(){
@@ -64,6 +65,20 @@ class AdminMainFragment : Fragment() {
             recyclerNewPetsitterList.apply {
                 // 어뎁터 설정
                 adapter = AdminNewPetsitterAdapter()
+                // 레이아웃
+                layoutManager = LinearLayoutManager(requireContext())
+                // 데코
+                val deco = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL)
+                addItemDecoration(deco)
+            }
+        }
+    }
+
+    fun setRecyclerViewReservation(){
+        fragmentAdminMainBinding.apply {
+            recyclerNewTodayReservationList.apply {
+                // 어뎁터 설정
+                adapter = PetsitterReservationListOngoingAdapter()
                 // 레이아웃
                 layoutManager = LinearLayoutManager(requireContext())
                 // 데코
