@@ -21,15 +21,6 @@ class TestActivity : AppCompatActivity() {
 
         binding = ActivityTestBinding.inflate(layoutInflater)
 
-        binding.button.setOnClickListener {
-            val intent = Intent(this,BoardActivity::class.java)
-            startActivity(intent)
-        }
-        binding.button2.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-        }
-
         setContentView(binding.root)
         lifecycleScope.launch {
             LocationRepositoryImpl().insertLocation(LocationRequestModel("1","1","1", Location("37.2833976", "127.0210229")))
