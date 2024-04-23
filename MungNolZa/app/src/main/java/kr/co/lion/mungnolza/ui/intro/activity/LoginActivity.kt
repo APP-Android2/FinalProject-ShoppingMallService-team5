@@ -85,19 +85,12 @@ class LoginActivity : AppCompatActivity() {
                                 val userId = user.id.toString()
 
                                 if (viewModel.isExistUser(userId)) {
-                                    viewModel.setUpDataStore(userId)
-
-                                    //onLoginSuccess
-                                    viewModel.fetchMyAllPetData(userId) {
+                                    viewModel.onLoginSuccess(userId) {
                                         if (it) {
-                                            val myPetData = viewModel.myPetData.value
-                                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                            intent.putExtra("myPet", myPetData.toTypedArray())
-                                            startActivity(intent)
+                                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                             finish()
                                         }
                                     }
-
                                 } else {
                                     val newUser = UserModel(
                                         uniqueNumber = user.id.toString(),
