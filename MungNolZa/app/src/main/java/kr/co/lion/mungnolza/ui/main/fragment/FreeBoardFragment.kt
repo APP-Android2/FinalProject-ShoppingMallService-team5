@@ -21,7 +21,7 @@ import kr.co.lion.mungnolza.ui.main.vm.MainViewModelFactory
 
 class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
 
-    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory() }
+    private val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

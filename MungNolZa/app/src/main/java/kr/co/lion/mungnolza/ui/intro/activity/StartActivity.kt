@@ -14,7 +14,7 @@ import kr.co.lion.mungnolza.ui.main.MainActivity
 
 class StartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStartBinding
-    private val viewModel: StartViewModel by viewModels { StartViewModelFactory() }
+    private val viewModel: StartViewModel by viewModels { StartViewModelFactory(this) }
     private val dialog = RequestPermissionDialog(
         buttonClick = {
             startActivity(Intent(this, LoginActivity::class.java))
