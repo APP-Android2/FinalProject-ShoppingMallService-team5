@@ -6,5 +6,5 @@ import kr.co.lion.mungnolza.model.LocationRequestModel
 interface LocationRepository {
     suspend fun insertLocation(locationRequest: LocationRequestModel)
 
-    suspend fun readCurrentLocation(reservationIdx: String): Location
+    suspend fun readCurrentLocation(reservationIdx: String): List<Location>
 }
