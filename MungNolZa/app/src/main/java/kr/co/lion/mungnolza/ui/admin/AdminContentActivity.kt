@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityAdminContentBinding
 import kr.co.lion.mungnolza.databinding.ActivityNoPetBinding
+import kr.co.lion.mungnolza.ui.admin.fragment.AdminMainFragment
 import kr.co.lion.mungnolza.util.ContentFragmentName
 import kr.co.lion.mungnolza.util.ContentType
 
@@ -32,13 +33,20 @@ lateinit var activityAdminContentBinding: ActivityAdminContentBinding
         setContentView(activityAdminContentBinding.root)
 
         settingNavigationView()
+
+        // MainFragment가 나타나도록 한다.
+        val mainBundle = Bundle()
+        // 게시판 종류를 담는다.
+        mainBundle.putString("TypeName", ContentType.TYPE_ALL.str)
+        mainBundle.putInt("TypeNumber", ContentType.TYPE_ALL.number)
+
+        replaceFragment(ContentFragmentName.ADMIN_MAIN_FRAGMENT, false, false, mainBundle)
     }
 
     // 네비게이션 뷰 설정
     fun settingNavigationView(){
         activityAdminContentBinding.apply {
             navigationViewContent.apply {
-                // 헤더로 보여줄 View를 생성한다.
 
                 // 메뉴를 눌렀을 때 동작하는 리스너
                 setNavigationItemSelectedListener {
@@ -101,14 +109,17 @@ lateinit var activityAdminContentBinding: ActivityAdminContentBinding
             oldFragment = newFragment
         }
 
-//        // 이름으로 분기한다.
-//        // Fragment의 객체를 생성하여 변수에 담아준다.
-//        when(name){
-//            // 게시글 목록 화면
-//            ContentFragmentName.MAIN_FRAGMENT -> {
-//                newFragment = MainFragment()
-//            }
-//            // 게시글 작성 화면
+        // 이름으로 분기한다.
+        // Fragment의 객체를 생성하여 변수에 담아준다.
+        when(name) {
+            // 게시글 목록 화면
+            ContentFragmentName.ADMIN_MAIN_FRAGMENT -> {
+                newFragment = AdminMainFragment()
+            }
+
+            else -> {}
+        }
+            // 게시글 작성 화면
 //            ContentFragmentName.ADD_CONTENT_FRAGMENT -> {
 //                newFragment = AddContentFragment()
 //            }

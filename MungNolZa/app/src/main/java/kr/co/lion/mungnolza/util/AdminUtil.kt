@@ -7,9 +7,9 @@ class AdminUtil {
 
 // 게시판 종류를 나타내는 값을 정의한다.
 enum class ContentType(var str:String, var number:Int) {
-    TYPE_MEMBER("회원", 0),
-    TYPE_PETSITTER("펫시터", 1),
-    TYPE_APPOINTMENT("예약", 2),
+    TYPE_ALL("메인", 0),
+    TYPE_MEMBER("회원", 1),
+    TYPE_PETSITTER("펫시터", 2),
     TYPE_BOARD("게시판", 3),
     TYPE_SETTING("세팅", 4)
 }
