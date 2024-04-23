@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,88 +8,107 @@
     android:transitionGroup="true"
     tools:context=".ui.realtime_location.RealtimeLocationActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarRealtimeLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/binggrae_bold"
-            android:text="@string/toolbar_title_realtime_location"
-            android:textSize="@dimen/shared_toolbar_title_size"
-            android:textStyle="bold" />
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <fragment
-        android:id="@+id/map_fragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="374dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:transitionGroup="true">
+        android:orientation="vertical">
 
-        <ScrollView
-            android:id="@+id/scrollView3"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map"
+            android:name="com.naver.maps.map.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/shared_common_margin_10"
+            android:background="@drawable/shared_button_design"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="펫시터와 대화하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chat_bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/chat_room_color"
+        android:orientation="vertical"
+        android:padding="@dimen/layout_padding"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <view
+            android:id="@+id/view"
+            class="com.google.android.material.bottomsheet.BottomSheetDragHandleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewRealtimeLocationChat"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp" />
-        </ScrollView>
+        <TextView
+            android:id="@+id/tv_petsitter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/binggrae_bold"
+            android:text="마동석님과의 채팅"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/shared_common_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_petsitter_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/input_layout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_petsitter_name"
+            tools:layout_editor_absoluteX="10dp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="0dp"
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:orientation="horizontal"
+            android:weightSum="100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginEnd="@dimen/layout_margin_end"
-                android:layout_marginBottom="@dimen/layout_margin_bottom"
-                android:layout_weight="1"
-                android:hint="작성해주세요"
-                app:endIconMode="clear_text">
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="95">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextRealtimeLocationChatDetail"
+                    android:id="@+id/edit_msg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/imageViewRealtimeLocationSendChat"
-                android:layout_width="@dimen/icon_width_send_bottom_comment"
-                android:layout_height="@dimen/icon_height_send_bottom_comment"
-                android:layout_marginTop="@dimen/resource_margin_top"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/ic_send_24px" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_send"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="@color/transparent"
+                android:drawableStart="@drawable/ic_send_24px" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
