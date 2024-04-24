@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
@@ -12,6 +13,7 @@ import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
 import kr.co.lion.mungnolza.ext.repeatOnViewStarted
 import kr.co.lion.mungnolza.ext.showDialog
+import kr.co.lion.mungnolza.ui.appointment.adapter.DateAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
@@ -64,19 +66,19 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
 
             val schedule = viewModel.reserveSchedule.value
 
-            val groupedDates = schedule.reserveDate.chunked(3)
-            val reservedDate = groupedDates.joinToString("\n") { group ->
-                group.joinToString(", ")
-            }
-
             reserveServiceType.text =
                 if (schedule.serviceType == AppointmentMainFragment.ServiceType.JOGGING.value) {
                     "산책 서비스 예약 확인"
                 } else {
                     "돌봄 서비스 예약 확인"
                 }
+
             serviceTime.text = schedule.serviceTime
-            reserveDate.text = reservedDate
+
+            val dateAdapter = DateAdapter(schedule.reserveDate)
+            rvDate.adapter = dateAdapter
+            rvDate.layoutManager = GridLayoutManager(requireContext(), 2)
+
             reserveTime.text = schedule.reserveTime
             reserveAddr.text = schedule.address
             reservePrice.text = reservePrice.moneyFormat(schedule.totalPrice)
