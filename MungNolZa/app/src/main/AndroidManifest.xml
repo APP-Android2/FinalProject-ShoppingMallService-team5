@@ -97,15 +97,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+
                 <data
                     android:host="oauth"
                     android:scheme="kakao$a3f0344e66edd54dc79db6320b708c36" />
+
+                <data android:host="oauth"
+                    android:scheme="@string/kakao_client_secret" />
+
             </intent-filter>
         </activity>
 
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCgqqrHlGVDDd9td3yIA-LWul8eRStLv54" />
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="@string/naver_map_sdk_client_id" />
     </application>
 
 </manifest>
