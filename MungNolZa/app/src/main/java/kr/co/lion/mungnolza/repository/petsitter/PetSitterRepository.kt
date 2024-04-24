@@ -5,5 +5,5 @@ import java.net.URI
 
 interface PetSitterRepository {
     suspend fun fetchAllPetSitterData() : List<PetSitterModel>
-    suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String) : URI?
+    suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String) : URI
 }

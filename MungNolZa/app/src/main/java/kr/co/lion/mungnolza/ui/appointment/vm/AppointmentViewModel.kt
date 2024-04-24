@@ -52,8 +52,7 @@ class AppointmentViewModel(
     private val _reserveSchedule: MutableStateFlow<SelectScheduleModel> = MutableStateFlow(SelectScheduleModel())
     val reserveSchedule = _reserveSchedule.asStateFlow()
 
-    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> =
-        MutableStateFlow(null)
+    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> = MutableStateFlow(null)
     val petSitterData = _petSitterData.asStateFlow()
 
     init {
@@ -65,7 +64,7 @@ class AppointmentViewModel(
         }
     }
 
-    fun requestService(petSitterIdx: String){
+    fun onPaymentSuccess(petSitterIdx: String){
         when(serviceType.value.toString()){
             "JOGGING" -> {
                 requestWalkService(petSitterIdx)
@@ -101,16 +100,14 @@ class AppointmentViewModel(
         reservationRepositoryImpl.walkServiceRequest(request)
     }
 
-    fun fetchAllPetSitterData() = viewModelScope.launch {
+    fun onStartMatching() = viewModelScope.launch {
         val response = petSitterRepository.fetchAllPetSitterData()
         val petSitterList = ArrayList<PetSitterModelWithImg>()
 
         response.map {
-            val imgUri = fetchPetSitterImage(it.petSitterIdx, it.imgName)
-            val petSitter = imgUri?.let { uri -> PetSitterModelWithImg(it, uri) }
-            if (petSitter != null) {
-                petSitterList.add(petSitter)
-            }
+            val imgUri = petSitterRepository.fetchPetSitterImage(it.petSitterIdx, it.imgName)
+            val petSitter = PetSitterModelWithImg(it, imgUri)
+            petSitterList.add(petSitter)
         }
         _petSitterData.value = petSitterList
     }
@@ -131,11 +128,11 @@ class AppointmentViewModel(
         _payment.value = payment
     }
 
-    fun setSchedule(schedule: SelectScheduleModel) {
+    fun onCompleteSchedule(schedule: SelectScheduleModel) {
         _reserveSchedule.value = schedule
     }
 
-    fun setSelectedPet(selectedItem: List<PetImgModel>) {
+    fun onSelectPet(selectedItem: List<PetImgModel>) {
         _selectedPet.value = selectedItem
     }
 
@@ -151,7 +148,7 @@ class AppointmentViewModel(
         _careType.value = type
     }
 
-    fun getCurrentDate(): String{
+    private fun getCurrentDate(): String{
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         return simpleDateFormat.format(Date())
     }

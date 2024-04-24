@@ -1,21 +1,16 @@
 package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentMainBinding
+import kr.co.lion.mungnolza.ext.repeatOnViewStarted
 import kr.co.lion.mungnolza.ext.setColorBlack
 import kr.co.lion.mungnolza.ext.setColorPrimary
 import kr.co.lion.mungnolza.ext.setColorWhite
@@ -26,7 +21,7 @@ import kr.co.lion.mungnolza.ui.appointment.adapter.MyPetAdapter
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
 
-class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
+class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main) {
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
 
     private var selectedPet = mutableListOf<PetImgModel>()
@@ -39,19 +34,16 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
 
         with(binding) {
             with(rv) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        viewModel.myPetData.collect {
-                            adapter = MyPetAdapter(it) { selectedIdx ->
-                                if (selectedPet.contains(it[selectedIdx])) {
-                                    selectedPet.remove(it[selectedIdx])
-                                } else {
-                                    selectedPet.add(it[selectedIdx])
-                                }
+                repeatOnViewStarted {
+                    viewModel.myPetData.collect {
+                        adapter = MyPetAdapter(it) { selectedIdx ->
+                            if (selectedPet.contains(it[selectedIdx])) {
+                                selectedPet.remove(it[selectedIdx])
+                            } else {
+                                selectedPet.add(it[selectedIdx])
                             }
-                            layoutManager =
-                                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
                         }
+                        layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
                     }
                 }
             }
@@ -120,7 +112,7 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
                         if (selectedPet.isEmpty()) {
                             childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
                         } else {
-                            viewModel.setSelectedPet(selectedPet)
+                            viewModel.onSelectPet(selectedPet)
                             viewModel.setCareType(null)
 
                             val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelection2Fragment()
@@ -132,7 +124,10 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
                         if (selectedPet.isEmpty()) {
                             childFragmentManager.showDialog("반려 동물을 선택해야 해요", "소중한 우리 아이를 선택해 주세요")
                         } else if (careType.isNullOrEmpty()) {
-                            childFragmentManager.showDialog("돌봄 서비스를 선택해 볼까요?", "원하시는 돌봄 서비스를 선택해 주세요")
+                            childFragmentManager.showDialog(
+                                "돌봄 서비스를 선택해 볼까요?",
+                                "원하시는 돌봄 서비스를 선택해 주세요"
+                            )
                         } else if (careType == CareType.ENTRUST.value) {
                             // 맡김 일 때의 처리
                             viewModel.setCareType(CareType.ENTRUST.value)
@@ -142,7 +137,7 @@ class AppointmentMainFragment : Fragment(R.layout.fragment_appointment_main){
                         }
 
                         if (careType != null && selectedPet.isNotEmpty()) {
-                            viewModel.setSelectedPet(selectedPet)
+                            viewModel.onSelectPet(selectedPet)
                             val action = AppointmentMainFragmentDirections.toAppointmentDogTimeSelectionFragment()
                             Navigation.findNavController(view).navigate(action)
                         }

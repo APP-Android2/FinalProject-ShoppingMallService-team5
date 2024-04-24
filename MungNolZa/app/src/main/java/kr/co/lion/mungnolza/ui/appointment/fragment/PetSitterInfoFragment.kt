@@ -47,8 +47,7 @@ class PetSitterInfoFragment : Fragment(R.layout.fragment_pet_sitter_info) {
                     }
 
                 viewLifecycleOwner.lifecycleScope.launch {
-                    val img =
-                        viewModel.fetchPetSitterImage(petSitter.petSitterIdx, petSitter.imgName)
+                    val img = viewModel.fetchPetSitterImage(petSitter.petSitterIdx, petSitter.imgName)
                     Glide.with(binding.root)
                         .load(img.toString())
                         .into(binding.imgPetSitter)
