@@ -1,9 +1,8 @@
 package kr.co.lion.mungnolza.repository.pet
 
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
-import com.google.firebase.storage.storage
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
@@ -13,9 +12,11 @@ import kr.co.lion.mungnolza.datasource.local.MyPetEntity
 import kr.co.lion.mungnolza.model.PetModel
 import java.net.URI
 
-class PetRepositoryImpl(private val myPetDao: MyPetDao): PetRepository {
-    private val petStore = Firebase.firestore.collection("Pet")
-    private val storage = Firebase.storage.reference
+class PetRepositoryImpl(
+    private val reference: CollectionReference,
+    private val storage: StorageReference,
+    private val myPetDao: MyPetDao
+): PetRepository {
 
     suspend fun readMyPetData(): Flow<List<MyPetEntity>> {
         return withContext(Dispatchers.IO){
@@ -44,7 +45,7 @@ class PetRepositoryImpl(private val myPetDao: MyPetDao): PetRepository {
     override suspend fun fetchMyPetData(ownerIdx: String): List<PetModel> {
         return withContext(Dispatchers.IO) {
             try {
-                val querySnapshot = petStore.whereEqualTo("ownerIdx", ownerIdx).get().await()
+                val querySnapshot = reference.whereEqualTo("ownerIdx", ownerIdx).get().await()
                 querySnapshot.map { it.toObject(PetModel::class.java) }
 
             } catch (e: Exception) {
@@ -54,10 +55,10 @@ class PetRepositoryImpl(private val myPetDao: MyPetDao): PetRepository {
         }
     }
     override suspend fun fetchMyPetImage(ownerIdx: String, imgName: String): URI {
-        val path = "pet/$ownerIdx/$imgName"
 
         return withContext(Dispatchers.IO) {
             try {
+                val path = "pet/$ownerIdx/$imgName"
                 val response = storage.child(path).downloadUrl.await().toString()
                 URI.create(response)
             } catch (e: Exception) {
