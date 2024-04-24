@@ -149,7 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.9"
                 android:text="  결제 금액:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

@@ -82,14 +82,10 @@
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/reserve_date"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_date"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                            android:textSize="@dimen/fragment_matching_result_text"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:layout_height="wrap_content"/>
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -24,7 +24,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -126,14 +126,10 @@
                         android:textSize="@dimen/fragment_matching_result_title_text"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/reserve_date"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_date"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="@dimen/fragment_matching_result_text" />
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -326,6 +322,6 @@
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
