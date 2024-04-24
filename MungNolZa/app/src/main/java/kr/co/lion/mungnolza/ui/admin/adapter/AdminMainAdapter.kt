@@ -3,6 +3,7 @@ package kr.co.lion.mungnolza.ui.admin.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.RowAdminMainNewPetsitterBinding
 
 class AdminNewPetsitterAdapter : RecyclerView.Adapter<AdminNewPetsitterAdapter.ViewHolder>() {
@@ -29,7 +30,9 @@ class AdminNewPetsitterAdapter : RecyclerView.Adapter<AdminNewPetsitterAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Customize the data displayed in each row
         holder.binding.textViewRowNewPetsitterType.text = "펫시터 지원 ${position+1}"
-        holder.binding.textViewRowNewPetsitterName.text = "이름 $position"
+        holder.binding.textViewRowNewPetsitterName.text = "이름 이주빈${position+1}"
         holder.binding.textViewRowNewPetsitterCertificate1.text = "반려동물자격증"
+        holder.binding.imageViewRowNewPetsitterImage.setImageResource(
+            R.drawable.img_admin_petsitter)
     }
 }

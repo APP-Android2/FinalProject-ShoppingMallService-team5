@@ -52,7 +52,6 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
                         android:src="@mipmap/ic_launcher" />
 
                 </LinearLayout>
@@ -88,21 +87,38 @@
                                 android:layout_weight="1"
                                 android:text="이름" />
 
-                            <TextView
-                                android:id="@+id/textViewRowNewPetsitterCertificate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
-                                android:layout_weight="1"
-                                android:text="자격증" />
-
-                            <TextView
-                                android:id="@+id/textViewRowNewPetsitterCertificate1"
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/n_shared_profile_interval_margin_top"
-                                android:text="반려동물자격증" />
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textViewRowNewPetsitterCertificate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                                    android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                                    android:layout_weight="1"
+                                    android:text="자격증" />
+
+                                <LinearLayout
+                                    android:layout_width="174dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/textViewRowNewPetsitterCertificate1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/n_shared_profile_interval_margin_top"
+                                        android:layout_marginTop="@dimen/n_shared_profile_interval_margin_left"
+                                        android:layout_weight="1"
+                                        android:text="반려동물 관리사 자격증" />
+                                </LinearLayout>
+
+                            </LinearLayout>
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
