@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.google.firebase.database.ktx.database
@@ -15,20 +16,20 @@ import kotlinx.coroutines.withContext
 import kr.co.lion.mungnolza.model.Location
 import kr.co.lion.mungnolza.model.LocationRequestModel
 
-class LocationRepositoryImpl : LocationRepository {
-    private val db = Firebase.database
-    private val locationRef = db.getReference("Location")
+class LocationRepositoryImpl(private val reference: DatabaseReference) : LocationRepository {
 
     override suspend fun insertLocation(locationRequest: LocationRequestModel) {
-        val locationKey = locationRef.push().key
-        if (locationKey != null) {
-            locationRef.child(locationKey).setValue(locationRequest)
+        withContext(Dispatchers.IO) {
+            val locationKey = reference.push().key
+            if (locationKey != null) {
+                reference.child(locationKey).setValue(locationRequest)
+            }
         }
     }
 
     override suspend fun readCurrentLocation(reservationIdx: String): List<Location> {
         return withContext(Dispatchers.IO) {
-            val query = locationRef.orderByChild("reservationIdx").equalTo(reservationIdx)
+            val query = reference.orderByChild("reservationIdx").equalTo(reservationIdx)
 
             val deferred = CompletableDeferred<List<Location>>()
 

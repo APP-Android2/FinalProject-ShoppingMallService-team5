@@ -16,6 +16,9 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -94,7 +97,10 @@ class ShowDetailBoardFragment : Fragment() {
     // -------------------------------------------------------------------------------
 
     suspend fun initData(){
-        userRepository = UserRepositoryImpl()
+        userRepository = UserRepositoryImpl(
+            Firebase.firestore.collection("User"),
+            Firebase.storage.reference
+        )
         boardRepository = BoardRepositoryImpl()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

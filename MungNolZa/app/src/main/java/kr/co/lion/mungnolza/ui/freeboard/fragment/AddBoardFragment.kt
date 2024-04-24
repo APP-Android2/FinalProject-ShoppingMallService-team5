@@ -19,6 +19,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.storage
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.data.repository.BoardRepositoryImpl
@@ -86,7 +89,6 @@ class AddBoardFragment : Fragment() {
             }
 
             val boardRepository = BoardRepositoryImpl()
-            val userRepository = UserRepositoryImpl()
 
             // boardIdx 수정 필요
             val boardIdx = 2

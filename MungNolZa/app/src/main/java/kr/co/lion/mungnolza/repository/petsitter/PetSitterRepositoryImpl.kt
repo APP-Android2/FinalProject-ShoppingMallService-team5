@@ -1,22 +1,23 @@
 package kr.co.lion.mungnolza.repository.petsitter
 
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
-import com.google.firebase.storage.storage
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kr.co.lion.mungnolza.model.PetSitterModel
 import java.net.URI
 
-class PetSitterRepositoryImpl : PetSitterRepository {
-    private val petSitterStore = Firebase.firestore.collection("Petsitter")
-    private val storage = Firebase.storage.reference
+class PetSitterRepositoryImpl(
+    private val reference: CollectionReference,
+    private val storage: StorageReference
+) : PetSitterRepository {
+
     override suspend fun fetchAllPetSitterData(): List<PetSitterModel> {
         return withContext(Dispatchers.IO) {
             try {
-                val querySnapshot = petSitterStore.get().await()
+                val querySnapshot = reference.get().await()
                 querySnapshot.map { it.toObject(PetSitterModel::class.java) }
             } catch (e: Exception) {
                 Log.e("FirebaseResult", "Error fetching PetSitterData: ${e.message}")
