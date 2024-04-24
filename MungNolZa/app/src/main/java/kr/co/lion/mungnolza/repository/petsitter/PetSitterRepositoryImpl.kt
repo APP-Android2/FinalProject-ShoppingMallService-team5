@@ -26,7 +26,7 @@ class PetSitterRepositoryImpl(
         }
     }
 
-    override suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
+    override suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI {
         val path = "petSitter/$petSitterIdx/$imgName"
         return withContext(Dispatchers.IO) {
             try {
@@ -34,7 +34,7 @@ class PetSitterRepositoryImpl(
                 URI.create(response)
             } catch (e: Exception) {
                 Log.e("FirebaseResult", "Error fetching PetSitterImage : ${storage.child(path)}")
-                null
+                URI.create("")
             }
         }
     }

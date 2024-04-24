@@ -2,7 +2,7 @@ package kr.co.lion.mungnolza.ui.appointment.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -10,30 +10,29 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.aminography.primecalendar.PrimeCalendar
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentAppointmentUserAddressBinding
+import kr.co.lion.mungnolza.ext.repeatOnViewStarted
 import kr.co.lion.mungnolza.ext.setColorWhite
 import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModel
 import kr.co.lion.mungnolza.ui.appointment.vm.AppointmentViewModelFactory
-import kr.co.lion.mungnolza.ui.dialog.PositiveCustomDialog
 import kr.co.lion.mungnolza.ui.intro.activity.AddressActivity
 import kr.co.lion.mungnolza.util.Tools.ADDR_RESULT_CODE
 import kr.co.lion.mungnolza.util.VisitType
 import kr.co.lion.mungnolza.util.Week
+import java.util.Calendar
 
 class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
@@ -41,6 +40,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
     private val viewModel: AppointmentViewModel by activityViewModels { AppointmentViewModelFactory() }
     private lateinit var launcherForActivity: ActivityResultLauncher<Intent>
+
     private val args: AppointmentUserAddressFragmentArgs by navArgs()
     private val selectedWeek = mutableListOf<String>()
 
@@ -48,7 +48,8 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     private var selectedVisitType: String? = null
     private var selectedVisitTime: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAppointmentUserAddressBinding.inflate(inflater)
         return binding.root
@@ -57,15 +58,17 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val flag = args.flag
-        if (flag != null) { viewModel.setFlag(flag) }
+        if (flag != null) {
+            viewModel.setFlag(flag)
+        }
 
         val contracts = ActivityResultContracts.StartActivityForResult()
         launcherForActivity = registerForActivityResult(contracts) { result ->
             val callback = result.data
-            if (callback != null){
-                if (result.resultCode == ADDR_RESULT_CODE){
+            if (callback != null) {
+                if (result.resultCode == ADDR_RESULT_CODE) {
                     val data = callback.getStringExtra("data")
-                    with(binding){
+                    with(binding) {
                         btnSaveAddr.visibility = VISIBLE
                         editTextDetailAddr.visibility = VISIBLE
                         edittextAddr.setText(data)
@@ -92,12 +95,10 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 Navigation.findNavController(view).navigate(action)
             }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    val careType = viewModel.careType.value.toString()
-                    if (careType == AppointmentMainFragment.CareType.VISIT.value) {
-                        addressContainer.visibility = GONE
-                    }
+            repeatOnViewStarted {
+                val careType = viewModel.careType.value.toString()
+                if (careType == AppointmentMainFragment.CareType.VISIT.value) {
+                    addressContainer.visibility = GONE
                 }
             }
 
@@ -108,12 +109,10 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private fun initView() {
         with(binding) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED){
-                    val careType = viewModel.careType.value.toString()
-                    if (careType == AppointmentMainFragment.CareType.VISIT.value){
-                        addressContainer.visibility = GONE
-                    }
+            repeatOnViewStarted {
+                val careType = viewModel.careType.value.toString()
+                if (careType == AppointmentMainFragment.CareType.VISIT.value) {
+                    addressContainer.visibility = GONE
                 }
             }
 
@@ -145,9 +144,16 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 R.id.btn_save_addr -> {
                     edittextAddr.setText(viewModel.userAddress.value)
                 }
-                R.id.btn_new_addr ->{
-                    launcherForActivity.launch(Intent(requireContext(), AddressActivity::class.java))
+
+                R.id.btn_new_addr -> {
+                    launcherForActivity.launch(
+                        Intent(
+                            requireContext(),
+                            AddressActivity::class.java
+                        )
+                    )
                 }
+
                 R.id.cardview_common_visit -> {
                     imgWeekContainer.visibility = GONE
 
@@ -157,50 +163,56 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                     cardviewRegularVisit.backgroundTintList = requireContext().setColorWhite()
                     selectedVisitType = VisitType.COMMON_VISIT.type
                 }
+
                 R.id.cardview_regular_visit -> {
                     imgWeekContainer.visibility = VISIBLE
 
                     cardviewRegularVisit.isChecked = true
-
                     cardviewCommonVisit.isChecked = false
                     cardviewCommonVisit.backgroundTintList = requireContext().setColorWhite()
                     selectedVisitType = VisitType.REGULAR_VISIT.type
+
                 }
+
                 R.id.img_select_time -> {
                     // 버튼을 눌렀을 때 TimePicker를 표시하는 메서드 호출
                     showMaterialTimePicker()
                 }
+
                 R.id.btn_select_date -> {
-                    if (selectedVisitType.isNullOrEmpty()){
-                        val dialog = PositiveCustomDialog(
-                            title = "방문 타입을 선택해 볼까요?",
-                            message = "원하시는 방문 타입을 선택해 주세요!",
-                            positiveButtonClick = { }
-                        )
-                        dialog.show(childFragmentManager, "PositiveCustomDialog")
-                    }else if (selectedVisitType == VisitType.COMMON_VISIT.type){
+                    if (selectedVisitType.isNullOrEmpty()) {
+                        childFragmentManager.showDialog("방문 타입을 선택해 볼까요?", "원하시는 방문 타입을 선택해 주세요!")
+                    } else if (selectedVisitType == VisitType.COMMON_VISIT.type) {
                         showCommonVisitCalender()
-                    } else{
-                        showRegularVisitCalender()
+                    } else {
+                        if (selectedWeek.isEmpty()) {
+                            childFragmentManager.showDialog(
+                                "방문 요일을 선택해 볼까요?",
+                                "원하시는 방문 요일을 선택해 주세요!"
+                            )
+                        } else {
+                            showRegularVisitCalender()
+                        }
                     }
 
                 }
+
                 R.id.btn_next -> {
-                    if(edittextAddr.text.isNullOrEmpty() &&
+                    if (edittextAddr.text.isNullOrEmpty() &&
                         viewModel.careType.value.toString() != AppointmentMainFragment.CareType.VISIT.value
-                    ){
-                        childFragmentManager.showDialog("주소를 입력해 볼까요?" ,"방문 주소을 선택해 주세요")
-                    } else if (selectedVisitType.isNullOrEmpty()){
-                        childFragmentManager.showDialog("방문 타입을 선택해 볼까요?" ,"방문 타입을 선택해 주세요")
-                    }else if(selectDate.isEmpty()){
-                        childFragmentManager.showDialog("방문 날짜를 선택해 볼까요?" ,"방문 날짜를 선택해 주세요")
-                    }else if (selectedVisitTime.isNullOrEmpty()){
-                        childFragmentManager.showDialog("방문 시간을 선택해 볼까요?" ,"방문 시간을 선택해 주세요")
-                    }else{
+                    ) {
+                        childFragmentManager.showDialog("주소를 입력해 볼까요?", "방문 주소을 선택해 주세요")
+                    } else if (selectedVisitType.isNullOrEmpty()) {
+                        childFragmentManager.showDialog("방문 타입을 선택해 볼까요?", "방문 타입을 선택해 주세요")
+                    } else if (selectDate.isEmpty()) {
+                        childFragmentManager.showDialog("방문 날짜를 선택해 볼까요?", "방문 날짜를 선택해 주세요")
+                    } else if (selectedVisitTime.isNullOrEmpty()) {
+                        childFragmentManager.showDialog("방문 시간을 선택해 볼까요?", "방문 시간을 선택해 주세요")
+                    } else {
                         val addr = "${edittextAddr.text} ${editTextDetailAddr.text}"
                         val request = appointmentRequestTextview.text.toString()
 
-                        viewModel.setSchedule(
+                        viewModel.onCompleteSchedule(
                             SelectScheduleModel(
                                 addr,
                                 selectedVisitTime.toString(),
@@ -217,52 +229,59 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                         Navigation.findNavController(v).navigate(action)
                     }
                 }
+
                 R.id.img_week_sunday -> {
-                    if (!selectedWeek.contains(Week.SUNDAY.day)){
+                    if (!selectedWeek.contains(Week.SUNDAY.day)) {
                         addToSelectList(Week.SUNDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.SUNDAY.day)
                     }
                 }
+
                 R.id.img_week_monday -> {
-                    if (!selectedWeek.contains(Week.MONDAY.day)){
+                    if (!selectedWeek.contains(Week.MONDAY.day)) {
                         addToSelectList(Week.MONDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.MONDAY.day)
                     }
                 }
+
                 R.id.img_week_tuesday -> {
-                    if (!selectedWeek.contains(Week.TUESDAY.day)){
+                    if (!selectedWeek.contains(Week.TUESDAY.day)) {
                         addToSelectList(Week.TUESDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.TUESDAY.day)
                     }
                 }
+
                 R.id.img_week_wednesday -> {
-                    if (!selectedWeek.contains(Week.WEDNESDAY.day)){
+                    if (!selectedWeek.contains(Week.WEDNESDAY.day)) {
                         addToSelectList(Week.WEDNESDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.WEDNESDAY.day)
                     }
                 }
+
                 R.id.img_week_thursday -> {
-                    if (!selectedWeek.contains(Week.THURSDAY.day)){
+                    if (!selectedWeek.contains(Week.THURSDAY.day)) {
                         addToSelectList(Week.THURSDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.THURSDAY.day)
                     }
                 }
+
                 R.id.img_week_friday -> {
-                    if (!selectedWeek.contains(Week.FRIDAY.day)){
+                    if (!selectedWeek.contains(Week.FRIDAY.day)) {
                         addToSelectList(Week.FRIDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.FRIDAY.day)
                     }
                 }
+
                 R.id.img_week_saturday -> {
-                    if (!selectedWeek.contains(Week.SATURDAY.day)){
+                    if (!selectedWeek.contains(Week.SATURDAY.day)) {
                         addToSelectList(Week.SATURDAY.day)
-                    }else{
+                    } else {
                         removeToSelectList(Week.SATURDAY.day)
                     }
                 }
@@ -273,33 +292,39 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
     }
 
 
-    private fun addToSelectList(day: String){
-        with(binding){
-            when(day){
+    private fun addToSelectList(day: String) {
+        with(binding) {
+            when(day) {
                 Week.SUNDAY.day -> {
                     selectedWeek.add(Week.SUNDAY.day)
                     imgWeekSunday.setImageResource(R.drawable.img_week_sunday)
                 }
+
                 Week.MONDAY.day -> {
                     selectedWeek.add(Week.MONDAY.day)
                     imgWeekMonday.setImageResource(R.drawable.img_week_monday)
                 }
+
                 Week.TUESDAY.day -> {
                     selectedWeek.add(Week.TUESDAY.day)
                     imgWeekTuesday.setImageResource(R.drawable.img_week_tuesday)
                 }
+
                 Week.WEDNESDAY.day -> {
                     selectedWeek.add(Week.WEDNESDAY.day)
                     imgWeekWednesday.setImageResource(R.drawable.img_week_wednesday)
                 }
+
                 Week.THURSDAY.day -> {
                     selectedWeek.add(Week.THURSDAY.day)
                     imgWeekThursday.setImageResource(R.drawable.img_week_thursday)
                 }
+
                 Week.FRIDAY.day -> {
                     selectedWeek.add(Week.FRIDAY.day)
                     imgWeekFriday.setImageResource(R.drawable.img_week_friday)
                 }
+
                 Week.SATURDAY.day -> {
                     selectedWeek.add(Week.SATURDAY.day)
                     imgWeekSaturday.setImageResource(R.drawable.img_week_saturday)
@@ -308,33 +333,39 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun removeToSelectList(day: String){
-        with(binding){
-            when(day){
+    private fun removeToSelectList(day: String) {
+        with(binding) {
+            when (day) {
                 Week.SUNDAY.day -> {
                     selectedWeek.remove(Week.SUNDAY.day)
                     imgWeekSunday.setImageResource(R.drawable.img_week_sunday_dog)
                 }
+
                 Week.MONDAY.day -> {
                     selectedWeek.remove(Week.MONDAY.day)
                     imgWeekMonday.setImageResource(R.drawable.img_week_monday_dog)
                 }
+
                 Week.TUESDAY.day -> {
                     selectedWeek.remove(Week.TUESDAY.day)
                     imgWeekTuesday.setImageResource(R.drawable.img_week_tuesday_dog)
                 }
+
                 Week.WEDNESDAY.day -> {
                     selectedWeek.remove(Week.WEDNESDAY.day)
                     imgWeekWednesday.setImageResource(R.drawable.img_week_wednesday_dog)
                 }
+
                 Week.THURSDAY.day -> {
                     selectedWeek.remove(Week.THURSDAY.day)
                     imgWeekThursday.setImageResource(R.drawable.img_week_thursday_dog)
                 }
+
                 Week.FRIDAY.day -> {
                     selectedWeek.remove(Week.FRIDAY.day)
                     imgWeekFriday.setImageResource(R.drawable.img_week_friday_dog)
                 }
+
                 Week.SATURDAY.day -> {
                     selectedWeek.remove(Week.SATURDAY.day)
                     imgWeekSaturday.setImageResource(R.drawable.img_week_saturday_dog)
@@ -356,9 +387,9 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
                 selectDate.clear()
                 formattedDates.split(",").map { selectDate.add(it) }
 
-                if (selectDate.size > 1){
-                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
-                }else{
+                if (selectDate.size > 1) {
+                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size - 1} 일"
+                } else {
                     binding.btnSelectDate.text = formattedDates
                 }
             }
@@ -371,28 +402,86 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
 
     private fun showRegularVisitCalender() {
         val today = CivilCalendar()
-        val datePicker = PrimeDatePicker.bottomSheetWith(today)
-            .pickMultipleDays { selectedDays ->
 
-                val formattedDates = selectedDays.map { day ->
-                    "${day.month + 1}월 ${day.dayOfMonth}일"
-                }.joinToString(separator = ", ")
+        val fiveWeeksLater = today.clone().apply {
+            add(Calendar.WEEK_OF_YEAR, 5)
+        }
+        val selectedDaysOfWeek = selectedWeek.map { getDayOfWeek(it) }
+
+        val datePicker = PrimeDatePicker.bottomSheetWith(today)
+            .pickRangeDays { startDate, endDate ->
+                val formattedStartDate = "${startDate.month + 1}월 ${startDate.dayOfMonth}일"
+                val formattedEndDate = "${endDate.month + 1}월 ${endDate.dayOfMonth}일"
+                binding.btnSelectDate.text = "$formattedStartDate ~ $formattedEndDate"
+
+                val allDatesInRange = getAllDatesInRange(startDate, endDate)
 
                 selectDate.clear()
-                formattedDates.split(",").map { selectDate.add(it) }
+                allDatesInRange.map { date ->
+                    if (selectedDaysOfWeek.contains(date[Calendar.DAY_OF_WEEK])) {
+                        selectDate.add("${date.month + 1}월 ${date.dayOfMonth}일")
+                    }
 
-                if (selectDate.size > 1){
-                    binding.btnSelectDate.text = "${selectDate[0]} 외 ${selectDate.size -1} 일"
-                }else{
-                    binding.btnSelectDate.text = formattedDates
                 }
             }
-            .initiallyPickedMultipleDays(listOf())
             .minPossibleDate(today)
-            //.maxPossibleDate()
+            .maxPossibleDate(fiveWeeksLater)
+            .disabledDays(getDisabledDays(selectedDaysOfWeek, today, fiveWeeksLater))
             .build()
 
-        datePicker.show(requireActivity().supportFragmentManager, "MULTIPLE_DATE_PICKER_TAG")
+        datePicker.show(requireActivity().supportFragmentManager, "RANGE_DATE_PICKER_TAG")
+    }
+
+    private fun getAllDatesInRange(startDate: PrimeCalendar, endDate: PrimeCalendar): List<PrimeCalendar> {
+        val allDatesInRange = mutableListOf<PrimeCalendar>()
+        val currentDate = startDate.clone()
+        while (currentDate <= endDate) {
+            // 해당 날짜가 selectDate에 없는 경우에만 추가
+            if (!selectDate.contains("${currentDate.month + 1}월 ${currentDate.dayOfMonth}일")) {
+                allDatesInRange.add(currentDate.clone())
+            }
+            currentDate.add(Calendar.DAY_OF_MONTH, 1)
+        }
+        return allDatesInRange
+    }
+
+
+    private fun getDisabledDays(
+        selectedDaysOfWeek: List<Int>,
+        startDate: CivilCalendar,
+        endDate: PrimeCalendar
+    ): List<PrimeCalendar> {
+        val disabledDays = mutableListOf<PrimeCalendar>()
+
+        val daysOfWeekToExclude = selectedDaysOfWeek.toSet()
+
+        val currentDay = startDate.clone()
+        val adjustedEndDate = endDate.clone()
+        adjustedEndDate.add(Calendar.DAY_OF_MONTH, 1)
+
+        while (currentDay < adjustedEndDate) {
+            val dayOfWeek = currentDay[Calendar.DAY_OF_WEEK]
+            if (dayOfWeek !in daysOfWeekToExclude) {
+                disabledDays.add(currentDay.clone())
+            }
+            currentDay.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return disabledDays
+    }
+
+
+    private fun getDayOfWeek(day: String): Int {
+        return when (day) {
+            Week.SUNDAY.day -> Calendar.SUNDAY
+            Week.MONDAY.day -> Calendar.MONDAY
+            Week.TUESDAY.day -> Calendar.TUESDAY
+            Week.WEDNESDAY.day -> Calendar.WEDNESDAY
+            Week.THURSDAY.day -> Calendar.THURSDAY
+            Week.FRIDAY.day -> Calendar.FRIDAY
+            Week.SATURDAY.day -> Calendar.SATURDAY
+            else -> 0
+        }
     }
 
     private fun showMaterialTimePicker() {
@@ -417,7 +506,7 @@ class AppointmentUserAddressFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun calcPayment(): Int{
+    private fun calcPayment(): Int {
         val pets = viewModel.selectedPet.value.size
         val pay = viewModel.payment.value.payment
         val day = selectDate.size

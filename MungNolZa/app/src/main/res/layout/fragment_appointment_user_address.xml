@@ -104,8 +104,8 @@
                         android:layout_marginTop="@dimen/shared_common_margin"
                         android:hint="@string/plz_enter_detail_addr"
                         android:inputType="text"
-                        android:visibility="gone"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

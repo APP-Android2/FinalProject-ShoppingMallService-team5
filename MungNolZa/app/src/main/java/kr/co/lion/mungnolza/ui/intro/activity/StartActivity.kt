@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import kotlinx.coroutines.delay
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.ActivityStartBinding
 import kr.co.lion.mungnolza.ext.repeatOnStarted
@@ -28,6 +29,7 @@ class StartActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
 
         repeatOnStarted {
+            delay(450)
             if (!viewModel.checkFistFlag()) {
                 dialog.show(supportFragmentManager, "RequestPermissionDialog")
             } else {
