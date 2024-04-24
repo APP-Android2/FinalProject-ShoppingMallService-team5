@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
+import kr.co.lion.mungnolza.ext.repeatOnViewStarted
 import kr.co.lion.mungnolza.ext.showDialog
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetImgAdapter
 import kr.co.lion.mungnolza.ui.appointment.adapter.PetSitterAdapter
@@ -29,7 +26,7 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentMatchingBinding.bind(view)
 
-        viewModel.fetchAllPetSitterData()
+        viewModel.onStartMatching()
         val myPetImg = viewModel.myPetData.value.map { it.imgUrl }
         val imgAdapter = PetImgAdapter(myPetImg)
 
@@ -43,38 +40,35 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
                 Navigation.findNavController(view).navigate(action)
             }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.petSitterData.collect {
-                        if (it != null) {
-                            val petSitterAdapter = PetSitterAdapter(it, { idx ->
-                                val info = it[idx].petSitter
-                                val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
-                                Navigation.findNavController(view).navigate(action)
-                            }, { idx ->
-                                selectedPetSitter = it[idx].petSitter.petSitterIdx
-                            })
+            repeatOnViewStarted {
+                viewModel.petSitterData.collect {
+                    if (it != null) {
+                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
+                            val info = it[idx].petSitter
+                            val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
+                            Navigation.findNavController(view).navigate(action)
+                        }, { idx ->
+                            selectedPetSitter = it[idx].petSitter.petSitterIdx
+                        })
 
-                            rvPetsitter.adapter = petSitterAdapter
-                            rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
-                            val deco = MaterialDividerItemDecoration(
-                                requireContext(),
-                                MaterialDividerItemDecoration.VERTICAL
-                            )
-                            rvPetsitter.addItemDecoration(deco)
-                        }
+                        rvPetsitter.adapter = petSitterAdapter
+                        rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
+                        val deco = MaterialDividerItemDecoration(
+                            requireContext(),
+                            MaterialDividerItemDecoration.VERTICAL
+                        )
+                        rvPetsitter.addItemDecoration(deco)
                     }
                 }
             }
 
             val schedule = viewModel.reserveSchedule.value
-            val date = StringBuilder()
 
-            schedule.reserveDate.map {
-                date.append(it).append("\n".trim())
+            val groupedDates = schedule.reserveDate.chunked(3)
+            val reservedDate = groupedDates.joinToString("\n") { group ->
+                group.joinToString(", ")
             }
 
-            reserveDate.text = date.trim()
             reserveServiceType.text =
                 if (schedule.serviceType == AppointmentMainFragment.ServiceType.JOGGING.value) {
                     "산책 서비스 예약 확인"
@@ -82,7 +76,7 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
                     "돌봄 서비스 예약 확인"
                 }
             serviceTime.text = schedule.serviceTime
-            reserveDate.text = date.trim()
+            reserveDate.text = reservedDate
             reserveTime.text = schedule.reserveTime
             reserveAddr.text = schedule.address
             reservePrice.text = reservePrice.moneyFormat(schedule.totalPrice)

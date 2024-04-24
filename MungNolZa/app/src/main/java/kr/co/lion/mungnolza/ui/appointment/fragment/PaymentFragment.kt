@@ -114,11 +114,11 @@ class PaymentFragment : Fragment(R.layout.fragment_payment){
                     if (selectedCardType != 1){
                         childFragmentManager.showDialog("결제 방식을 선택해 볼까요?", "결제 방식을 선택해 주세요 !")
                     }else{
-                        viewModel.requestService(args.idx)
+                        viewModel.onPaymentSuccess(args.idx)
                         moveFragment(view)
                     }
                 } else{
-                    viewModel.requestService(args.idx)
+                    viewModel.onPaymentSuccess(args.idx)
                     moveFragment(view)
                 }
             }
