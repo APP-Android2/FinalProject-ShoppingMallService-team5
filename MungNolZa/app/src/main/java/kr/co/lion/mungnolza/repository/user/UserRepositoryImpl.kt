@@ -2,6 +2,7 @@ package kr.co.lion.mungnolza.repository.user
 
 import android.util.Log
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -24,6 +25,13 @@ class UserRepositoryImpl(
                 .addOnFailureListener {
                     Log.e("FirebaseResult", "Error Insert Board Data: ${it.message}")
                 }
+        }
+    }
+
+    override suspend fun fetchUserData(uniqueNumber: String): UserModel? {
+        return withContext(Dispatchers.IO){
+            val response = reference.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
+            response.documents[0].toObject<UserModel>()
         }
     }
 
@@ -71,14 +79,14 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun fetchUserProfileImage(path: String): URI? {
+    override suspend fun fetchUserProfileImage(path: String): URI {
         return withContext(Dispatchers.IO) {
             try {
                 val response = storage.child(path).downloadUrl.await().toString()
                 URI.create(response)
             } catch (e: Exception) {
                 Log.e("FirebaseResult", "Error fetching UserProfileImage : ${storage.child(path)}")
-                null
+                URI.create("")
             }
         }
     }

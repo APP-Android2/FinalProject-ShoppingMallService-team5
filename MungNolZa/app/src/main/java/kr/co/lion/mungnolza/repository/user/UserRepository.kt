@@ -5,9 +5,10 @@ import java.net.URI
 
 interface UserRepository {
     suspend fun userJoin(userModel: UserModel)
+    suspend fun fetchUserData(uniqueNumber: String): UserModel?
     suspend fun fetchAllUserId() : List<String>
     suspend fun fetchAllUserData() : List<UserModel>
     suspend fun fetchUserAddress(uniqueNumber: String) : String
     suspend fun fetchUserNickName(uniqueNumber: String) : String
-    suspend fun fetchUserProfileImage(path: String) : URI?
+    suspend fun fetchUserProfileImage(path: String) : URI
 }
