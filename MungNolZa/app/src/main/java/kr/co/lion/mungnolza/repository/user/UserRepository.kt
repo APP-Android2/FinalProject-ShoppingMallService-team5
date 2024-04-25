@@ -8,6 +8,6 @@ interface UserRepository {
     suspend fun fetchAllUserId() : List<String>
     suspend fun fetchAllUserData() : List<UserModel>
     suspend fun fetchUserAddress(uniqueNumber: String) : String
-    suspend fun fetchAllUserNickName(uniqueNumber: String) : List<String>
+    suspend fun fetchUserNickName(uniqueNumber: String) : String
     suspend fun fetchUserProfileImage(path: String) : URI?
 }
