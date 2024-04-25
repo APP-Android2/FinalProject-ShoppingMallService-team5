@@ -100,13 +100,13 @@
                                     android:rating="5" />
 
                                 <TextView
-                                    android:id="@+id/review_score"
+                                    android:id="@+id/review_total_score"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginStart="3dp"
                                     android:fontFamily="@font/binggrae_bold"
-                                    android:text="5.0"
+                                    android:text="4.0"
                                     android:textColor="@color/gray600"
                                     android:textSize="15sp" />
 
@@ -117,7 +117,6 @@
                                     android:layout_gravity="center"
                                     android:layout_marginStart="5dp"
                                     android:fontFamily="@font/binggrae_bold"
-                                    android:text="20개의 리뷰"
                                     android:textColor="@color/gray600"
                                     android:textSize="15sp" />
                             </LinearLayout>
@@ -202,7 +201,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:padding="10dp"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -213,7 +211,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/textViewPetSitterReviewScore"
+                    android:id="@+id/review_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -221,21 +219,15 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
                 <RatingBar
-                    android:id="@+id/ratingBarPetSitterReview"
+                    android:id="@+id/review_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:isIndicator="true"
+                    android:progressTint="@color/app_main_color"
                     android:numStars="5"
                     android:scaleX="0.5"
                     android:scaleY="0.5" />
-
-                <TextView
-                    android:id="@+id/textViewPetSitterReviewCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="리뷰 개수" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -247,7 +239,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerPetSitterReview"
+                    android:id="@+id/rv_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
