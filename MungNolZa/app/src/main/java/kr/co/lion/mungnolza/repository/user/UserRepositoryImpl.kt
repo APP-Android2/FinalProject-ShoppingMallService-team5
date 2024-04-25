@@ -1,16 +1,14 @@
 package kr.co.lion.mungnolza.repository.user
 
 import android.util.Log
-import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kr.co.lion.mungnolza.model.UserModel
 import java.net.URI
+
 class UserRepositoryImpl(
     private val reference: CollectionReference,
     private val storage: StorageReference
@@ -66,17 +64,10 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun fetchAllUserNickName(uniqueNumber: String): List<String> {
+    override suspend fun fetchUserNickName(uniqueNumber: String): String {
         return withContext(Dispatchers.IO) {
-            try {
-                val response = reference.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
-
-                response.map { it.getString("userNickname").toString() }
-
-            } catch (e: Exception) {
-                Log.e("FirebaseResult", "Error fetching users: ${e.message}")
-                emptyList()
-            }
+            val response = reference.whereEqualTo("uniqueNumber", uniqueNumber).get().await()
+            response.documents[0].getString("userNickname").toString()
         }
     }
 

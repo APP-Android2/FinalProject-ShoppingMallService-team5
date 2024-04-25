@@ -14,7 +14,6 @@ import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
-import java.net.URI
 
 class MainViewModel(
     private val freeBoardRepository: FreeBoardRepositoryImpl,
@@ -36,9 +35,10 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+            fetchAllBoardDataWithUserInfo()
+
             readMyPetData()
             fetchAllUserData()
-            fetchAllBoardDataWithUserInfo()
 
             //MainDataStore.setUserNumber("1234")
             MainDataStore.getUserNumber().collect {
@@ -77,25 +77,15 @@ class MainViewModel(
 
     private suspend fun fetchAllBoardDataWithUserInfo(){
         val response = freeBoardRepository.fetchAllBoardData()
-        val contentList = ArrayList<BoardAddUerInfoModel>()
+        val contentList = mutableListOf<BoardAddUerInfoModel>()
 
-        response.mapIndexed { index, boardModel ->
-            val nickName = userRepository.fetchAllUserNickName(boardModel.boardWriterIdx)
-            val imgUri = fetchBoardImg(boardModel.boardIdx.toString(), boardModel.boardImagePathList[0].toString())
-            val content = imgUri?.let { uri -> BoardAddUerInfoModel(boardModel, nickName[index], uri) }
-            if (content != null) {
-                contentList.add(content)
-            }
+        response.map {  boardModel ->
+            val nickName = userRepository.fetchUserNickName(boardModel.boardWriterIdx)
+            val imgUri = freeBoardRepository.fetchAllBoardImage(boardModel.boardIdx.toString(), boardModel.boardImagePathList[0].toString())
+            val content = BoardAddUerInfoModel(boardModel, nickName, imgUri)
+            contentList.add(content)
         }
         _boardContentList.value = contentList
-    }
-
-    private suspend fun fetchBoardImg(boardIdx: String, imgName: String): URI? {
-        return freeBoardRepository.fetchAllBoardImage(boardIdx, imgName)
-    }
-
-    suspend fun fetchUserProfileImage(path: String): URI? {
-        return userRepository.fetchUserProfileImage(path)
     }
 
     fun findUserData(writerIdx: String): UserModel? {
