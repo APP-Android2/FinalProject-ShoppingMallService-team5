@@ -9,11 +9,11 @@ data class PetsitterReviewModel(
     // 별점 → reviewStarCount
     // 후기내용 → reviewText
 
-    var reviewIdx: Int,
-    /*var petsitterIdx : Int,
-    var reviewWriterIdx : Int,
-    var reviewWriterName : String,*/
-    var reviewWriteDate : String,
-    var reviewStarCount: Float?,
-    var reviewText: String
+    val reviewIdx: Int = 0,
+    val petSitterIdx : Int = 0,
+    val reviewWriterIdx : String = "",
+    val reviewWriterName : String = "",
+    val reviewWriteDate : String = "",
+    val reviewStarCount: Float = 0F,
+    val reviewText: String = ""
 )
