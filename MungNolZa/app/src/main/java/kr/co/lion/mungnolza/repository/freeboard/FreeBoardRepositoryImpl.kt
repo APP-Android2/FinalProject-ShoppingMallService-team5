@@ -21,7 +21,6 @@ class FreeBoardRepositoryImpl(
             try {
                 var query = reference.whereEqualTo("boardState", ContentState.CONTENT_STATE_NORMAL.number)
                 query = query.orderBy("boardIdx", Query.Direction.DESCENDING)
-
                 val querySnapshot = query.get().await()
                 querySnapshot.map { it.toObject(BoardModel::class.java) }
 
@@ -32,7 +31,7 @@ class FreeBoardRepositoryImpl(
         }
     }
 
-    override suspend fun fetchAllBoardImage(boardIdx: String, imgName: String): URI? {
+    override suspend fun fetchAllBoardImage(boardIdx: String, imgName: String): URI {
         return withContext(Dispatchers.IO) {
             try {
                 val path = "board/$boardIdx/$imgName"
@@ -40,7 +39,7 @@ class FreeBoardRepositoryImpl(
                 URI.create(response)
             } catch (e: Exception) {
                 Log.e("FirebaseResult", "Error fetching BoardImage : ${e.message}")
-                null
+                URI.create("")
             }
         }
     }
