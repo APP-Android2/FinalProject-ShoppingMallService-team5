@@ -71,16 +71,16 @@ class ReservationListOngoingFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return 1
         }
 
         override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
-            holder.rowReservationListOngoingBinding.textViewRowReservationOngoingPetCareType.text = "돌봄 30분 ${position}"
+            holder.rowReservationListOngoingBinding.textViewRowReservationOngoingPetCareType.text = "돌봄 30분"
             holder.rowReservationListOngoingBinding.imageViewRowReservationListOngoingPetsitter.setImageResource(R.drawable.petsitter)
-            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingPetsitterName.text = "이영주 펫시터 ${position}"
+            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingPetsitterName.text = "이영주 펫시터"
             holder.rowReservationListOngoingBinding.imageViewRowReservationListOngoingPet.setImageResource(R.drawable.nayeon)
-            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingPetName.text = "뽀삐나연 ${position}"
-            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingDate.text = "2024년 4월 1일"
+            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingPetName.text = "뽀삐나연"
+            holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingDate.text = "2024년 4월 25일"
             holder.rowReservationListOngoingBinding.textViewRowReservationListOngoingTime.text = "오후 5:00 ~ 5:30"
         }
     }
