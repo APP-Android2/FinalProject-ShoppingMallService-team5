@@ -7,7 +7,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentMatchingBinding
 import kr.co.lion.mungnolza.ext.moneyFormat
@@ -44,23 +43,18 @@ class MatchingFragment : Fragment(R.layout.fragment_matching) {
 
             repeatOnViewStarted {
                 viewModel.petSitterData.collect {
-                    if (it != null) {
-                        val petSitterAdapter = PetSitterAdapter(it, { idx ->
-                            val info = it[idx].petSitter
+                        val petSitterAdapter = PetSitterAdapter(it,
+                        reviewCntClick = { idx ->
+                            val info = it[idx].petSitterInfo.petSitter
                             val action = MatchingFragmentDirections.toPetSitterInfoFragment(info)
                             Navigation.findNavController(view).navigate(action)
                         }, { idx ->
-                            selectedPetSitter = it[idx].petSitter.petSitterIdx
+                            selectedPetSitter = it[idx].petSitterInfo.petSitter.petSitterIdx
                         })
 
                         rvPetsitter.adapter = petSitterAdapter
                         rvPetsitter.layoutManager = LinearLayoutManager(requireContext())
-                        val deco = MaterialDividerItemDecoration(
-                            requireContext(),
-                            MaterialDividerItemDecoration.VERTICAL
-                        )
-                        rvPetsitter.addItemDecoration(deco)
-                    }
+
                 }
             }
 

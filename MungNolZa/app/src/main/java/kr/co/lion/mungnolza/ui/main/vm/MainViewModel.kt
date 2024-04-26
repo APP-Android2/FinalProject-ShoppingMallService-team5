@@ -1,5 +1,6 @@
 package kr.co.lion.mungnolza.ui.main.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,15 +11,20 @@ import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.BoardAddUerInfoModel
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.model.PetModel
+import kr.co.lion.mungnolza.model.PetSitterModelWithImg
+import kr.co.lion.mungnolza.model.ReviewAddUserInfoModel
 import kr.co.lion.mungnolza.model.UserModel
 import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
+import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
+import java.net.URI
 
 class MainViewModel(
     private val freeBoardRepository: FreeBoardRepositoryImpl,
     private val userRepository: UserRepositoryImpl,
-    private val petRepositoryImpl: PetRepositoryImpl
+    private val petRepositoryImpl: PetRepositoryImpl,
+    private val reviewRepository: ReviewRepositoryImpl,
 ): ViewModel() {
 
     private val _userList = MutableStateFlow<List<UserModel>>(emptyList())
@@ -33,12 +39,16 @@ class MainViewModel(
     private val _myPetData = MutableStateFlow<List<PetImgModel>>(emptyList())
     val myPetData = _myPetData.asStateFlow()
 
+    private val _review = MutableStateFlow<List<ReviewAddUserInfoModel>>(emptyList())
+    val review = _review.asStateFlow()
+
     init {
         viewModelScope.launch {
             fetchAllBoardDataWithUserInfo()
-
-            readMyPetData()
             fetchAllUserData()
+
+            getAllUserReview()
+            readMyPetData()
 
             //MainDataStore.setUserNumber("1234")
             MainDataStore.getUserNumber().collect {
@@ -69,7 +79,6 @@ class MainViewModel(
         }
     }
 
-
     private suspend fun fetchAllUserData(){
         val response = userRepository.fetchAllUserData()
         _userList.value = response
@@ -86,6 +95,17 @@ class MainViewModel(
             contentList.add(content)
         }
         _boardContentList.value = contentList
+    }
+
+    private suspend fun getAllUserReview(){
+        val result = ArrayList<ReviewAddUserInfoModel>()
+        val reviewData = reviewRepository.fetchAllReview()
+
+        reviewData.map {
+            val userProfileImg = findUserData(it.reviewWriterIdx)?.userProfileImgPath
+            result.add(ReviewAddUserInfoModel(it, URI.create(userProfileImg)))
+        }
+        _review.value = result
     }
 
     fun findUserData(writerIdx: String): UserModel? {

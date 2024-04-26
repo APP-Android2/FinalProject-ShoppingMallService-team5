@@ -94,8 +94,7 @@
             app:destination="@id/matchingFragment" />
         <argument
             android:name="info"
-            app:argType="kr.co.lion.mungnolza.model.PetSitterModel"
-            app:nullable="true" />
+            app:argType="kr.co.lion.mungnolza.model.PetSitterModel" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"

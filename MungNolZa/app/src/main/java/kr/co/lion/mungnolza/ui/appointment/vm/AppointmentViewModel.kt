@@ -10,19 +10,21 @@ import kr.co.lion.mungnolza.model.CareServiceModel
 import kr.co.lion.mungnolza.model.PaymentTimeModel
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.model.PetSitterModelWithImg
+import kr.co.lion.mungnolza.model.PetSitterWithReviewModel
 import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.model.WalkServiceModel
 import kr.co.lion.mungnolza.repository.petsitter.PetSitterRepository
 import kr.co.lion.mungnolza.repository.reservation.ReservationRepositoryImpl
+import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class AppointmentViewModel(
     private val userRepositoryImpl: UserRepositoryImpl,
     private val petSitterRepository: PetSitterRepository,
-    private val reservationRepositoryImpl: ReservationRepositoryImpl
+    private val reservationRepositoryImpl: ReservationRepositoryImpl,
+    private val reviewRepository: ReviewRepositoryImpl,
 ) : ViewModel() {
 
     private val _myUserNumber = MutableStateFlow<String?>(null)
@@ -52,7 +54,7 @@ class AppointmentViewModel(
     private val _reserveSchedule: MutableStateFlow<SelectScheduleModel> = MutableStateFlow(SelectScheduleModel())
     val reserveSchedule = _reserveSchedule.asStateFlow()
 
-    private val _petSitterData: MutableStateFlow<ArrayList<PetSitterModelWithImg>?> = MutableStateFlow(null)
+    private val _petSitterData: MutableStateFlow<List<PetSitterWithReviewModel>> = MutableStateFlow(emptyList())
     val petSitterData = _petSitterData.asStateFlow()
 
     init {
@@ -102,18 +104,19 @@ class AppointmentViewModel(
 
     fun onStartMatching() = viewModelScope.launch {
         val response = petSitterRepository.fetchAllPetSitterData()
-        val petSitterList = ArrayList<PetSitterModelWithImg>()
+        val petSitterList = ArrayList<PetSitterWithReviewModel>()
 
         response.map {
             val imgUri = petSitterRepository.fetchPetSitterImage(it.petSitterIdx, it.imgName)
-            val petSitter = PetSitterModelWithImg(it, imgUri)
+            val review = reviewRepository.fetchPetSitterReview(it.petSitterIdx.toInt())
+
+            val petSitter = PetSitterWithReviewModel(
+                PetSitterModelWithImg(it, imgUri),
+                review
+            )
             petSitterList.add(petSitter)
         }
         _petSitterData.value = petSitterList
-    }
-
-    suspend fun fetchPetSitterImage(petSitterIdx: String, imgName: String): URI? {
-        return petSitterRepository.fetchPetSitterImage(petSitterIdx, imgName)
     }
 
     private suspend fun getUserAddress(userNumber: String) {

@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.RowMatchingBinding
-import kr.co.lion.mungnolza.model.PetSitterModelWithImg
+import kr.co.lion.mungnolza.model.PetSitterWithReviewModel
 
 class PetSitterAdapter(
-    private val petSitters: ArrayList<PetSitterModelWithImg>,
+    private val petSitters: List<PetSitterWithReviewModel>,
     private val reviewCntClick: (Int) -> Unit,
     private val itemClick: (Int) -> Unit,
 ): RecyclerView.Adapter<PetSitterAdapter.PetSitterViewHolder>() {
@@ -29,40 +29,50 @@ class PetSitterAdapter(
         init {
 
             binding.reviewCnt.setOnClickListener {
-                reviewCntClick.invoke(adapterPosition)
+                reviewCntClick.invoke(absoluteAdapterPosition)
             }
 
             binding.root.setOnClickListener{
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    notifyItemChanged(selectedItemPosition) // 기존 선택된 아이템 배경색 변경
-                    selectedItemPosition = adapterPosition
-                    notifyItemChanged(selectedItemPosition) // 새로운 선택된 아이템 배경색 변경
+                if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
+                    notifyItemChanged(selectedItemPosition)
+                    selectedItemPosition = absoluteAdapterPosition
+                    notifyItemChanged(selectedItemPosition)
                 }
-                itemClick.invoke(adapterPosition)
+                itemClick.invoke(absoluteAdapterPosition)
             }
         }
 
-        fun binding(item: PetSitterModelWithImg){
+        fun binding(item: PetSitterWithReviewModel, position: Int){
             with(binding){
 
-                val content = SpannableString("5개의 리뷰")
+                val reviewCount = item.review.size
+                val content = SpannableString("${reviewCount}개의 리뷰")
                 content.setSpan(UnderlineSpan(), 0, content.length, 0)
                 reviewCnt.text = content
 
-                petSitterName.text = item.petSitter.petSitterName
+                val averageReviewCount = item.review.map { it.reviewStarCount.toInt() }.average()
+
+                if (averageReviewCount.isNaN()){
+                    reviewScore.text = "0"
+                }else{
+                    reviewScore.text = averageReviewCount.toString()
+                }
+
+
+                petSitterName.text = item.petSitterInfo.petSitter.petSitterName
 
                 val career = StringBuilder()
-                item.petSitter.petSitterCareer.map {
+                item.petSitterInfo.petSitter.petSitterCareer.map {
                     career.append(it).append("\n")
                 }
 
                 petSitterCareer.text = career.trim()
 
                 Glide.with(binding.root)
-                    .load(item.profileImg.toString())
+                    .load(item.petSitterInfo.profileImg.toString())
                     .into(imgPetSitter)
 
-                root.backgroundTintList = if (adapterPosition == selectedItemPosition){
+                root.backgroundTintList = if (absoluteAdapterPosition == selectedItemPosition){
                         ContextCompat.getColorStateList(context, R.color.app_main_color)
                     } else{
                         ContextCompat.getColorStateList(context, R.color.white)
@@ -86,6 +96,6 @@ class PetSitterAdapter(
     override fun getItemCount() = petSitters.size
 
     override fun onBindViewHolder(holder: PetSitterViewHolder, position: Int) {
-        holder.binding(petSitters[position])
+        holder.binding(petSitters[position], position)
     }
 }

@@ -9,6 +9,7 @@ import com.google.firebase.storage.storage
 import kr.co.lion.mungnolza.datasource.local.MainDataBase
 import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
+import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.lang.IllegalArgumentException
 
@@ -26,10 +27,13 @@ class MainViewModelFactory(context: Context): ViewModelProvider.Factory{
         Firebase.storage.reference,
         MainDataBase.getDatabase(context).myPetDao()
     )
+    private val reviewRepository = ReviewRepositoryImpl(
+        Firebase.firestore.collection("petsitterReviewModel")
+    )
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
-            return MainViewModel(boardRepository, userRepository, petRepositoryImpl) as T
+            return MainViewModel(boardRepository, userRepository, petRepositoryImpl, reviewRepository) as T
         }
         throw IllegalArgumentException("unknown ViewModel class")
     }

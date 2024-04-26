@@ -33,7 +33,6 @@ class ReservationConfirmedFragment : Fragment(R.layout.fragment_reservation_conf
             rvPetImg.adapter = imgAdapter
             rvPetImg.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-
             val schedule = viewModel.reserveSchedule.value
 
             reserveServiceType.text =
@@ -52,17 +51,25 @@ class ReservationConfirmedFragment : Fragment(R.layout.fragment_reservation_conf
             reserveAddr.text = schedule.address
             reservePrice.text = reservePrice.moneyFormat(schedule.totalPrice)
 
-            val selectedPetSitter = viewModel.petSitterData.value?.find { it.petSitter.petSitterIdx == args.idx }
+            val selectedPetSitter = viewModel.petSitterData.value.find { it.petSitterInfo.petSitter.petSitterIdx == args.idx }
+
             if (selectedPetSitter != null){
                 Glide.with(this@ReservationConfirmedFragment)
-                    .load(selectedPetSitter.profileImg.toString())
+                    .load(selectedPetSitter.petSitterInfo.profileImg.toString())
                     .into(imgPetSitter)
 
-                reviewScore.text = "5.0"
-                reviewCnt.text = "20개의 리뷰"
+                val averageReviewCount = selectedPetSitter.review.map { it.reviewStarCount.toInt() }.average()
 
+                if (averageReviewCount.isNaN()){
+                    reviewScore.text = "0"
+                }else{
+                    reviewScore.text = averageReviewCount.toString()
+                }
+                reviewCnt.text = "${selectedPetSitter.review.size}개의 리뷰"
+
+                petSitterName.text = selectedPetSitter.petSitterInfo.petSitter.petSitterName
                 val career = StringBuilder()
-                selectedPetSitter.petSitter.petSitterCareer.map {
+                selectedPetSitter.petSitterInfo.petSitter.petSitterCareer.map {
                     career.append(it).append("\n")
                 }
 

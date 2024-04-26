@@ -33,8 +33,7 @@ class PetsitterMyReviewAdapter : RecyclerView.Adapter<PetsitterMyReviewAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.rowReviewPreviewBinding.userImage.setImageResource(R.drawable.ic_my_page_24px)
         holder.rowReviewPreviewBinding.userName.text = "문상훈 $position"
-        holder.rowReviewPreviewBinding.MyRating.rating = 5f
-        holder.rowReviewPreviewBinding.reviewTime.text = "2024-04-18"
+        holder.rowReviewPreviewBinding.rating.rating = 5f
         holder.rowReviewPreviewBinding.reviewContent.text = "저같은경우에는항상배가고픈편입니다지금도배가고픈상태이지요들레히호호호호"
     }
 }

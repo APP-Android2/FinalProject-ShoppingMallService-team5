@@ -61,5 +61,4 @@ class PetsitterReviewRepository {
             job1.join()
         }
     }
-
 }

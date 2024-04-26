@@ -7,8 +7,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.databinding.ActivityTestBinding
-import kr.co.lion.mungnolza.model.Location
-import kr.co.lion.mungnolza.model.LocationRequestModel
+import kr.co.lion.mungnolza.model.PetsitterReviewModel
+import kr.co.lion.mungnolza.repository.PetsitterReviewRepository
 import kr.co.lion.mungnolza.repository.location.LocationRepositoryImpl
 
 class TestActivity : AppCompatActivity() {
@@ -21,11 +21,21 @@ class TestActivity : AppCompatActivity() {
         binding = ActivityTestBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        lifecycleScope.launch {
+            PetsitterReviewRepository.insertPetsitterReviewData(
+                PetsitterReviewModel(
+                    1, 1, "3446689136", "정찬호", "2024-0-4-26-4", 4.0.toFloat(),
+                    "시터님~ 오늘처음인데 세세하게잘 돌봐주셔서 감사합니다 ! 아이들 예민한데 신경써주시고 꼼꼼하게 잘해주셧네요 :) 믿고 맡길분이 생기는건지 감사해요 ㅎㅎ"
+                )
+            )
+        }
+
         val locationRepositoryImpl = LocationRepositoryImpl(
             Firebase.database.getReference("Location")
         )
         
-
+        /*
         lifecycleScope.launch {
             locationRepositoryImpl.insertLocation(LocationRequestModel("1","1","1", Location("37.2833976", "127.0210229")))
             locationRepositoryImpl.insertLocation(LocationRequestModel("1","1","1", Location("37.2819877", "127.0200183")))
@@ -65,6 +75,6 @@ class TestActivity : AppCompatActivity() {
             locationRepositoryImpl.insertLocation(LocationRequestModel("1","1","1", Location("37.2833976", "127.0210229")))
 
         }
-
+*/
     }
 }
