@@ -16,4 +16,10 @@ class ReviewRepositoryImpl(
         }
     }
 
+    override suspend fun fetchAllReview(): List<PetsitterReviewModel> {
+        return withContext(Dispatchers.IO){
+            reference.get().await().map { it.toObject(PetsitterReviewModel::class.java) }
+        }
+    }
+
 }
