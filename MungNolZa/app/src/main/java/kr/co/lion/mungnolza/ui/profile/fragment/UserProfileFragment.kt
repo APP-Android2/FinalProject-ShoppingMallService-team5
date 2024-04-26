@@ -1,6 +1,5 @@
-package kr.co.lion.mungnolza.ui.main.fragment
+package kr.co.lion.mungnolza.ui.profile.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,21 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.mungnolza.R
 import kr.co.lion.mungnolza.databinding.FragmentUserProfileBinding
-import kr.co.lion.mungnolza.ui.main.MainActivity
 import kr.co.lion.mungnolza.ui.profile.ProfileActivity
 import kr.co.lion.mungnolza.ui.profile.dialog.ManagerModeDialogFragment
 import kr.co.lion.mungnolza.ui.profile.dialog.PetSitterModeDialogFragment
 import kr.co.lion.mungnolza.util.ProfileFragmentName
 
-class TestFragment : Fragment() {
+class UserProfileFragment : Fragment() {
 
     lateinit var fragmentUserProfileBinding: FragmentUserProfileBinding
-    lateinit var mainActivity: MainActivity
+    lateinit var profileActivity: ProfileActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentUserProfileBinding = FragmentUserProfileBinding.inflate(inflater)
-        mainActivity = activity as MainActivity
+        profileActivity = activity as ProfileActivity
 
         settingToolbar()
         settingButtonPetProfile()
@@ -54,11 +52,7 @@ class TestFragment : Fragment() {
                     when(it.itemId){
                         // 환경설정
                         R.id.menuItemSetting -> {
-                            // MainActivity의 인스턴스를 가져와서 ProfileActivity로 전환하고 SETTING_FRAGMENT로 교체
-                            val intent = Intent(mainActivity, ProfileActivity::class.java)
-                            intent.putExtra("fragmentName", ProfileFragmentName.SETTING_FRAGMENT)
-                            startActivity(intent)
-                            //profileActivity.replaceFragment(ProfileFragmentName.SETTING_FRAGMENT, true, true, null)
+                            profileActivity.replaceFragment(ProfileFragmentName.SETTING_FRAGMENT, true, true, null)
                         }
                     }
                     true
@@ -74,10 +68,7 @@ class TestFragment : Fragment() {
                 // 버튼을 눌렀을 때
                 setOnClickListener {
                     // PetProfileListFragment
-                    val intent = Intent(mainActivity, ProfileActivity::class.java)
-                    intent.putExtra("fragmentName", ProfileFragmentName.PET_PROFILE_LIST_FRAGMENT)
-                    startActivity(intent)
-                    //profileActivity.replaceFragment(ProfileFragmentName.PET_PROFILE_LIST_FRAGMENT, true, true, null)
+                    profileActivity.replaceFragment(ProfileFragmentName.PET_PROFILE_LIST_FRAGMENT, true, true, null)
                 }
             }
         }
@@ -89,10 +80,7 @@ class TestFragment : Fragment() {
                 // 버튼을 눌렀을 때
                 setOnClickListener {
                     // EditUserProfileFragment
-                    val intent = Intent(mainActivity, ProfileActivity::class.java)
-                    intent.putExtra("fragmentName", ProfileFragmentName.EDIT_USER_PROFILE_FRAGMENT)
-                    startActivity(intent)
-                    //profileActivity.replaceFragment(ProfileFragmentName.EDIT_USER_PROFILE_FRAGMENT, true, true, null)
+                    profileActivity.replaceFragment(ProfileFragmentName.EDIT_USER_PROFILE_FRAGMENT, true, true, null)
                 }
             }
         }
@@ -104,10 +92,7 @@ class TestFragment : Fragment() {
                 // 버튼을 눌렀을 때
                 setOnClickListener {
                     // FollowPetSitterFragment
-                    val intent = Intent(mainActivity, ProfileActivity::class.java)
-                    intent.putExtra("fragmentName", ProfileFragmentName.FOLLOW_PET_SITTER_FRAGMENT)
-                    startActivity(intent)
-                    //profileActivity.replaceFragment(ProfileFragmentName.FOLLOW_PET_SITTER_FRAGMENT, true, true, null)
+                    profileActivity.replaceFragment(ProfileFragmentName.FOLLOW_PET_SITTER_FRAGMENT, true, true, null)
                 }
             }
         }
@@ -119,10 +104,7 @@ class TestFragment : Fragment() {
                 // 버튼을 눌렀을 때
                 setOnClickListener {
                     // NoticeFragment
-                    val intent = Intent(mainActivity, ProfileActivity::class.java)
-                    intent.putExtra("fragmentName", ProfileFragmentName.NOTICE_FRAGMENT)
-                    startActivity(intent)
-                    //profileActivity.replaceFragment(ProfileFragmentName.NOTICE_FRAGMENT, true, true, null)
+                    profileActivity.replaceFragment(ProfileFragmentName.NOTICE_FRAGMENT, true, true, null)
                 }
             }
         }
@@ -153,5 +135,4 @@ class TestFragment : Fragment() {
             }
         }
     }
-
 }

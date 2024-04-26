@@ -38,7 +38,7 @@ class ReservationListLastFragment : Fragment() {
     // textViewReservationListLastCount - 총 건수 설정
     fun setTextView(){
         fragmentReservationListLastBinding.apply {
-            textViewReservationListLastCount.setText("총 10건")
+            textViewReservationListLastCount.setText("총 2건")
         }
     }
 
@@ -79,17 +79,29 @@ class ReservationListLastFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return 2
         }
 
         override fun onBindViewHolder(holder: RecyclerMainViewHolder, position: Int) {
-            holder.rowReservationListLastBinding.textViewRowReservationListPetCareType.text = "돌봄 30분 ${position}"
-            holder.rowReservationListLastBinding.imageViewRowReservationListLastPetsitter.setImageResource(R.drawable.petsitter)
-            holder.rowReservationListLastBinding.textViewRowReservationListLastPetsitterName.text = "이영주 펫시터 ${position}"
-            holder.rowReservationListLastBinding.imageViewRowReservationListLastPet.setImageResource(R.drawable.nayeon)
-            holder.rowReservationListLastBinding.textViewRowReservationListLastPetName.text = "뽀삐나연 ${position}"
-            holder.rowReservationListLastBinding.textViewRowReservationListLastDate.text = "2024년 4월 1일"
-            holder.rowReservationListLastBinding.textViewRowReservationListLastTime.text = "오후 5:00 ~ 5:30"
+            if(position == 0){
+                holder.rowReservationListLastBinding.textViewRowReservationListPetCareType.text = "산책 1시간"
+                holder.rowReservationListLastBinding.imageViewRowReservationListLastPetsitter.setImageResource(R.drawable.image_man1)
+                holder.rowReservationListLastBinding.textViewRowReservationListLastPetsitterName.text = "정찬호 펫시터"
+                holder.rowReservationListLastBinding.imageViewRowReservationListLastPet.setImageResource(R.drawable.image_cat1)
+                holder.rowReservationListLastBinding.textViewRowReservationListLastPetName.text = "족구미냥이"
+                holder.rowReservationListLastBinding.textViewRowReservationListLastDate.text = "2024년 4월 1일"
+                holder.rowReservationListLastBinding.textViewRowReservationListLastTime.text = "오후 1:00 ~ 2:00"
+            }
+            if(position == 1){
+                holder.rowReservationListLastBinding.textViewRowReservationListPetCareType.text = "돌봄 5시간"
+                holder.rowReservationListLastBinding.imageViewRowReservationListLastPetsitter.setImageResource(R.drawable.jeounghyun_test)
+                holder.rowReservationListLastBinding.textViewRowReservationListLastPetsitterName.text = "임정현 펫시터 ${position}"
+                holder.rowReservationListLastBinding.imageViewRowReservationListLastPet.setImageResource(R.drawable.doog)
+                holder.rowReservationListLastBinding.textViewRowReservationListLastPetName.text = "해피 ${position}"
+                holder.rowReservationListLastBinding.textViewRowReservationListLastDate.text = "2024년 4월 5일"
+                holder.rowReservationListLastBinding.textViewRowReservationListLastTime.text = "오전 9:00 ~ 오후 2:00"
+            }
+
 
             // '후기작성' 항목을 누르면 동작하는 리스너
             holder.rowReservationListLastBinding.textViewRowReservationiListLastWriteReview.setOnClickListener {

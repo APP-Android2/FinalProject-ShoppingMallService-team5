@@ -1,9 +1,11 @@
 package kr.co.lion.mungnolza.ui.reservation_list
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,9 +38,22 @@ class PetsitterReviewWriteActivity : AppCompatActivity() {
         // ViewModel의 생명주기를 Fragment와 일치시킨다. Fragment가 살아 있을 때 ViewModel 객체도 살아 있게끔 해준다.
         activityPetsitterReviewWriteBinding.lifecycleOwner = this
 
+        setToolbar()
         setButtonDone()
         setTextField()
         initData()
+    }
+
+    // 툴바
+    fun setToolbar(){
+        activityPetsitterReviewWriteBinding.apply {
+            toolbarPetSitterReviewWrite.apply {
+                setNavigationIcon(R.drawable.ic_arrow_back_24)
+                setNavigationOnClickListener {
+                    // 수정해야함
+                }
+            }
+        }
     }
 
     // 작성 완료 버튼 (이벤트 설정)
@@ -135,10 +150,10 @@ class PetsitterReviewWriteActivity : AppCompatActivity() {
     // 임시 가짜 데이터 셋팅
     fun initData(){
         activityPetsitterReviewWriteBinding.apply {
-            imageViewPetSitterReviewWrite.setImageResource(R.drawable.petsitter)
-            textViewPetSitterReviewWriteName.setText("이영주 펫시터")
-            textViewPetSitterReviewWriteScore.setText("5점")
-            ratingBarPetSitterReviewWrite.rating = 5f
+            imageViewPetSitterReviewWrite.setImageResource(R.drawable.image_man1)
+            textViewPetSitterReviewWriteName.setText("정찬호 펫시터")
+            textViewPetSitterReviewWriteScore.setText("4.5점")
+            ratingBarPetSitterReviewWrite.rating = 4.5f
             textViewPetSitterReviewWriteCountReview.setText("89개의 후기")
         }
     }
