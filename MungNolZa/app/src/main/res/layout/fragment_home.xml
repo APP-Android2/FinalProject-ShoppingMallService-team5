@@ -115,16 +115,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/black" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_review_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:background="@color/transparent"
-                    android:drawableEnd="@drawable/nexticon"
-                    android:gravity="center_vertical|end"
-                    android:text="@string/view_all"
-                    android:textColor="@color/black" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
