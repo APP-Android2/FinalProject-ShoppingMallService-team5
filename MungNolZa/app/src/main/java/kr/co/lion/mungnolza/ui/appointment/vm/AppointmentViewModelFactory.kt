@@ -7,6 +7,7 @@ import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import kr.co.lion.mungnolza.repository.petsitter.PetSitterRepositoryImpl
 import kr.co.lion.mungnolza.repository.reservation.ReservationRepositoryImpl
+import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.lang.IllegalArgumentException
 
@@ -22,12 +23,17 @@ class AppointmentViewModelFactory: ViewModelProvider.Factory {
     private val reservationRepositoryImpl = ReservationRepositoryImpl(
         Firebase.firestore.collection("Reservation")
     )
+    private val reviewRepository = ReviewRepositoryImpl(
+        Firebase.firestore.collection("petsitterReviewModel")
+    )
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AppointmentViewModel::class.java)){
             return AppointmentViewModel(
                 userRepositoryImpl,
                 petSitterRepositoryImpl,
-                reservationRepositoryImpl)
+                reservationRepositoryImpl,
+                reviewRepository
+            )
             as T
         }
         throw IllegalArgumentException("unknown ViewModel class")
