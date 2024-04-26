@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import kr.co.lion.mungnolza.databinding.RowReviewPreviewBinding
 import kr.co.lion.mungnolza.model.ReviewAddUserInfoModel
 
-class ReviewAdapter(private val reviewDate: List<ReviewAddUserInfoModel>): RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
+class ReviewAdapter(private val reviewData: List<ReviewAddUserInfoModel>): RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
     class ReviewViewHolder(private val binding: RowReviewPreviewBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: ReviewAddUserInfoModel){
             with(binding){
@@ -30,9 +30,9 @@ class ReviewAdapter(private val reviewDate: List<ReviewAddUserInfoModel>): Recyc
         return ReviewViewHolder(RowReviewPreviewBinding.inflate(inflater, parent, false))
     }
 
-    override fun getItemCount() = reviewDate.size
+    override fun getItemCount() = reviewData.size
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-        holder.bind(reviewDate[position])
+        holder.bind(reviewData[position])
     }
 }
