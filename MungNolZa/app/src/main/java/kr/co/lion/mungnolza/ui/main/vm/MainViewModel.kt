@@ -36,7 +36,6 @@ class MainViewModel(
     private val _boardData = MutableStateFlow<List<BoardAddUerInfoModel>>(emptyList())
     val boardData: StateFlow<List<BoardAddUerInfoModel>> = _boardData.asStateFlow()
 
-
     private val _myUserNumber = MutableStateFlow<String?>(null)
     private val myUserNumber = _myUserNumber.asStateFlow()
 
@@ -50,7 +49,6 @@ class MainViewModel(
         viewModelScope.launch {
             _boardData.value = getAllBoardDataWithUserInfo()
 
-            fetchAllBoardDataWithUserInfo()
             fetchAllUserData()
 
             getAllUserReview()
@@ -88,19 +86,6 @@ class MainViewModel(
     private suspend fun fetchAllUserData(){
         val response = userRepository.fetchAllUserData()
         _userList.value = response
-    }
-
-    private suspend fun fetchAllBoardDataWithUserInfo(){
-        val response = freeBoardRepository.fetchAllBoardData()
-        val contentList = mutableListOf<BoardAddUerInfoModel>()
-
-        response.map {  boardModel ->
-            val nickName = userRepository.fetchUserNickName(boardModel.boardWriterIdx)
-            val imgUri = freeBoardRepository.fetchAllBoardImage(boardModel.boardIdx.toString(), boardModel.boardImagePathList[0].toString())
-            val content = BoardAddUerInfoModel(boardModel, nickName, imgUri)
-            contentList.add(content)
-        }
-        _boardContentList.value = contentList
     }
 
     private suspend fun getAllUserReview(){

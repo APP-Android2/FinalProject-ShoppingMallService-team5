@@ -11,6 +11,7 @@ import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
+import kr.co.lion.mungnolza.usecase.GetBoardDataWithUserInfoUseCase
 import java.lang.IllegalArgumentException
 
 class MainViewModelFactory(context: Context): ViewModelProvider.Factory{
@@ -30,10 +31,11 @@ class MainViewModelFactory(context: Context): ViewModelProvider.Factory{
     private val reviewRepository = ReviewRepositoryImpl(
         Firebase.firestore.collection("petsitterReviewModel")
     )
+    private val getBoardDataWithUserInfoUseCase = GetBoardDataWithUserInfoUseCase(boardRepository, userRepository)
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
-            return MainViewModel(boardRepository, userRepository, petRepositoryImpl, reviewRepository) as T
+            return MainViewModel(boardRepository, userRepository, petRepositoryImpl, reviewRepository, getBoardDataWithUserInfoUseCase) as T
         }
         throw IllegalArgumentException("unknown ViewModel class")
     }
