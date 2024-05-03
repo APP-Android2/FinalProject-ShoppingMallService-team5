@@ -35,7 +35,7 @@ class MainViewModelFactory(context: Context): ViewModelProvider.Factory{
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
-            return MainViewModel(boardRepository, userRepository, petRepositoryImpl, reviewRepository, getBoardDataWithUserInfoUseCase) as T
+            return MainViewModel( userRepository, petRepositoryImpl, reviewRepository, getBoardDataWithUserInfoUseCase) as T
         }
         throw IllegalArgumentException("unknown ViewModel class")
     }

@@ -23,7 +23,6 @@ import kr.co.lion.mungnolza.usecase.GetBoardDataWithUserInfoUseCase
 import java.net.URI
 
 class MainViewModel(
-    private val freeBoardRepository: FreeBoardRepositoryImpl,
     private val userRepository: UserRepositoryImpl,
     private val petRepositoryImpl: PetRepositoryImpl,
     private val reviewRepository: ReviewRepositoryImpl,
