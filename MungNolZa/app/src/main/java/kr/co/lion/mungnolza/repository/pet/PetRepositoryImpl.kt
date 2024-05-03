@@ -18,7 +18,7 @@ class PetRepositoryImpl(
     private val myPetDao: MyPetDao
 ): PetRepository {
 
-    suspend fun readMyPetData(): Flow<List<MyPetEntity>> {
+    override suspend fun readMyPetData(): Flow<List<MyPetEntity>> {
         return withContext(Dispatchers.IO){
             myPetDao.readMyPet()
         }

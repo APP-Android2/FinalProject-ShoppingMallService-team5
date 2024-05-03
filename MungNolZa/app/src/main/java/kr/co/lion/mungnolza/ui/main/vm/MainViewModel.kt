@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
 import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
+import kr.co.lion.mungnolza.usecase.GetBoardDataWithUserInfoUseCase
 import java.net.URI
 
 class MainViewModel(
@@ -25,13 +27,15 @@ class MainViewModel(
     private val userRepository: UserRepositoryImpl,
     private val petRepositoryImpl: PetRepositoryImpl,
     private val reviewRepository: ReviewRepositoryImpl,
+    private val getAllBoardDataWithUserInfo: GetBoardDataWithUserInfoUseCase,
 ): ViewModel() {
 
     private val _userList = MutableStateFlow<List<UserModel>>(emptyList())
     val userList = _userList.asStateFlow()
 
-    private var _boardContentList = MutableStateFlow<List<BoardAddUerInfoModel>>(emptyList())
-    val boardContentList = _boardContentList.asStateFlow()
+    private val _boardData = MutableStateFlow<List<BoardAddUerInfoModel>>(emptyList())
+    val boardData: StateFlow<List<BoardAddUerInfoModel>> = _boardData.asStateFlow()
+
 
     private val _myUserNumber = MutableStateFlow<String?>(null)
     private val myUserNumber = _myUserNumber.asStateFlow()
@@ -44,6 +48,8 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+            _boardData.value = getAllBoardDataWithUserInfo()
+
             fetchAllBoardDataWithUserInfo()
             fetchAllUserData()
 
