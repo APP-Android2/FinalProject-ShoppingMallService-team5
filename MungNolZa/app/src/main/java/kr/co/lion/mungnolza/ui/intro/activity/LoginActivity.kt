@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         with(binding) {
             lifecycleScope.launch {
-                if (viewModel.checkFistFlag()) {
+                if (!viewModel.checkFistFlag()) {
                     delay(1000)
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 } else {

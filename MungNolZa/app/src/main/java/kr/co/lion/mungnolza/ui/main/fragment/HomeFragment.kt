@@ -40,7 +40,6 @@ class HomeFragment : Fragment(R.layout.fragment_home){
         }
         repeatOnViewStarted {
             viewModel.review.collect {
-                Log.d("dasdsa", it.toString())
                 val adapter = ReviewAdapter(it)
 
                 with(binding) {

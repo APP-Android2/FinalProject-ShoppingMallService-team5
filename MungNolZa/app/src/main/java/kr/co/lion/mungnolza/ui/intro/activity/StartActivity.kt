@@ -3,6 +3,7 @@ package kr.co.lion.mungnolza.ui.intro.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import kotlinx.coroutines.delay
 import kr.co.lion.mungnolza.R
@@ -30,7 +31,7 @@ class StartActivity : AppCompatActivity() {
 
         repeatOnStarted {
             delay(450)
-            if (!viewModel.checkFistFlag()) {
+            if (viewModel.checkFistFlag()) {
                 dialog.show(supportFragmentManager, "RequestPermissionDialog")
             } else {
                 viewModel.onLoginSuccess {
