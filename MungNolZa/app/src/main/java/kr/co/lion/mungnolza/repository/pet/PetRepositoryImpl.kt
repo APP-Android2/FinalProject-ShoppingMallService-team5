@@ -24,19 +24,19 @@ class PetRepositoryImpl(
         }
     }
 
-    suspend fun insertMyPetData(myPets: MyPetEntity){
+    override suspend fun insertMyPetData(myPets: MyPetEntity){
         withContext(Dispatchers.IO){
             myPetDao.insertMyPet(myPets)
         }
     }
 
-    suspend fun updateMyPetData(myPets: MyPetEntity){
+    override suspend fun updateMyPetData(myPets: MyPetEntity){
         withContext(Dispatchers.IO){
             myPetDao.updateMyPet(myPets)
         }
     }
 
-    suspend fun deleteMyPetData(petName: String){
+    override suspend fun deleteMyPetData(petName: String){
         withContext(Dispatchers.IO){
             myPetDao.deleteMyPet(petName)
         }

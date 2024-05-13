@@ -26,7 +26,7 @@ class FreeBoardFragment : Fragment(R.layout.fragment_free_board) {
 
         with(binding) {
             repeatOnViewStarted {
-                viewModel.boardContentList.collect { boardList ->
+                viewModel.boardData.collect { boardList ->
                     val freeBoardAdapter = FreeBoardAdapter(
                         dataSet = boardList,
                         onClick = { selectedItemIdx ->

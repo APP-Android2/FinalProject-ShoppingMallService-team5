@@ -6,12 +6,14 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.datasource.local.MyPetEntity
+import kr.co.lion.mungnolza.repository.pet.PetRepository
 import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
+import kr.co.lion.mungnolza.repository.user.UserRepository
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 
 class LoginViewModel(
-    private val userRepositoryImpl: UserRepositoryImpl,
-    private val petRepositoryImpl: PetRepositoryImpl
+    private val userRepository: UserRepository,
+    private val petRepository: PetRepository
 ): ViewModel() {
 
     fun onLoginSuccess(ownerIdx: String, callback: (Boolean) -> Unit) = viewModelScope.launch {
@@ -19,10 +21,10 @@ class LoginViewModel(
             MainDataStore.setupFirstData()
             MainDataStore.setUserNumber(ownerIdx)
 
-            val result = petRepositoryImpl.fetchMyPetData(ownerIdx)
+            val result = petRepository.fetchMyPetData(ownerIdx)
 
             result.map{
-                petRepositoryImpl.insertMyPetData(
+                petRepository.insertMyPetData(
                     MyPetEntity(
                     petName = it.petName,
                     ownerIdx = it.ownerIdx,
@@ -45,7 +47,7 @@ class LoginViewModel(
 
 
     suspend fun isExistUser(userId: String): Boolean{
-        return userRepositoryImpl.fetchAllUserId().contains(userId)
+        return userRepository.fetchAllUserId().contains(userId)
     }
 
     suspend fun checkFistFlag(): Boolean{

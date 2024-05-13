@@ -27,7 +27,7 @@ class PetsitterFreeBoardFragment : Fragment(R.layout.fragment_petsitter_free_boa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         repeatOnViewStarted {
-            viewModel.boardContentList.collect { boardList ->
+            viewModel.boardData.collect { boardList ->
                 val freeBoardAdapter = FreeBoardAdapter(
                     dataSet = boardList,
                     onClick = { selectedItemIdx ->

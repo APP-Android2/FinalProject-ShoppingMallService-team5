@@ -6,19 +6,19 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.datasource.local.MyPetEntity
-import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
+import kr.co.lion.mungnolza.repository.pet.PetRepository
 
 class StartViewModel(
-    private val petRepositoryImpl: PetRepositoryImpl
+    private val petRepository: PetRepository
 ): ViewModel() {
 
     fun onLoginSuccess(callback: (Boolean) -> Unit) = viewModelScope.launch {
         val success = try{
             val myUserNumber = MainDataStore.getUserNumber().stateIn(this).value
-            val result = petRepositoryImpl.fetchMyPetData(myUserNumber)
+            val result = petRepository.fetchMyPetData(myUserNumber)
 
             result.map{
-                petRepositoryImpl.insertMyPetData(MyPetEntity(
+                petRepository.insertMyPetData(MyPetEntity(
                     petName = it.petName,
                     ownerIdx = it.ownerIdx,
                     petBreed = it.petBreed,

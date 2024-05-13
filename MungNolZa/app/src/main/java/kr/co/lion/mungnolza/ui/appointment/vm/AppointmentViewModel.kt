@@ -14,17 +14,20 @@ import kr.co.lion.mungnolza.model.PetSitterWithReviewModel
 import kr.co.lion.mungnolza.model.SelectScheduleModel
 import kr.co.lion.mungnolza.model.WalkServiceModel
 import kr.co.lion.mungnolza.repository.petsitter.PetSitterRepository
+import kr.co.lion.mungnolza.repository.reservation.ReservationRepository
 import kr.co.lion.mungnolza.repository.reservation.ReservationRepositoryImpl
+import kr.co.lion.mungnolza.repository.review.ReviewRepository
 import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
+import kr.co.lion.mungnolza.repository.user.UserRepository
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class AppointmentViewModel(
-    private val userRepositoryImpl: UserRepositoryImpl,
+    private val userRepository: UserRepository,
     private val petSitterRepository: PetSitterRepository,
-    private val reservationRepositoryImpl: ReservationRepositoryImpl,
-    private val reviewRepository: ReviewRepositoryImpl,
+    private val reservationRepository: ReservationRepository,
+    private val reviewRepository: ReviewRepository,
 ) : ViewModel() {
 
     private val _myUserNumber = MutableStateFlow<String?>(null)
@@ -80,26 +83,26 @@ class AppointmentViewModel(
     private fun requestCareService(petSitterIdx: String) = viewModelScope.launch{
         val request = CareServiceModel(
             myUserNumber.value.toString(),
-            reservationRepositoryImpl.findLastReservationIdx() + 1,
+            reservationRepository.findLastReservationIdx() + 1,
                 reserveSchedule.value,
                 careType.value.toString(),
                 petSitterIdx,
                 getCurrentDate(),
                 true
                 )
-        reservationRepositoryImpl.careServiceRequest(request)
+        reservationRepository.careServiceRequest(request)
     }
 
     private fun requestWalkService(petSitterIdx: String) = viewModelScope.launch{
         val request = WalkServiceModel(
             myUserNumber.value.toString(),
-            reservationRepositoryImpl.findLastReservationIdx() + 1,
+            reservationRepository.findLastReservationIdx() + 1,
             reserveSchedule.value,
             petSitterIdx,
             getCurrentDate(),
             true
         )
-        reservationRepositoryImpl.walkServiceRequest(request)
+        reservationRepository.walkServiceRequest(request)
     }
 
     fun onStartMatching() = viewModelScope.launch {
@@ -120,7 +123,7 @@ class AppointmentViewModel(
     }
 
     private suspend fun getUserAddress(userNumber: String) {
-        _userAddress.value = userRepositoryImpl.fetchUserAddress(userNumber)
+        _userAddress.value = userRepository.fetchUserAddress(userNumber)
     }
 
     fun setFlag(flag: String) {

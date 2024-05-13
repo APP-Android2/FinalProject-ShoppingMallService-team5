@@ -9,4 +9,10 @@ interface PetRepository {
     suspend fun fetchMyPetData(ownerIdx: String): List<PetModel>
     suspend fun fetchMyPetImage(ownerIdx: String, imgName: String): URI
     suspend fun readMyPetData(): Flow<List<MyPetEntity>>
+
+    suspend fun insertMyPetData(myPets: MyPetEntity)
+
+    suspend fun updateMyPetData(myPets: MyPetEntity)
+
+    suspend fun deleteMyPetData(petName: String)
 }

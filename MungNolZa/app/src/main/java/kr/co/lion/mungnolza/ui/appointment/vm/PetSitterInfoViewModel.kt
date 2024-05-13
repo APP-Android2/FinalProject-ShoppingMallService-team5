@@ -7,13 +7,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kr.co.lion.mungnolza.model.ReviewAddUserInfoModel
 import kr.co.lion.mungnolza.repository.petsitter.PetSitterRepository
+import kr.co.lion.mungnolza.repository.review.ReviewRepository
 import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
+import kr.co.lion.mungnolza.repository.user.UserRepository
 import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
 import java.net.URI
 
 class PetSitterInfoViewModel(
-    private val userRepository: UserRepositoryImpl,
-    private val reviewRepository: ReviewRepositoryImpl,
+    private val userRepository: UserRepository,
+    private val reviewRepository: ReviewRepository,
     private val petSitterRepository: PetSitterRepository,
 ): ViewModel() {
 

@@ -1,6 +1,5 @@
 package kr.co.lion.mungnolza.ui.main.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,21 +11,20 @@ import kr.co.lion.mungnolza.datasource.MainDataStore
 import kr.co.lion.mungnolza.model.BoardAddUerInfoModel
 import kr.co.lion.mungnolza.model.PetImgModel
 import kr.co.lion.mungnolza.model.PetModel
-import kr.co.lion.mungnolza.model.PetSitterModelWithImg
 import kr.co.lion.mungnolza.model.ReviewAddUserInfoModel
 import kr.co.lion.mungnolza.model.UserModel
-import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepositoryImpl
-import kr.co.lion.mungnolza.repository.pet.PetRepositoryImpl
-import kr.co.lion.mungnolza.repository.review.ReviewRepositoryImpl
-import kr.co.lion.mungnolza.repository.user.UserRepositoryImpl
+import kr.co.lion.mungnolza.repository.freeboard.FreeBoardRepository
+import kr.co.lion.mungnolza.repository.pet.PetRepository
+import kr.co.lion.mungnolza.repository.review.ReviewRepository
+import kr.co.lion.mungnolza.repository.user.UserRepository
 import kr.co.lion.mungnolza.usecase.GetBoardDataWithUserInfoUseCase
 import java.net.URI
 
 class MainViewModel(
-    private val freeBoardRepository: FreeBoardRepositoryImpl,
-    private val userRepository: UserRepositoryImpl,
-    private val petRepositoryImpl: PetRepositoryImpl,
-    private val reviewRepository: ReviewRepositoryImpl,
+    private val freeBoardRepository: FreeBoardRepository,
+    private val userRepository: UserRepository,
+    private val petRepository: PetRepository,
+    private val reviewRepository: ReviewRepository,
     private val getAllBoardDataWithUserInfo: GetBoardDataWithUserInfoUseCase,
 ): ViewModel() {
 
@@ -64,7 +62,7 @@ class MainViewModel(
     }
 
     private suspend fun readMyPetData(){
-        petRepositoryImpl.readMyPetData().stateIn(viewModelScope).collect{ data ->
+        petRepository.readMyPetData().stateIn(viewModelScope).collect{ data ->
             val result = data.map {
                 PetImgModel(
                     PetModel(
@@ -78,7 +76,7 @@ class MainViewModel(
                         petSignificant = it.petSignificant,
                         imgName = it.imgPath
                     ),
-                    petRepositoryImpl.fetchMyPetImage(it.ownerIdx, it.imgPath)
+                    petRepository.fetchMyPetImage(it.ownerIdx, it.imgPath)
                 )
             }
             _myPetData.value = result
@@ -100,7 +98,7 @@ class MainViewModel(
             val content = BoardAddUerInfoModel(boardModel, nickName, imgUri)
             contentList.add(content)
         }
-        _boardContentList.value = contentList
+        _boardData.value = contentList
     }
 
     private suspend fun getAllUserReview(){
